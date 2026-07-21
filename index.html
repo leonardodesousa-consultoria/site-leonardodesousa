@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leonardo Sousa · Consultor Patrimonial</title>
+<meta name="description" content="Clareza patrimonial para quem já acumulou. Consultoria patrimonial independente, fee fixo, sem comissão. Atendimento em todo o Brasil.">
+
+<!-- ============================================================
+     HOME · Site institucional 2026 · v2 "Camadas Editoriais"
+     Sistema de design canônico para as outras 5 páginas.
+     HTML/CSS/JS puro, self-contained. Lora + Inter.
+     Fundo claro dominante, uma banda escura de respiro no CTA final.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico para as 6 páginas)
+   ============================================================ */
+:root{
+  /* superfícies claras */
+  --bg:#f5f5f0;            /* papel, fundo dominante            */
+  --paper:#ffffff;         /* quadros / cartões                 */
+  --paper-2:#fafaf7;       /* superfície morna alternativa      */
+
+  /* tinta */
+  --ink:#0a1914;           /* texto principal                   */
+  --ink2:#2d4a3e;          /* texto secundário                  */
+  --mut:rgba(10,25,20,.52);/* muted                             */
+  --ghost:rgba(10,25,20,.46);/* camada fantasma da headline     */
+
+  /* acento e atenção */
+  --accent:#1fa86a;        /* ênfase sobre claro                */
+  --accent-br:#3ecf8e;     /* ênfase sobre escuro               */
+  --amber:#c17a1e;         /* frente aberta / estrutura offshore*/
+
+  /* réguas */
+  --line:rgba(10,25,20,.14);
+  --line-soft:rgba(10,25,20,.08);
+
+  /* banda escura (só CTA final) */
+  --deep:#0a1914;
+  --deep-2:#0d2419;
+  --on-deep:#ffffff;
+  --on-deep-soft:rgba(255,255,255,.68);
+  --line-deep:rgba(255,255,255,.14);
+
+  /* tipografia */
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+
+  /* medidas */
+  --wrap:1240px;
+  --pad-x:clamp(1.3rem, 4.5vw, 3.4rem);
+  --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  font-family:var(--sans);
+  background:var(--bg); color:var(--ink);
+  font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent);
+}
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent); }
+.hl-deep{ color:var(--accent-br); }
+
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:11px;
+  font-family:var(--sans); font-weight:600; text-decoration:none; line-height:1;
+  border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s;
+}
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+
+.tlink{
+  display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none;
+  color:var(--accent); border-bottom:1px solid transparent; padding-bottom:2px;
+  transition:border-color .2s;
+}
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+.tlink.on-deep{ color:var(--accent-br); }
+
+.micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent); font-weight:700; }
+.micro.on-deep{ color:var(--on-deep-soft); }
+.micro.on-deep .tk{ color:var(--accent-br); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s;
+  padding-block:15px;
+}
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+
+/* menu mobile */
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · headline em duas camadas
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
+.masthead{
+  display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap;
+}
+.masthead .idx{ color:var(--accent); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.hero-h{ margin-top:clamp(1.4rem,3.2vw,2.4rem); }
+.ghost{
+  font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.35rem,3vw,2.15rem); letter-spacing:-.01em; margin-bottom:.16em; max-width:24ch;
+}
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.02;
+  font-size:clamp(2.6rem,6vw,4.6rem); max-width:19ch; }
+.hero-foot{
+  margin-top:clamp(1.8rem,3.6vw,2.6rem); display:grid; grid-template-columns:1.1fr auto;
+  gap:clamp(1.6rem,4vw,3.4rem); align-items:end;
+  border-top:1px solid var(--line); padding-top:clamp(1.6rem,3vw,2.2rem);
+}
+.cta-col{ display:flex; flex-direction:column; align-items:flex-start; gap:14px; }
+
+/* ============================================================
+   5. PROVA FRIA · réguas + index numbers
+   ============================================================ */
+.proof{ background:var(--paper); }
+.proof-in{ padding-block:clamp(2.6rem,5vw,3.6rem); }
+.proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.pitem{ padding:clamp(1.6rem,3vw,2.2rem) clamp(1rem,2.4vw,2rem); position:relative; }
+.pitem + .pitem{ border-left:1px solid var(--line); }
+.pk{ font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); }
+.pv{ font-family:var(--serif); font-size:clamp(2.1rem,4.4vw,3.1rem); font-weight:700; line-height:1; margin-top:12px; letter-spacing:-.02em; }
+.pv .u{ color:var(--accent); }
+.pl{ font-size:.9rem; color:var(--ink2); margin-top:10px; line-height:1.45; max-width:26ch; }
+
+/* ============================================================
+   6. CONSELHO OU PRODUTO · frase do fee + tabela editorial
+   ============================================================ */
+.two{ display:grid; grid-template-columns:1fr .96fr; gap:clamp(2rem,5vw,4.4rem); align-items:start; }
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 18px; max-width:16ch; }
+.fee{ margin-top:26px; padding:24px 28px; border-left:3px solid var(--accent); background:rgba(31,168,106,.05); border-radius:0 4px 4px 0; }
+.fee p{ font-family:var(--serif); font-size:clamp(1.08rem,2vw,1.38rem); font-weight:500; line-height:1.4; color:var(--ink); }
+
+.cmp-tag{ font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin-bottom:16px; }
+.cmp{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); }
+.cmp-row{ display:grid; grid-template-columns:1fr 1fr 1fr; }
+.cmp-row + .cmp-row{ border-top:1px solid var(--line); }
+.cmp-cell{ padding:15px 18px; font-size:.95rem; line-height:1.42; }
+.cmp-cell.dim{ color:var(--mut); }
+.cmp-head{ background:var(--paper-2); }
+.cmp-head .cmp-cell{ font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; }
+.cmp-head .col-a{ color:var(--accent); }
+.cmp-head .col-b{ color:var(--mut); }
+.cmp-key{ font-weight:600; color:var(--ink2); }
+.col-a{ border-left:2px solid rgba(31,168,106,.32); background:rgba(31,168,106,.035); }
+.cmp-mark{ font-weight:600; color:var(--ink); }
+
+/* ============================================================
+   7. MÉTODO · acordeão vertical 01-03
+   ============================================================ */
+.acc{ margin-top:26px; border-top:1px solid var(--line); }
+.acc details{ border-bottom:1px solid var(--line); }
+.acc summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:auto 1fr auto; gap:20px; align-items:baseline; padding:24px 4px; }
+.acc summary::-webkit-details-marker{ display:none; }
+.acc .an{ font-size:.78rem; font-weight:600; letter-spacing:.14em; color:var(--accent); }
+.acc .at{ font-family:var(--serif); font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:600; color:var(--ink); }
+.acc .plus{ font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; line-height:1; }
+.acc details[open] .plus{ transform:rotate(45deg); }
+.acc .ab{ padding:0 4px 26px 60px; }
+.acc .ab p{ color:var(--ink2); line-height:1.6; max-width:56ch; }
+.acc .ab .tag{ display:inline-block; margin-top:14px; font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--accent); }
+@media (max-width:560px){ .acc .ab{ padding-left:4px; } }
+
+/* ============================================================
+   8. ÁRVORE-COLAGEM · Exterior preenchido + teaser do plano
+   ============================================================ */
+.tree-two{ display:grid; grid-template-columns:.92fr 1.08fr; gap:clamp(2rem,5vw,4.4rem); align-items:center; }
+.collage{ position:relative; }
+.col-tag{ font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); margin-bottom:16px; }
+.ctree{ display:flex; flex-direction:column; align-items:center; }
+.root{ background:linear-gradient(150deg,#15402c,#0a1914); color:var(--on-deep); border-radius:5px; padding:20px 34px; text-align:center; width:100%; box-shadow:0 14px 34px rgba(10,25,20,.2); }
+.root .rk{ font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-br); }
+.root .rv{ font-family:var(--serif); font-size:clamp(1.9rem,3.4vw,2.5rem); font-weight:700; line-height:1.04; margin-top:5px; }
+.root .rs{ font-size:.76rem; color:var(--on-deep-soft); margin-top:5px; }
+.drop{ width:1px; height:26px; background:var(--line); }
+.leafs{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; margin-top:22px; }
+.cleaf{ position:relative; background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:15px 17px; }
+.cleaf::before{ content:''; position:absolute; top:-23px; left:50%; width:1px; height:23px; background:var(--line); }
+.cleaf .lk{ font-size:.64rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--ink2); }
+.cleaf .lv{ font-family:var(--serif); font-size:1.32rem; font-weight:700; color:var(--ink); line-height:1.08; margin-top:5px; }
+.cleaf .lp{ font-size:.72rem; color:var(--mut); margin-top:6px; font-weight:600; letter-spacing:.02em; }
+.cleaf .bar{ height:3px; background:var(--line-soft); border-radius:3px; margin-top:11px; overflow:hidden; }
+.cleaf .bar i{ display:block; height:100%; background:var(--accent); border-radius:3px; }
+.cleaf.ext .lk{ color:var(--accent); }
+.cleaf.aberta{ border-style:dashed; border-color:rgba(193,122,30,.55); background:rgba(193,122,30,.045); grid-column:1 / -1; }
+.cleaf.aberta .lk{ color:var(--amber); }
+.cleaf.aberta .lv{ font-size:1.02rem; color:var(--amber); }
+.cleaf.aberta .lp{ color:var(--amber); opacity:.85; }
+.col-note{ margin-top:18px; font-size:.78rem; color:var(--mut); text-align:center; line-height:1.45; }
+
+/* ============================================================
+   9. DEPOIMENTOS · citação de revista + case
+   ============================================================ */
+.tst-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:14px; }
+.tst{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:30px 26px 26px; display:flex; flex-direction:column; position:relative; }
+.tst .mark{ font-family:var(--serif); font-size:3.4rem; font-weight:700; line-height:.6; color:rgba(10,25,20,.12); height:.5em; }
+.tst .quote{ font-family:var(--serif); font-size:1.05rem; font-weight:500; line-height:1.5; color:var(--ink); margin-top:14px; }
+.tst .who{ margin-top:auto; padding-top:22px; }
+.tst .who::before{ content:''; display:block; width:34px; height:1px; background:var(--line); margin-bottom:14px; }
+.tst .nm{ font-size:.8rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--ink); }
+.tst .rl{ font-size:.85rem; color:var(--ink2); margin-top:5px; }
+.tst .since{ font-size:.76rem; color:var(--accent); margin-top:7px; letter-spacing:.02em; font-weight:600; }
+
+.case{ margin-top:26px; display:grid; grid-template-columns:auto 1fr; gap:clamp(1.4rem,4vw,3rem); align-items:center;
+  background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:clamp(1.6rem,4vw,2.4rem); }
+.case-big{ font-family:var(--serif); font-size:clamp(2.4rem,5vw,3.4rem); font-weight:700; color:var(--ink); line-height:1; letter-spacing:-.02em; }
+.case-big .u{ color:var(--accent); }
+.case-lab{ font-size:.78rem; color:var(--mut); margin-top:8px; text-transform:uppercase; letter-spacing:.1em; font-weight:600; }
+.case-txt{ color:var(--ink2); line-height:1.62; }
+.case-txt b{ color:var(--ink); font-weight:600; }
+
+/* ============================================================
+   10. CARTAS
+   ============================================================ */
+.letters{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.4rem,3.5vw,2.6rem); margin-top:24px; }
+.lcard{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:26px 26px 24px; display:flex; flex-direction:column; transition:transform .3s, box-shadow .3s, border-color .3s; }
+.lcard:hover{ transform:translateY(-4px); box-shadow:0 16px 40px rgba(10,25,20,.1); border-color:rgba(31,168,106,.4); }
+.lcard .lc-meta{ font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--accent); }
+.lcard h3{ font-family:var(--serif); font-size:clamp(1.2rem,2.2vw,1.5rem); font-weight:600; color:var(--ink); margin:14px 0 12px; line-height:1.14; letter-spacing:-.01em; }
+.lcard p{ color:var(--ink2); font-size:.95rem; line-height:1.55; margin-bottom:20px; }
+.lcard .tlink{ margin-top:auto; }
+.lcard.sub{ background:linear-gradient(150deg,#15402c,#0a1914); border-color:transparent; }
+.lcard.sub .lc-meta{ color:var(--accent-br); }
+.lcard.sub h3{ color:var(--on-deep); }
+.lcard.sub p{ color:var(--on-deep-soft); }
+.letters-lead{ max-width:52ch; }
+
+/* ============================================================
+   11. FAQ
+   ============================================================ */
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 26px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
+
+/* ============================================================
+   12. CTA FINAL · a única banda escura + rodapé
+   ============================================================ */
+.final{ background:radial-gradient(ellipse 55% 60% at 12% 18%, rgba(62,207,142,.10), transparent 60%), var(--deep); color:var(--on-deep); }
+.final-grid{ display:grid; grid-template-columns:1fr; justify-items:center; text-align:center; max-width:760px; margin:0 auto; }
+.portrait{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 20px 50px rgba(0,0,0,.34); border:1px solid rgba(255,255,255,.12); }
+.portrait-fallback{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.34); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.portrait-fallback svg{ width:70%; height:auto; opacity:.5; }
+.final h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; color:var(--on-deep); max-width:20ch; }
+.final .lead{ color:var(--on-deep-soft); margin:18px 0 28px; }
+.final .hl{ color:var(--accent-br); }
+
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   13. NAV-DOTS
+   ============================================================ */
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:13px; }
+.nav-dots a{ width:10px; height:10px; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:22px; top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
+  padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
+.nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+
+/* ============================================================
+   14. REVEAL
+   ============================================================ */
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover, .lcard:hover{ transform:none; }
+}
+
+/* ============================================================
+   15. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+  .nav-dots{ display:none; }
+}
+@media (max-width:880px){
+  .two{ grid-template-columns:1fr; }
+  .tree-two{ grid-template-columns:1fr; }
+  .hero-foot{ grid-template-columns:1fr; align-items:start; }
+  .tst-grid{ grid-template-columns:1fr; }
+  .case{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+  .letters{ grid-template-columns:1fr; }
+  .final-grid{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .proof-grid{ grid-template-columns:1fr; }
+  .pitem + .pitem{ border-left:none; border-top:1px solid var(--line); }
+  .cmp-row{ grid-template-columns:1fr; }
+  .cmp-head{ display:none; }
+  .col-a{ border-left:none; border-top:2px solid rgba(31,168,106,.32); }
+  .cmp-cell.dim::before{ content:'Carteira primeiro: '; font-weight:700; color:var(--ink2); }
+  .col-a.cmp-mark::before{ content:'Plano antes da carteira: '; display:block; font-weight:700; color:var(--accent); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
+  .cmp-key{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); }
+  .leafs{ grid-template-columns:1fr; }
+  .cleaf::before{ display:none; }
+  .btn-lg, .cta-col, .cta-col .btn{ width:100%; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html">Método</a>
+      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
+      <a class="lk" href="cartas.html">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="metodo.html">Método</a>
+  <a href="plano-exemplo.html">Plano de exemplo</a>
+  <a href="cartas.html">Cartas</a>
+  <a href="sobre.html">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+</nav>
+
+<!-- nav-dots -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
+  <a href="#hero" data-label="Início"></a>
+  <a href="#prova" data-label="Números"></a>
+  <a href="#conselho" data-label="Conselho ou produto"></a>
+  <a href="#metodo" data-label="O método"></a>
+  <a href="#arvore" data-label="Seu patrimônio"></a>
+  <a href="#depoimentos" data-label="Quem confia"></a>
+  <a href="#cartas" data-label="Cartas"></a>
+  <a href="#faq" data-label="Perguntas"></a>
+  <a href="#conversa" data-label="Conversar"></a>
+</nav>
+
+<main>
+
+<!-- ============================================================ 1 · HERO ============================================================ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="masthead rev">
+      <span class="idx num">01 / 06</span>
+      <span class="sep"></span>
+      <span>Consultoria patrimonial independente</span>
+      <span class="sep"></span>
+      <span>Em todo o Brasil</span>
+    </div>
+    <div class="hero-h">
+      <p class="ghost rev">Patrimônio espalhado, sem visão de conjunto.</p>
+      <h1 class="h1 rev d1">Clareza patrimonial para quem já <span class="hl">acumulou</span>.</h1>
+    </div>
+    <div class="hero-foot">
+      <p class="lead rev d1">Para investidores que construíram patrimônio e querem ver o conjunto com nitidez: liquidez, proteção, investimentos, aposentadoria e sucessão, em uma visão só.</p>
+      <div class="cta-col rev d2">
+        <a class="btn btn-lg btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa exploratória</a>
+        <p class="micro"><span class="tk">&#8226;</span> Primeira conversa. 20 minutos. Sem compromisso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 · PROVA FRIA ============================================================ -->
+<section class="proof" id="prova" aria-label="Números da prática">
+  <div class="wrap proof-in">
+    <div class="proof-grid">
+      <div class="pitem rev">
+        <div class="pk num">Nº 01</div>
+        <div class="pv num">5<span class="u">+</span></div>
+        <div class="pl">anos dedicados a patrimônio de famílias</div>
+      </div>
+      <div class="pitem rev d1">
+        <div class="pk num">Nº 02</div>
+        <div class="pv num">60<span class="u">+</span></div>
+        <div class="pl">famílias atendidas até aqui</div>
+      </div>
+      <div class="pitem rev d2">
+        <div class="pk">Nº 03</div>
+        <div class="pv">fee <span class="u">fixo</span></div>
+        <div class="pl">remuneração transparente, zero comissão</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 · CONSELHO OU PRODUTO ============================================================ -->
+<section class="sec sec-paper" id="conselho">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow rev">A pergunta que importa</span>
+      <p class="stmt rev d1">Você quer conselho, ou quer produto?</p>
+      <p class="lead rev d2">O assessor de investimentos parece de graça porque quem paga é o produto que ele coloca na sua carteira. O modelo não é de má pessoa: é de estrutura. E estrutura, com dinheiro, cria viés.</p>
+      <div class="fee rev d3">
+        <p>Cobro uma taxa fixa anual. Não vendo produto, não tenho comissão, não trabalho para nenhum banco.</p>
+      </div>
+    </div>
+    <div class="rev d2">
+      <div class="cmp-tag">Duas ordens possíveis</div>
+      <div class="cmp">
+        <div class="cmp-row cmp-head">
+          <div class="cmp-cell">O que decide primeiro</div>
+          <div class="cmp-cell col-a">Plano antes da carteira</div>
+          <div class="cmp-cell col-b">Carteira primeiro</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">Ponto de partida</div>
+          <div class="cmp-cell col-a cmp-mark">O plano da sua vida</div>
+          <div class="cmp-cell dim">A carteira de produtos</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">Primeira pergunta</div>
+          <div class="cmp-cell col-a cmp-mark">Para onde você quer ir?</div>
+          <div class="cmp-cell dim">Onde alocar agora?</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">A carteira é</div>
+          <div class="cmp-cell col-a cmp-mark">Consequência do plano</div>
+          <div class="cmp-cell dim">O ponto de partida</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">Horizonte</div>
+          <div class="cmp-cell col-a cmp-mark">A vida inteira: os cinco pilares</div>
+          <div class="cmp-cell dim">O produto do momento</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 · MÉTODO ============================================================ -->
+<section class="sec" id="metodo">
+  <div class="wrap">
+    <span class="eyebrow rev">Como começa</span>
+    <h2 class="stmt rev d1" style="max-width:20ch">Três passos, antes de qualquer <span class="hl">recomendação</span>.</h2>
+    <p class="lead rev d2">O plano vem antes da carteira. A carteira é o anexo técnico de uma decisão que já foi tomada com clareza.</p>
+
+    <div class="acc rev d2">
+      <details open>
+        <summary><span class="an num">01</span><span class="at">Conversa exploratória</span><span class="plus">+</span></summary>
+        <div class="ab"><p>Vinte minutos para entender onde você está e o que quer proteger. Sem apresentação de produto, sem compromisso.</p><span class="tag">20 minutos</span></div>
+      </details>
+      <details>
+        <summary><span class="an num">02</span><span class="at">Mapa Patrimonial em 48h</span><span class="plus">+</span></summary>
+        <div class="ab"><p>Seu patrimônio desenhado em uma página: o conjunto por geografia de custódia, dívidas subtraídas, frentes abertas visíveis.</p><span class="tag">1 página, sem custo</span></div>
+      </details>
+      <details>
+        <summary><span class="an num">03</span><span class="at">Diagnóstico completo</span><span class="plus">+</span></summary>
+        <div class="ab"><p>A leitura do conjunto em cinco pilares, com o veredito honesto: o que está coberto, o que está exposto e o que decidir primeiro.</p><span class="tag">Liquidez, proteção, investimentos, aposentadoria, sucessão</span></div>
+      </details>
+    </div>
+
+    <div class="rev d3" style="margin-top:32px">
+      <a class="tlink" href="metodo.html">Conhecer o método completo</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5 · ÁRVORE-COLAGEM + TEASER DO PLANO ============================================================ -->
+<section class="sec sec-paper" id="arvore">
+  <div class="wrap tree-two">
+    <div>
+      <span class="eyebrow rev">Um exemplo concreto</span>
+      <h2 class="stmt rev d1" style="max-width:15ch">Veja como fica um <span class="hl">Mapa Patrimonial</span>.</h2>
+      <p class="lead rev d2">Montamos um Cliente Exemplo, fictício e declarado como tal, para você ver o desenho antes de conversar. É a mesma árvore que acompanha cada família a cada mês: o conjunto em uma tela, com cada nó gerando uma frente de trabalho. Inclusive as que quase ninguém enxerga, como a exposição no exterior.</p>
+      <div class="rev d3" style="margin-top:26px">
+        <a class="tlink" href="plano-exemplo.html">Ver o plano de exemplo completo</a>
+      </div>
+    </div>
+
+    <div class="collage rev d2">
+      <div class="col-tag">Cliente Exemplo · caso fictício</div>
+      <div class="ctree">
+        <div class="root">
+          <div class="rk">Patrimônio líquido</div>
+          <div class="rv num">R$ 3,4 mi</div>
+          <div class="rs">bruto menos dívidas, a preço de hoje</div>
+        </div>
+        <div class="drop"></div>
+        <div class="leafs">
+          <div class="cleaf">
+            <div class="lk">Liquidez</div>
+            <div class="lv num">R$ 1,2 mi</div>
+            <div class="lp num">35% do conjunto</div>
+            <div class="bar"><i style="width:35%"></i></div>
+          </div>
+          <div class="cleaf">
+            <div class="lk">Imobilizado</div>
+            <div class="lv num">R$ 1,38 mi</div>
+            <div class="lp num">41% do conjunto</div>
+            <div class="bar"><i style="width:41%"></i></div>
+          </div>
+          <div class="cleaf">
+            <div class="lk">Previdência</div>
+            <div class="lv num">R$ 480 mil</div>
+            <div class="lp num">14% do conjunto</div>
+            <div class="bar"><i style="width:14%"></i></div>
+          </div>
+          <div class="cleaf ext">
+            <div class="lk">Exterior</div>
+            <div class="lv num">R$ 340 mil</div>
+            <div class="lp num">10% · conta internacional, ETFs globais em dólar</div>
+            <div class="bar"><i style="width:10%"></i></div>
+          </div>
+          <div class="cleaf aberta">
+            <div class="lk">Exterior · sucessão</div>
+            <div class="lv">Estrutura offshore, frente aberta</div>
+            <div class="lp">em análise, ainda sem valor alocado</div>
+          </div>
+        </div>
+      </div>
+      <p class="col-note">Valores hipotéticos, a preço de hoje. Caso ilustrativo, declarado fictício.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6 · DEPOIMENTOS + CASE ============================================================ -->
+<section class="sec" id="depoimentos">
+  <div class="wrap">
+    <span class="eyebrow rev">Quem já confia o conjunto</span>
+    <h2 class="stmt rev d1" style="max-width:22ch; margin-bottom:22px">Palavras de quem trocou a carteira solta por um <span class="hl">plano</span>.</h2>
+
+    <!-- DEPOIMENTOS: texto verbatim do site publicado -->
+    <div class="tst-grid">
+      <div class="tst rev d1">
+        <div class="mark" aria-hidden="true">&ldquo;</div>
+        <p class="quote">Meu contato com o Leonardo é praticamente semanal. Estamos alinhados frente aos objetivos de carreira e os resultados deste planejamento não se limitam à rentabilidade: é uma estrutura de ativos coerente com meu planejamento de curto, médio e longo prazo.</p>
+        <div class="who">
+          <div class="nm">Rodrigo Castro</div>
+          <div class="rl">Empresário</div>
+          <div class="since">Cliente desde 2022</div>
+        </div>
+      </div>
+      <div class="tst rev d2">
+        <div class="mark" aria-hidden="true">&ldquo;</div>
+        <p class="quote">O Leonardo está sempre atento às melhores oportunidades. Demonstra segurança e clareza no conhecimento técnico. A frequência de contato para me atualizar é algo que sempre destaco. Sempre que tenho a oportunidade, recomendo a consultoria dele para meus contatos.</p>
+        <div class="who">
+          <div class="nm">Alyson Raphael</div>
+          <div class="rl">Advogado</div>
+          <div class="since">Cliente desde 2022</div>
+        </div>
+      </div>
+      <div class="tst rev d3">
+        <div class="mark" aria-hidden="true">&ldquo;</div>
+        <p class="quote">Excelente profissional, sempre explicando tudo com muita transparência e paciência. Muito atencioso e sempre com o cuidado de não me deixar com nenhuma dúvida. Correto, profissional e sempre fazendo reuniões para que eu acompanhe meus investimentos.</p>
+        <div class="who">
+          <div class="nm">Felipe Vianna</div>
+          <div class="rl">Empresário</div>
+          <div class="since">Cliente desde 2023</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case rev d2">
+      <div>
+        <div class="case-big num">R$ 850<span class="u">k</span></div>
+        <div class="case-lab">patrimônio reorganizado</div>
+      </div>
+      <p class="case-txt">Caso anonimizado. Um profissional liberal, 38 anos, casado, 2 filhos, chegou com R$850 mil concentrados em CDB e Tesouro de três bancos diferentes, sem reserva de emergência organizada e com seguros desatualizados desde 2018. Nos primeiros 90 dias, a estrutura foi reorganizada: dívidas endereçadas, proteção mapeada pilar a pilar e o <b>plano definido antes de qualquer movimento de carteira</b>. Em 12 meses, a família foi de 4 para 24 meses de cobertura, com diversificação real em seis classes de ativos e exposição internacional de 0% para 10%.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 7 · CARTAS ============================================================ -->
+<section class="sec sec-paper" id="cartas">
+  <div class="wrap">
+    <span class="eyebrow rev">Cartas de Vida e Patrimônio</span>
+    <h2 class="stmt rev d1" style="max-width:18ch">Uma leitura serena, quando há algo que vale <span class="hl">registrar</span>.</h2>
+    <p class="lead letters-lead rev d2">Não é boletim de mercado nem alerta dramático. São cartas sobre o que realmente muda uma decisão patrimonial: estrutura, proteção, impostos, sucessão. Sem urgência, sem promessa de retorno.</p>
+
+    <div class="letters">
+      <article class="lcard rev d1">
+        <div class="lc-meta">Carta · Sucessão</div>
+        <h3>O que você deixa, e como</h3>
+        <p>Sucessão não é sobre imposto. É sobre o recado que fica.</p>
+        <a class="tlink" href="https://leonardodesousa.substack.com/p/o-que-voce-deixa-e-como" target="_blank" rel="noopener">Ler no Substack</a>
+      </article>
+      <article class="lcard rev d2">
+        <div class="lc-meta">Carta · Plano</div>
+        <h3>Metade do ano não é um placar</h3>
+        <p>Por que o semestre castigou quem tentou adivinhar, e o que de fato vale revisar agora.</p>
+        <a class="tlink" href="https://leonardodesousa.substack.com/p/metade-do-ano-nao-e-um-placar" target="_blank" rel="noopener">Ler no Substack</a>
+      </article>
+      <article class="lcard rev d3">
+        <div class="lc-meta">Carta · Estrutura</div>
+        <h3>Quando o juro cai, a estrutura aparece</h3>
+        <p>Por que reagir a cada decisão de juros cobra um preço que não está na carteira.</p>
+        <a class="tlink" href="https://leonardodesousa.substack.com/p/quando-o-juro-cai-a-estrutura-aparece" target="_blank" rel="noopener">Ler no Substack</a>
+      </article>
+      <article class="lcard sub rev d3">
+        <div class="lc-meta">Assinar</div>
+        <h3>Cada nova carta no seu email</h3>
+        <p>Publicadas no Substack. Você recebe cada carta no seu tempo, sem calendário forçado.</p>
+        <a class="tlink on-deep" href="cartas.html">Conhecer as Cartas</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 8 · FAQ ============================================================ -->
+<section class="sec" id="faq">
+  <div class="wrap" style="max-width:880px">
+    <span class="eyebrow rev">Perguntas antes da conversa</span>
+    <h2 class="stmt rev d1">Dúvidas que costumam vir primeiro.</h2>
+
+    <div class="faq rev d2">
+      <details>
+        <summary>O que faz, na prática, um consultor patrimonial independente?</summary>
+        <div class="fb"><p>Ele olha o conjunto do seu patrimônio e ajuda você a decidir: liquidez, proteção, investimentos, aposentadoria e sucessão. Não vende produto e não recebe comissão de banco ou corretora. O trabalho é conselho, não intermediação. A carteira é consequência do plano, não o ponto de partida.</p></div>
+      </details>
+      <details>
+        <summary>Como você é remunerado?</summary>
+        <div class="fb"><p>Por uma taxa fixa anual, combinada com transparência antes de começar. Não há comissão sobre produto, não há repasse de instituição financeira. Isso significa que o meu interesse e o seu apontam para o mesmo lugar: a clareza da sua decisão.</p></div>
+      </details>
+      <details>
+        <summary>Para quem esse trabalho faz sentido?</summary>
+        <div class="fb"><p>Para quem já acumulou patrimônio, na faixa de R$1 milhão a R$5 milhões, e sente que ele está espalhado, sem visão de conjunto. Se você tem mais de R$1 milhão investidos e nunca fez uma revisão do patrimônio inteiro, pode valer uma conversa.</p></div>
+      </details>
+      <details>
+        <summary>O que acontece na primeira conversa?</summary>
+        <div class="fb"><p>São 20 minutos para entender onde você está e o que quer proteger. Sem apresentação de produto, sem compromisso. O objetivo é simples: entender, juntos, se faz sentido seguir. Se fizer, o passo seguinte é o Mapa Patrimonial em 48 horas.</p></div>
+      </details>
+      <details>
+        <summary>Preciso transferir minha carteira para você?</summary>
+        <div class="fb"><p>Não. O trabalho é agnóstico de plataforma. Seus ativos continuam onde estão, na instituição que você escolher. Eu leio o conjunto e oriento as decisões. A custódia permanece com você.</p></div>
+      </details>
+      <details>
+        <summary>Você atende presencialmente ou a distância?</summary>
+        <div class="fb"><p>Atendo em todo o Brasil. A conversa exploratória acontece por videoconferência, no horário que você escolher, e o formato das reuniões se ajusta ao que fizer sentido para cada família.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 9 · CTA FINAL (banda escura) ============================================================ -->
+<section class="sec final" id="conversa">
+  <div class="wrap">
+    <div class="final-grid">
+      <div>
+        <span class="eyebrow on-deep rev">O próximo passo</span>
+        <h2 class="rev d1" style="margin:16px 0 6px">Se há mais de R$1 milhão em jogo, pode valer uma <span class="hl">conversa</span>.</h2>
+        <p class="lead rev d2">Vinte minutos, sem compromisso, para entender se faz sentido. Sem apresentação de produto, sem pressão. Só uma leitura honesta do ponto onde você está.</p>
+        <div class="rev d3">
+          <a class="btn btn-lg btn-solid on-deep btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa exploratória</a>
+        </div>
+        <p class="micro on-deep rev d3" style="margin-top:18px"><span class="tk">&#8226;</span> Primeira conversa. 20 minutos. Sem compromisso.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="conversa.html">Conversa exploratória</a>
+        <a href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* header scroll state */
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* mobile menu */
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  /* reveal on scroll */
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  /* nav-dots scrollspy */
+  var dots=document.querySelectorAll('#navDots a'), pairs=[];
+  dots.forEach(function(d){ var s=document.getElementById(d.getAttribute('href').slice(1)); if(s){ pairs.push({dot:d, sec:s}); } });
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ pairs.forEach(function(p){ p.dot.classList.toggle('on', p.sec===e.target); }); } }); },{threshold:.5, rootMargin:'-30% 0px -30% 0px'});
+    pairs.forEach(function(p){ so.observe(p.sec); });
+  }
+})();
+</script>
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-bar-in">
+    <p class="cookie-txt">Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="privacidade.html">Política de Privacidade</a> para mais informações.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-sm cookie-btn-necessary" id="cookieNecessary">Apenas necessários</button>
+      <button type="button" class="btn btn-sm btn-solid" id="cookieAll">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<style>
+.cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -12px 30px rgba(10,25,20,.1); }
+.cookie-bar[hidden]{ display:none; }
+.cookie-bar-in{ max-width:var(--wrap); margin:0 auto; padding:18px var(--pad-x); display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); flex-wrap:wrap; }
+.cookie-txt{ flex:1 1 420px; font-size:.86rem; line-height:1.55; color:var(--ink2); margin:0; }
+.cookie-txt a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; margin-left:auto; }
+.cookie-bar .btn{ white-space:nowrap; }
+.cookie-btn-necessary{ background:transparent; color:var(--ink2); border:1px solid var(--line); }
+.cookie-btn-necessary:hover{ border-color:var(--accent); color:var(--accent); }
+@media (max-width:560px){
+  .cookie-bar-in{ flex-direction:column; align-items:stretch; }
+  .cookie-txt{ flex:0 0 auto; }
+  .cookie-actions{ margin-left:0; width:100%; }
+  .cookie-actions .btn{ flex:1 1 0; }
+}
+</style>
+<script>
+(function(){
+  var KEY='cookie-consent';
+  var bar=document.getElementById('cookieBar');
+  if(!bar) return;
+  var already;
+  try{ already=localStorage.getItem(KEY); }catch(e){ already=null; }
+  if(already){ return; }
+  bar.hidden=false;
+  function setConsent(v){
+    try{ localStorage.setItem(KEY, v); }catch(e){}
+    bar.hidden=true;
+  }
+  var btnAll=document.getElementById('cookieAll');
+  var btnNec=document.getElementById('cookieNecessary');
+  if(btnAll) btnAll.addEventListener('click', function(){ setConsent('all'); });
+  if(btnNec) btnNec.addEventListener('click', function(){ setConsent('necessary'); });
+})();
+</script>
+
+</body>
+</html>

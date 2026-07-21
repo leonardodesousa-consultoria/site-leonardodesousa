@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartas de Vida e Patrimônio · Leonardo Sousa</title>
+<meta name="description" content="Cartas de Vida e Patrimônio: cartas periódicas sobre patrimônio, decisões e método, no Substack. Tom editorial, sem urgência, sem promessa de retorno.">
+
+<!-- ============================================================
+     CARTAS · Site institucional 2026 · v2 "Camadas Editoriais"
+     Herda o sistema de design canônico do index.html (Lora + Inter).
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
+  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent); }
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+.tlink{ display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none; color:var(--accent);
+  border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s; }
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+.tlink.on-deep{ color:var(--accent-br); }
+.micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent); font-weight:700; }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav a.lk[aria-current="page"]{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · capa de seção de revista
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.cover{ margin-top:clamp(1.6rem,3.6vw,2.6rem); }
+.cover .ktitle{ font-family:var(--serif); font-weight:500; font-size:clamp(1rem,1.8vw,1.24rem); color:var(--mut);
+  letter-spacing:.02em; margin-bottom:.5em; }
+.ghost{ font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.35rem,3vw,2.15rem); letter-spacing:-.01em; margin-bottom:.16em; max-width:24ch; }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.04;
+  font-size:clamp(2.5rem,5.6vw,4.2rem); max-width:18ch; }
+.cover .lead{ margin-top:clamp(1.6rem,3vw,2.2rem); max-width:56ch; }
+
+/* ============================================================
+   5. ASSINAR · bloco de assinatura Substack
+   ============================================================ */
+.two{ display:grid; grid-template-columns:1fr .96fr; gap:clamp(2rem,5vw,4.4rem); align-items:center; }
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 18px; max-width:16ch; }
+.sub-card{ background:linear-gradient(150deg,#15402c,#0a1914); color:var(--on-deep); border-radius:6px;
+  padding:clamp(2rem,4vw,3rem); box-shadow:0 18px 44px rgba(10,25,20,.18); position:relative; overflow:hidden; }
+.sub-card::after{ content:''; position:absolute; inset:0; pointer-events:none;
+  background:radial-gradient(ellipse 70% 60% at 88% 6%, rgba(62,207,142,.14), transparent 60%); }
+.sub-card .sc-k{ font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-br); position:relative; z-index:1; }
+.sub-card h3{ font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:600; color:var(--on-deep);
+  margin:12px 0 12px; line-height:1.14; position:relative; z-index:1; }
+.sub-card p{ color:var(--on-deep-soft); margin-bottom:24px; position:relative; z-index:1; }
+.sub-card .btn{ position:relative; z-index:1; }
+.sub-card .sc-micro{ margin-top:16px; font-size:.84rem; color:var(--on-deep-soft); position:relative; z-index:1; }
+
+/* ============================================================
+   6. SUMÁRIO EDITORIAL · índice numerado das cartas
+   ============================================================ */
+.toc{ margin-top:clamp(1.8rem,3.4vw,2.6rem); border-top:1px solid var(--line); }
+.toc-item{ display:grid; grid-template-columns:auto 1fr auto; gap:clamp(1.2rem,3vw,2.6rem); align-items:baseline;
+  padding:clamp(1.6rem,3vw,2.2rem) 4px; border-bottom:1px solid var(--line); text-decoration:none;
+  transition:background .25s, padding-left .25s; }
+.toc-item:hover{ background:var(--paper); padding-left:14px; }
+.toc-no{ font-family:var(--serif); font-size:clamp(1.4rem,3vw,2.2rem); font-weight:700; color:rgba(10,25,20,.22); line-height:1; letter-spacing:-.02em; }
+.toc-main .toc-meta{ font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--accent);
+  display:flex; align-items:center; gap:12px; flex-wrap:wrap; }
+.toc-main .toc-meta .date{ color:var(--mut); }
+.toc-main h3{ font-family:var(--serif); font-size:clamp(1.3rem,2.6vw,1.85rem); font-weight:600; color:var(--ink);
+  margin:12px 0 8px; line-height:1.12; letter-spacing:-.01em; }
+.toc-main .toc-sub{ font-size:1rem; color:var(--ink2); line-height:1.5; max-width:52ch; }
+.toc-go{ font-size:.86rem; font-weight:600; color:var(--accent); white-space:nowrap; align-self:center; }
+.toc-go::after{ content:'\2192'; margin-left:8px; display:inline-block; transition:transform .2s; }
+.toc-item:hover .toc-go::after{ transform:translateX(4px); }
+
+/* ============================================================
+   7. NOTA DE EXPECTATIVA
+   ============================================================ */
+.expect{ margin-top:8px; border-left:3px solid var(--accent); background:rgba(31,168,106,.05);
+  border-radius:0 4px 4px 0; padding:26px 30px; max-width:760px; }
+.expect p{ font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.4rem); font-weight:500; line-height:1.45; color:var(--ink); max-width:40ch; }
+.expect .sub{ font-family:var(--sans); font-size:1rem; font-weight:400; color:var(--ink2); margin-top:12px; max-width:56ch; }
+
+/* ============================================================
+   8. CTA FINAL (banda escura) + rodapé (herdado do index)
+   ============================================================ */
+.final{ background:radial-gradient(ellipse 55% 60% at 12% 18%, rgba(62,207,142,.10), transparent 60%), var(--deep); color:var(--on-deep); text-align:center; }
+.final .eyebrow{ justify-content:center; }
+.final h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; color:var(--on-deep); max-width:22ch; margin:16px auto 0; }
+.final .lead{ color:var(--on-deep-soft); margin:18px auto 28px; }
+.final .hl{ color:var(--accent-br); }
+
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   9. NAV-DOTS · REVEAL
+   ============================================================ */
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:13px; }
+.nav-dots a{ width:10px; height:10px; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:22px; top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
+  padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
+.nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover, .toc-item:hover{ transform:none; }
+}
+
+/* ============================================================
+   10. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+  .nav-dots{ display:none; }
+}
+@media (max-width:880px){
+  .two{ grid-template-columns:1fr; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .toc-item{ grid-template-columns:auto 1fr; }
+  .toc-go{ display:none; }
+  .btn-lg{ width:100%; }
+  .sub-card .btn{ width:100%; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html">Método</a>
+      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
+      <a class="lk" href="cartas.html" aria-current="page">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="metodo.html">Método</a>
+  <a href="plano-exemplo.html">Plano de exemplo</a>
+  <a href="cartas.html" aria-current="page">Cartas</a>
+  <a href="sobre.html">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+</nav>
+
+<!-- nav-dots -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
+  <a href="#topo" data-label="As Cartas"></a>
+  <a href="#assinar" data-label="Assinar"></a>
+  <a href="#sumario" data-label="Sumário"></a>
+  <a href="#expectativa" data-label="O que esperar"></a>
+</nav>
+
+<main>
+
+<!-- ============================================================ 1 · CAPA DE SEÇÃO ============================================================ -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="masthead rev">
+      <span class="idx num">04 / 06</span>
+      <span class="sep"></span>
+      <span>Cartas de Vida e Patrimônio</span>
+      <span class="sep"></span>
+      <span>Publicadas no Substack</span>
+    </div>
+    <div class="cover">
+      <p class="ktitle rev">Cartas de Vida e Patrimônio</p>
+      <p class="ghost rev">Não é boletim de mercado nem alerta dramático.</p>
+      <h1 class="h1 rev d1">Uma leitura serena, quando há algo que vale <span class="hl">registrar</span>.</h1>
+      <p class="lead rev d2">São cartas periódicas sobre patrimônio, decisões e método. É o que realmente muda uma decisão patrimonial: estrutura, proteção, impostos, sucessão. Escritas para serem lidas com calma, sem urgência e sem promessa de retorno.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 · ASSINAR ============================================================ -->
+<section class="sec sec-paper" id="assinar">
+  <div class="wrap two">
+    <div>
+      <span class="eyebrow rev">Assinar as Cartas</span>
+      <p class="stmt rev d1">Cada nova carta chega ao seu email, no seu tempo.</p>
+      <p class="lead rev d2">A assinatura é gratuita e acontece no Substack. Você recebe a carta quando ela sai, lê quando quiser e sai da lista com um clique, se preferir. Sem sequência de vendas, sem cobrança.</p>
+    </div>
+    <div class="sub-card rev d2">
+      <div class="sc-k">Assinar no Substack</div>
+      <h3>As Cartas, direto na sua caixa de entrada</h3>
+      <p>As Cartas de Vida e Patrimônio, no seu email, sem intermediário.</p>
+      <!-- CTA Substack: link canônico da newsletter. -->
+      <a class="btn btn-lg btn-solid on-deep btn-arrow" href="https://leonardodesousa.substack.com/" target="_blank" rel="noopener">Assinar as Cartas</a>
+      <p class="sc-micro">Gratuito. Cadência real. Sem spam.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 · SUMÁRIO EDITORIAL ============================================================ -->
+<section class="sec" id="sumario">
+  <div class="wrap">
+    <span class="eyebrow rev">Cartas recentes</span>
+    <h2 class="stmt rev d1" style="max-width:18ch">Um recorte do que já <span class="hl">saiu</span>.</h2>
+    <p class="lead rev d2">Cada carta parte de uma decisão real de patrimônio e termina em algo prático de considerar.</p>
+
+    <div class="toc rev d2">
+      <a class="toc-item" href="https://leonardodesousa.substack.com/p/o-que-voce-deixa-e-como" target="_blank" rel="noopener">
+        <span class="toc-no num">01</span>
+        <span class="toc-main">
+          <span class="toc-meta">Sucessão <span class="date num">Carta recente</span></span>
+          <h3>O que você deixa, e como</h3>
+          <span class="toc-sub">Sucessão não é sobre imposto. É sobre o recado que fica.</span>
+        </span>
+        <span class="toc-go">Ler no Substack</span>
+      </a>
+      <a class="toc-item" href="https://leonardodesousa.substack.com/p/metade-do-ano-nao-e-um-placar" target="_blank" rel="noopener">
+        <span class="toc-no num">02</span>
+        <span class="toc-main">
+          <span class="toc-meta">Plano <span class="date num">Carta recente</span></span>
+          <h3>Metade do ano não é um placar</h3>
+          <span class="toc-sub">Por que o semestre castigou quem tentou adivinhar, e o que de fato vale revisar agora.</span>
+        </span>
+        <span class="toc-go">Ler no Substack</span>
+      </a>
+      <a class="toc-item" href="https://leonardodesousa.substack.com/p/quando-o-juro-cai-a-estrutura-aparece" target="_blank" rel="noopener">
+        <span class="toc-no num">03</span>
+        <span class="toc-main">
+          <span class="toc-meta">Estrutura <span class="date num">Carta recente</span></span>
+          <h3>Quando o juro cai, a estrutura aparece</h3>
+          <span class="toc-sub">Por que reagir a cada decisão de juros cobra um preço que não está na carteira.</span>
+        </span>
+        <span class="toc-go">Ler no Substack</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 · NOTA DE EXPECTATIVA ============================================================ -->
+<section class="sec sec-paper" id="expectativa">
+  <div class="wrap">
+    <span class="eyebrow rev">O que esperar</span>
+    <div class="expect rev d1" style="margin-top:20px">
+      <p>As cartas saem quando há algo que vale registrar, não em um calendário forçado.</p>
+      <p class="sub">Sem spam, sem sequência de vendas, sem urgência. Uma cadência real, no ritmo do que acontece no patrimônio de uma família. Você entra quando quiser e sai quando quiser.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5 · CTA FINAL (banda escura) ============================================================ -->
+<section class="sec final" id="conversa">
+  <div class="wrap">
+    <span class="eyebrow on-deep rev">O próximo passo</span>
+    <h2 class="rev d1">Se preferir conversar, a porta está <span class="hl">aberta</span>.</h2>
+    <p class="lead rev d2">Vinte minutos, sem compromisso, para entender se faz sentido. Sem apresentação de produto, sem pressão.</p>
+    <div class="rev d3">
+      <a class="btn btn-lg btn-solid on-deep btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa exploratória</a>
+    </div>
+    <p class="micro rev d3" style="margin-top:18px; color:var(--on-deep-soft)"><span class="tk" style="color:var(--accent-br)">&#8226;</span> Primeira conversa. 20 minutos. Sem compromisso.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="conversa.html">Conversa exploratória</a>
+        <a href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  var dots=document.querySelectorAll('#navDots a'), pairs=[];
+  dots.forEach(function(d){ var s=document.getElementById(d.getAttribute('href').slice(1)); if(s){ pairs.push({dot:d, sec:s}); } });
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ pairs.forEach(function(p){ p.dot.classList.toggle('on', p.sec===e.target); }); } }); },{threshold:.5, rootMargin:'-30% 0px -30% 0px'});
+    pairs.forEach(function(p){ so.observe(p.sec); });
+  }
+})();
+</script>
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-bar-in">
+    <p class="cookie-txt">Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="privacidade.html">Política de Privacidade</a> para mais informações.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-sm cookie-btn-necessary" id="cookieNecessary">Apenas necessários</button>
+      <button type="button" class="btn btn-sm btn-solid" id="cookieAll">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<style>
+.cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -12px 30px rgba(10,25,20,.1); }
+.cookie-bar[hidden]{ display:none; }
+.cookie-bar-in{ max-width:var(--wrap); margin:0 auto; padding:18px var(--pad-x); display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); flex-wrap:wrap; }
+.cookie-txt{ flex:1 1 420px; font-size:.86rem; line-height:1.55; color:var(--ink2); margin:0; }
+.cookie-txt a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; margin-left:auto; }
+.cookie-bar .btn{ white-space:nowrap; }
+.cookie-btn-necessary{ background:transparent; color:var(--ink2); border:1px solid var(--line); }
+.cookie-btn-necessary:hover{ border-color:var(--accent); color:var(--accent); }
+@media (max-width:560px){
+  .cookie-bar-in{ flex-direction:column; align-items:stretch; }
+  .cookie-txt{ flex:0 0 auto; }
+  .cookie-actions{ margin-left:0; width:100%; }
+  .cookie-actions .btn{ flex:1 1 0; }
+}
+</style>
+<script>
+(function(){
+  var KEY='cookie-consent';
+  var bar=document.getElementById('cookieBar');
+  if(!bar) return;
+  var already;
+  try{ already=localStorage.getItem(KEY); }catch(e){ already=null; }
+  if(already){ return; }
+  bar.hidden=false;
+  function setConsent(v){
+    try{ localStorage.setItem(KEY, v); }catch(e){}
+    bar.hidden=true;
+  }
+  var btnAll=document.getElementById('cookieAll');
+  var btnNec=document.getElementById('cookieNecessary');
+  if(btnAll) btnAll.addEventListener('click', function(){ setConsent('all'); });
+  if(btnNec) btnNec.addEventListener('click', function(){ setConsent('necessary'); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Termos de Uso · Leonardo Sousa · Consultor Patrimonial</title>
+<meta name="description" content="Termos de Uso de Leonardo Sousa, Consultor Patrimonial. Condições de uso do site, natureza informativa do conteúdo e limitações de responsabilidade.">
+
+<!-- ============================================================
+     TERMOS · Site institucional 2026 · v2 "Camadas Editoriais"
+     Herda o sistema de design canônico do index.html (Lora + Inter).
+     Página de leitura: coluna única estreita, sem nav-dots.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
+  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent); }
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+.tlink{ display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none; color:var(--accent);
+  border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s; }
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+.micro{ font-size:.9rem; color:var(--mut); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · masthead + título de leitura
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2rem,5vw,3.2rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.legal-title{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
+  font-size:clamp(2.1rem,5vw,3.4rem); margin-top:clamp(1.3rem,3vw,2.1rem); }
+.legal-updated{ margin-top:14px; font-size:.9rem; color:var(--mut); }
+
+/* ============================================================
+   5. CORPO DE LEITURA · coluna única, ~72ch
+   ============================================================ */
+.legal-wrap{ max-width:72ch; margin:0 auto; }
+.legal-body{ margin-top:0; }
+.legal-body section{ padding-block:clamp(1.8rem,4vw,2.5rem); border-top:1px solid var(--line); }
+.legal-body section:first-child{ border-top:none; padding-top:0; }
+.legal-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.22rem,2.2vw,1.5rem); color:var(--ink);
+  letter-spacing:-.01em; margin-bottom:14px; line-height:1.28; }
+.legal-body h3{ font-family:var(--sans); font-weight:700; font-size:.82rem; color:var(--ink2); margin:20px 0 10px;
+  text-transform:uppercase; letter-spacing:.08em; }
+.legal-body p{ color:var(--ink2); line-height:1.7; margin-bottom:14px; }
+.legal-body p:last-child{ margin-bottom:0; }
+.legal-body ul{ margin:0 0 14px 1.15em; color:var(--ink2); line-height:1.68; }
+.legal-body li{ margin-bottom:7px; }
+.legal-body li:last-child{ margin-bottom:0; }
+.legal-body strong{ color:var(--ink); font-weight:600; }
+.legal-body a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.legal-contact p{ line-height:1.9; }
+.legal-back{ margin-top:clamp(2rem,4vw,2.8rem); padding-top:clamp(1.6rem,3vw,2.2rem); border-top:1px solid var(--line); }
+
+/* ============================================================
+   6. RODAPÉ (herdado do index)
+   ============================================================ */
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   7. REVEAL
+   ============================================================ */
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; }
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+
+/* ============================================================
+   8. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+}
+@media (max-width:880px){
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .footer-top{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html">Método</a>
+      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
+      <a class="lk" href="cartas.html">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="metodo.html">Método</a>
+  <a href="plano-exemplo.html">Plano de exemplo</a>
+  <a href="cartas.html">Cartas</a>
+  <a href="sobre.html">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+</nav>
+
+<main>
+
+<!-- ============================================================ HERO / TÍTULO ============================================================ -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="masthead rev">
+      <span class="idx num">Legal</span>
+      <span class="sep"></span>
+      <span>Termos de Uso</span>
+      <span class="sep"></span>
+      <span>Condições de uso do site</span>
+    </div>
+    <h1 class="legal-title rev d1">Termos de <span class="hl">Uso</span>.</h1>
+    <p class="legal-updated rev d2">Última atualização: Janeiro de 2025</p>
+  </div>
+</section>
+
+<!-- ============================================================ CORPO ============================================================ -->
+<section class="sec sec-paper">
+  <div class="wrap legal-wrap">
+    <div class="legal-body">
+
+      <section>
+        <h2>1. Aceitação dos Termos</h2>
+        <p>Ao acessar e utilizar este site, você concorda com estes Termos de Uso e com nossa <a href="privacidade.html">Política de Privacidade</a>. Se você não concordar com qualquer parte destes termos, por favor, não utilize nosso site.</p>
+      </section>
+
+      <section>
+        <h2>2. Sobre os Serviços</h2>
+        <p>Leonardo Sousa oferece serviços de consultoria financeira personalizada, incluindo planejamento patrimonial, consultoria de investimentos, planejamento sucessório e gestão de riscos. Os serviços são prestados de forma independente e personalizada para cada cliente.</p>
+        <p><strong>Importante:</strong> o conteúdo deste site tem caráter informativo e não constitui oferta, recomendação ou aconselhamento financeiro. Decisões de investimento devem ser tomadas após análise individual do seu perfil e objetivos.</p>
+      </section>
+
+      <section>
+        <h2>3. Uso do Site</h2>
+        <p>Ao utilizar este site, você concorda em:</p>
+        <ul>
+          <li>Fornecer informações verdadeiras e precisas nos formulários</li>
+          <li>Não utilizar o site para fins ilegais ou não autorizados</li>
+          <li>Não tentar acessar áreas restritas ou sistemas do site</li>
+          <li>Não reproduzir, duplicar ou copiar conteúdo sem autorização</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. Propriedade Intelectual</h2>
+        <p>Todo o conteúdo deste site, incluindo textos, imagens, logotipos, design e código, é de propriedade de Leonardo Sousa ou licenciado para uso, sendo protegido pelas leis de propriedade intelectual. É proibida a reprodução, distribuição ou modificação sem autorização prévia por escrito.</p>
+      </section>
+
+      <section>
+        <h2>5. Materiais Gratuitos</h2>
+        <p>Os materiais disponibilizados gratuitamente (guias, e-books, checklists) são para uso pessoal e educacional. É proibida a revenda, redistribuição comercial ou uso para fins que não os expressamente autorizados.</p>
+      </section>
+
+      <section>
+        <h2>6. Limitação de Responsabilidade</h2>
+        <p>As informações contidas neste site são fornecidas "como estão", sem garantias de qualquer tipo. Leonardo Sousa não se responsabiliza por:</p>
+        <ul>
+          <li>Decisões tomadas com base nas informações do site</li>
+          <li>Perdas ou danos decorrentes do uso ou incapacidade de uso do site</li>
+          <li>Interrupções temporárias no acesso ao site</li>
+          <li>Conteúdo de sites de terceiros linkados</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>7. Isenção de Responsabilidade Financeira</h2>
+        <p><strong>Aviso importante:</strong> investimentos envolvem riscos e podem resultar em perdas. Rentabilidade passada não é garantia de resultados futuros. Antes de investir, avalie cuidadosamente os objetivos, riscos, taxas e despesas. Este site não constitui oferta de valores mobiliários ou recomendação de investimento.</p>
+      </section>
+
+      <section>
+        <h2>8. Confidencialidade</h2>
+        <p>As informações compartilhadas durante consultas e atendimentos são tratadas com total sigilo e confidencialidade, conforme as melhores práticas do mercado financeiro e em conformidade com a legislação vigente.</p>
+      </section>
+
+      <section>
+        <h2>9. Links para Terceiros</h2>
+        <p>Este site pode conter links para sites de terceiros. Não temos controle sobre o conteúdo, políticas de privacidade ou práticas desses sites e não assumimos responsabilidade por eles. Recomendamos que você leia os termos de uso de cada site que visitar.</p>
+      </section>
+
+      <section>
+        <h2>10. Modificações</h2>
+        <p>Reservamo-nos o direito de modificar estes Termos de Uso a qualquer momento. As alterações entrarão em vigor imediatamente após a publicação no site. O uso continuado do site após modificações constitui aceitação dos novos termos.</p>
+      </section>
+
+      <section>
+        <h2>11. Lei Aplicável e Foro</h2>
+        <p>Estes Termos de Uso são regidos pelas leis da República Federativa do Brasil. Fica eleito o foro da Comarca de São Paulo/SP para dirimir quaisquer controvérsias decorrentes destes termos.</p>
+      </section>
+
+      <section>
+        <h2>12. Contato</h2>
+        <p>Para dúvidas sobre estes Termos de Uso, entre em contato:</p>
+        <div class="legal-contact">
+          <p><strong>Responsável:</strong> Leonardo Sousa<br>
+          <strong>E-mail:</strong> <a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a><br>
+          <strong>WhatsApp:</strong> +55 11 98950-5174</p>
+        </div>
+      </section>
+
+    </div>
+
+    <div class="legal-back rev">
+      <a class="tlink" href="index.html">Voltar ao início</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="conversa.html">Conversa exploratória</a>
+        <a href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-bar-in">
+    <p class="cookie-txt">Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="privacidade.html">Política de Privacidade</a> para mais informações.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-sm cookie-btn-necessary" id="cookieNecessary">Apenas necessários</button>
+      <button type="button" class="btn btn-sm btn-solid" id="cookieAll">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<style>
+.cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -12px 30px rgba(10,25,20,.1); }
+.cookie-bar[hidden]{ display:none; }
+.cookie-bar-in{ max-width:var(--wrap); margin:0 auto; padding:18px var(--pad-x); display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); flex-wrap:wrap; }
+.cookie-txt{ flex:1 1 420px; font-size:.86rem; line-height:1.55; color:var(--ink2); margin:0; }
+.cookie-txt a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; margin-left:auto; }
+.cookie-bar .btn{ white-space:nowrap; }
+.cookie-btn-necessary{ background:transparent; color:var(--ink2); border:1px solid var(--line); }
+.cookie-btn-necessary:hover{ border-color:var(--accent); color:var(--accent); }
+@media (max-width:560px){
+  .cookie-bar-in{ flex-direction:column; align-items:stretch; }
+  .cookie-txt{ flex:0 0 auto; }
+  .cookie-actions{ margin-left:0; width:100%; }
+  .cookie-actions .btn{ flex:1 1 0; }
+}
+</style>
+<script>
+(function(){
+  var KEY='cookie-consent';
+  var bar=document.getElementById('cookieBar');
+  if(!bar) return;
+  var already;
+  try{ already=localStorage.getItem(KEY); }catch(e){ already=null; }
+  if(already){ return; }
+  bar.hidden=false;
+  function setConsent(v){
+    try{ localStorage.setItem(KEY, v); }catch(e){}
+    bar.hidden=true;
+  }
+  var btnAll=document.getElementById('cookieAll');
+  var btnNec=document.getElementById('cookieNecessary');
+  if(btnAll) btnAll.addEventListener('click', function(){ setConsent('all'); });
+  if(btnNec) btnNec.addEventListener('click', function(){ setConsent('necessary'); });
+})();
+</script>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* header scroll state */
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* mobile menu */
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  /* reveal on scroll */
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+})();
+</script>
+</body>
+</html>

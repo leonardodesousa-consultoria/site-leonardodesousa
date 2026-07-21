@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Um presente · Leonardo Sousa</title>
+<meta name="description" content="Você recebeu um presente: uma conversa sobre a sua vida financeira e o seu patrimônio desenhado em uma página, entregue em 48 horas. Sem compromisso.">
+<meta name="robots" content="noindex">
+
+<!-- ============================================================
+     PRESENTE · Site institucional 2026 · v2 "Camadas Editoriais"
+     Landing de acolhimento de quem foi presenteado com uma conversa.
+     Acessada por link do cartao "presenteie uma conversa", nao por busca (noindex).
+     Herda o sistema de design do index.html (Lora + Inter). Um unico destino.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
+  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent); }
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-xl{ font-size:1.12rem; padding:22px 44px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+.micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent); font-weight:700; }
+.micro.on-deep{ color:var(--on-deep-soft); }
+.micro.on-deep .tk{ color:var(--accent-br); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · o presente (curto, centrado)
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.hero-in{ max-width:46rem; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;
+  margin-top:clamp(2rem,4vw,3.2rem); }
+.hero-in .eyebrow{ margin-bottom:clamp(1.1rem,2.4vw,1.6rem); }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
+  font-size:clamp(2.3rem,5vw,3.7rem); max-width:18ch; }
+.hero-micro{ font-family:var(--serif); font-weight:500; font-size:clamp(1.08rem,2.1vw,1.4rem); line-height:1.5;
+  color:var(--ink); max-width:40ch; margin:clamp(1.4rem,2.6vw,1.9rem) auto clamp(2rem,3.6vw,2.6rem); }
+.hero-micro .hl{ font-weight:600; }
+.hero-note{ margin-top:22px; }
+
+/* ============================================================
+   5. COMO FUNCIONA · três passos
+   ============================================================ */
+.passos{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,3vw,2rem); margin-top:clamp(2rem,4vw,3rem); }
+.passos li{ background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:clamp(1.5rem,3vw,2.1rem);
+  display:flex; flex-direction:column; gap:14px; }
+.passos .n{ font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--accent); line-height:1; }
+.passos .t{ color:var(--ink2); line-height:1.55; }
+.passos .t b{ font-weight:600; color:var(--ink); }
+
+/* ============================================================
+   6. BLOCO DO BOTÃO GRANDE (banda escura) + canal alternativo
+   ============================================================ */
+.book{ background:radial-gradient(ellipse 55% 70% at 50% 0%, rgba(62,207,142,.12), transparent 62%), var(--deep);
+  color:var(--on-deep); text-align:center; }
+.book-in{ max-width:40rem; margin:0 auto; display:flex; flex-direction:column; align-items:center; }
+.book .eyebrow{ justify-content:center; }
+.book h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em;
+  color:var(--on-deep); max-width:20ch; margin:16px 0 14px; }
+.book .lead{ color:var(--on-deep-soft); margin:0 auto 34px; }
+.book .hl{ color:var(--accent-br); }
+.alt-channel{ margin-top:26px; font-size:.95rem; color:var(--on-deep-soft); }
+.alt-channel a{ color:var(--accent-br); text-decoration:none; font-weight:600; border-bottom:1px solid transparent; transition:border-color .2s; }
+.alt-channel a:hover{ border-color:var(--accent-br); }
+
+/* ============================================================
+   7. QUEM ATENDE
+   ============================================================ */
+.quem-in{ max-width:640px; }
+.quem-txt{ font-family:var(--serif); font-weight:500; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.5;
+  letter-spacing:-.01em; color:var(--ink); margin-top:20px; }
+.quem-txt b{ font-weight:600; color:var(--accent); }
+
+/* ============================================================
+   8. RODAPÉ (herdado do index)
+   ============================================================ */
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   9. REVEAL
+   ============================================================ */
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+
+/* ============================================================
+   10. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+}
+@media (max-width:880px){
+  .passos{ grid-template-columns:1fr; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .btn-lg, .btn-xl{ width:100%; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html">Método</a>
+      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
+      <a class="lk" href="cartas.html">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="metodo.html">Método</a>
+  <a href="plano-exemplo.html">Plano de exemplo</a>
+  <a href="cartas.html">Cartas</a>
+  <a href="sobre.html">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+</nav>
+
+<main>
+
+<!-- ============================================================ 1 · HERO · O PRESENTE ============================================================ -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="masthead rev">
+      <span class="idx">Um presente</span>
+      <span class="sep"></span>
+      <span>Conversa exploratória</span>
+      <span class="sep"></span>
+      <span>Online · 48 horas</span>
+    </div>
+    <div class="hero-in">
+      <span class="eyebrow rev">Você recebeu um presente</span>
+      <h1 class="h1 rev d1">Alguém que confia em você quer te dar <span class="hl">clareza</span>.</h1>
+      <p class="hero-micro rev d2">Quem te entregou este convite é cliente desta casa e escolheu te dar o que recebeu no próprio começo: uma conversa sobre a sua vida financeira e o seu <span class="hl">patrimônio desenhado em uma página</span>, entregue em 48 horas. Sem compromisso.</p>
+      <div class="rev d3">
+        <a class="btn btn-xl btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+      <p class="hero-note micro rev d3"><span class="tk">&#8226;</span> Você escolhe o horário na agenda. A conversa é online.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 · COMO FUNCIONA · TRÊS PASSOS ============================================================ -->
+<section class="sec sec-paper" id="como">
+  <div class="wrap">
+    <span class="eyebrow rev">Como funciona</span>
+    <ul class="passos">
+      <li class="rev"><span class="n num">01</span><span class="t"><b>Você agenda a conversa.</b> De 45 a 60 minutos, online, no horário que você escolher na agenda.</span></li>
+      <li class="rev d1"><span class="n num">02</span><span class="t"><b>A conversa é sobre a sua vida, não sobre produtos.</b> Ninguém vai te oferecer nada nem pedir dados de acesso.</span></li>
+      <li class="rev d2"><span class="n num">03</span><span class="t"><b>Em 48 horas você recebe o seu patrimônio desenhado em uma página.</b> Com o que estiver claro e o que ainda merecer atenção.</span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================================================ 3 · BOTÃO GRANDE (banda escura) + CANAL ALTERNATIVO ============================================================ -->
+<section class="sec book" id="agendar">
+  <div class="wrap">
+    <div class="book-in">
+      <span class="eyebrow on-deep rev">Quando quiser</span>
+      <h2 class="rev d1">Escolha um horário e a gente <span class="hl">conversa</span>.</h2>
+      <p class="lead rev d2">Uma conversa sobre a sua vida financeira, sem compromisso. Você escolhe o horário direto na agenda.</p>
+      <div class="rev d3">
+        <a class="btn btn-xl btn-solid on-deep btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+      <!-- Canal alternativo discreto: WhatsApp. -->
+      <p class="alt-channel rev d3">Prefere trocar uma mensagem antes? <a href="https://wa.me/5511989505174?text=Ol%C3%A1%20Leonardo!%20Recebi%20uma%20conversa%20de%20presente%20e%20quero%20agendar." target="_blank" rel="noopener">Falar no WhatsApp</a>.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 · QUEM ATENDE ============================================================ -->
+<section class="sec" id="quem">
+  <div class="wrap quem-in">
+    <span class="eyebrow rev">Quem atende</span>
+    <p class="quem-txt rev d1">Sou <b>Leonardo Sousa</b>, consultor patrimonial independente. Trabalho pelo método plano antes da carteira: primeiro entendo a sua vida e os seus objetivos, depois o dinheiro segue esse desenho. Atendo investidores em todo o Brasil, no formato que fizer sentido para cada um.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="conversa.html">Conversa exploratória</a>
+        <a href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+})();
+</script>
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-bar-in">
+    <p class="cookie-txt">Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="privacidade.html">Política de Privacidade</a> para mais informações.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-sm cookie-btn-necessary" id="cookieNecessary">Apenas necessários</button>
+      <button type="button" class="btn btn-sm btn-solid" id="cookieAll">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<style>
+.cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -12px 30px rgba(10,25,20,.1); }
+.cookie-bar[hidden]{ display:none; }
+.cookie-bar-in{ max-width:var(--wrap); margin:0 auto; padding:18px var(--pad-x); display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); flex-wrap:wrap; }
+.cookie-txt{ flex:1 1 420px; font-size:.86rem; line-height:1.55; color:var(--ink2); margin:0; }
+.cookie-txt a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; margin-left:auto; }
+.cookie-bar .btn{ white-space:nowrap; }
+.cookie-btn-necessary{ background:transparent; color:var(--ink2); border:1px solid var(--line); }
+.cookie-btn-necessary:hover{ border-color:var(--accent); color:var(--accent); }
+@media (max-width:560px){
+  .cookie-bar-in{ flex-direction:column; align-items:stretch; }
+  .cookie-txt{ flex:0 0 auto; }
+  .cookie-actions{ margin-left:0; width:100%; }
+  .cookie-actions .btn{ flex:1 1 0; }
+}
+</style>
+<script>
+(function(){
+  var KEY='cookie-consent';
+  var bar=document.getElementById('cookieBar');
+  if(!bar) return;
+  var already;
+  try{ already=localStorage.getItem(KEY); }catch(e){ already=null; }
+  if(already){ return; }
+  bar.hidden=false;
+  function setConsent(v){
+    try{ localStorage.setItem(KEY, v); }catch(e){}
+    bar.hidden=true;
+  }
+  var btnAll=document.getElementById('cookieAll');
+  var btnNec=document.getElementById('cookieNecessary');
+  if(btnAll) btnAll.addEventListener('click', function(){ setConsent('all'); });
+  if(btnNec) btnNec.addEventListener('click', function(){ setConsent('necessary'); });
+})();
+</script>
+
+</body>
+</html>

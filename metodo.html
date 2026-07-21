@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>O método · Leonardo Sousa · Consultor Patrimonial</title>
+<meta name="description" content="O plano é o produto, a carteira é o anexo técnico. Os seis estágios do método, o organograma patrimonial e a régua do plano. Atendimento em todo o Brasil. Fee fixo, sem comissão.">
+
+<!-- ============================================================
+     PÁGINA MÉTODO · Site institucional 2026 · v2 "Camadas Editoriais"
+     Herda o sistema de design canônico do index.html.
+     Fundo claro dominante, uma banda escura de respiro no CTA final.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico das 6 páginas)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0;
+  --paper:#ffffff;
+  --paper-2:#fafaf7;
+
+  --ink:#0a1914;
+  --ink2:#2d4a3e;
+  --mut:rgba(10,25,20,.52);
+  --ghost:rgba(10,25,20,.46);
+
+  --accent:#1fa86a;
+  --accent-br:#3ecf8e;
+  --amber:#c17a1e;
+  --danger:#c0442e;
+
+  --line:rgba(10,25,20,.14);
+  --line-soft:rgba(10,25,20,.08);
+
+  --deep:#0a1914;
+  --deep-2:#0d2419;
+  --on-deep:#ffffff;
+  --on-deep-soft:rgba(255,255,255,.68);
+  --line-deep:rgba(255,255,255,.14);
+
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+
+  --wrap:1240px;
+  --pad-x:clamp(1.3rem, 4.5vw, 3.4rem);
+  --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{
+  font-family:var(--sans);
+  background:var(--bg); color:var(--ink);
+  font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+
+.eyebrow{
+  display:inline-flex; align-items:center; gap:12px;
+  font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent);
+}
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent); }
+.hl-deep{ color:var(--accent-br); }
+
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:52ch; }
+
+/* botões */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:11px;
+  font-family:var(--sans); font-weight:600; text-decoration:none; line-height:1;
+  border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s;
+}
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+
+.tlink{
+  display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none;
+  color:var(--accent); border-bottom:1px solid transparent; padding-bottom:2px;
+  transition:border-color .2s;
+}
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+
+.micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent); font-weight:700; }
+.micro.on-deep{ color:var(--on-deep-soft); }
+.micro.on-deep .tk{ color:var(--accent-br); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s;
+  padding-block:15px;
+}
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav a.lk[aria-current="page"]{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · masthead + headline em duas camadas
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
+.masthead{
+  display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap;
+}
+.masthead .idx{ color:var(--accent); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.hero-h{ margin-top:clamp(1.4rem,3.2vw,2.4rem); }
+.ghost{
+  font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.35rem,3vw,2.15rem); letter-spacing:-.01em; margin-bottom:.16em; max-width:26ch;
+}
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.04;
+  font-size:clamp(2.4rem,5.4vw,4.2rem); max-width:20ch; }
+.hero-lead{ margin-top:clamp(1.6rem,3.4vw,2.4rem); }
+.anchor{ margin-top:clamp(1.8rem,3.6vw,2.4rem); padding:22px 28px; border-left:3px solid var(--accent); background:rgba(31,168,106,.05); border-radius:0 4px 4px 0; max-width:56ch; }
+.anchor p{ font-family:var(--serif); font-size:clamp(1.12rem,2vw,1.42rem); font-weight:500; line-height:1.4; color:var(--ink); }
+
+/* ============================================================
+   5. STATEMENT / SEÇÕES
+   ============================================================ */
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 18px; }
+.fee{ margin-top:26px; padding:24px 28px; border-left:3px solid var(--accent); background:rgba(31,168,106,.05); border-radius:0 4px 4px 0; max-width:44ch; }
+.fee p{ font-family:var(--serif); font-size:clamp(1.08rem,2vw,1.38rem); font-weight:500; line-height:1.4; color:var(--ink); }
+
+/* ============================================================
+   6. ACORDEÃO EDITORIAL · 6 estágios
+   ============================================================ */
+.acc{ margin-top:30px; border-top:1px solid var(--line); }
+.acc details{ border-bottom:1px solid var(--line); }
+.acc summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:auto 1fr auto; gap:20px; align-items:baseline; padding:24px 4px; }
+.acc summary::-webkit-details-marker{ display:none; }
+.acc .an{ font-family:var(--serif); font-size:clamp(1.4rem,2.6vw,2rem); font-weight:700; letter-spacing:-.02em; color:var(--accent); line-height:1; }
+.acc .at-wrap{ display:flex; flex-direction:column; gap:5px; }
+.acc .at{ font-family:var(--serif); font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:600; color:var(--ink); line-height:1.1; }
+.acc .aw{ font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); }
+.acc .plus{ font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; line-height:1; }
+.acc details[open] .plus{ transform:rotate(45deg); }
+.acc .ab{ padding:0 4px 26px 62px; }
+.acc .ab p{ color:var(--ink2); line-height:1.6; max-width:60ch; }
+.acc .arec{ margin-top:16px; display:flex; gap:10px; align-items:flex-start; font-size:.95rem; color:var(--ink2);
+  background:rgba(31,168,106,.05); border:1px solid rgba(31,168,106,.2); border-radius:6px; padding:12px 15px; max-width:62ch; }
+.acc .arec .k{ color:var(--accent); font-weight:700; white-space:nowrap; }
+
+/* ============================================================
+   7. ÁRVORE DIDÁTICA · Exterior preenchido + offshore aberta
+   ============================================================ */
+.col-tag{ font-size:.7rem; font-weight:600; letter-spacing:.16em; text-transform:uppercase; color:var(--amber); margin-bottom:18px; text-align:center; }
+.ctree{ display:flex; flex-direction:column; align-items:center; }
+.root{ background:linear-gradient(150deg,#15402c,#0a1914); color:var(--on-deep); border-radius:5px; padding:20px 34px; text-align:center; min-width:min(320px,90%); box-shadow:0 14px 34px rgba(10,25,20,.2); }
+.root .rk{ font-size:.62rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-br); }
+.root .rv{ font-family:var(--serif); font-size:clamp(1.7rem,3.2vw,2.3rem); font-weight:700; line-height:1.04; margin-top:5px; }
+.root .rs{ font-size:.76rem; color:var(--on-deep-soft); margin-top:5px; }
+.drop{ width:1px; height:26px; background:var(--line); }
+.drail{ width:64%; height:1px; background:var(--line); position:relative; }
+.drail::before,.drail::after{ content:''; position:absolute; top:0; width:1px; height:22px; background:var(--line); }
+.drail::before{ left:0; } .drail::after{ right:0; }
+.dbranches{ display:grid; grid-template-columns:1.6fr 1fr; gap:clamp(1rem,3vw,2.4rem); width:100%; margin-top:22px; align-items:start; }
+.dbranch{ display:flex; flex-direction:column; align-items:center; }
+.dhub{ background:rgba(31,168,106,.06); border:1px solid rgba(31,168,106,.28); border-radius:8px; padding:9px 24px; text-align:center; }
+.dhub .hk{ display:block; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+.dhub .hs{ display:block; font-size:.68rem; color:var(--mut); margin-top:1px; }
+.dleafs{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; margin-top:22px; }
+.dleafs.one{ grid-template-columns:1fr; }
+.dleaf{ position:relative; background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:14px 16px 15px; text-align:left; }
+.dleaf::before{ content:''; position:absolute; top:-23px; left:50%; width:1px; height:23px; background:var(--line); }
+.dleaf .sdot{ position:absolute; top:14px; right:14px; width:8px; height:8px; border-radius:50%; }
+.sdot.ok{ background:var(--accent); }
+.sdot.w{ background:var(--amber); }
+.sdot.b{ background:var(--danger); }
+.dleaf .dt{ font-size:.66rem; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--mut); }
+.dleaf .dv{ font-family:var(--serif); font-size:1.16rem; font-weight:700; color:var(--ink); line-height:1.15; margin-top:3px; }
+.dleaf .dn{ font-size:.8rem; color:var(--ink2); margin-top:6px; line-height:1.4; }
+.dleaf .dn .sub{ color:var(--amber); font-weight:600; }
+.dleaf.wide{ grid-column:1 / -1; }
+.dleaf.ext .dt{ color:var(--accent); }
+.dleaf.divida{ border-color:rgba(192,68,46,.45); background:rgba(192,68,46,.05); }
+.dleaf.divida .dv{ color:var(--danger); }
+.dleaf .etq{ display:inline-block; margin-top:9px; font-size:.64rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--danger); border-radius:5px; padding:4px 9px; }
+.dleaf.aberta{ border-style:dashed; border-color:rgba(193,122,30,.55); background:rgba(193,122,30,.045); }
+.dleaf.aberta .dt{ color:var(--amber); }
+.dleaf.aberta .dv{ color:var(--amber); font-size:1rem; }
+.semaforo{ display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:26px; }
+.s-item{ display:inline-flex; align-items:center; gap:9px; font-size:.82rem; color:var(--ink2); background:var(--paper); border:1px solid var(--line); border-radius:100px; padding:8px 16px; }
+.s-item .sd{ width:9px; height:9px; border-radius:50%; }
+.s-item .sd.ok{ background:var(--accent); }
+.s-item .sd.w{ background:var(--amber); }
+.s-item .sd.b{ background:var(--danger); }
+.s-item b{ color:var(--ink); font-weight:700; }
+.dcap{ margin-top:24px; font-size:.86rem; color:var(--mut); text-align:center; max-width:58ch; margin-inline:auto; line-height:1.55; }
+.dcap b{ color:var(--ink2); font-weight:600; }
+
+/* ============================================================
+   8. RÉGUA DO PLANO · tabela editorial
+   ============================================================ */
+.cmp-tag{ font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--mut); margin-bottom:16px; }
+.cmp{ border:1px solid var(--line); border-radius:4px; overflow:hidden; background:var(--paper); max-width:960px; }
+.cmp-row{ display:grid; grid-template-columns:1fr 1fr 1fr; }
+.cmp-row + .cmp-row{ border-top:1px solid var(--line); }
+.cmp-cell{ padding:15px 18px; font-size:.95rem; line-height:1.42; }
+.cmp-cell.dim{ color:var(--mut); }
+.cmp-head{ background:var(--paper-2); }
+.cmp-head .cmp-cell{ font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; }
+.cmp-head .col-a{ color:var(--accent); }
+.cmp-head .col-b{ color:var(--mut); }
+.cmp-key{ font-weight:600; color:var(--ink2); }
+.col-a{ border-left:2px solid rgba(31,168,106,.32); background:rgba(31,168,106,.035); }
+.cmp-mark{ font-weight:600; color:var(--ink); }
+.vp-tag{ display:inline-flex; align-items:center; gap:10px; margin-top:22px; font-size:.9rem; color:var(--ink2); }
+.vp-tag .dot{ width:8px; height:8px; border-radius:50%; background:var(--accent); flex-shrink:0; }
+.vp-tag b{ color:var(--ink); }
+
+/* ============================================================
+   9. REMUNERAÇÃO · steps
+   ============================================================ */
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px; }
+.step{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:26px 24px; }
+.step .sn{ font-family:var(--serif); font-size:.95rem; font-weight:700; color:var(--accent); letter-spacing:.04em; }
+.step h3{ font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:600; color:var(--ink); margin:12px 0 8px; }
+.step p{ font-size:.94rem; color:var(--ink2); line-height:1.55; }
+
+/* ============================================================
+   10. CTA FINAL · a única banda escura + rodapé
+   ============================================================ */
+.final{ background:radial-gradient(ellipse 55% 60% at 12% 18%, rgba(62,207,142,.10), transparent 60%), var(--deep); color:var(--on-deep); text-align:center; }
+.final .eyebrow{ justify-content:center; }
+.final h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; color:var(--on-deep); max-width:20ch; margin:16px auto 0; }
+.final .lead{ color:var(--on-deep-soft); margin:18px auto 28px; max-width:52ch; }
+.final .hl{ color:var(--accent-br); }
+.final-micro{ margin-top:20px; }
+
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   11. NAV-DOTS
+   ============================================================ */
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:13px; }
+.nav-dots a{ width:10px; height:10px; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:22px; top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
+  padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
+.nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+
+/* ============================================================
+   12. REVEAL
+   ============================================================ */
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+
+/* ============================================================
+   13. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+  .nav-dots{ display:none; }
+}
+@media (max-width:880px){
+  .dbranches{ grid-template-columns:1fr; gap:26px; }
+  .steps{ grid-template-columns:1fr; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .cmp-row{ grid-template-columns:1fr; }
+  .cmp-head{ display:none; }
+  .col-a{ border-left:none; border-top:2px solid rgba(31,168,106,.32); }
+  .cmp-cell.dim::before{ content:'A moda do mercado: '; font-weight:700; color:var(--ink2); }
+  .col-a.cmp-mark::before{ content:'A régua do plano: '; display:block; font-weight:700; color:var(--accent); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
+  .cmp-key{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); }
+  .dleaf::before{ display:none; }
+  .acc .ab{ padding-left:4px; }
+  .btn-lg{ width:100%; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html" aria-current="page">Método</a>
+      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
+      <a class="lk" href="cartas.html">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="metodo.html">Método</a>
+  <a href="plano-exemplo.html">Plano de exemplo</a>
+  <a href="cartas.html">Cartas</a>
+  <a href="sobre.html">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+</nav>
+
+<!-- nav-dots -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
+  <a href="#hero" data-label="Início"></a>
+  <a href="#estagios" data-label="Os estágios"></a>
+  <a href="#arvore" data-label="A árvore"></a>
+  <a href="#regua" data-label="A régua do plano"></a>
+  <a href="#remuneracao" data-label="Remuneração"></a>
+  <a href="#conversa" data-label="Conversar"></a>
+</nav>
+
+<main>
+
+<!-- ============================================================ 1 · HERO ============================================================ -->
+<section class="hero" id="hero">
+  <div class="wrap">
+    <div class="masthead rev">
+      <span class="idx num">02 / 06</span>
+      <span class="sep"></span>
+      <span>O método</span>
+      <span class="sep"></span>
+      <span>Em todo o Brasil</span>
+    </div>
+    <div class="hero-h">
+      <p class="ghost rev">A maioria começa pela carteira: onde alocar agora.</p>
+      <h1 class="h1 rev d1">O plano vem primeiro. A carteira é o <span class="hl">anexo técnico</span>.</h1>
+    </div>
+    <p class="lead hero-lead rev d1">Aqui a ordem é outra. Primeiro o plano da sua vida, os cinco pilares, o destino escolhido. A carteira é a consequência de uma decisão que já foi tomada com clareza.</p>
+    <div class="anchor rev d2">
+      <p>O produto deste trabalho não é uma carteira. É um plano que você entende, escrito para durar a vida inteira.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 · OS SEIS ESTÁGIOS ============================================================ -->
+<section class="sec sec-paper" id="estagios">
+  <div class="wrap">
+    <span class="eyebrow rev">Como funciona</span>
+    <h2 class="stmt rev d1" style="max-width:20ch">Seis estágios, do primeiro contato à <span class="hl">vida inteira</span>.</h2>
+    <p class="lead rev d2">Cada estágio tem um objetivo claro e algo concreto que fica na sua mão. Nada avança sem que o anterior tenha feito sentido para você.</p>
+
+    <div class="acc rev d2">
+      <details open>
+        <summary><span class="an num">01</span><span class="at-wrap"><span class="at">Conversa exploratória</span><span class="aw">20 minutos · sem compromisso</span></span><span class="plus">+</span></summary>
+        <div class="ab">
+          <p>Vinte minutos para entender onde você está e o que quer proteger. Sem apresentação de produto, sem pressão. O objetivo é um só: entender, juntos, se faz sentido seguir.</p>
+          <div class="arec"><span class="k">Você recebe:</span><span>uma leitura honesta do seu ponto de partida e a clareza de saber se este trabalho é para você.</span></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="an num">02</span><span class="at-wrap"><span class="at">Mapa Patrimonial em 48h</span><span class="aw">1 página · sem custo</span></span><span class="plus">+</span></summary>
+        <div class="ab">
+          <p>Seu patrimônio desenhado em uma página, do jeito que você contou: o conjunto por geografia de custódia, as dívidas subtraídas, as frentes abertas visíveis. Onde há um número, veio de você. Onde há uma interrogação, ninguém está olhando ainda.</p>
+          <div class="arec"><span class="k">Você recebe:</span><span>o Mapa Patrimonial de uma página, seu, sem custo e sem compromisso.</span></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="an num">03</span><span class="at-wrap"><span class="at">Diagnóstico completo</span><span class="aw">a segunda reunião</span></span><span class="plus">+</span></summary>
+        <div class="ab">
+          <p>Com os extratos reais, o Mapa vira diagnóstico. O retrato do patrimônio em cinco pilares, o motor de projeção calculado sobre os seus números e o veredito em três curvas: onde você chega no ritmo de hoje, onde precisa chegar e o caminho entre as duas.</p>
+          <div class="arec"><span class="k">Você recebe:</span><span>o retrato do patrimônio, o veredito em três curvas e a lista do que decidir primeiro.</span></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="an num">04</span><span class="at-wrap"><span class="at">Kick-off</span><span class="aw">o plano assinado</span></span><span class="plus">+</span></summary>
+        <div class="ab">
+          <p>O plano deixa de ser conversa e vira documento. Três peças assinadas: o plano de referência (para onde você vai), a política de investimento (as regras da carteira) e o protocolo de queda (o que fazer quando o mercado assusta, decidido antes de assustar).</p>
+          <div class="arec"><span class="k">Você recebe:</span><span>plano de referência, política de investimento e protocolo de queda, os três por escrito.</span></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="an num">05</span><span class="at-wrap"><span class="at">Acompanhamento</span><span class="aw">mensal · trimestral · anual</span></span><span class="plus">+</span></summary>
+        <div class="ab">
+          <p>O plano vira cadência. No mês, o pulso: o que mudou. No trimestre, a prestação de contas: cada movimento apontando para o pilar que serve. No ano, o replanejamento: a vida muda, o plano acompanha.</p>
+          <div class="arec"><span class="k">Você recebe:</span><span>o pulso mensal, a prestação de contas trimestral e o replanejamento anual.</span></div>
+        </div>
+      </details>
+      <details>
+        <summary><span class="an num">06</span><span class="at-wrap"><span class="at">A árvore</span><span class="aw">o mesmo desenho, a vida inteira</span></span><span class="plus">+</span></summary>
+        <div class="ab">
+          <p>Por baixo de toda a cadência há um único desenho: o organograma patrimonial. A mesma árvore no mês, no trimestre e no ano. Você aprende a ler uma vez e reencontra o conjunto sempre no mesmo lugar.</p>
+          <div class="arec"><span class="k">Você recebe:</span><span>uma leitura que você domina, revista a cada mês, trimestre e ano.</span></div>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 · O ORGANOGRAMA PATRIMONIAL ============================================================ -->
+<section class="sec" id="arvore">
+  <div class="wrap">
+    <span class="eyebrow rev">O organograma patrimonial</span>
+    <h2 class="stmt rev d1" style="max-width:18ch">O patrimônio inteiro, desenhado como uma <span class="hl">árvore</span>.</h2>
+    <p class="lead rev d2" style="max-width:60ch">Raiz, galhos e folhas com significado fixo. A raiz é o líquido: bruto menos dívidas, a preço de hoje. Os galhos são a geografia de custódia, Brasil e Exterior, onde o ativo está guardado. Cada folha é um ativo, com o seu semáforo. O nó vazio, de borda tracejada âmbar, é uma frente aberta: decisão pendente, não ausência. No exemplo abaixo, a exposição no exterior já está preenchida, e a frente aberta é a estrutura offshore de sucessão.</p>
+
+    <div class="rev d2" style="margin-top:34px">
+      <div class="col-tag">O desenho didático · leitura fixa, a vida inteira</div>
+      <div class="ctree" aria-label="Organograma patrimonial: o patrimônio desenhado como árvore">
+        <div class="root">
+          <div class="rk">Patrimônio líquido da família</div>
+          <div class="rv">o conjunto</div>
+          <div class="rs">bruto menos dívidas, a preço de hoje</div>
+        </div>
+        <div class="drop"></div>
+        <div class="drail"></div>
+        <div class="dbranches">
+
+          <!-- BRASIL -->
+          <div class="dbranch">
+            <div class="dhub"><span class="hk">Brasil</span><span class="hs">custódia nacional</span></div>
+            <div class="dleafs">
+              <div class="dleaf">
+                <span class="sdot ok"></span>
+                <div class="dt">Imobilizado</div>
+                <div class="dv">imóveis</div>
+                <div class="dn">o financiamento é subtraído aqui dentro do nó: a folha mostra o valor líquido.</div>
+              </div>
+              <div class="dleaf">
+                <span class="sdot w"></span>
+                <div class="dt">Empresa</div>
+                <div class="dv">participação</div>
+                <div class="dn"><span class="sub">frente aberta:</span> blindagem patrimonial.</div>
+              </div>
+              <div class="dleaf">
+                <span class="sdot ok"></span>
+                <div class="dt">Liquidez</div>
+                <div class="dv">reserva</div>
+              </div>
+              <div class="dleaf">
+                <span class="sdot ok"></span>
+                <div class="dt">Previdência</div>
+                <div class="dv">ativa</div>
+              </div>
+              <div class="dleaf divida wide">
+                <span class="sdot b"></span>
+                <div class="dt">Dívida solta</div>
+                <div class="dv">empréstimo caro</div>
+                <div class="dn">sem lastro em ativo, custo acima do retorno esperado do plano.</div>
+                <span class="etq">Quitar primeiro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- EXTERIOR -->
+          <div class="dbranch">
+            <div class="dhub"><span class="hk">Exterior</span><span class="hs">custódia internacional</span></div>
+            <div class="dleafs one">
+              <div class="dleaf ext">
+                <span class="sdot ok"></span>
+                <div class="dt">Conta internacional</div>
+                <div class="dv">custódia fora</div>
+                <div class="dn">ETFs globais em dólar, exposição internacional já preenchida.</div>
+              </div>
+              <div class="dleaf aberta">
+                <span class="sdot w"></span>
+                <div class="dt">Estrutura offshore de sucessão</div>
+                <div class="dv">frente aberta</div>
+                <div class="dn">nó vazio de propósito: decisão em análise, não ausência.</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="semaforo">
+        <span class="s-item"><span class="sd ok"></span><b>Verde:</b>&nbsp;coberto, dentro da política</span>
+        <span class="s-item"><span class="sd w"></span><b>Âmbar:</b>&nbsp;frente aberta ou a confirmar</span>
+        <span class="s-item"><span class="sd b"></span><b>Vermelho:</b>&nbsp;fragilidade a resolver</span>
+      </div>
+
+      <p class="dcap">A mesma árvore, revista a cada mês, trimestre e ano. <b>O cliente aprende a ler um desenho e o reencontra a vida inteira.</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 · A RÉGUA DO PLANO ============================================================ -->
+<section class="sec sec-paper" id="regua">
+  <div class="wrap">
+    <span class="eyebrow rev">A régua do plano</span>
+    <h2 class="stmt rev d1" style="max-width:22ch">Performance é distância até a sua meta, não posição num <span class="hl">ranking</span>.</h2>
+    <p class="lead rev d2" style="margin-bottom:30px">A pergunta não é se a carteira bateu o índice da vez. É se você está mais perto do destino que escolheu. Por isso a régua é a meta do seu plano, IPCA mais a taxa combinada, e tudo é lido a valor presente, a preço de hoje.</p>
+
+    <div class="rev d2">
+      <div class="cmp-tag">Duas réguas possíveis</div>
+      <div class="cmp">
+        <div class="cmp-row cmp-head">
+          <div class="cmp-cell">O que compara</div>
+          <div class="cmp-cell col-a">A régua do plano</div>
+          <div class="cmp-cell col-b">A moda do mercado</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">Referência</div>
+          <div class="cmp-cell col-a cmp-mark">IPCA mais a taxa do seu plano</div>
+          <div class="cmp-cell dim">O índice ou o produto da vez</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">A pergunta</div>
+          <div class="cmp-cell col-a cmp-mark">Você está no caminho da sua meta?</div>
+          <div class="cmp-cell dim">Você bateu o benchmark do mês?</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">Unidade</div>
+          <div class="cmp-cell col-a cmp-mark">Valor presente, a preço de hoje</div>
+          <div class="cmp-cell dim">Retorno nominal do período</div>
+        </div>
+        <div class="cmp-row">
+          <div class="cmp-cell cmp-key">Horizonte</div>
+          <div class="cmp-cell col-a cmp-mark">A vida do plano</div>
+          <div class="cmp-cell dim">O trimestre</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fee rev d3">
+      <p>Rentabilidade que não aproxima você da sua meta é ruído. A régua certa é a sua, não a do vizinho de mesa.</p>
+    </div>
+    <p class="vp-tag rev d3"><span class="dot"></span><span><b>Valor presente em tudo:</b>&nbsp;cada número a preço de hoje, sem ganho futuro embutido no valor do ativo.</span></p>
+  </div>
+</section>
+
+<!-- ============================================================ 5 · COMO SOU REMUNERADO ============================================================ -->
+<section class="sec" id="remuneracao">
+  <div class="wrap">
+    <span class="eyebrow rev">Como sou remunerado</span>
+    <h2 class="stmt rev d1" style="max-width:18ch">Um modelo sem <span class="hl">viés</span> embutido.</h2>
+    <p class="lead rev d2">O assessor de investimentos parece de graça porque quem paga é o produto que ele coloca na sua carteira. O problema não é de pessoa. É de estrutura. E estrutura, com dinheiro, cria viés.</p>
+
+    <div class="fee rev d2">
+      <p>Cobro uma taxa fixa anual. Não vendo produto, não tenho comissão, não trabalho para nenhum banco.</p>
+    </div>
+
+    <div class="steps rev d3">
+      <div class="step">
+        <div class="sn num">01</div>
+        <h3>Taxa fixa anual</h3>
+        <p>Uma remuneração transparente, combinada antes de começar. Você sabe exatamente quanto paga e pelo quê.</p>
+      </div>
+      <div class="step">
+        <div class="sn num">02</div>
+        <h3>Zero comissão</h3>
+        <p>Nenhum repasse de instituição financeira, nenhum incentivo escondido. O meu interesse aponta para a clareza da sua decisão.</p>
+      </div>
+      <div class="step">
+        <div class="sn num">03</div>
+        <h3>Zero produto</h3>
+        <p>Não coloco nada na sua carteira para ganhar com isso. O trabalho é conselho, não intermediação. A custódia permanece com você.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6 · CTA FINAL (banda escura) ============================================================ -->
+<section class="sec final" id="conversa">
+  <div class="wrap">
+    <span class="eyebrow on-deep rev">O próximo passo</span>
+    <h2 class="rev d1">O método começa por uma <span class="hl">conversa</span>.</h2>
+    <p class="lead rev d2">Vinte minutos, sem compromisso, para entender se faz sentido. Sem apresentação de produto, sem pressão. Só uma leitura honesta do ponto onde você está.</p>
+    <div class="rev d3">
+      <a class="btn btn-lg btn-solid on-deep btn-arrow" href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa exploratória</a>
+    </div>
+    <p class="micro on-deep final-micro rev d3"><span class="tk">&#8226;</span> Primeira conversa. 20 minutos. Sem compromisso.</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="conversa.html">Conversa exploratória</a>
+        <a href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  var dots=document.querySelectorAll('#navDots a'), pairs=[];
+  dots.forEach(function(d){ var s=document.getElementById(d.getAttribute('href').slice(1)); if(s){ pairs.push({dot:d, sec:s}); } });
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ pairs.forEach(function(p){ p.dot.classList.toggle('on', p.sec===e.target); }); } }); },{threshold:.5, rootMargin:'-30% 0px -30% 0px'});
+    pairs.forEach(function(p){ so.observe(p.sec); });
+  }
+})();
+</script>
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <div class="cookie-bar-in">
+    <p class="cookie-txt">Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="privacidade.html">Política de Privacidade</a> para mais informações.</p>
+    <div class="cookie-actions">
+      <button type="button" class="btn btn-sm cookie-btn-necessary" id="cookieNecessary">Apenas necessários</button>
+      <button type="button" class="btn btn-sm btn-solid" id="cookieAll">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<style>
+.cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -12px 30px rgba(10,25,20,.1); }
+.cookie-bar[hidden]{ display:none; }
+.cookie-bar-in{ max-width:var(--wrap); margin:0 auto; padding:18px var(--pad-x); display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); flex-wrap:wrap; }
+.cookie-txt{ flex:1 1 420px; font-size:.86rem; line-height:1.55; color:var(--ink2); margin:0; }
+.cookie-txt a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.cookie-actions{ display:flex; gap:10px; flex-shrink:0; margin-left:auto; }
+.cookie-bar .btn{ white-space:nowrap; }
+.cookie-btn-necessary{ background:transparent; color:var(--ink2); border:1px solid var(--line); }
+.cookie-btn-necessary:hover{ border-color:var(--accent); color:var(--accent); }
+@media (max-width:560px){
+  .cookie-bar-in{ flex-direction:column; align-items:stretch; }
+  .cookie-txt{ flex:0 0 auto; }
+  .cookie-actions{ margin-left:0; width:100%; }
+  .cookie-actions .btn{ flex:1 1 0; }
+}
+</style>
+<script>
+(function(){
+  var KEY='cookie-consent';
+  var bar=document.getElementById('cookieBar');
+  if(!bar) return;
+  var already;
+  try{ already=localStorage.getItem(KEY); }catch(e){ already=null; }
+  if(already){ return; }
+  bar.hidden=false;
+  function setConsent(v){
+    try{ localStorage.setItem(KEY, v); }catch(e){}
+    bar.hidden=true;
+  }
+  var btnAll=document.getElementById('cookieAll');
+  var btnNec=document.getElementById('cookieNecessary');
+  if(btnAll) btnAll.addEventListener('click', function(){ setConsent('all'); });
+  if(btnNec) btnNec.addEventListener('click', function(){ setConsent('necessary'); });
+})();
+</script>
+
+</body>
+</html>
