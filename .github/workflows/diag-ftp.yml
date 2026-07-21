@@ -1,0 +1,39 @@
+name: Diag FTP (temporario)
+
+# Lista a estrutura de diretorios do FTP para descobrir o docroot correto.
+# Remover depois que o server-dir do deploy estiver acertado.
+
+on:
+  workflow_dispatch:
+
+jobs:
+  diag:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Instalar lftp
+        run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+
+      - name: Listar arvore do FTP
+        env:
+          FTP_HOST: ${{ secrets.FTP_SERVER }}
+          FTP_USER: ${{ secrets.FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          lftp -c "
+          set ssl:verify-certificate no;
+          set ftp:ssl-protect-data true;
+          open -u '$FTP_USER','$FTP_PASS' 'ftp://$FTP_HOST';
+          echo '=== PWD (onde o FTP cai) ===';
+          pwd;
+          echo '=== RAIZ do FTP ===';
+          cls -l --classify;
+          echo '=== ./www/ ===';
+          (cls -l www/ || echo 'sem www');
+          echo '=== ./www/www/ ===';
+          (cls -l www/www/ || echo 'sem www/www');
+          echo '=== ./public_html/ ===';
+          (cls -l public_html/ || echo 'sem public_html');
+          echo '=== ./htdocs/ ===';
+          (cls -l htdocs/ || echo 'sem htdocs');
+          bye;
+          "
