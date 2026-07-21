@@ -1,0 +1,44 @@
+name: Deploy KingHost (FTP)
+
+# Publica o site estatico na KingHost a cada push na master.
+# Nao clona nada no servidor: apenas envia os arquivos por FTP para /www.
+# Credenciais ficam em Secrets do repositorio (Settings > Secrets and variables > Actions):
+#   FTP_SERVER    -> web1f18.kinghost.net
+#   FTP_USERNAME  -> usuario de FTP (definido em Gerenciar FTP no painel KingHost)
+#   FTP_PASSWORD  -> senha de FTP
+# Rodar manualmente: aba Actions > "Deploy KingHost (FTP)" > Run workflow.
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Enviar arquivos por FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          port: 21
+          # Raiz web da KingHost: a conta de FTP cai em /home/<usuario> e a pasta
+          # servida na web e a "www" dentro dela. Por isso o destino e ./www/.
+          # Se a sua conta de FTP ja cair direto na raiz web, troque para ./
+          server-dir: ./www/
+          # Nao apaga arquivos que ja existam no servidor e nao estejam no repo
+          # (ex.: um .git remanescente de tentativa anterior fica intacto).
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github
+            **/.github/**
+            README.md
+            .gitignore
