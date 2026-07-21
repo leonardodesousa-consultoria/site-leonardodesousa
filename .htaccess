@@ -5,18 +5,19 @@ Options -MultiViews -Indexes
 DirectoryIndex index.html
 RewriteEngine On
 
-# 1) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
+# 1) Forca HTTPS PRIMEIRO (preserva a URL original limpa antes de reescrever)
+# SSL Let's Encrypt do dominio ativo desde 21/07/2026
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
-# 2) Serve internamente /pagina a partir de pagina.html
+# 3) Serve internamente /pagina a partir de pagina.html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
-
-# Forca HTTPS (SSL Let's Encrypt do dominio ativo desde 21/07/2026)
-RewriteCond %{HTTPS} off
-RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # Compressao
 <IfModule mod_deflate.c>
