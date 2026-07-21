@@ -14,11 +14,9 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.html -f
 RewriteRule ^(.+?)/?$ $1.html [L]
 
-# Forca HTTPS
-# DESATIVADO ate o SSL (Let's Encrypt) do dominio ser emitido na KingHost,
-# o que ocorre apos o DNS apontar para ca. Reativar depois do SSL confirmado.
-# RewriteCond %{HTTPS} off
-# RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+# Forca HTTPS (SSL Let's Encrypt do dominio ativo desde 21/07/2026)
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 # Compressao
 <IfModule mod_deflate.c>

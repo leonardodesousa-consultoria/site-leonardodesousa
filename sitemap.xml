@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://leonardodesousa.com.br/</loc><changefreq>monthly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://leonardodesousa.com.br/metodo</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://leonardodesousa.com.br/plano-exemplo</loc><changefreq>monthly</changefreq><priority>0.9</priority></url>
+  <url><loc>https://leonardodesousa.com.br/sobre</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://leonardodesousa.com.br/cartas</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://leonardodesousa.com.br/conversa</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://leonardodesousa.com.br/presente</loc><changefreq>monthly</changefreq><priority>0.5</priority></url>
+  <url><loc>https://leonardodesousa.com.br/privacidade</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://leonardodesousa.com.br/termos</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+</urlset>
