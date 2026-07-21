@@ -1,19 +1,21 @@
-name: Diag FTP (temporario)
+name: Limpeza FTP (temporario)
 
-# Lista a estrutura de diretorios do FTP para descobrir o docroot correto.
-# Remover depois que o server-dir do deploy estiver acertado.
+# Remove lixo do /www deixado por tentativas anteriores:
+# - www/ (copia aninhada do primeiro deploy)
+# - .git/ .github/ README.md .gitignore (do clone da antiga Publicacao via Git)
+# NAO toca nos arquivos do site. Remover este workflow depois de rodar.
 
 on:
   workflow_dispatch:
 
 jobs:
-  diag:
+  limpar:
     runs-on: ubuntu-latest
     steps:
       - name: Instalar lftp
         run: sudo apt-get update -qq && sudo apt-get install -y -qq lftp
 
-      - name: Listar arvore do FTP
+      - name: Limpar /www
         env:
           FTP_HOST: ${{ secrets.FTP_SERVER }}
           FTP_USER: ${{ secrets.FTP_USERNAME }}
@@ -23,17 +25,12 @@ jobs:
           set ssl:verify-certificate no;
           set ftp:ssl-protect-data true;
           open -u '$FTP_USER','$FTP_PASS' 'ftp://$FTP_HOST';
-          echo '=== PWD (onde o FTP cai) ===';
-          pwd;
-          echo '=== RAIZ do FTP ===';
-          cls -l --classify;
-          echo '=== ./www/ ===';
-          (cls -l www/ || echo 'sem www');
-          echo '=== ./www/www/ ===';
-          (cls -l www/www/ || echo 'sem www/www');
-          echo '=== ./public_html/ ===';
-          (cls -l public_html/ || echo 'sem public_html');
-          echo '=== ./htdocs/ ===';
-          (cls -l htdocs/ || echo 'sem htdocs');
+          (rm -r www || echo 'sem www aninhado');
+          (rm -r .git || echo 'sem .git');
+          (rm -r .github || echo 'sem .github');
+          (rm README.md || echo 'sem README');
+          (rm .gitignore || echo 'sem .gitignore');
+          echo '=== conteudo final de /www ===';
+          cls -a -l;
           bye;
           "
