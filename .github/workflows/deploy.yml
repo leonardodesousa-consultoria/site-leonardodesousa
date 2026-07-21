@@ -28,10 +28,9 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
           port: 21
-          # Raiz web da KingHost: a conta de FTP cai em /home/<usuario> e a pasta
-          # servida na web e a "www" dentro dela. Por isso o destino e ./www/.
-          # Se a sua conta de FTP ja cair direto na raiz web, troque para ./
-          server-dir: ./www/
+          # A conta de FTP da KingHost ja cai DENTRO da raiz web (/www).
+          # Por isso o destino e ./ (a propria raiz), nao ./www/.
+          server-dir: ./
           # Nao apaga arquivos que ja existam no servidor e nao estejam no repo
           # (ex.: um .git remanescente de tentativa anterior fica intacto).
           dangerous-clean-slate: false
