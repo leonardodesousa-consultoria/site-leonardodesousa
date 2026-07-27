@@ -1,4 +1,5 @@
 User-agent: *
+Disallow: /atualizacao
 Allow: /
 
 Sitemap: https://leonardodesousa.com.br/sitemap.xml
