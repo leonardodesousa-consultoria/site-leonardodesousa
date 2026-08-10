@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Live · Previdência e sucessão: o que resolver antes do fim do ano</title>
+<meta name="description" content="Conversa ao vivo entre três consultores patrimoniais em 27 de agosto, às 19h: previdência na sucessão, PGBL e VGBL no lugar certo e o mapa do ITCMD. Participação gratuita.">
+
+<!-- ============================================================
+     LIVE · Site institucional 2026 · v2 "Camadas Editoriais"
+     Página de inscrição da live mensal. Herda o sistema de design da /analise.
+     Formulário curto de propósito: nome, e-mail e WhatsApp opcional.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
+  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent); }
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid[disabled]{ opacity:.62; cursor:default; transform:none; box-shadow:none; }
+.btn-ghost{ background:transparent; color:var(--ink2); border-color:var(--line); }
+.btn-ghost:hover{ border-color:var(--accent); color:var(--accent); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+.tlink{ display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none;
+  color:var(--accent); border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s; }
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+.micro{ font-size:.9rem; color:var(--mut); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.2rem,5vw,3.4rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.hero-in{ max-width:44rem; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;
+  margin-top:clamp(2rem,4vw,3.2rem); }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
+  font-size:clamp(2.1rem,4.8vw,3.5rem); max-width:20ch; }
+.hero-sub{ font-size:clamp(1.02rem,1.6vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:52ch;
+  margin-top:clamp(1.2rem,2.4vw,1.7rem); }
+.hero-cta{ margin-top:clamp(1.8rem,3.2vw,2.4rem); }
+.hero-when{ margin-top:16px; font-size:.92rem; color:var(--mut); }
+
+/* ============================================================
+   5. O QUE VOCÊ SAI SABENDO
+   ============================================================ */
+.steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:0;
+  border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.step{ padding:clamp(1.6rem,3vw,2.2rem) clamp(1rem,2.4vw,2rem); }
+.step + .step{ border-left:1px solid var(--line); }
+.step .sn{ font-family:var(--serif); font-size:1.02rem; font-weight:700; color:var(--accent); letter-spacing:.06em; }
+.step .st{ margin-top:12px; color:var(--ink2); line-height:1.55; font-size:1rem; max-width:34ch; }
+.sec-head{ max-width:44rem; margin-bottom:clamp(1.8rem,3.4vw,2.6rem); }
+.sec-head h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3vw,2.1rem);
+  line-height:1.16; letter-spacing:-.02em; margin-top:14px; }
+.sec-head p{ color:var(--ink2); font-size:1rem; line-height:1.55; margin-top:12px; max-width:52ch; }
+
+/* ============================================================
+   6. QUEM CONDUZ
+   ============================================================ */
+.crew{ display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,3vw,2.4rem); }
+.who{ display:flex; align-items:center; gap:16px; }
+.who .ph{ width:66px; height:66px; border-radius:50%; overflow:hidden; flex:0 0 auto;
+  border:1px solid var(--line); background:var(--paper-2); }
+.who .ph img{ width:100%; height:100%; object-fit:cover; object-position:center 18%; }
+.who .nm{ font-family:var(--serif); font-size:1.06rem; font-weight:600; line-height:1.2; }
+.who .rl{ font-size:.88rem; color:var(--mut); margin-top:3px; }
+
+/* ============================================================
+   7. O COMBINADO (conteúdo educativo)
+   ============================================================ */
+.pact{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.2rem,3vw,2.6rem); }
+.pact ul{ list-style:none; }
+.pact h3{ font-family:var(--sans); font-size:.72rem; font-weight:700; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+.pact.is-not h3{ color:var(--mut); }
+.pact li{ position:relative; padding-left:22px; color:var(--ink2); line-height:1.55; font-size:1rem; }
+.pact li + li{ margin-top:10px; }
+.pact li::before{ content:'\2713'; position:absolute; left:0; color:var(--accent); font-weight:700; }
+.pact .no li::before{ content:'\00d7'; color:var(--mut); }
+
+/* ============================================================
+   8. FORMULÁRIO
+   ============================================================ */
+.form-sec{ background:var(--paper); }
+.card{ max-width:640px; margin:0 auto; background:var(--paper); border:1px solid var(--line);
+  border-top:3px solid var(--accent); border-radius:5px; padding:clamp(1.6rem,4vw,2.6rem);
+  box-shadow:0 18px 46px rgba(10,25,20,.07); }
+.card-head{ margin-bottom:clamp(1.4rem,3vw,2rem); }
+.card-head h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.8vw,1.9rem);
+  line-height:1.16; letter-spacing:-.02em; margin-top:14px; }
+.card-head p{ color:var(--ink2); font-size:.98rem; line-height:1.55; margin-top:10px; }
+
+.field{ margin-bottom:20px; }
+.field label{ display:block; font-size:.88rem; font-weight:600; color:var(--ink); margin-bottom:8px; }
+.field .opt{ font-weight:500; color:var(--mut); }
+.field input{
+  width:100%; font-family:var(--sans); font-size:1rem; color:var(--ink); background:var(--paper-2);
+  border:1px solid var(--line); border-radius:3px; padding:14px 15px; line-height:1.3;
+  transition:border-color .2s, background .2s, box-shadow .2s; appearance:none; -webkit-appearance:none;
+}
+.field input:focus{ outline:none; border-color:var(--accent); background:var(--paper);
+  box-shadow:0 0 0 3px rgba(31,168,106,.14); }
+.field input::placeholder{ color:var(--mut); }
+.field.err input{ border-color:#a8442c; background:rgba(168,68,44,.04); }
+.fmsg{ display:none; font-size:.84rem; color:#a8442c; margin-top:7px; line-height:1.45; }
+.field.err .fmsg{ display:block; }
+
+.check{ display:flex; align-items:flex-start; gap:12px; margin:26px 0 24px; padding:16px 18px;
+  background:var(--paper-2); border:1px solid var(--line-soft); border-radius:4px; cursor:pointer; }
+.check input{ width:19px; height:19px; flex:0 0 auto; margin-top:2px; accent-color:var(--accent); cursor:pointer; }
+.check span{ font-size:.94rem; color:var(--ink2); line-height:1.5; }
+.check a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+.submit-row .btn{ width:100%; }
+.form-note{ margin-top:16px; font-size:.86rem; color:var(--mut); line-height:1.55; }
+.form-note a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+.form-error{ display:none; margin-top:18px; padding:14px 16px; border-left:3px solid #a8442c;
+  background:rgba(168,68,44,.05); font-size:.92rem; color:var(--ink2); line-height:1.55; border-radius:0 3px 3px 0; }
+.form-error.on{ display:block; }
+.form-error a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
+
+/* estado de sucesso */
+.done{ display:none; text-align:center; }
+.done.on{ display:block; }
+.done .mark{ width:52px; height:52px; margin:0 auto 22px; border-radius:50%; background:rgba(31,168,106,.1);
+  display:flex; align-items:center; justify-content:center; color:var(--accent); }
+.done h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.35rem,2.6vw,1.8rem);
+  line-height:1.2; letter-spacing:-.02em; max-width:24ch; margin:0 auto 16px; }
+.done p{ color:var(--ink2); font-size:.98rem; line-height:1.55; max-width:44ch; margin:0 auto 26px; }
+.done .btn{ width:100%; }
+.done .after{ margin-top:20px; }
+
+/* ============================================================
+   9. RODAPÉ (herdado do index)
+   ============================================================ */
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   10. REVEAL
+   ============================================================ */
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+
+/* ============================================================
+   11. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+}
+@media (max-width:880px){
+  .steps{ grid-template-columns:1fr; }
+  .step + .step{ border-left:none; border-top:1px solid var(--line); }
+  .crew{ grid-template-columns:1fr; }
+  .pact{ grid-template-columns:1fr; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .btn-lg, .hero-cta .btn{ width:100%; }
+  .card{ padding:22px 18px 26px; }
+  .step .st{ max-width:none; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+</style>
+
+<!-- SEO / social -->
+<meta name="robots" content="index,follow">
+<meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
+<link rel="canonical" href="https://leonardodesousa.com.br/live">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:title" content="Live · Previdência e sucessão: o que resolver antes do fim do ano">
+<meta property="og:description" content="Conversa ao vivo entre três consultores patrimoniais em 27 de agosto, às 19h. Participação gratuita, sem venda de produto.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leonardodesousa.com.br/live">
+<meta property="og:image" content="https://leonardodesousa.com.br/og-live.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Live · Previdência e sucessão: o que resolver antes do fim do ano">
+<meta name="twitter:description" content="Conversa ao vivo entre três consultores patrimoniais em 27 de agosto, às 19h. Participação gratuita, sem venda de produto.">
+<meta name="twitter:image" content="https://leonardodesousa.com.br/og-live.jpg">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html">Método</a>
+      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
+      <a class="lk" href="cartas.html">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="#inscricao">Inscrever-se na live</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="metodo.html">Método</a>
+  <a href="plano-exemplo.html">Plano de exemplo</a>
+  <a href="cartas.html">Cartas</a>
+  <a href="sobre.html">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="#inscricao">Inscrever-se na live</a>
+</nav>
+
+<main>
+
+<!-- ============================================================ 1 · HERO ============================================================ -->
+<section class="hero" id="topo">
+  <div class="wrap">
+    <div class="masthead rev">
+      <span class="idx">Live · Quinta, 27 de agosto · 19h</span>
+      <span class="sep"></span>
+      <span>Participação gratuita</span>
+      <span class="sep"></span>
+      <span>Online, pelo YouTube</span>
+    </div>
+    <div class="hero-in">
+      <h1 class="h1 rev d1">Previdência e sucessão: o que resolver <span class="hl">antes do fim do ano</span>.</h1>
+      <p class="hero-sub rev d2">Uma conversa ao vivo entre três consultores patrimoniais, sem venda de produto. Sessenta minutos: quarenta de conteúdo, quinze de perguntas ao vivo.</p>
+      <div class="hero-cta rev d3">
+        <a class="btn btn-lg btn-solid btn-arrow" href="#inscricao">Fazer minha inscrição</a>
+      </div>
+      <p class="hero-when rev d4 num">27 de agosto, às 19h de Brasília. O link vai para o seu e-mail.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2 · O QUE VOCÊ SAI SABENDO ============================================================ -->
+<section class="sec sec-paper" id="conteudo" aria-label="O que a live cobre">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="eyebrow">O que a conversa cobre</span>
+      <h2>Três assuntos que a maioria adia por anos.</h2>
+    </div>
+    <div class="steps rev">
+      <div class="step">
+        <div class="sn num">01</div>
+        <p class="st">Onde a previdência resolve sucessão de verdade e onde ela é mal usada: beneficiário, percentuais, regime e custo do plano.</p>
+      </div>
+      <div class="step">
+        <div class="sn num">02</div>
+        <p class="st">PGBL e VGBL lado a lado: qual veículo pertence a cada situação e o erro de regime tributário que sai caro no resgate.</p>
+      </div>
+      <div class="step">
+        <div class="sn num">03</div>
+        <p class="st">O mapa do ITCMD por estado, o que a reforma mudou e os erros que aparecem com mais frequência acima de R$ 1 milhão.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3 · QUEM CONDUZ ============================================================ -->
+<section class="sec" id="quem" aria-label="Quem conduz a conversa">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="eyebrow">Quem conduz</span>
+      <h2>Três consultores patrimoniais, cada um puxando um bloco.</h2>
+    </div>
+    <div class="crew rev">
+      <div class="who">
+        <div class="ph"><img src="foto-leo.webp" alt="Leonardo Sousa" width="66" height="66" loading="lazy"></div>
+        <div><div class="nm">Leonardo Sousa</div><div class="rl">Consultor Patrimonial</div></div>
+      </div>
+      <div class="who">
+        <div class="ph"><img src="live-henrique.webp" alt="Henrique Ferrarini" width="66" height="66" loading="lazy"></div>
+        <div><div class="nm">Henrique Ferrarini</div><div class="rl">Consultor Patrimonial</div></div>
+      </div>
+      <div class="who">
+        <div class="ph"><img src="live-larissa.webp" alt="Larissa Rinaldi" width="66" height="66" loading="lazy"></div>
+        <div><div class="nm">Larissa Rinaldi</div><div class="rl">Consultora Patrimonial</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 4 · O COMBINADO ============================================================ -->
+<section class="sec sec-paper" id="combinado" aria-label="O combinado da conversa">
+  <div class="wrap">
+    <div class="sec-head rev">
+      <span class="eyebrow">O combinado</span>
+      <h2>O que esta conversa é, e o que ela não é.</h2>
+    </div>
+    <div class="pact rev">
+      <div>
+        <h3>O que ela é</h3>
+        <ul>
+          <li>Conteúdo educativo sobre previdência e sucessão</li>
+          <li>Regras gerais, leis e dados públicos, com a fonte na tela</li>
+          <li>Perguntas respondidas ao vivo pelo chat</li>
+        </ul>
+      </div>
+      <div class="is-not">
+        <h3>O que ela não é</h3>
+        <ul class="no">
+          <li>Não é recomendação de investimento</li>
+          <li>Nenhum produto será indicado ou vendido</li>
+          <li>Cada caso exige análise individual antes de qualquer decisão</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5 · INSCRIÇÃO ============================================================ -->
+<section class="sec form-sec" id="inscricao">
+  <div class="wrap">
+    <div class="card rev">
+
+      <!-- formulário -->
+      <div id="formWrap">
+        <div class="card-head">
+          <span class="eyebrow">Inscrição</span>
+          <h2>Três campos, e o link chega por e-mail.</h2>
+          <p>Você recebe a confirmação na hora, um lembrete na véspera e outro uma hora antes.</p>
+        </div>
+
+        <form id="liveForm" novalidate>
+          <div class="field" id="f-nome">
+            <label for="nome">Nome completo</label>
+            <input type="text" id="nome" name="nome" autocomplete="name" required>
+            <p class="fmsg" id="e-nome">Informe seu nome completo.</p>
+          </div>
+
+          <div class="field" id="f-email">
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" autocomplete="email" inputmode="email" required>
+            <p class="fmsg" id="e-email">Informe um e-mail válido.</p>
+          </div>
+
+          <div class="field" id="f-telefone">
+            <label for="telefone">WhatsApp <span class="opt">(opcional)</span></label>
+            <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(44) 90000-0000">
+          </div>
+
+          <label class="check" for="consentimento">
+            <input type="checkbox" id="consentimento" name="consentimento">
+            <span>Autorizo o uso do meu nome, e-mail e WhatsApp para a minha inscrição na live e para o contato sobre ela, conforme a <a href="/privacidade" target="_blank" rel="noopener" onclick="event.stopPropagation()">Política de Privacidade</a>.</span>
+          </label>
+
+          <div class="submit-row">
+            <button type="submit" class="btn btn-lg btn-solid" id="submitBtn" disabled>Confirmar minha inscrição</button>
+          </div>
+
+          <p class="form-note">Seus dados servem para enviar o link e os lembretes da live. Não são vendidos nem usados para outra finalidade, e você pode sair da lista pelo link de descadastro no rodapé de qualquer e-mail. O site usa serviços de hospedagem, envio de e-mail e medição, listados na <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a>.</p>
+
+          <div class="form-error" id="formError" role="alert"></div>
+        </form>
+      </div>
+
+      <!-- estado de sucesso -->
+      <div class="done" id="done" role="status" aria-live="polite">
+        <div class="mark" aria-hidden="true">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5.2 5.2L20 7"/></svg>
+        </div>
+        <h2>Inscrição confirmada.</h2>
+        <p>O e-mail com o link já está a caminho. Você recebe um lembrete na véspera e outro uma hora antes de começar.</p>
+        <a class="btn btn-lg btn-ghost" id="btnAgenda" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Live%20Previd%C3%AAncia%20e%20sucess%C3%A3o%20%C2%B7%20Leonardo%20Sousa&dates=20260827T220000Z%2F20260827T230000Z&details=Conversa%20ao%20vivo%20entre%20consultores%20patrimoniais.%20O%20link%20est%C3%A1%20no%20e-mail%20de%20confirma%C3%A7%C3%A3o.&location=https%3A%2F%2Fleonardodesousa.com.br%2Flive" target="_blank" rel="noopener">Adicionar na minha agenda</a>
+        <div class="after"><a class="tlink" href="/metodo">Conhecer o método enquanto isso</a></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="conversa.html">Conversa exploratória</a>
+        <a href="https://zcal.co/leonardodesousa/conversa-inicial" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="disc">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a> · <a href="#" onclick="return ckReabrir(event)">Preferências de cookies</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* header scroll state */
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  /* mobile menu */
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  /* reveal on scroll */
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+})();
+</script>
+
+<script>
+/* ============================================================
+   INSCRIÇÃO · captura de UTM, consentimento, validação, envio
+   ============================================================ */
+(function(){
+  var ENDPOINT='https://luana-backend-production.up.railway.app/live/submit';
+  var UTM_KEYS=['utm_source','utm_medium','utm_campaign','utm_content'];
+  var utm={};
+
+  (function(){
+    var qs;
+    try{ qs=new URLSearchParams(window.location.search); }catch(e){ qs=null; }
+    UTM_KEYS.forEach(function(k){ utm[k] = qs ? (qs.get(k) || '') : ''; });
+  })();
+
+  var form=document.getElementById('liveForm');
+  var formWrap=document.getElementById('formWrap');
+  var done=document.getElementById('done');
+  var btn=document.getElementById('submitBtn');
+  var lgpd=document.getElementById('consentimento');
+  var boxErr=document.getElementById('formError');
+  if(!form) return;
+
+  var BTN_LABEL=btn.textContent;
+
+  /* o botão nasce travado; só o consentimento marcado destrava (LGPD) */
+  function sincronizarBotao(){ btn.disabled=!lgpd.checked; }
+  lgpd.addEventListener('change', sincronizarBotao);
+  sincronizarBotao();
+
+  var fields=[
+    {id:'nome',  box:'f-nome',  check:function(v){ return v.trim().length>=2; }},
+    {id:'email', box:'f-email', check:function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()); }}
+  ];
+
+  fields.forEach(function(f){
+    var el=document.getElementById(f.id);
+    el.addEventListener('input', function(){
+      document.getElementById(f.box).classList.remove('err');
+      el.removeAttribute('aria-invalid');
+    });
+  });
+
+  function validate(){
+    var first=null;
+    fields.forEach(function(f){
+      var el=document.getElementById(f.id);
+      var box=document.getElementById(f.box);
+      if(f.check(el.value)){
+        box.classList.remove('err');
+        el.removeAttribute('aria-invalid');
+      }else{
+        box.classList.add('err');
+        el.setAttribute('aria-invalid','true');
+        if(!first) first=el;
+      }
+    });
+    if(first){ first.focus({preventScroll:false}); return false; }
+    return true;
+  }
+
+  function showError(msg){ boxErr.innerHTML=msg; boxErr.classList.add('on'); }
+  function hideError(){ boxErr.classList.remove('on'); boxErr.innerHTML=''; }
+  function lock(){ btn.disabled=true; btn.textContent='Enviando...'; }
+  function unlock(){ btn.textContent=BTN_LABEL; sincronizarBotao(); }
+
+  function success(){
+    /* eventos só disparam se o consentimento de cookies já carregou os scripts */
+    try{ if(typeof window.fbq==='function'){ window.fbq('track','CompleteRegistration',{content_name:'live-2026-08'}); } }catch(e){}
+    try{ if(typeof window.gtag==='function'){ window.gtag('event','inscricao_live',{live:'live-2026-08'}); } }catch(e){}
+    formWrap.style.display='none';
+    done.classList.add('on');
+    try{ done.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){ done.scrollIntoView(); }
+  }
+
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    hideError();
+    if(!lgpd.checked) return;  /* trava também no envio, não só no atributo disabled */
+    if(!validate()) return;
+    lock();
+
+    var payload={
+      nome: document.getElementById('nome').value.trim(),
+      email: document.getElementById('email').value.trim(),
+      telefone: document.getElementById('telefone').value.trim(),
+      consentimento: lgpd.checked,
+      utm: {
+        utm_source: utm.utm_source,
+        utm_medium: utm.utm_medium,
+        utm_campaign: utm.utm_campaign,
+        utm_content: utm.utm_content
+      }
+    };
+
+    fetch(ENDPOINT, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    })
+    .then(function(r){ return r.json().catch(function(){ return {}; }); })
+    .then(function(json){
+      if(json && json.ok===true){ success(); }
+      else{ throw new Error('resposta sem ok'); }
+    })
+    .catch(function(){
+      showError('Não foi possível concluir a inscrição agora. Tente de novo em instantes ou escreva para <a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a>');
+      unlock();
+    });
+  });
+})();
+</script>
+
+<!-- ============================================================ CONSENTIMENTO LGPD + GA4 + META PIXEL (snippet único do site) ============================================================ -->
+<style>
+/* Cookie banner (LGPD) */
+.ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
+.ck-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ck-tx{flex:1;min-width:220px}
+.ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
+.ck-tx a{color:var(--accent);text-decoration:underline}
+.ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
+.ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}
+.ck-ok{background:var(--deep);color:#fff;border:none}
+.ck-no:hover,.ck-ok:hover{opacity:.82}
+</style>
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <h4>Utilizamos cookies</h4>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<script>
+/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function loadA(){
+  if(_al) return;
+  var r=localStorage.getItem('cookie_consent'); if(!r) return;
+  var c=JSON.parse(r); if(!c.analytics&&!c.marketing) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
+(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+</body>
+</html>
