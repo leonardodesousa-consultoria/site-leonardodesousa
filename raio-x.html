@@ -73,17 +73,20 @@
   .brand{font-family:var(--serif);font-size:15px;color:var(--muted);margin-top:30px;border-top:1px solid var(--line);padding-top:18px}
   .brand b{color:var(--txt);font-weight:600}
   @media(max-width:560px){h1{font-size:32px}.scen,.grid2{grid-template-columns:1fr}}
+
+  /* consentimento: mesmo padrao das demais paginas do site */
+  .ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--card);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
+.ck-in{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ck-tx{flex:1;min-width:220px}
+.ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--txt);margin-bottom:3px}
+.ck-tx p{font-family:var(--sans);font-size:13px;color:var(--muted);line-height:1.6}
+.ck-tx a{color:var(--accent);text-decoration:underline}
+.ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
+.ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.ck-no{background:transparent;border:1.5px solid var(--line);color:var(--muted)}
+.ck-ok{background:var(--accent);color:#fff;border:none}
+.ck-no:hover,.ck-ok:hover{opacity:.82}
 </style>
-<!-- Meta Pixel -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1160128632546332');fbq('track','PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1160128632546332&ev=PageView&noscript=1"/></noscript>
 <!-- End Meta Pixel -->
 </head>
 <body>
@@ -96,7 +99,7 @@ fbq('init','1160128632546332');fbq('track','PageView');
       <h1>Raio-X Sucessório 2026</h1>
       <p class="lead">As regras de transmissão de patrimônio mudaram em 2026. Em poucas perguntas, você vê uma estimativa da sua exposição ao ITCMD e do custo de não decidir nada.</p>
       <p>Leva cerca de dois minutos. Nada é cobrado e nada é publicado.</p>
-      <button class="btn" onclick="go('q')">Começar o diagnóstico →</button>
+      <button class="btn" onclick="rxEvento('raiox_inicio');go('q')">Começar o diagnóstico →</button>
       <div class="seal">Uso educativo · Análise patrimonial</div>
     </div>
 
@@ -126,7 +129,7 @@ fbq('init','1160128632546332');fbq('track','PageView');
         <button class="btn ghost" onclick="go('q')">← Voltar</button>
         <button class="btn" onclick="finish(this)">Ver meu Raio-X →</button>
       </div>
-      <div class="foot">Seus dados não são publicados nem compartilhados. Ao enviar, você concorda em ser contatado e com o uso deles para preparar sua análise, conforme a <a href="/privacidade" style="color:inherit;text-decoration:underline">Política de Privacidade</a>.</div>
+      <div class="foot">Seus dados não são publicados nem vendidos. Ao enviar, você concorda em ser contatado e com o uso deles para preparar sua análise, conforme a <a href="/privacidade" style="color:inherit;text-decoration:underline">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a>.</div>
     </div>
 
     <!-- RESULT -->
@@ -211,7 +214,7 @@ function render(){
   val();
 }
 function val(){const q=Q[i];const ok=q.type==='multi'?(A[q.k]&&A[q.k].length):!!A[q.k];$('next').disabled=!ok;}
-function next(){if(i<Q.length-1){i++;render();}else{go('contact');}}
+function next(){rxEvento('raiox_etapa',{etapa:i+1,total:Q.length});if(i<Q.length-1){i++;render();}else{rxEvento('raiox_contato');go('contact');}}
 function prev(){if(i>0){i--;render();}}
 
 function brl(n){if(n>=1e6)return 'R$ '+(n/1e6).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:2})+' mi';
@@ -244,7 +247,8 @@ async function finish(btn){
   if(btn){btn.disabled=true;btn.textContent='Gerando seu Raio-X...';}
   const j=await enviar(payload);
   // dispara o Lead so quando o lead foi de fato capturado, p/ o Pixel refletir captacoes reais
-  if(j&&window.fbq){fbq('track','Lead');}
+  if(j){rxEvento('raiox_concluido');}
+    if(j&&window.fbq){fbq('track','Lead');}
   const resp=j||{pdf_url:null};
   if(btn){btn.disabled=false;btn.textContent=lbl;}
   mostrarResultado(resp);
@@ -301,6 +305,66 @@ function mostrarResultado(resp){
   go('result');
 }
 render();
+</script>
+
+<!-- Consentimento LGPD + GA4 + Meta Pixel (mesmo snippet do restante do site) -->
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <h4>Utilizamos cookies</h4>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<script>
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function loadA(){
+  if(_al) return;
+  var r=localStorage.getItem('cookie_consent'); if(!r) return;
+  var c=JSON.parse(r); if(!c.analytics&&!c.marketing) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
+(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+
+<script>
+/* eventos do diagnostico. So disparam se o consentimento de analytics liberou o gtag. */
+function rxEvento(nome, params){
+  try{ if(typeof window.gtag==='function'){ window.gtag('event', nome, params||{}); } }catch(e){}
+}
 </script>
 </body>
 </html>

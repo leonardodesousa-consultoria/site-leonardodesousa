@@ -96,7 +96,7 @@
     </div>
 
     <div class="disc">Este conteúdo não constitui recomendação de investimento.</div>
-    <div class="foot"><a href="/privacidade">Política de Privacidade</a></div>
+    <div class="foot"><a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a></div>
   </div>
 
   <div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
@@ -123,6 +123,19 @@ function loadGA(){ var s=document.createElement('script'); s.async=true; s.src='
 function loadFB(){ !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
   if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[]; t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
   }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js'); fbq('init',FB); fbq('track','PageView'); }
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
 function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();

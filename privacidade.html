@@ -282,7 +282,7 @@ a{ color:inherit; }
       <span>LGPD · Lei nº 13.709/2018</span>
     </div>
     <h1 class="legal-title rev d1">Política de <span class="hl">Privacidade</span>.</h1>
-    <p class="legal-updated rev d2">Última atualização: Janeiro de 2025</p>
+    <p class="legal-updated rev d2">Última atualização: Agosto de 2026</p>
   </div>
 </section>
 
@@ -339,10 +339,11 @@ a{ color:inherit; }
         <h2>5. Compartilhamento de Dados</h2>
         <p>Seus dados podem ser compartilhados com:</p>
         <ul>
-          <li><strong>Google Analytics:</strong> para análise de tráfego do site (dados anonimizados)</li>
+          <li><strong>Google Analytics:</strong> para medir o uso do site, apenas com consentimento de cookies analíticos</li>
           <li><strong>Meta (Facebook/Instagram):</strong> para mensuração de campanhas publicitárias</li>
-          <li><strong>Provedores de hospedagem:</strong> Replit Inc. (servidores nos EUA)</li>
-          <li><strong>Banco de dados:</strong> Neon (PostgreSQL gerenciado)</li>
+          <li><strong>Provedores de hospedagem:</strong> Railway (hospedagem da aplicação, servidores nos EUA)</li>
+          <li><strong>Banco de dados:</strong> Supabase (banco de dados gerenciado)</li>
+          <li><strong>Resend:</strong> envio dos e-mails de resposta e dos materiais solicitados</li>
         </ul>
         <p>Não vendemos, alugamos ou comercializamos seus dados pessoais com terceiros para fins de marketing direto.</p>
       </section>
@@ -431,57 +432,20 @@ a{ color:inherit; }
 
     <div class="footer-legal">
       <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
-      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> · <a href="termos.html">Termos de Uso</a></p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="termos.html">Termos de Uso</a></p>
     </div>
   </div>
 </footer>
 
 <!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
-<div class="cookie-bar" id="cookieBar" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
-  <div class="cookie-bar-in">
-    <p class="cookie-txt">Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="privacidade.html">Política de Privacidade</a> para mais informações.</p>
-    <div class="cookie-actions">
-      <button type="button" class="btn btn-sm cookie-btn-necessary" id="cookieNecessary">Apenas necessários</button>
-      <button type="button" class="btn btn-sm btn-solid" id="cookieAll">Aceitar todos</button>
-    </div>
-  </div>
-</div>
 <style>
-.cookie-bar{ position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--paper); border-top:1px solid var(--line); box-shadow:0 -12px 30px rgba(10,25,20,.1); }
-.cookie-bar[hidden]{ display:none; }
-.cookie-bar-in{ max-width:var(--wrap); margin:0 auto; padding:18px var(--pad-x); display:flex; align-items:center; gap:clamp(1rem,3vw,2rem); flex-wrap:wrap; }
-.cookie-txt{ flex:1 1 420px; font-size:.86rem; line-height:1.55; color:var(--ink2); margin:0; }
-.cookie-txt a{ color:var(--accent); text-decoration:underline; text-underline-offset:2px; }
-.cookie-actions{ display:flex; gap:10px; flex-shrink:0; margin-left:auto; }
-.cookie-bar .btn{ white-space:nowrap; }
-.cookie-btn-necessary{ background:transparent; color:var(--ink2); border:1px solid var(--line); }
-.cookie-btn-necessary:hover{ border-color:var(--accent); color:var(--accent); }
 @media (max-width:560px){
-  .cookie-bar-in{ flex-direction:column; align-items:stretch; }
-  .cookie-txt{ flex:0 0 auto; }
-  .cookie-actions{ margin-left:0; width:100%; }
-  .cookie-actions .btn{ flex:1 1 0; }
+  
+  
+  
+  
 }
 </style>
-<script>
-(function(){
-  var KEY='cookie-consent';
-  var bar=document.getElementById('cookieBar');
-  if(!bar) return;
-  var already;
-  try{ already=localStorage.getItem(KEY); }catch(e){ already=null; }
-  if(already){ return; }
-  bar.hidden=false;
-  function setConsent(v){
-    try{ localStorage.setItem(KEY, v); }catch(e){}
-    bar.hidden=true;
-  }
-  var btnAll=document.getElementById('cookieAll');
-  var btnNec=document.getElementById('cookieNecessary');
-  if(btnAll) btnAll.addEventListener('click', function(){ setConsent('all'); });
-  if(btnNec) btnNec.addEventListener('click', function(){ setConsent('necessary'); });
-})();
-</script>
 
 <script>
 (function(){
@@ -560,6 +524,19 @@ function loadFB(){
   }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init',FB); fbq('track','PageView');
 }
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
 function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();

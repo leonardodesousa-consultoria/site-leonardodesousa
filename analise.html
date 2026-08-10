@@ -398,7 +398,7 @@ a{ color:inherit; }
             <button type="submit" class="btn btn-lg btn-solid" id="submitBtn">Pedir análise independente</button>
           </div>
 
-          <p class="form-note">Seus dados servem só para preparar a análise e responder por e-mail. Sem compartilhamento com terceiros. <a href="/privacidade">Política de Privacidade</a></p>
+          <p class="form-note">Seus dados servem para preparar a análise e responder por e-mail. Não são vendidos nem usados para outra finalidade. O site usa serviços de hospedagem, envio de e-mail e medição, listados na <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a>. <a href="/privacidade">Política de Privacidade</a></p>
 
           <div class="form-error" id="formError" role="alert"></div>
         </form>
@@ -652,6 +652,19 @@ function loadFB(){
   }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
   fbq('init',FB); fbq('track','PageView');
 }
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
 function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
