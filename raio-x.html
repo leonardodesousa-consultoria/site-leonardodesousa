@@ -11,7 +11,7 @@
   :root{
     --bg:#f5f5f0; --bg2:#fafaf7; --card:#ffffff; --line:rgba(10,25,20,.14);
     --accent:#1fa86a; --accent-dim:#178a56; --warn:#c17a1e;
-    --txt:#0a1914; --muted:rgba(10,25,20,.58);
+    --txt:#0a1914; --ink2:#2d4a3e; --muted:rgba(10,25,20,.58);
     --serif:'Lora',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -25,7 +25,7 @@
   h2{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.2;margin-bottom:10px}
   h3{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:6px}
   p{color:var(--muted);font-size:18px}
-  .lead{font-size:20px;color:#d7e8df;margin-bottom:30px}
+  .lead{font-size:20px;color:var(--ink2,#2d4a3e);margin-bottom:30px;line-height:1.55}
   .card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);
     border-radius:18px;padding:38px 34px;box-shadow:0 18px 44px -28px rgba(10,25,20,.22)}
   .screen{display:none;animation:fade .4s ease}
