@@ -274,6 +274,7 @@ async function finish(btn){
   mostrarResultado(resp);
 }
 function mostrarResultado(resp){
+  const confirmado=!!RATES[A.uf];  // UF com aliquota conferida na tabela
   const r=RATES[A.uf]||RATES._;
   const pat=FAIXAS[A.faixa].v;
   const base=A.civil==='comunhao'?pat*0.5:pat;
@@ -292,20 +293,28 @@ function mostrarResultado(resp){
   if(A.plan==='nao')flags+=flag('Nada estruturado ainda','Sem planejamento, a conta abaixo cai inteira sobre a família, somada ao tempo de inventário com o patrimônio travado.');
 
   const transicao=r.tipo==='fixo';
-  const deltaBlock=transicao&&delta>0?
+  // Sem aliquota confirmada a leitura nao inventa numero: parte do teto e diz que a
+  // vigente esta por confirmar. Mesma regra do PDF, para os dois nao se contradizerem.
+  const deltaBlock=!confirmado?
+    `<div class="delta">Esta leitura ainda não traz a alíquota vigente do seu estado, então a estimativa parte do teto de ${r.cen}%, que é o limite nacional para onde a progressividade obrigatória empurra as faixas superiores. Confirmar a alíquota do seu estado é o primeiro passo, e tende a mover o número para baixo, não para cima.</div>`
+    :transicao&&delta>0?
     `<div class="delta">Enquanto ${r.nome} mantém ${r.hoje}% fixo, a progressividade obrigatória pode levar sua exposição ao teto de 8%. A diferença é <b>${brl(delta)}</b>. Esse é o custo de adiar enquanto a regra muda.</div>`
     :`<div class="delta">${r.nome} já aplica alíquota progressiva, com topo no teto de 8%. Sua estimativa já considera a faixa superior.</div>`;
+  const caixas=confirmado?
+    `<div class="box"><div class="label">ITCMD hoje · ${r.hoje}%</div><div class="val">${brl(hoje)}</div></div>
+      <div class="box future"><div class="label">Cenário progressivo · até ${r.cen}%</div><div class="val">${brl(fut)}</div></div>`
+    :`<div class="box future"><div class="label">Estimativa no teto · ${r.cen}%</div><div class="val">${brl(fut)}</div></div>
+      <div class="box"><div class="label">Alíquota vigente no seu estado</div><div class="val" style="font-size:24px">a confirmar</div></div>`;
 
   $('s-result').innerHTML=`
-    <div class="kicker">Seu Raio-X · ${r.nome}</div>
+    <div class="kicker">Seu Raio-X${confirmado?' · '+r.nome:''}</div>
     <h2>${nome?nome+', ':''}aqui está sua exposição estimada</h2>
     <p>Estimativa pela faixa superior aplicável ao seu patrimônio, após o ajuste de meação quando há comunhão.</p>
     <div class="scen">
-      <div class="box"><div class="label">ITCMD hoje · ${r.hoje}%</div><div class="val">${brl(hoje)}</div></div>
-      <div class="box future"><div class="label">Cenário progressivo · até ${r.cen}%</div><div class="val">${brl(fut)}</div></div>
+      ${caixas}
     </div>
     ${deltaBlock}
-    <p style="margin:14px 0 4px">Somando o tempo e o custo de inventário (na ordem de ${brl(invLo)} a ${brl(invHi)}), o <b style="color:var(--txt)">custo de não decidir nada</b> hoje fica entre ${brl(hoje+invLo)} e ${brl(fut+invHi)}.</p>
+    <p style="margin:14px 0 4px">Somando o tempo e o custo de inventário (na ordem de ${brl(invLo)} a ${brl(invHi)}), o <b style="color:var(--txt)">custo de não decidir nada</b> hoje fica entre ${brl((confirmado?hoje:fut)+invLo)} e ${brl(fut+invHi)}.</p>
     ${flags?`<h3 style="margin-top:26px">O que se aplica ao seu caso</h3>${flags}`:''}
     <h3 style="margin-top:26px">Alavancas que a legislação admite</h3>
     <div>
