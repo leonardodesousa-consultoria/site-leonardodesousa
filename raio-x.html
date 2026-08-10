@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raio-X Sucessório 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a1914; --bg2:#0c211a; --card:#0f2a20; --line:#1c3a2e;
+    --accent:#3ecf8e; --accent-dim:#2a9d6e; --warn:#e6b450;
+    --txt:#ffffff; --muted:#a8c4b6;
+    --serif:'Lora',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--txt);font-family:var(--sans);
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:32px 18px;line-height:1.6;font-size:18px;
+    background-image:radial-gradient(1200px 600px at 70% -10%,rgba(62,207,142,.08),transparent);}
+  .wrap{width:100%;max-width:680px}
+  .kicker{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+  h1{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.12;margin-bottom:18px;letter-spacing:-.01em}
+  h2{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.2;margin-bottom:10px}
+  h3{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:6px}
+  p{color:var(--muted);font-size:18px}
+  .lead{font-size:20px;color:#d7e8df;margin-bottom:30px}
+  .card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);
+    border-radius:18px;padding:38px 34px;box-shadow:0 24px 60px -30px rgba(0,0,0,.7)}
+  .screen{display:none;animation:fade .4s ease}
+  .screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .progress{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:28px}
+  .bar{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .35s ease}
+  .qnum{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dim);font-weight:600;margin-bottom:10px}
+  .opt{display:block;width:100%;text-align:left;background:#0d241b;border:1px solid var(--line);
+    color:var(--txt);font-family:var(--sans);font-size:17px;padding:15px 18px;border-radius:12px;
+    margin-top:10px;cursor:pointer;transition:.18s}
+  .opt:hover{border-color:var(--accent);background:#10342650}
+  .opt.sel{border-color:var(--accent);background:rgba(62,207,142,.12);box-shadow:inset 0 0 0 1px var(--accent)}
+  .opt small{display:block;color:var(--muted);font-size:14px;margin-top:3px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  input[type=text],input[type=email],input[type=tel]{width:100%;background:#0d241b;border:1px solid var(--line);
+    color:#fff;font-family:var(--sans);font-size:17px;padding:14px 16px;border-radius:12px;margin-top:10px}
+  input:focus{outline:none;border-color:var(--accent)}
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#06120d;
+    font-family:var(--sans);font-weight:600;font-size:17px;border:none;padding:15px 26px;border-radius:12px;
+    cursor:pointer;margin-top:26px;transition:.18s}
+  .btn:hover{background:#54e0a0;transform:translateY(-1px)}
+  .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
+  .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);font-weight:500}
+  .row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:8px}
+  .foot{margin-top:22px;font-size:13px;color:#6f8a7d}
+  /* result */
+  .scen{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
+  .scen .box{background:#0d241b;border:1px solid var(--line);border-radius:14px;padding:20px}
+  .scen .box.future{border-color:var(--warn)}
+  .scen .label{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .scen .val{font-family:var(--serif);font-size:34px;font-weight:600;margin-top:8px}
+  .scen .future .val{color:var(--warn)}
+  .delta{background:rgba(230,180,80,.1);border:1px solid var(--warn);border-radius:14px;padding:18px 20px;margin-bottom:8px}
+  .delta b{color:var(--warn)}
+  .flag{display:flex;gap:12px;background:#0d241b;border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:10px;padding:14px 16px;margin-top:10px}
+  .flag .ic{color:var(--accent);font-weight:700;flex:0 0 auto}
+  .flag h4{font-family:var(--sans);font-size:16px;font-weight:600;margin-bottom:2px}
+  .flag p{font-size:15px}
+  .lever{font-size:16px;color:#cfe3d8;padding:8px 0;border-bottom:1px solid var(--line)}
+  .lever:last-child{border:none}
+  .disc{font-size:12.5px;color:#6f8a7d;margin-top:18px;line-height:1.5}
+  .seal{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5d7568;margin-top:14px}
+  .brand{font-family:var(--serif);font-size:15px;color:var(--muted);margin-top:30px;border-top:1px solid var(--line);padding-top:18px}
+  .brand b{color:#fff;font-weight:600}
+  @media(max-width:560px){h1{font-size:32px}.scen,.grid2{grid-template-columns:1fr}}
+</style>
+<!-- Meta Pixel -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1160128632546332');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1160128632546332&ev=PageView&noscript=1"/></noscript>
+<!-- End Meta Pixel -->
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+
+    <!-- INTRO -->
+    <div class="screen active" id="s-intro">
+      <div class="kicker">Planejamento patrimonial</div>
+      <h1>Raio-X Sucessório 2026</h1>
+      <p class="lead">As regras de transmissão de patrimônio mudaram em 2026. Em poucas perguntas, você vê uma estimativa da sua exposição ao ITCMD e do custo de não decidir nada.</p>
+      <p>Leva cerca de dois minutos. Nada é cobrado e nada é publicado.</p>
+      <button class="btn" onclick="go('q')">Começar o diagnóstico →</button>
+      <div class="seal">Uso educativo · Análise patrimonial</div>
+    </div>
+
+    <!-- QUESTIONS -->
+    <div class="screen" id="s-q">
+      <div class="progress"><div class="bar" id="bar"></div></div>
+      <div class="qnum" id="qnum"></div>
+      <h2 id="qtitle"></h2>
+      <p id="qsub"></p>
+      <div id="qopts"></div>
+      <div class="row">
+        <button class="btn ghost" id="back" onclick="prev()">← Voltar</button>
+        <button class="btn" id="next" onclick="next()" disabled>Continuar →</button>
+      </div>
+    </div>
+
+    <!-- CONTACT GATE -->
+    <div class="screen" id="s-contact">
+      <div class="progress"><div class="bar" style="width:100%"></div></div>
+      <div class="qnum">Último passo</div>
+      <h2>Quase lá. Como falamos com você?</h2>
+      <p>Você vê sua leitura agora e pode baixar o PDF completo do seu caso. Sem spam.</p>
+      <input type="text" id="c-nome" placeholder="Seu nome">
+      <input type="email" id="c-email" placeholder="Seu melhor e-mail">
+      <input type="tel" id="c-fone" placeholder="WhatsApp com DDD">
+      <div class="row">
+        <button class="btn ghost" onclick="go('q')">← Voltar</button>
+        <button class="btn" onclick="finish(this)">Ver meu Raio-X →</button>
+      </div>
+      <div class="foot">Seus dados não são publicados nem compartilhados. Ao enviar, você concorda em ser contatado e com o uso deles para preparar sua análise, conforme a <a href="/privacidade" style="color:inherit;text-decoration:underline">Política de Privacidade</a>.</div>
+    </div>
+
+    <!-- RESULT -->
+    <div class="screen" id="s-result"></div>
+
+  </div>
+</div>
+
+<script>
+// ---- tabela de alíquotas (espelha 02-tabela-aliquotas-estado-2026.json) ----
+const RATES = {
+  SP:{nome:"São Paulo",hoje:4,cen:8,tipo:"fixo"}, RJ:{nome:"Rio de Janeiro",hoje:8,cen:8,tipo:"prog"},
+  MG:{nome:"Minas Gerais",hoje:5,cen:8,tipo:"fixo"}, PR:{nome:"Paraná",hoje:4,cen:8,tipo:"fixo"},
+  ES:{nome:"Espírito Santo",hoje:4,cen:8,tipo:"fixo"}, RS:{nome:"Rio Grande do Sul",hoje:6,cen:8,tipo:"prog"},
+  SC:{nome:"Santa Catarina",hoje:7,cen:7,tipo:"prog"}, DF:{nome:"Distrito Federal",hoje:6,cen:8,tipo:"prog"},
+  GO:{nome:"Goiás",hoje:8,cen:8,tipo:"prog"}, _:{nome:"seu estado",hoje:4,cen:8,tipo:"fixo"}
+};
+const UFS=["SP","RJ","MG","PR","ES","RS","SC","DF","GO","AC","AL","AM","AP","BA","CE","MA","MT","MS","PA","PB","PE","PI","RN","RO","RR","SE","TO"];
+const FAIXAS=[
+  {l:"Até R$ 1 milhão",v:800000}, {l:"R$ 1 mi a R$ 3 mi",v:2000000},
+  {l:"R$ 3 mi a R$ 10 mi",v:6500000}, {l:"R$ 10 mi a R$ 30 mi",v:20000000},
+  {l:"Acima de R$ 30 mi",v:40000000}
+];
+
+// ---- perguntas ----
+const Q=[
+ {k:"uf",t:"Em qual estado você é domiciliado?",s:"A competência do ITCMD para bens móveis segue o domicílio. A alíquota muda conforme a UF.",type:"select",opts:UFS.map(u=>({v:u,l:(RATES[u]?RATES[u].nome:u)}))},
+ {k:"faixa",t:"Qual a faixa aproximada do seu patrimônio?",s:"Pessoa física. Serve só para a estimativa; nada é registrado como valor exato.",type:"single",opts:FAIXAS.map((f,i)=>({v:i,l:f.l})).slice(1)},
+ {k:"comp",t:"O que predomina no seu patrimônio?",s:"Pode marcar mais de um.",type:"multi",opts:[
+   {v:"imoveis",l:"Imóveis"},{v:"financeiro",l:"Investimentos financeiros"},{v:"empresa",l:"Participação em empresa / holding"},
+   {v:"prev",l:"Previdência (PGBL/VGBL)"},{v:"seguro",l:"Seguro de vida"},{v:"exterior",l:"Ativos no exterior"}]},
+ {k:"civil",t:"Qual seu estado civil e regime de bens?",s:"A meação do cônjuge não sofre ITCMD na transmissão causa mortis.",type:"single",opts:[
+   {v:"comunhao",l:"Casado em comunhão (parcial ou universal)"},{v:"separacao",l:"Casado em separação total"},
+   {v:"solteiro",l:"Solteiro, viúvo ou união estável"}]},
+ {k:"filhos",t:"Você tem filhos?",s:"Herdeiros necessários afetam a partilha e o que pode ser doado.",type:"single",opts:[
+   {v:"menores",l:"Sim, algum menor de idade"},{v:"maiores",l:"Sim, todos maiores"},{v:"nao",l:"Não tenho filhos"}]},
+ {k:"holding",t:"Você possui holding patrimonial?",s:"A LC 227/2026 trouxe nova base de cálculo para a transmissão de quotas.",type:"single",opts:[
+   {v:"sim",l:"Sim"},{v:"pensando",l:"Estou avaliando"},{v:"nao",l:"Não"}]},
+ {k:"ext",t:"Tem bens ou estrutura no exterior?",s:"Conta, imóvel, trust ou offshore. A LC 227 fechou o antigo vácuo de tributação.",type:"single",opts:[
+   {v:"sim",l:"Sim"},{v:"nao",l:"Não"}]},
+ {k:"liq",t:"Tem previdência ou seguro com beneficiário indicado?",s:"O STF afastou o ITCMD sobre VGBL/PGBL no repasse por morte.",type:"single",opts:[
+   {v:"sim",l:"Sim, um ou ambos"},{v:"nao",l:"Não"}]},
+ {k:"plan",t:"Já fez algum planejamento sucessório?",s:"Testamento, doação em vida, holding, seguro estruturado.",type:"single",opts:[
+   {v:"sim",l:"Sim, está organizado"},{v:"parcial",l:"Em parte"},{v:"nao",l:"Ainda não fiz nada"}]},
+ {k:"imovel_uf",t:"Tem imóvel em estado diferente do seu domicílio?",s:"O ITCMD do imóvel é devido ao estado onde ele está localizado.",type:"single",opts:[
+   {v:"sim",l:"Sim"},{v:"nao",l:"Não"}]}
+];
+
+const A={}; let i=0;
+const $=id=>document.getElementById(id);
+function go(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));$('s-'+id).classList.add('active');window.scrollTo(0,0);}
+
+function render(){
+  const q=Q[i];
+  $('bar').style.width=((i)/Q.length*100)+'%';
+  $('qnum').textContent='Pergunta '+(i+1)+' de '+Q.length;
+  $('qtitle').textContent=q.t; $('qsub').textContent=q.s;
+  const box=$('qopts'); box.innerHTML='';
+  $('back').style.visibility=i===0?'hidden':'visible';
+  if(q.type==='select'){
+    const sel=document.createElement('select');
+    sel.className='opt'; sel.style.appearance='auto';
+    sel.innerHTML='<option value="">Selecione...</option>'+q.opts.map(o=>`<option value="${o.v}">${o.l}</option>`).join('');
+    sel.value=A[q.k]||''; sel.onchange=()=>{A[q.k]=sel.value;val();};
+    box.appendChild(sel);
+  } else {
+    const wrap=document.createElement('div');
+    if(q.type==='multi')wrap.className='grid2';
+    q.opts.forEach(o=>{
+      const b=document.createElement('button');b.className='opt';b.innerHTML=o.l+(o.s?`<small>${o.s}</small>`:'');
+      const on=q.type==='multi'?(A[q.k]||[]).includes(o.v):A[q.k]===o.v;
+      if(on)b.classList.add('sel');
+      b.onclick=()=>{
+        if(q.type==='multi'){A[q.k]=A[q.k]||[];A[q.k].includes(o.v)?A[q.k]=A[q.k].filter(x=>x!==o.v):A[q.k].push(o.v);}
+        else{A[q.k]=o.v;}
+        render();
+      };
+      wrap.appendChild(b);
+    });
+    box.appendChild(wrap);
+  }
+  val();
+}
+function val(){const q=Q[i];const ok=q.type==='multi'?(A[q.k]&&A[q.k].length):!!A[q.k];$('next').disabled=!ok;}
+function next(){if(i<Q.length-1){i++;render();}else{go('contact');}}
+function prev(){if(i>0){i--;render();}}
+
+function brl(n){if(n>=1e6)return 'R$ '+(n/1e6).toLocaleString('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:2})+' mi';
+  if(n>=1e3)return 'R$ '+Math.round(n/1e3)+' mil';return 'R$ '+Math.round(n);}
+
+function payloadAtual(){
+  const u=new URLSearchParams(location.search);
+  return {nome:($('c-nome').value||'').trim(),email:($('c-email').value||'').trim(),
+    telefone:($('c-fone').value||'').trim(),respostas:A,
+    consentimento:true,
+    utm:{source:u.get('utm_source'),medium:u.get('utm_medium'),campaign:u.get('utm_campaign')}};
+}
+const BACKEND='https://luana-backend-production.up.railway.app';
+const WA_FALLBACK='https://wa.me/5544974008615?text=Ol%C3%A1%2C%20Luana.%20Terminei%20o%20Raio-X%20Sucess%C3%B3rio%20e%20gostaria%20de%20entender%20meu%20caso%20com%20o%20Leonardo.';
+function flag(t,d){return '<div class="flag"><span class="ic">&rarr;</span><div><h4>'+t+'</h4><p>'+d+'</p></div></div>';}
+async function enviar(payload){
+  // tenta 2x; keepalive p/ o POST completar mesmo se a pagina mudar. Retorna o JSON ou null.
+  for(let t=0;t<2;t++){
+    try{
+      const r=await fetch(BACKEND+'/raio-x/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
+      if(r.ok){const j=await r.json();if(j&&j.wa_link)return j;}
+    }catch(e){}
+    await new Promise(res=>setTimeout(res,800));
+  }
+  return null;
+}
+async function finish(btn){
+  const payload=payloadAtual();
+  const lbl=btn?btn.textContent:'';
+  if(btn){btn.disabled=true;btn.textContent='Gerando seu Raio-X...';}
+  const j=await enviar(payload);
+  // dispara o Lead so quando o lead foi de fato capturado, p/ o Pixel refletir captacoes reais
+  if(j&&window.fbq){fbq('track','Lead');}
+  const resp=j||{wa_link:WA_FALLBACK,pdf_url:null};
+  if(btn){btn.disabled=false;btn.textContent=lbl;}
+  mostrarResultado(resp);
+}
+function mostrarResultado(resp){
+  const r=RATES[A.uf]||RATES._;
+  const pat=FAIXAS[A.faixa].v;
+  const base=A.civil==='comunhao'?pat*0.5:pat;
+  const hoje=base*r.hoje/100, fut=base*r.cen/100, delta=fut-hoje;
+  const invLo=base*0.04, invHi=base*0.06;
+  const nome=($('c-nome').value||'').split(' ')[0]||'';
+  const email=($('c-email').value||'').trim();
+
+  // flags condicionais
+  let flags='';
+  if(A.ext==='sim')flags+=flag('Exterior agora entra','Bens ou estrutura no exterior deixaram de escapar do ITCMD. A LC 227/2026 fechou o vácuo que existia desde 1988.');
+  if(A.holding==='sim')flags+=flag('Sua holding mudou de base','A LC 227 trouxe nova base de cálculo para a doação de quotas. Estruturas montadas sob a regra antiga merecem revisão.');
+  if(A.liq==='sim')flags+=flag('Previdência a seu favor','VGBL e PGBL ficam fora do ITCMD no repasse por morte (STF Tema 1214). É liquidez sucessória com posição sólida, desde que estruturada com propósito.');
+  if((A.comp||[]).includes('seguro')&&A.liq!=='sim'){}
+  if(A.imovel_uf==='sim')flags+=flag('Imóvel em outro estado','O ITCMD do imóvel é devido ao estado onde ele está, não ao do seu domicílio. Pode haver mais de uma alíquota no seu caso.');
+  if(A.plan==='nao')flags+=flag('Nada estruturado ainda','Sem planejamento, a conta abaixo cai inteira sobre a família, somada ao tempo de inventário com o patrimônio travado.');
+
+  const transicao=r.tipo==='fixo';
+  const deltaBlock=transicao&&delta>0?
+    `<div class="delta">Enquanto ${r.nome} mantém ${r.hoje}% fixo, a progressividade obrigatória pode levar sua exposição ao teto de 8%. A diferença é <b>${brl(delta)}</b>. Esse é o custo de adiar enquanto a regra muda.</div>`
+    :`<div class="delta">${r.nome} já aplica alíquota progressiva, com topo no teto de 8%. Sua estimativa já considera a faixa superior.</div>`;
+
+  $('s-result').innerHTML=`
+    <div class="kicker">Seu Raio-X · ${r.nome}</div>
+    <h2>${nome?nome+', ':''}aqui está sua exposição estimada</h2>
+    <p>Estimativa pela faixa superior aplicável ao seu patrimônio, após o ajuste de meação quando há comunhão.</p>
+    <div class="scen">
+      <div class="box"><div class="label">ITCMD hoje · ${r.hoje}%</div><div class="val">${brl(hoje)}</div></div>
+      <div class="box future"><div class="label">Cenário progressivo · até ${r.cen}%</div><div class="val">${brl(fut)}</div></div>
+    </div>
+    ${deltaBlock}
+    <p style="margin:14px 0 4px">Somando o tempo e o custo de inventário (na ordem de ${brl(invLo)} a ${brl(invHi)}), o <b style="color:#fff">custo de não decidir nada</b> hoje fica entre ${brl(hoje+invLo)} e ${brl(fut+invHi)}.</p>
+    ${flags?`<h3 style="margin-top:26px">O que se aplica ao seu caso</h3>${flags}`:''}
+    <h3 style="margin-top:26px">Alavancas que a legislação admite</h3>
+    <div>
+      <div class="lever">Doação em vida com reserva de usufruto, travando a base no valor de hoje.</div>
+      <div class="lever">Timing: doar enquanto o estado ainda é fixo, antes da migração para a progressiva.</div>
+      <div class="lever">Holding patrimonial, observada a nova base da LC 227.</div>
+      <div class="lever">Previdência estruturada com propósito, fora do ITCMD na morte.</div>
+      <div class="lever">Planejamento de domicílio, já que a competência segue o domicílio do titular.</div>
+    </div>
+    <p style="margin-top:18px">Qual dessas faz sentido para você não se decide por uma tabela. Depende da composição do seu patrimônio, da sua família e do seu horizonte. É exatamente isso que uma conversa exploratória esclarece.</p>
+    <div class="flag" style="border-left-color:var(--accent);margin-top:24px"><span class="ic">&#10003;</span><div><h4>Seu Raio-X completo foi para o seu e-mail</h4><p>Enviamos o PDF com a sua análise para ${email?email:'o e-mail que você cadastrou'}. Se não aparecer em alguns minutos, verifique o spam.</p></div></div>
+    ${resp.pdf_url?'<p style="margin-top:10px;font-size:15px"><a href="'+BACKEND+resp.pdf_url+'" target="_blank" style="color:var(--accent);text-decoration:underline">Se preferir, baixe o PDF agora.</a></p>':''}
+    <a class="btn" href="${resp.wa_link}" target="_blank" rel="noopener" style="text-decoration:none">Agendar conversa com minha assistente →</a>
+    <div class="disc">Este material tem caráter educativo e as informações nele não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de valores mobiliários. Estimativa ilustrativa, não é parecer jurídico nem tributário. Baseada nas regras vigentes em 2026 (EC 132/2023, LC 227/2026, STF Temas 1214 e 825). As tabelas estaduais estão em transição em 2026 e os valores podem mudar conforme a legislação local. Cada caso exige análise individual.</div>
+    <div class="brand">Material produzido por <b>Leonardo Sousa</b> · Consultor Patrimonial</div>
+    <div class="seal">Uso educativo</div>`;
+  go('result');
+}
+render();
+</script>
+</body>
+</html>
