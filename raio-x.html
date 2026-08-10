@@ -225,14 +225,14 @@ function payloadAtual(){
     utm:{source:u.get('utm_source'),medium:u.get('utm_medium'),campaign:u.get('utm_campaign')}};
 }
 const BACKEND='https://luana-backend-production.up.railway.app';
-const WA_FALLBACK='https://wa.me/5544974008615?text=Ol%C3%A1%2C%20Luana.%20Terminei%20o%20Raio-X%20Sucess%C3%B3rio%20e%20gostaria%20de%20entender%20meu%20caso%20com%20o%20Leonardo.';
+const WA_LEONARDO='https://wa.me/5511989505174?text=Ol%C3%A1%2C%20Leonardo.%20Terminei%20o%20Raio-X%20Sucess%C3%B3rio%20e%20queria%20conversar%20sobre%20o%20meu%20caso.';
 function flag(t,d){return '<div class="flag"><span class="ic">&rarr;</span><div><h4>'+t+'</h4><p>'+d+'</p></div></div>';}
 async function enviar(payload){
   // tenta 2x; keepalive p/ o POST completar mesmo se a pagina mudar. Retorna o JSON ou null.
   for(let t=0;t<2;t++){
     try{
       const r=await fetch(BACKEND+'/raio-x/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),keepalive:true});
-      if(r.ok){const j=await r.json();if(j&&j.wa_link)return j;}
+      if(r.ok){const j=await r.json();if(j&&j.ok)return j;}
     }catch(e){}
     await new Promise(res=>setTimeout(res,800));
   }
@@ -245,7 +245,7 @@ async function finish(btn){
   const j=await enviar(payload);
   // dispara o Lead so quando o lead foi de fato capturado, p/ o Pixel refletir captacoes reais
   if(j&&window.fbq){fbq('track','Lead');}
-  const resp=j||{wa_link:WA_FALLBACK,pdf_url:null};
+  const resp=j||{pdf_url:null};
   if(btn){btn.disabled=false;btn.textContent=lbl;}
   mostrarResultado(resp);
 }
@@ -294,7 +294,7 @@ function mostrarResultado(resp){
     <p style="margin-top:18px">Qual dessas faz sentido para você não se decide por uma tabela. Depende da composição do seu patrimônio, da sua família e do seu horizonte. É exatamente isso que uma conversa exploratória esclarece.</p>
     <div class="flag" style="border-left-color:var(--accent);margin-top:24px"><span class="ic">&#10003;</span><div><h4>Seu Raio-X completo foi para o seu e-mail</h4><p>Enviamos o PDF com a sua análise para ${email?email:'o e-mail que você cadastrou'}. Se não aparecer em alguns minutos, verifique o spam.</p></div></div>
     ${resp.pdf_url?'<p style="margin-top:10px;font-size:15px"><a href="'+BACKEND+resp.pdf_url+'" target="_blank" style="color:var(--accent);text-decoration:underline">Se preferir, baixe o PDF agora.</a></p>':''}
-    <a class="btn" href="${resp.wa_link}" target="_blank" rel="noopener" style="text-decoration:none">Agendar conversa com minha assistente →</a>
+    <a class="btn" href="${WA_LEONARDO}" target="_blank" rel="noopener" style="text-decoration:none">Conversar com Leonardo →</a>
     <div class="disc">Este material tem caráter educativo e as informações nele não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de valores mobiliários. Estimativa ilustrativa, não é parecer jurídico nem tributário. Baseada nas regras vigentes em 2026 (EC 132/2023, LC 227/2026, STF Temas 1214 e 825). As tabelas estaduais estão em transição em 2026 e os valores podem mudar conforme a legislação local. Cada caso exige análise individual.</div>
     <div class="brand">Material produzido por <b>Leonardo Sousa</b> · Consultor Patrimonial</div>
     <div class="seal">Uso educativo</div>`;
