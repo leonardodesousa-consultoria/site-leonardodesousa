@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a1914; --bg2:#0c211a; --card:#0f2a20; --line:#1c3a2e;
-    --accent:#3ecf8e; --accent-dim:#2a9d6e; --warn:#e6b450;
-    --txt:#ffffff; --muted:#a8c4b6;
+    --bg:#f5f5f0; --bg2:#fafaf7; --card:#ffffff; --line:rgba(10,25,20,.14);
+    --accent:#1fa86a; --accent-dim:#178a56; --warn:#c17a1e;
+    --txt:#0a1914; --muted:rgba(10,25,20,.58);
     --serif:'Lora',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -27,27 +27,27 @@
   p{color:var(--muted);font-size:18px}
   .lead{font-size:20px;color:#d7e8df;margin-bottom:30px}
   .card{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);
-    border-radius:18px;padding:38px 34px;box-shadow:0 24px 60px -30px rgba(0,0,0,.7)}
+    border-radius:18px;padding:38px 34px;box-shadow:0 18px 44px -28px rgba(10,25,20,.22)}
   .screen{display:none;animation:fade .4s ease}
   .screen.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
   .progress{height:5px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:28px}
   .bar{height:100%;width:0;background:var(--accent);border-radius:99px;transition:width .35s ease}
   .qnum{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-dim);font-weight:600;margin-bottom:10px}
-  .opt{display:block;width:100%;text-align:left;background:#0d241b;border:1px solid var(--line);
+  .opt{display:block;width:100%;text-align:left;background:var(--bg2);border:1px solid var(--line);
     color:var(--txt);font-family:var(--sans);font-size:17px;padding:15px 18px;border-radius:12px;
     margin-top:10px;cursor:pointer;transition:.18s}
-  .opt:hover{border-color:var(--accent);background:#10342650}
-  .opt.sel{border-color:var(--accent);background:rgba(62,207,142,.12);box-shadow:inset 0 0 0 1px var(--accent)}
+  .opt:hover{border-color:var(--accent);background:rgba(31,168,106,.06)}
+  .opt.sel{border-color:var(--accent);background:rgba(31,168,106,.10);box-shadow:inset 0 0 0 1px var(--accent)}
   .opt small{display:block;color:var(--muted);font-size:14px;margin-top:3px}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  input[type=text],input[type=email],input[type=tel]{width:100%;background:#0d241b;border:1px solid var(--line);
-    color:#fff;font-family:var(--sans);font-size:17px;padding:14px 16px;border-radius:12px;margin-top:10px}
+  input[type=text],input[type=email],input[type=tel]{width:100%;background:var(--bg2);border:1px solid var(--line);
+    color:var(--txt);font-family:var(--sans);font-size:17px;padding:14px 16px;border-radius:12px;margin-top:10px}
   input:focus{outline:none;border-color:var(--accent)}
-  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#06120d;
+  .btn{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#ffffff;
     font-family:var(--sans);font-weight:600;font-size:17px;border:none;padding:15px 26px;border-radius:12px;
     cursor:pointer;margin-top:26px;transition:.18s}
-  .btn:hover{background:#54e0a0;transform:translateY(-1px)}
+  .btn:hover{background:#178a56;transform:translateY(-1px)}
   .btn:disabled{opacity:.35;cursor:not-allowed;transform:none}
   .btn.ghost{background:transparent;color:var(--muted);border:1px solid var(--line);font-weight:500}
   .row{display:flex;justify-content:space-between;align-items:center;gap:14px;margin-top:8px}
@@ -71,7 +71,7 @@
   .disc{font-size:12.5px;color:#6f8a7d;margin-top:18px;line-height:1.5}
   .seal{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#5d7568;margin-top:14px}
   .brand{font-family:var(--serif);font-size:15px;color:var(--muted);margin-top:30px;border-top:1px solid var(--line);padding-top:18px}
-  .brand b{color:#fff;font-weight:600}
+  .brand b{color:var(--txt);font-weight:600}
   @media(max-width:560px){h1{font-size:32px}.scen,.grid2{grid-template-columns:1fr}}
 </style>
 <!-- Meta Pixel -->
@@ -281,7 +281,7 @@ function mostrarResultado(resp){
       <div class="box future"><div class="label">Cenário progressivo · até ${r.cen}%</div><div class="val">${brl(fut)}</div></div>
     </div>
     ${deltaBlock}
-    <p style="margin:14px 0 4px">Somando o tempo e o custo de inventário (na ordem de ${brl(invLo)} a ${brl(invHi)}), o <b style="color:#fff">custo de não decidir nada</b> hoje fica entre ${brl(hoje+invLo)} e ${brl(fut+invHi)}.</p>
+    <p style="margin:14px 0 4px">Somando o tempo e o custo de inventário (na ordem de ${brl(invLo)} a ${brl(invHi)}), o <b style="color:var(--txt)">custo de não decidir nada</b> hoje fica entre ${brl(hoje+invLo)} e ${brl(fut+invHi)}.</p>
     ${flags?`<h3 style="margin-top:26px">O que se aplica ao seu caso</h3>${flags}`:''}
     <h3 style="margin-top:26px">Alavancas que a legislação admite</h3>
     <div>
