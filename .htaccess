@@ -28,15 +28,11 @@ RewriteRule ^raio-x/pdf/([A-Za-z0-9-]+)/?$ https://luana-backend-production.up.r
 
 # 1c) Descadastro dos e-mails: o rodape aponta para o dominio proprio e cai no backend.
 # QSA e obrigatorio: sem ele o ?t=<token> se perde e o descadastro nao identifica o lead.
-# Com mod_proxy, [P] preserva o metodo e mantem o one-click POST do List-Unsubscribe.
-# Sem mod_proxy no plano, cai no 302: o cliente de e-mail refaz como GET e o
-# descadastro continua funcionando, porque a rota aceita GET com o token na query.
-<IfModule mod_proxy_http.c>
-  RewriteRule ^descadastro/?$ https://luana-backend-production.up.railway.app/descadastro [P,QSA,L]
-</IfModule>
-<IfModule !mod_proxy_http.c>
-  RewriteRule ^descadastro/?$ https://luana-backend-production.up.railway.app/descadastro [R=302,QSA,L]
-</IfModule>
+# 302 e nao [P]: o modulo de proxy existe na KingHost mas o plano nao permite usa-lo,
+# e a regra com [P] devolveu 500 em producao (testado em 10/08). Com o 302, o link do
+# rodape funciona normalmente e o one-click do cliente de e-mail refaz o POST como GET,
+# que a rota /descadastro tambem atende, lendo o token da query.
+RewriteRule ^descadastro/?$ https://luana-backend-production.up.railway.app/descadastro [R=302,QSA,L]
 
 # 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
