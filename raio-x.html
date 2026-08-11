@@ -244,7 +244,8 @@ function payloadAtual(){
   return {nome:($('c-nome').value||'').trim(),email:($('c-email').value||'').trim(),
     telefone:($('c-fone').value||'').trim(),respostas:A,
     consentimento:$('c-lgpd').checked,
-    utm:{source:u.get('utm_source'),medium:u.get('utm_medium'),campaign:u.get('utm_campaign')}};
+    utm:{source:u.get('utm_source'),medium:u.get('utm_medium'),campaign:u.get('utm_campaign'),
+         content:u.get('utm_content'),term:u.get('utm_term')}};
 }
 const BACKEND='https://luana-backend-production.up.railway.app';
 const WA_LEONARDO='https://wa.me/5511989505174?text=Ol%C3%A1%2C%20Leonardo.%20Terminei%20o%20Raio-X%20Sucess%C3%B3rio%20e%20queria%20conversar%20sobre%20o%20meu%20caso.';
