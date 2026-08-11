@@ -136,7 +136,8 @@
       <h2>Quase lá. Como falamos com você?</h2>
       <p>Você vê sua leitura agora e pode baixar o PDF completo do seu caso. Sem spam.</p>
       <input type="text" id="c-nome" placeholder="Seu nome">
-      <input type="email" id="c-email" placeholder="Seu melhor e-mail">
+      <input type="email" id="c-email" placeholder="Seu melhor e-mail" oninput="valContato()">
+      <div class="foot" id="c-email-aviso" style="display:none"></div>
       <input type="tel" id="c-fone" placeholder="WhatsApp com DDD">
       <label class="consent" for="c-lgpd">
         <input type="checkbox" id="c-lgpd" onchange="valContato()">
@@ -232,7 +233,27 @@ function render(){
 }
 function val(){const q=Q[i];const ok=q.type==='multi'?(A[q.k]&&A[q.k].length):!!A[q.k];$('next').disabled=!ok;}
 // o envio so destrava com o consentimento marcado; a caixa nasce desmarcada (LGPD)
-function valContato(){$('c-enviar').disabled=!$('c-lgpd').checked;}
+// O e-mail e o unico caminho do entregavel: endereco errado custa o lead inteiro.
+// Aqui so se exige formato plausivel; o palpite de dominio parecido vem no finish().
+const RE_EMAIL=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+const DOMINIOS=['gmail.com','hotmail.com','outlook.com','outlook.com.br','yahoo.com',
+  'yahoo.com.br','icloud.com','me.com','live.com','uol.com.br','bol.com.br',
+  'terra.com.br','ig.com.br','globo.com','globomail.com','protonmail.com'];
+function _dist(a,b){const m=a.length,n=b.length;if(Math.abs(m-n)>2)return 9;
+  const d=Array.from({length:m+1},(_,i)=>[i].concat(Array(n).fill(0)));
+  for(let j=1;j<=n;j++)d[0][j]=j;
+  for(let i=1;i<=m;i++)for(let j=1;j<=n;j++)
+    d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));
+  return d[m][n];}
+function emailSuspeito(e){const m=RE_EMAIL.exec((e||'').toLowerCase());if(!m)return null;
+  const dom=(e||'').toLowerCase().split('@')[1]||'';
+  if(DOMINIOS.indexOf(dom)>=0)return null;
+  for(let i=0;i<DOMINIOS.length;i++){if(_dist(dom,DOMINIOS[i])<=2)return DOMINIOS[i];}
+  return null;}
+function valContato(){
+  const e=($('c-email').value||'').trim();
+  $('c-enviar').disabled=!$('c-lgpd').checked||!RE_EMAIL.test(e);
+}
 function next(){rxEvento('raiox_etapa',{etapa:i+1,total:Q.length});if(i<Q.length-1){i++;render();}else{rxEvento('raiox_contato');go('contact');}}
 function prev(){if(i>0){i--;render();}}
 
@@ -261,8 +282,19 @@ async function enviar(payload){
   }
   return null;
 }
+let emailAvisado=false;
 async function finish(btn){
   if(!$('c-lgpd').checked)return;  // trava tambem no clique, nao so no atributo disabled
+  // Dominio parecido com um provedor conhecido: avisa UMA vez e deixa seguir no
+  // segundo toque. Bloquear de vez derrubaria endereco de dominio proprio valido.
+  const sug=emailSuspeito(($('c-email').value||'').trim());
+  if(sug&&!emailAvisado){
+    emailAvisado=true;
+    const av=$('c-email-aviso');
+    av.style.display='block';
+    av.textContent='Confira o e-mail. Você quis dizer '+sug+'? É para esse endereço que o seu Raio-X vai. Corrija acima, ou toque de novo para seguir assim mesmo.';
+    return;
+  }
   const payload=payloadAtual();
   const lbl=btn?btn.textContent:'';
   if(btn){btn.disabled=true;btn.textContent='Gerando seu Raio-X...';}
