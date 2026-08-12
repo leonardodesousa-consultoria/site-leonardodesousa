@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Previdência e sucessão: o que mudou · Leonardo Sousa · Consultor Patrimonial</title>
+<meta name="description" content="O Supremo afastou o ITCMD sobre VGBL e PGBL. O que a decisão muda, o que a lei já dizia sobre seguro de vida e por que a conta muda de estado para estado.">
+
+<!-- ============================================================
+     PÁGINA DO TEMA DO MÊS · agosto/2026 · previdência e sucessão
+     Destino do bloco de presença do programa regional.
+
+     Existe por um motivo específico: quem clica num anúncio sobre
+     previdência e cai na home conclui que clicou à toa. Esta página
+     continua a frase do anúncio, no primeiro título, de propósito.
+
+     NÃO é landing page de captura. Não tem formulário e não tem PDF.
+     O único caminho adiante é a live, e o formulário dela mora em
+     /live, um lugar só, para não existirem duas cópias do mesmo
+     formulário saindo de sincronia.
+
+     Molde do programa: setembro a dezembro trocam o texto e mantêm
+     estrutura, design e saídas.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://leonardodesousa.com.br/previdencia-e-sucessao">
+<meta property="og:title" content="Previdência e sucessão: o que mudou">
+<meta property="og:description" content="O Supremo afastou o ITCMD sobre VGBL e PGBL. O que a decisão muda na prática.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leonardodesousa.com.br/previdencia-e-sucessao">
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
+  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.4rem, 7vw, 5.6rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.col{ max-width:44rem; margin:0 auto; }
+.sec{ padding-block:var(--sec-y); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+
+/* ============================================================
+   3. HEADER
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s; }
+.nav a.lk:hover{ color:var(--accent); }
+.nav .btn{ margin-left:10px; }
+@media (max-width:900px){ .nav .lk{ display:none; } }
+
+/* ============================================================
+   4. ABERTURA · continua a frase do anúncio
+   ============================================================ */
+.hero{ padding-top:clamp(6.4rem,12vh,8.2rem); padding-bottom:clamp(2rem,4vw,3rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent); }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
+  font-size:clamp(2.2rem,4.8vw,3.5rem); margin-top:clamp(1.8rem,3.5vw,2.6rem); }
+.h1 .hl{ color:var(--accent); }
+.standfirst{ font-family:var(--serif); font-weight:500; font-size:clamp(1.12rem,2vw,1.36rem); line-height:1.5;
+  color:var(--ink2); margin-top:1.2rem; }
+
+/* ============================================================
+   5. CORPO
+   ============================================================ */
+.bloco{ margin-top:clamp(2.4rem,5vw,3.6rem); }
+.bloco h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.4rem,2.6vw,1.85rem); line-height:1.2;
+  letter-spacing:-.015em; margin-bottom:1rem; }
+.bloco p{ color:var(--ink2); line-height:1.72; margin-bottom:1.05rem; }
+.bloco p:last-child{ margin-bottom:0; }
+.bloco b{ color:var(--ink); font-weight:600; }
+.nota{ border-left:2px solid var(--accent); padding:2px 0 2px 20px; margin:1.6rem 0;
+  font-size:.98rem; color:var(--mut); line-height:1.6; }
+.fonte{ font-size:.86rem; color:var(--mut); margin-top:.7rem; }
+
+/* ============================================================
+   6. BLOCO DA LIVE · banda escura
+   ============================================================ */
+.live{ background:radial-gradient(ellipse 55% 70% at 50% 0%, rgba(62,207,142,.12), transparent 62%), var(--deep);
+  color:var(--on-deep); margin-top:clamp(3rem,6vw,4.4rem); }
+.live-in{ max-width:44rem; margin:0 auto; }
+.live h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.7rem,3.4vw,2.4rem); line-height:1.12;
+  letter-spacing:-.02em; color:var(--on-deep); margin:16px 0 14px; }
+.live .quando{ font-family:var(--serif); font-size:clamp(1.05rem,1.9vw,1.25rem); color:var(--accent-br); font-weight:600; }
+.live p{ color:var(--on-deep-soft); line-height:1.7; margin-bottom:1rem; }
+.live ul{ list-style:none; margin:1.2rem 0 1.8rem; }
+.live li{ position:relative; padding:8px 0 8px 22px; color:var(--on-deep-soft); line-height:1.6; }
+.live li::before{ content:''; position:absolute; left:0; top:17px; width:6px; height:6px; border-radius:50%; background:var(--accent-br); }
+.live .micro{ font-size:.9rem; color:var(--on-deep-soft); margin-top:18px; }
+
+/* ============================================================
+   7. SAÍDA DISCRETA + RODAPÉ
+   ============================================================ */
+.depois{ padding-block:clamp(2.6rem,5vw,3.6rem); }
+.depois p{ color:var(--ink2); line-height:1.7; }
+.depois a{ color:var(--accent); font-weight:600; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
+.depois a:hover{ border-color:var(--accent); }
+.disc-page{ font-size:.88rem; color:var(--mut); line-height:1.6; border-top:1px solid var(--line); padding-top:1.4rem; margin-top:2rem; }
+
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; }
+@media (max-width:880px){ .footer-top{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .footer-top{ grid-template-columns:1fr; } .btn-lg{ width:100%; } }
+
+/* banner de cookie, snippet único do site */
+.ck{ display:none; position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--deep);
+  color:var(--on-deep); border-top:1px solid var(--line-deep); box-shadow:0 -14px 40px rgba(10,25,20,.28); }
+.ck-in{ max-width:var(--wrap); margin:0 auto; padding:20px var(--pad-x); display:flex; gap:22px;
+  align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.ck-tx h4{ font-family:var(--serif); font-size:1.02rem; font-weight:600; margin-bottom:5px; }
+.ck-tx p{ font-size:.86rem; color:var(--on-deep-soft); line-height:1.55; max-width:74ch; }
+.ck-tx a{ color:var(--accent-br); }
+.ck-btns{ display:flex; gap:10px; flex-wrap:wrap; }
+.ck-no,.ck-ok{ font:inherit; font-size:.9rem; font-weight:600; padding:12px 20px; border-radius:2px; cursor:pointer; }
+.ck-no{ background:transparent; color:var(--on-deep); border:1px solid var(--line-deep); }
+.ck-ok{ background:var(--accent-br); color:#062015; border:none; }
+@media (prefers-reduced-motion: reduce){ html{ scroll-behavior:auto; } .btn-solid:hover{ transform:none; } }
+
+/* ============================================================
+   8. AJUSTE DE CELULAR · fica no fim de propósito
+   No celular o botão da live quebra para a segunda linha e o cabeçalho chega a
+   116px de altura, enquanto o título do tema nascia a 102px, atrás dele.
+   Esta regra precisa vir DEPOIS da definição do .hero: escrita antes, ela perdia
+   por ordem na folha e o defeito continuava lá.
+   ============================================================ */
+@media (max-width:560px){
+  .wm{ font-size:.92rem; }
+  /* o botão não cabe ao lado da assinatura e vazava para fora da tela. O
+     convite da live está no corpo da página e no rodapé, não se perde nada. */
+  .nav .btn{ display:none; }
+  .hero{ padding-top:7.2rem; }
+}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="metodo.html">Método</a>
+      <a class="lk" href="cartas.html">Cartas</a>
+      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="/live">Live de 27 de agosto</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="sec hero">
+  <div class="wrap col">
+    <div class="masthead">
+      <span class="idx">Tema de agosto</span>
+      <span>Previdência e sucessão</span>
+    </div>
+
+    <!-- primeira linha da página = primeira linha do anúncio. É o que fecha a
+         sensação de clique perdido. Trocar isso quebra a continuidade. -->
+    <h1 class="h1">A regra da previdência na sucessão <span class="hl">mudou</span></h1>
+    <p class="standfirst">O que a decisão do Supremo alterou, o que a lei já dizia sobre seguro de
+      vida, e por que a mesma família paga contas diferentes dependendo do estado.</p>
+  </div>
+</section>
+
+<section class="wrap col">
+
+  <div class="bloco">
+    <h2>Durante anos, a resposta dependia do estado</h2>
+    <p>A cobrança de ITCMD sobre previdência privada não era uniforme. Alguns estados cobravam na
+      transmissão por morte, outros não, e a discussão terminava no tribunal, normalmente quando a
+      família já estava no meio do inventário.</p>
+    <p>O Supremo decidiu o tema com <b>efeito vinculante</b> e afastou a cobrança sobre VGBL e PGBL.
+      A regra passou a ser a mesma em todo lugar.</p>
+    <p>O efeito prático, porém, não é o mesmo para todo mundo. Ele depende de como o patrimônio foi
+      montado, de quando foi montado e do que já foi contratado antes da decisão.</p>
+    <p class="fonte">Tema 1.214 do Supremo Tribunal Federal.</p>
+  </div>
+
+  <div class="bloco">
+    <h2>O seguro de vida seguiu outro caminho, e chegou antes</h2>
+    <p>No seguro de vida para o caso de morte, o capital <b>não é considerado herança</b> e não entra
+      no inventário. Quem está indicado como beneficiário recebe por direito próprio.</p>
+    <p>A consequência prática costuma surpreender: sem beneficiário indicado, o mesmo dinheiro cai no
+      espólio e volta para a fila do inventário, com o prazo e o custo do processo. A diferença não
+      está no produto contratado, está numa linha preenchida na hora da contratação.</p>
+    <p class="fonte">Art. 794 do Código Civil.</p>
+  </div>
+
+  <div class="bloco">
+    <h2>E a conta muda de estado para estado</h2>
+    <p>O imposto sobre transmissão é estadual. Para bens imóveis, quem cobra é o estado onde o imóvel
+      está. Para bens móveis, aplicações e créditos, é o estado onde corre o inventário ou onde a
+      pessoa tinha domicílio.</p>
+    <p>Quem mora num estado e tem imóvel em outro responde a duas regras ao mesmo tempo, com
+      alíquotas diferentes. E nem todo estado escreve na lei a não incidência sobre seguro de vida:
+      onde não está escrito, existe discussão, e o custo aparece como autuação em vez de aparecer
+      como regra.</p>
+    <p class="fonte">Art. 155, § 1º da Constituição Federal.</p>
+  </div>
+
+  <div class="nota">
+    Nada aqui é sugestão de contratar ou desfazer qualquer coisa. São as regras, e o que elas
+    significam depende do caso concreto de cada família.
+  </div>
+
+</section>
+
+<section class="sec live">
+  <div class="wrap live-in">
+    <div class="eyebrow on-deep">Ao vivo</div>
+    <div class="quando">Quinta, 27 de agosto, às 19h</div>
+    <h2>Previdência e sucessão, com quem faz isso todo dia</h2>
+    <p>Uma hora de conversa entre Leonardo Sousa, consultor patrimonial independente, e o consultor
+      Henrique Ferrarini.</p>
+    <ul>
+      <li>Onde PGBL e VGBL fazem sentido dentro de um plano sucessório, e onde não fazem</li>
+      <li>O que a decisão do Supremo mudou na prática para quem já tinha plano contratado</li>
+      <li>O que o seguro de vida resolve, e o que ele não resolve</li>
+      <li>Perguntas ao vivo no final</li>
+    </ul>
+    <a class="btn btn-solid on-deep btn-lg btn-arrow" href="/live">Fazer minha inscrição</a>
+    <p class="micro">Participação gratuita, sem venda de produto.</p>
+  </div>
+</section>
+
+<section class="wrap col depois">
+  <p>Se preferir acompanhar sem compromisso nenhum, escrevo as
+    <a href="cartas.html">Cartas de Vida e Patrimônio</a> sobre esses temas, e o
+    <a href="metodo.html">método</a> explica como o plano vem antes da carteira.</p>
+
+  <p class="disc-page">As informações compartilhadas têm caráter educativo e não constituem
+    recomendação de investimento. Para orientação personalizada, contate um consultor de
+    investimentos. Não constitui parecer jurídico ou tributário.</p>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="plano-exemplo.html">Plano de exemplo</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Conversar</h4>
+        <a href="/live">Live de 27 de agosto</a>
+        <a href="/agendar">Agendar conversa</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <h4>Utilizamos cookies</h4>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* header com borda ao rolar */
+(function(){
+  var h=document.getElementById('hdr');
+  var onScroll=function(){ h.classList.toggle('scrolled', window.scrollY>10); };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+})();
+</script>
+
+<script>
+/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function loadA(){
+  if(_al) return;
+  var r=localStorage.getItem('cookie_consent'); if(!r) return;
+  var c=JSON.parse(r); if(!c.analytics&&!c.marketing) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
+(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+
+<script>
+/* ============================================================
+   UTM QUE ATRAVESSA A PÁGINA
+   Esta página é o destino do anúncio de presença. Quem clica daqui para
+   /live precisa chegar lá com a origem, senão a inscrição na live aparece
+   como se tivesse vindo do nada e o anúncio perde o crédito.
+   Repasse por link, sem cookie e sem armazenamento: o dado vive só no
+   endereço enquanto a visita dura, e por isso não depende de consentimento.
+   ============================================================ */
+(function(){
+  var CHAVES=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var q; try{ q=new URLSearchParams(location.search); }catch(e){ return; }
+  var carrega=new URLSearchParams();
+  CHAVES.forEach(function(k){ var v=q.get(k); if(v) carrega.set(k,v); });
+  var extra=carrega.toString();
+  if(!extra) return;
+  Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function(a){
+    var href=a.getAttribute('href');
+    if(!href) return;
+    if(/^(#|mailto:|tel:|javascript:)/i.test(href)) return;
+    if(/^https?:\/\//i.test(href) && href.indexOf('leonardodesousa.com.br')===-1) return;
+    a.setAttribute('href', href + (href.indexOf('?')===-1 ? '?' : '&') + extra);
+  });
+})();
+</script>
+
+</body>
+</html>
