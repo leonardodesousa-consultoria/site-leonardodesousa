@@ -148,6 +148,31 @@ a{ color:inherit; }
 .ag-ok a{color:var(--accent);font-weight:600}
 .ag-esconde{display:none}
 
+/* ---------- cartão do anfitrião (só nesta página) ---------- */
+.ag-host{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+/* object-position sobe o corte: a foto do site é retrato e um corte centrado
+   cairia no peito, cortando a cabeça. */
+.ag-foto{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 14%;
+  border:2px solid var(--accent);padding:3px;background:var(--paper);flex:0 0 auto}
+.ag-host-nome{font-family:'Lora',serif;font-size:21px;font-weight:600;line-height:1.2;
+  letter-spacing:-.01em}
+.ag-host-papel{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-top:5px}
+
+.ag-meta{display:flex;flex-wrap:wrap;gap:11px 22px;margin-top:20px;padding-top:16px;
+  border-top:1px solid var(--line);font-size:14px;color:#2d3748}
+.ag-meta span{display:inline-flex;align-items:center;gap:8px}
+.ag-meta svg{width:16px;height:16px;flex:0 0 auto;stroke:var(--accent);fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ag-meta a{color:var(--accent);font-weight:600;text-decoration:none;
+  border-bottom:1px solid transparent;transition:border-color .2s}
+.ag-meta a:hover{border-color:var(--accent)}
+@media(max-width:520px){
+  .ag-host{gap:14px}
+  .ag-foto{width:66px;height:66px}
+  .ag-meta{gap:9px 0;flex-direction:column}
+}
+
 /* ---------- preparo da reunião (só nesta página) ---------- */
 .ag-preparo{background:var(--paper-2);border:1px solid rgba(10,25,20,.10);border-radius:14px;
   padding:22px 24px;margin-bottom:26px}
@@ -173,6 +198,16 @@ a{ color:inherit; }
 <main style="padding:110px 0 70px">
 <div class="ag-wrap">
 
+  <div class="ag-host">
+    <img class="ag-foto" src="foto-leo.webp" width="84" height="84"
+         alt="Leonardo Sousa, Consultor Patrimonial"
+         onerror="this.style.display='none'">
+    <div>
+      <div class="ag-host-nome">Leonardo Sousa</div>
+      <div class="ag-host-papel">Consultor Patrimonial</div>
+    </div>
+  </div>
+
   <div style="margin-bottom:26px">
     <div class="ag-passo">Reunião de acompanhamento</div>
     <h1 style="font-family:'Lora',serif;font-size:clamp(28px,4vw,38px);line-height:1.2;margin:0 0 12px">
@@ -181,6 +216,21 @@ a{ color:inherit; }
       Nossa reunião mensal de acompanhamento patrimonial. Até 60 minutos para revisar
       posição, ajustar rota e tratar decisões pendentes.
     </p>
+
+    <div class="ag-meta">
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        Até 60 minutos
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3.5"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg>
+        <a href="https://meet.google.com/kxe-exjz-fgb">Google Meet, sala de sempre</a>
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+        Horário de Brasília
+      </span>
+    </div>
   </div>
 
   <div class="ag-preparo">
