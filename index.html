@@ -1006,5 +1006,36 @@ function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
 </script>
+
+<script>
+/* ============================================================
+   UTM QUE ATRAVESSA A HOME
+   O anúncio do programa de presença cai aqui e não pede nada. Quem depois
+   clicava para /agendar ou para /live chegava sem origem, e o funil perdia o
+   rastro no meio do caminho.
+   Aqui os cinco UTMs da URL são repassados aos links internos, e as páginas de
+   formulário seguem lendo da própria query string, como já faziam.
+   Nada é gravado no navegador, de propósito: sem cookie, sem localStorage e sem
+   sessionStorage. O dado vive só no endereço enquanto a visita dura, e por isso
+   este trecho não depende de aceite de cookie.
+   ============================================================ */
+(function(){
+  var CHAVES=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var q; try{ q=new URLSearchParams(location.search); }catch(e){ return; }
+  var carrega=new URLSearchParams();
+  CHAVES.forEach(function(k){ var v=q.get(k); if(v) carrega.set(k,v); });
+  var extra=carrega.toString();
+  if(!extra) return;
+
+  Array.prototype.forEach.call(document.querySelectorAll('a[href]'), function(a){
+    var href=a.getAttribute('href');
+    if(!href) return;
+    /* âncora, e-mail, telefone e domínio de fora ficam intactos */
+    if(/^(#|mailto:|tel:|javascript:)/i.test(href)) return;
+    if(/^https?:\/\//i.test(href) && href.indexOf('leonardodesousa.com.br')===-1) return;
+    a.setAttribute('href', href + (href.indexOf('?')===-1 ? '?' : '&') + extra);
+  });
+})();
+</script>
 </body>
 </html>

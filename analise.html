@@ -485,7 +485,10 @@ a{ color:inherit; }
    ============================================================ */
 (function(){
   var ENDPOINT='https://luana-backend-production.up.railway.app/analise/submit';
-  var UTM_KEYS=['utm_source','utm_medium','utm_campaign','utm_content'];
+  /* Os CINCO. utm_term ficava de fora e era o conjunto de anúncios: o dado saía
+     do anúncio, chegava na URL e morria aqui. Sem ele não existe leitura por
+     conjunto, que é metade da decisão de mídia. */
+  var UTM_KEYS=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
   var utm={};
 
   /* 1. UTMs da query string, no carregamento */
@@ -580,7 +583,8 @@ a{ color:inherit; }
         utm_source: utm.utm_source,
         utm_medium: utm.utm_medium,
         utm_campaign: utm.utm_campaign,
-        utm_content: utm.utm_content
+        utm_content: utm.utm_content,
+        utm_term: utm.utm_term
       }
     };
 
