@@ -3,21 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Um presente · Leonardo Sousa</title>
-<meta name="description" content="Você recebeu um presente: uma conversa sobre a sua vida financeira e o seu patrimônio desenhado em uma página, entregue em 48 horas. Sem compromisso.">
+<title>Agendar conversa · Leonardo Sousa · Consultor Patrimonial</title>
+<meta name="description" content="Escolha um horário para a conversa exploratória. 30 minutos, sem compromisso. Consultoria patrimonial independente, fee fixo, sem comissão.">
 <meta name="robots" content="noindex">
 
 <!-- ============================================================
-     PRESENTE · Site institucional 2026 · v2 "Camadas Editoriais"
-     Landing de acolhimento de quem foi presenteado com uma conversa.
-     Acessada por link do cartao "presenteie uma conversa", nao por busca (noindex).
-     Herda o sistema de design do index.html (Lora + Inter). Um unico destino.
+     AGENDAR · agendamento próprio, ligado ao Google Calendar
+     Substitui o zcal. Os horários vêm de GET /agenda/horarios e o
+     agendamento vai por POST /agenda/marcar no backend da Railway.
+     Herda o sistema de design do index.html (Lora + Inter).
+
+     A página converte com cookie RECUSADO: nada aqui depende de
+     tracker. O formulário fala direto com o backend.
      ============================================================ -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
-
 <style>
 /* ============================================================
    1. TOKENS · sistema editorial (canônico, herdado do index)
@@ -101,32 +103,40 @@ a{ color:inherit; }
 .scrim.open{ opacity:1; visibility:visible; }
 
 /* ============================================================
-   4. HERO · o presente (curto, centrado)
+   4. HERO · o que é (curto, centrado)
    ============================================================ */
 .hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
 .masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
 .masthead .idx{ color:var(--accent); }
 .masthead .sep{ width:1px; height:12px; background:var(--line); }
-.hero-in{ max-width:46rem; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;
+.hero-in{ max-width:44rem; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;
   margin-top:clamp(2rem,4vw,3.2rem); }
-.hero-in .eyebrow{ margin-bottom:clamp(1.1rem,2.4vw,1.6rem); }
-.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
-  font-size:clamp(2.3rem,5vw,3.7rem); max-width:18ch; }
-.hero-micro{ font-family:var(--serif); font-weight:500; font-size:clamp(1.08rem,2.1vw,1.4rem); line-height:1.5;
-  color:var(--ink); max-width:40ch; margin:clamp(1.4rem,2.6vw,1.9rem) auto clamp(2rem,3.6vw,2.6rem); }
+.ghost{ font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.3rem,2.8vw,1.9rem); letter-spacing:-.01em; margin-bottom:.2em; max-width:26ch; }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.04;
+  font-size:clamp(2.5rem,5.6vw,4.2rem); max-width:16ch; }
+.hero-micro{ font-family:var(--serif); font-weight:500; font-size:clamp(1.1rem,2.2vw,1.45rem); line-height:1.5;
+  color:var(--ink); max-width:32ch; margin:clamp(1.4rem,2.6vw,1.9rem) auto clamp(2rem,3.6vw,2.6rem); }
 .hero-micro .hl{ font-weight:600; }
 .hero-note{ margin-top:22px; }
 
 /* ============================================================
-   5. COMO FUNCIONA · três passos
+   5. O QUE ACONTECE / O QUE NÃO É · duas colunas
    ============================================================ */
-.passos{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,3vw,2rem); margin-top:clamp(2rem,4vw,3rem); }
-.passos li{ background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:clamp(1.5rem,3vw,2.1rem);
-  display:flex; flex-direction:column; gap:14px; }
-.passos .n{ font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--accent); line-height:1; }
-.passos .t{ color:var(--ink2); line-height:1.55; }
-.passos .t b{ font-weight:600; color:var(--ink); }
+.split{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(2rem,5vw,3.6rem); align-items:start; }
+.col-head{ margin-bottom:22px; }
+.acontece{ list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:18px; }
+.acontece li{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:20px 22px;
+  display:flex; gap:16px; align-items:flex-start; }
+.acontece .n{ font-family:var(--serif); font-size:1.1rem; font-weight:700; color:var(--accent); line-height:1.3; flex:0 0 auto; }
+.acontece .t{ color:var(--ink2); line-height:1.55; }
+.acontece .t b{ font-weight:600; color:var(--ink); }
+.naoe{ list-style:none; display:flex; flex-direction:column; gap:2px; margin-top:18px; border-top:1px solid var(--line); }
+.naoe li{ display:flex; gap:14px; align-items:flex-start; color:var(--ink2); line-height:1.5; padding:16px 4px;
+  border-bottom:1px solid var(--line); }
+.naoe .x{ color:var(--mut); font-weight:700; flex:0 0 auto; }
+.naoe b{ color:var(--ink); font-weight:600; }
 
 /* ============================================================
    6. BLOCO DO BOTÃO GRANDE (banda escura) + canal alternativo
@@ -144,12 +154,21 @@ a{ color:inherit; }
 .alt-channel a:hover{ border-color:var(--accent-br); }
 
 /* ============================================================
-   7. QUEM ATENDE
+   7. MINI-FAQ
    ============================================================ */
-.quem-in{ max-width:640px; }
-.quem-txt{ font-family:var(--serif); font-weight:500; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.5;
-  letter-spacing:-.01em; color:var(--ink); margin-top:20px; }
-.quem-txt b{ font-weight:600; color:var(--accent); }
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 26px; }
+.faq{ margin-top:10px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 26px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
 
 /* ============================================================
    8. RODAPÉ (herdado do index)
@@ -189,85 +208,62 @@ a{ color:inherit; }
   .burger{ display:block; }
 }
 @media (max-width:880px){
-  .passos{ grid-template-columns:1fr; }
+  .split{ grid-template-columns:1fr; }
   .footer-top{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width:560px){
   .btn-lg, .btn-xl{ width:100%; }
   .footer-top{ grid-template-columns:1fr; }
 }
-</style>
+</style><style>
+/* ---------- agendamento ---------- */
+.ag-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.ag-passo{font-size:12px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.ag-bloco{background:var(--paper);border:1px solid rgba(10,25,20,.10);border-radius:14px;
+  padding:26px;margin-bottom:20px}
+.ag-bloco h2{font-family:'Lora',serif;font-size:22px;margin:0 0 6px}
+.ag-ajuda{font-size:14px;color:#2d3748;margin:0 0 18px;line-height:1.6}
 
-<!-- SEO / social (portado do Replit) -->
-<meta name="robots" content="index,follow">
-<meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
-<link rel="canonical" href="https://leonardodesousa.com.br/presente">
-<link rel="icon" type="image/png" href="/favicon.png">
-<meta property="og:title" content="Um presente · Leonardo Sousa">
-<meta property="og:description" content="Você recebeu um presente: uma conversa sobre a sua vida financeira e o seu patrimônio desenhado em uma página, entregue em 48 horas. Sem compromisso.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://leonardodesousa.com.br/presente">
-<meta property="og:image" content="https://leonardodesousa.com.br/opengraph.jpg">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Um presente · Leonardo Sousa">
-<meta name="twitter:description" content="Você recebeu um presente: uma conversa sobre a sua vida financeira e o seu patrimônio desenhado em uma página, entregue em 48 horas. Sem compromisso.">
-<meta name="twitter:image" content="https://leonardodesousa.com.br/opengraph.jpg">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
-  "alternateName": "Leonardo Sousa",
-  "url": "https://leonardodesousa.com.br/",
-  "logo": "https://leonardodesousa.com.br/favicon.png",
-  "sameAs": [
-    "https://www.linkedin.com/in/leonardopsousa/",
-    "https://www.instagram.com/leonardodesousa/",
-    "https://leonardodesousa.substack.com/"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "availableLanguage": "Portuguese",
-    "url": "https://wa.me/5511989505174"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": ["FinancialService", "Organization"],
-  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
-  "alternateName": "Leonardo Sousa",
-  "description": "Leonardo Sousa é consultor patrimonial independente especializado em planejamento financeiro para empresários, profissionais liberais e investidores com patrimônio diversificado. Atua nas áreas de liquidez, proteção, investimentos, aposentadoria e sucessão.",
-  "url": "https://leonardodesousa.com.br/",
-  "logo": "https://leonardodesousa.com.br/favicon.png",
-  "sameAs": [
-    "https://www.linkedin.com/in/leonardopsousa/",
-    "https://www.instagram.com/leonardodesousa/",
-    "https://leonardodesousa.substack.com/"
-  ],
-  "founder": {
-    "@type": "Person",
-    "name": "Leonardo Sousa",
-    "jobTitle": "Consultor Patrimonial",
-    "description": "Graduado em Finanças, Investimentos e Banking pela PUC-RS. Mais de 5 anos de experiência em consultoria patrimonial independente. Atende mais de 60 famílias em todo o Brasil.",
-    "sameAs": [
-      "https://www.linkedin.com/in/leonardopsousa/",
-      "https://www.instagram.com/leonardodesousa/"
-    ]
-  },
-  "areaServed": { "@type": "Country", "name": "Brasil" },
-  "serviceType": ["Consultoria Patrimonial Independente","Planejamento Financeiro","Gestão de Investimentos","Planejamento Sucessório","Planejamento de Aposentadoria","Proteção Patrimonial"],
-  "priceRange": "$$$$"
-}
-</script>
+.ag-dias{display:flex;flex-direction:column;gap:18px}
+.ag-dia b{display:block;font-size:13px;font-weight:600;letter-spacing:.6px;
+  color:#2d3748;margin-bottom:8px}
+.ag-slots{display:flex;flex-wrap:wrap;gap:8px}
+.ag-slot{border:1px solid rgba(10,25,20,.18);background:#fff;border-radius:10px;
+  padding:11px 16px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.ag-slot:hover{border-color:var(--accent)}
+.ag-slot[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--deep)}
+
+.ag-campo{margin-bottom:16px}
+.ag-campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.ag-campo .req{color:var(--accent);margin-left:3px}
+.ag-campo input,.ag-campo select,.ag-campo textarea{width:100%;font:inherit;font-size:16px;
+  padding:12px 14px;border:1px solid rgba(10,25,20,.18);border-radius:10px;background:#fff;
+  color:var(--ink)}
+.ag-campo input:focus,.ag-campo select:focus,.ag-campo textarea:focus{outline:none;
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,168,106,.12)}
+.ag-campo textarea{min-height:88px;resize:vertical}
+.ag-campo .nota{font-size:13px;color:#5a6b62;margin-top:6px}
+
+.ag-btn{width:100%;background:var(--deep);color:#fff;border:none;border-radius:10px;
+  padding:16px;font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.ag-btn:disabled{opacity:.45;cursor:not-allowed}
+
+.ag-aviso{border-radius:10px;padding:13px 15px;font-size:14px;line-height:1.55;margin-bottom:16px}
+.ag-aviso.erro{background:#fdeaea;border:1px solid #f0b4b4;color:#8f2020}
+.ag-aviso.info{background:#eef4f0;border:1px solid rgba(10,25,20,.10);color:#2d3748}
+
+.ag-ok{text-align:center;padding:20px 0}
+.ag-ok .marca{font-family:'Lora',serif;font-size:26px;margin-bottom:10px}
+.ag-ok .quando{font-size:19px;font-weight:600;margin:14px 0}
+.ag-ok a{color:var(--accent);font-weight:600}
+.ag-esconde{display:none}
+@media(max-width:640px){.ag-bloco{padding:20px}.ag-slot{flex:1 1 calc(50% - 4px)}}
+</style>
 </head>
 <body>
 
-<!-- ============================================================ HEADER ============================================================ -->
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
     <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
@@ -283,80 +279,92 @@ a{ color:inherit; }
     </button>
   </div>
 </header>
+<main style="padding:110px 0 70px">
+<div class="ag-wrap">
 
-<div class="scrim" id="scrim"></div>
-<nav class="mm" id="mm" aria-label="Navegação mobile">
-  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
-  <a href="metodo.html">Método</a>
-  <a href="plano-exemplo.html">Plano de exemplo</a>
-  <a href="cartas.html">Cartas</a>
-  <a href="sobre.html">Sobre</a>
-  <a class="btn btn-solid btn-arrow" href="/agendar">Agendar conversa</a>
-</nav>
+  <div style="margin-bottom:26px">
+    <div class="ag-passo">Conversa exploratória</div>
+    <h1 style="font-family:'Lora',serif;font-size:clamp(28px,4vw,38px);line-height:1.2;margin:0 0 12px">
+      Escolha um horário</h1>
+    <p style="font-size:17px;line-height:1.65;color:#2d3748;margin:0;max-width:56ch">
+      Trinta minutos, sem compromisso. A conversa serve para entender o seu caso e ver se
+      faz sentido seguir. Sem apresentação de produto.
+    </p>
+  </div>
 
-<main>
+  <div id="agErro" class="ag-aviso erro ag-esconde" role="alert"></div>
 
-<!-- ============================================================ 1 · HERO · O PRESENTE ============================================================ -->
-<section class="hero" id="topo">
-  <div class="wrap">
-    <div class="masthead rev">
-      <span class="idx">Um presente</span>
-      <span class="sep"></span>
-      <span>Conversa exploratória</span>
-      <span class="sep"></span>
-      <span>Online · 48 horas</span>
+  <!-- passo 1 -->
+  <div class="ag-bloco" id="agBlocoHorarios">
+    <div class="ag-passo">Passo 1</div>
+    <h2>Quando fica melhor</h2>
+    <p class="ag-ajuda">Horários de Brasília, nos próximos dias úteis.</p>
+    <div id="agDias" class="ag-dias">
+      <p class="ag-ajuda" id="agCarregando">Carregando horários...</p>
     </div>
-    <div class="hero-in">
-      <span class="eyebrow rev">Você recebeu um presente</span>
-      <h1 class="h1 rev d1">Alguém que confia em você quer te dar <span class="hl">clareza</span>.</h1>
-      <p class="hero-micro rev d2">Quem te entregou este convite é cliente desta casa e escolheu te dar o que recebeu no próprio começo: uma conversa sobre a sua vida financeira e o seu <span class="hl">patrimônio desenhado em uma página</span>, entregue em 48 horas. Sem compromisso.</p>
-      <div class="rev d3">
-        <a class="btn btn-xl btn-solid btn-arrow" href="/agendar">Agendar conversa</a>
+  </div>
+
+  <!-- passo 2 -->
+  <div class="ag-bloco ag-esconde" id="agBlocoDados">
+    <div class="ag-passo">Passo 2</div>
+    <h2>Seus dados</h2>
+    <p class="ag-ajuda" id="agEscolhido"></p>
+
+    <form id="agForm" novalidate>
+      <div class="ag-campo">
+        <label for="agNome">Nome<span class="req">*</span></label>
+        <input id="agNome" name="nome" type="text" autocomplete="name" required>
       </div>
-      <p class="hero-note micro rev d3"><span class="tk">&#8226;</span> Você escolhe o horário na agenda. A conversa é online.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================================ 2 · COMO FUNCIONA · TRÊS PASSOS ============================================================ -->
-<section class="sec sec-paper" id="como">
-  <div class="wrap">
-    <span class="eyebrow rev">Como funciona</span>
-    <ul class="passos">
-      <li class="rev"><span class="n num">01</span><span class="t"><b>Você agenda a conversa.</b> De 45 a 60 minutos, online, no horário que você escolher na agenda.</span></li>
-      <li class="rev d1"><span class="n num">02</span><span class="t"><b>A conversa é sobre a sua vida, não sobre produtos.</b> Ninguém vai te oferecer nada nem pedir dados de acesso.</span></li>
-      <li class="rev d2"><span class="n num">03</span><span class="t"><b>Em 48 horas você recebe o seu patrimônio desenhado em uma página.</b> Com o que estiver claro e o que ainda merecer atenção.</span></li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============================================================ 3 · BOTÃO GRANDE (banda escura) + CANAL ALTERNATIVO ============================================================ -->
-<section class="sec book" id="agendar">
-  <div class="wrap">
-    <div class="book-in">
-      <span class="eyebrow on-deep rev">Quando quiser</span>
-      <h2 class="rev d1">Escolha um horário e a gente <span class="hl">conversa</span>.</h2>
-      <p class="lead rev d2">Uma conversa sobre a sua vida financeira, sem compromisso. Você escolhe o horário direto na agenda.</p>
-      <div class="rev d3">
-        <a class="btn btn-xl btn-solid on-deep btn-arrow" href="/agendar">Agendar conversa</a>
+      <div class="ag-campo">
+        <label for="agEmail">E-mail<span class="req">*</span></label>
+        <input id="agEmail" name="email" type="email" autocomplete="email" required>
+        <p class="nota">É para onde vai a confirmação e o convite da agenda.</p>
       </div>
-      <!-- Canal alternativo discreto: WhatsApp. -->
-      <p class="alt-channel rev d3">Prefere trocar uma mensagem antes? <a href="https://wa.me/5511989505174?text=Ol%C3%A1%20Leonardo!%20Recebi%20uma%20conversa%20de%20presente%20e%20quero%20agendar." target="_blank" rel="noopener">Falar no WhatsApp</a>.</p>
+      <div class="ag-campo">
+        <label for="agTelefone">Telefone</label>
+        <input id="agTelefone" name="telefone" type="tel" autocomplete="tel">
+      </div>
+      <div class="ag-campo">
+        <label for="agOrigem">Como você chegou até aqui?<span class="req">*</span></label>
+        <select id="agOrigem" name="origem" required>
+          <option value="">Selecione</option>
+          <option value="anuncio">Vi um anúncio</option>
+          <option value="live">Assisti uma live</option>
+          <option value="redes">Acompanho no Instagram ou LinkedIn</option>
+          <option value="cartas">Leio as cartas</option>
+          <option value="indicacao">Indicação de alguém</option>
+          <option value="ja_conhecia">Já conhecia o Leonardo</option>
+        </select>
+      </div>
+      <div class="ag-campo">
+        <label for="agContexto">Quer adiantar alguma coisa?</label>
+        <textarea id="agContexto" name="contexto" maxlength="500"
+          placeholder="Opcional. Uma linha sobre o que te trouxe aqui já ajuda."></textarea>
+      </div>
+
+      <div class="ag-aviso info">
+        Seus dados ficam com Leonardo e servem para esta conversa e o contato sobre ela.
+        Detalhe na <a href="/privacidade">Política de Privacidade</a>.
+      </div>
+
+      <button type="submit" class="ag-btn" id="agBtn">Confirmar conversa</button>
+    </form>
+  </div>
+
+  <!-- passo 3 -->
+  <div class="ag-bloco ag-esconde" id="agBlocoOk">
+    <div class="ag-ok">
+      <div class="marca">Conversa marcada.</div>
+      <div class="quando" id="agOkQuando"></div>
+      <p class="ag-ajuda" style="margin-bottom:6px">
+        A confirmação foi para o seu e-mail, com o link abaixo.
+      </p>
+      <p class="ag-ajuda" id="agOkMeet"></p>
     </div>
   </div>
-</section>
 
-<!-- ============================================================ 4 · QUEM ATENDE ============================================================ -->
-<section class="sec" id="quem">
-  <div class="wrap quem-in">
-    <span class="eyebrow rev">Quem atende</span>
-    <p class="quem-txt rev d1">Sou <b>Leonardo Sousa</b>, consultor patrimonial independente. Trabalho pelo método plano antes da carteira: primeiro entendo a sua vida e os seus objetivos, depois o dinheiro segue esse desenho. Atendo investidores em todo o Brasil, no formato que fizer sentido para cada um.</p>
-  </div>
-</section>
-
+</div>
 </main>
-
-<!-- ============================================================ RODAPÉ ============================================================ -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer-top">
@@ -386,55 +394,6 @@ a{ color:inherit; }
   </div>
 </footer>
 
-<script>
-(function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var hdr = document.getElementById('hdr');
-  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
-  onScroll();
-  window.addEventListener('scroll', onScroll, {passive:true});
-
-  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
-      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
-  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
-  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
-  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
-  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
-
-  var revs=document.querySelectorAll('.rev');
-  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
-  else{
-    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
-    revs.forEach(function(e){ io.observe(e); });
-  }
-})();
-</script>
-<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
-<style>
-@media (max-width:560px){
-  
-  
-  
-  
-}
-</style>
-
-
-<style>
-/* Cookie banner (LGPD) */
-.ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
-.ck-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
-.ck-tx{flex:1;min-width:220px}
-.ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
-.ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
-.ck-tx a{color:var(--accent);text-decoration:underline}
-.ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
-.ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
-.ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}
-.ck-ok{background:var(--deep);color:#fff;border:none}
-.ck-no:hover,.ck-ok:hover{opacity:.82}
-</style>
 <div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
   <div class="ck-in">
     <div class="ck-tx">
@@ -487,5 +446,158 @@ function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
 </script>
+
+
+
+<script>
+/* Agendamento. Não depende de consentimento de cookie: o formulário fala direto
+   com o backend. Isso é deliberado, para a página converter para todo mundo. */
+(function(){
+  var API = "https://luana-backend-production.up.railway.app";
+  var escolhido = null;
+
+  var elDias = document.getElementById('agDias');
+  var elCarregando = document.getElementById('agCarregando');
+  var elErro = document.getElementById('agErro');
+  var elDados = document.getElementById('agBlocoDados');
+  var elEscolhido = document.getElementById('agEscolhido');
+  var elForm = document.getElementById('agForm');
+  var elBtn = document.getElementById('agBtn');
+
+  function erro(msg){
+    elErro.textContent = msg;
+    elErro.classList.remove('ag-esconde');
+    elErro.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  function limpaErro(){ elErro.classList.add('ag-esconde'); }
+
+  function utm(){
+    var p = new URLSearchParams(location.search), o = {};
+    ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){
+      if (p.get(k)) o[k] = p.get(k);
+    });
+    return o;
+  }
+
+  /* agrupa por dia para a lista não virar um paredão de botões */
+  function porDia(lista){
+    var mapa = {}, ordem = [];
+    lista.forEach(function(s){
+      var dia = s.label.split(', às ')[0];
+      if (!mapa[dia]){ mapa[dia] = []; ordem.push(dia); }
+      mapa[dia].push(s);
+    });
+    return ordem.map(function(d){ return {dia:d, slots:mapa[d]}; });
+  }
+
+  function desenha(lista){
+    elCarregando.remove();
+    if (!lista.length){
+      elDias.innerHTML = '<p class="ag-ajuda">Não há horários abertos nos próximos dias. ' +
+        'Escreva para <a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a> ' +
+        'que a gente encontra um horário.</p>';
+      return;
+    }
+    elDias.innerHTML = '';
+    porDia(lista).forEach(function(g){
+      var bloco = document.createElement('div');
+      bloco.className = 'ag-dia';
+      var t = document.createElement('b');
+      t.textContent = g.dia.charAt(0).toUpperCase() + g.dia.slice(1);
+      bloco.appendChild(t);
+      var slots = document.createElement('div'); slots.className = 'ag-slots';
+      g.slots.forEach(function(s){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'ag-slot';
+        b.setAttribute('aria-pressed','false');
+        b.textContent = (s.label.split(', às ')[1] || s.label);
+        b.addEventListener('click', function(){
+          Array.prototype.forEach.call(document.querySelectorAll('.ag-slot'), function(o){
+            o.setAttribute('aria-pressed','false');
+          });
+          b.setAttribute('aria-pressed','true');
+          escolhido = s;
+          elEscolhido.textContent = 'Escolhido: ' + s.label + '.';
+          elDados.classList.remove('ag-esconde');
+          elDados.scrollIntoView({behavior:'smooth', block:'start'});
+          limpaErro();
+        });
+        slots.appendChild(b);
+      });
+      bloco.appendChild(slots);
+      elDias.appendChild(bloco);
+    });
+  }
+
+  fetch(API + '/agenda/horarios')
+    .then(function(r){ if(!r.ok) throw new Error('http ' + r.status); return r.json(); })
+    .then(function(j){ desenha(j.horarios || []); })
+    .catch(function(){
+      elCarregando.remove();
+      elDias.innerHTML = '<p class="ag-ajuda">Não consegui carregar os horários agora. ' +
+        'Recarregue a página, ou escreva para ' +
+        '<a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a>.</p>';
+    });
+
+  elForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    limpaErro();
+    if (!escolhido){ erro('Escolha um horário antes de confirmar.'); return; }
+
+    var body = {
+      nome: document.getElementById('agNome').value.trim(),
+      email: document.getElementById('agEmail').value.trim(),
+      telefone: document.getElementById('agTelefone').value.trim(),
+      origem: document.getElementById('agOrigem').value,
+      contexto: document.getElementById('agContexto').value.trim(),
+      inicio: escolhido.inicio,
+      consentimento: true,
+      utm: utm()
+    };
+    if (!body.nome){ erro('Informe seu nome.'); return; }
+    if (!/^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$/.test(body.email)){ erro('Informe um e-mail válido.'); return; }
+    if (!body.origem){ erro('Conte como você chegou até aqui.'); return; }
+
+    elBtn.disabled = true; elBtn.textContent = 'Confirmando...';
+    fetch(API + '/agenda/marcar', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)
+    })
+    .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, status:r.status, j:j}; }); })
+    .then(function(res){
+      if (res.ok && res.j.ok){
+        document.getElementById('agBlocoHorarios').classList.add('ag-esconde');
+        elDados.classList.add('ag-esconde');
+        document.getElementById('agOkQuando').textContent = res.j.quando;
+        if (res.j.meet_link){
+          document.getElementById('agOkMeet').innerHTML =
+            'Link da conversa: <a href="' + res.j.meet_link + '">' + res.j.meet_link + '</a>' +
+            '<br>É a mesma sala em todas as conversas, pode salvar.';
+        }
+        document.getElementById('agBlocoOk').classList.remove('ag-esconde');
+        window.scrollTo({top:0, behavior:'smooth'});
+        return;
+      }
+      elBtn.disabled = false; elBtn.textContent = 'Confirmar conversa';
+      erro(res.j.erro || 'Não consegui confirmar. Tente de novo.');
+      /* horário tomado no meio do caminho: recarrega a lista */
+      if (res.status === 409){
+        escolhido = null;
+        fetch(API + '/agenda/horarios').then(function(r){ return r.json(); })
+          .then(function(j){
+            document.getElementById('agBlocoHorarios').classList.remove('ag-esconde');
+            elDias.innerHTML = '<p class="ag-ajuda" id="agCarregando">Atualizando...</p>';
+            elCarregando = document.getElementById('agCarregando');
+            desenha(j.horarios || []);
+          });
+      }
+    })
+    .catch(function(){
+      elBtn.disabled = false; elBtn.textContent = 'Confirmar conversa';
+      erro('Falhou a conexão. Tente de novo em instantes.');
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
