@@ -259,6 +259,29 @@ a{ color:inherit; }
 .ag-ok .quando{font-size:19px;font-weight:600;margin:14px 0}
 .ag-ok a{color:var(--accent);font-weight:600}
 .ag-esconde{display:none}
+
+/* ---------- cartão do anfitrião (mesmo padrão de /reuniao-mensal) ---------- */
+.ag-host{display:flex;align-items:center;gap:18px;margin-bottom:26px}
+/* object-position sobe o corte: a foto do site é retrato e um corte centrado
+   cairia no peito, cortando a cabeça. */
+.ag-foto{width:84px;height:84px;border-radius:50%;object-fit:cover;object-position:50% 14%;
+  border:2px solid var(--accent);padding:3px;background:var(--paper);flex:0 0 auto}
+.ag-host-nome{font-family:'Lora',serif;font-size:21px;font-weight:600;line-height:1.2;
+  letter-spacing:-.01em}
+.ag-host-papel{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent);margin-top:5px}
+
+.ag-meta{display:flex;flex-wrap:wrap;gap:11px 22px;margin-top:20px;padding-top:16px;
+  border-top:1px solid var(--line);font-size:14px;color:#2d3748}
+.ag-meta span{display:inline-flex;align-items:center;gap:8px}
+.ag-meta svg{width:16px;height:16px;flex:0 0 auto;stroke:var(--accent);fill:none;
+  stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:520px){
+  .ag-host{gap:14px}
+  .ag-foto{width:66px;height:66px}
+  .ag-meta{gap:9px 0;flex-direction:column}
+}
+
 @media(max-width:640px){.ag-bloco{padding:20px}.ag-slot{flex:1 1 calc(50% - 4px)}}
 </style>
 </head>
@@ -282,6 +305,16 @@ a{ color:inherit; }
 <main style="padding:110px 0 70px">
 <div class="ag-wrap">
 
+  <div class="ag-host">
+    <img class="ag-foto" src="foto-leo.webp" width="84" height="84"
+         alt="Leonardo Sousa, Consultor Patrimonial"
+         onerror="this.style.display='none'">
+    <div>
+      <div class="ag-host-nome">Leonardo Sousa</div>
+      <div class="ag-host-papel">Consultor Patrimonial</div>
+    </div>
+  </div>
+
   <div style="margin-bottom:26px">
     <div class="ag-passo">Conversa exploratória</div>
     <h1 style="font-family:'Lora',serif;font-size:clamp(28px,4vw,38px);line-height:1.2;margin:0 0 12px">
@@ -290,6 +323,24 @@ a{ color:inherit; }
       Trinta minutos, sem compromisso. A conversa serve para entender o seu caso e ver se
       faz sentido seguir. Sem apresentação de produto.
     </p>
+
+    <!-- A sala do Meet NÃO aparece aqui, ao contrário de /reuniao-mensal. Esta
+         página recebe tráfego frio, e link de sala permanente numa página aberta
+         é porta que qualquer um empurra. O link vai no e-mail de confirmação. -->
+    <div class="ag-meta">
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+        30 minutos
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 10.5V7a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3.5"/><path d="m15 10.5 6-3.5v10l-6-3.5"/></svg>
+        Por vídeo, no Google Meet
+      </span>
+      <span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg>
+        Horário de Brasília
+      </span>
+    </div>
   </div>
 
   <div id="agErro" class="ag-aviso erro ag-esconde" role="alert"></div>
