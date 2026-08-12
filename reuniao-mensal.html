@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reunião de acompanhamento · Leonardo Sousa · Consultor Patrimonial</title>
+<meta name="description" content="Escolha um horário para a reunião mensal de acompanhamento patrimonial. Até 60 minutos.">
+<meta name="robots" content="noindex, nofollow">
+
+<!-- ============================================================
+     REUNIÃO DE ACOMPANHAMENTO · página de cliente
+     Substitui o link zcal.co/leonardodesousa/reuniao-mensal.
+     Mesma mecânica de /agendar, com tipo=acompanhamento: 60 minutos,
+     sem a pergunta de origem (quem já é cliente não veio de anúncio).
+
+     Página de link, não de navegação: fica fora do menu e com noindex.
+     Converte com cookie RECUSADO, porque nada aqui depende de tracker.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
+  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.hdr-nota{ font-size:.86rem; color:var(--mut); }
+
+/* ============================================================
+   4. RODAPÉ (herdado do index)
+   ============================================================ */
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   5. BANNER DE COOKIE (herdado do index)
+   ============================================================ */
+.ck{ display:none; position:fixed; left:0; right:0; bottom:0; z-index:300; background:var(--deep);
+  color:var(--on-deep); border-top:1px solid var(--line-deep); box-shadow:0 -14px 40px rgba(10,25,20,.28); }
+.ck-in{ max-width:var(--wrap); margin:0 auto; padding:20px var(--pad-x); display:flex; gap:22px;
+  align-items:center; justify-content:space-between; flex-wrap:wrap; }
+.ck-tx h4{ font-family:var(--serif); font-size:1.02rem; font-weight:600; margin-bottom:5px; }
+.ck-tx p{ font-size:.86rem; color:var(--on-deep-soft); line-height:1.55; max-width:74ch; }
+.ck-tx a{ color:var(--accent-br); }
+.ck-btns{ display:flex; gap:10px; flex-wrap:wrap; }
+.ck-no,.ck-ok{ font:inherit; font-size:.9rem; font-weight:600; padding:12px 20px; border-radius:2px; cursor:pointer; }
+.ck-no{ background:transparent; color:var(--on-deep); border:1px solid var(--line-deep); }
+.ck-ok{ background:var(--accent-br); color:#062015; border:none; }
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+@media (max-width:880px){ .footer-top{ grid-template-columns:1fr 1fr; } }
+@media (max-width:560px){ .footer-top{ grid-template-columns:1fr; } .hdr-nota{ display:none; } }
+</style><style>
+/* ---------- agendamento (idêntico a /agendar) ---------- */
+.ag-wrap{max-width:760px;margin:0 auto;padding:0 24px}
+.ag-passo{font-size:12px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;
+  color:var(--accent);margin-bottom:10px}
+.ag-bloco{background:var(--paper);border:1px solid rgba(10,25,20,.10);border-radius:14px;
+  padding:26px;margin-bottom:20px}
+.ag-bloco h2{font-family:'Lora',serif;font-size:22px;margin:0 0 6px}
+.ag-ajuda{font-size:14px;color:#2d3748;margin:0 0 18px;line-height:1.6}
+
+.ag-dias{display:flex;flex-direction:column;gap:18px}
+.ag-dia b{display:block;font-size:13px;font-weight:600;letter-spacing:.6px;
+  color:#2d3748;margin-bottom:8px}
+.ag-slots{display:flex;flex-wrap:wrap;gap:8px}
+.ag-slot{border:1px solid rgba(10,25,20,.18);background:#fff;border-radius:10px;
+  padding:11px 16px;font:inherit;font-size:15px;font-weight:500;cursor:pointer;
+  transition:border-color .15s,background .15s}
+.ag-slot:hover{border-color:var(--accent)}
+.ag-slot[aria-pressed="true"]{background:var(--deep);color:#fff;border-color:var(--deep)}
+
+.ag-campo{margin-bottom:16px}
+.ag-campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
+.ag-campo .req{color:var(--accent);margin-left:3px}
+.ag-campo input,.ag-campo select,.ag-campo textarea{width:100%;font:inherit;font-size:16px;
+  padding:12px 14px;border:1px solid rgba(10,25,20,.18);border-radius:10px;background:#fff;
+  color:var(--ink)}
+.ag-campo input:focus,.ag-campo select:focus,.ag-campo textarea:focus{outline:none;
+  border-color:var(--accent);box-shadow:0 0 0 3px rgba(31,168,106,.12)}
+.ag-campo textarea{min-height:88px;resize:vertical}
+.ag-campo .nota{font-size:13px;color:#5a6b62;margin-top:6px}
+
+.ag-btn{width:100%;background:var(--deep);color:#fff;border:none;border-radius:10px;
+  padding:16px;font:inherit;font-size:16px;font-weight:600;cursor:pointer}
+.ag-btn:disabled{opacity:.45;cursor:not-allowed}
+
+.ag-aviso{border-radius:10px;padding:13px 15px;font-size:14px;line-height:1.55;margin-bottom:16px}
+.ag-aviso.erro{background:#fdeaea;border:1px solid #f0b4b4;color:#8f2020}
+.ag-aviso.info{background:#eef4f0;border:1px solid rgba(10,25,20,.10);color:#2d3748}
+
+.ag-ok{text-align:center;padding:20px 0}
+.ag-ok .marca{font-family:'Lora',serif;font-size:26px;margin-bottom:10px}
+.ag-ok .quando{font-size:19px;font-weight:600;margin:14px 0}
+.ag-ok a{color:var(--accent);font-weight:600}
+.ag-esconde{display:none}
+
+/* ---------- preparo da reunião (só nesta página) ---------- */
+.ag-preparo{background:var(--paper-2);border:1px solid rgba(10,25,20,.10);border-radius:14px;
+  padding:22px 24px;margin-bottom:26px}
+.ag-preparo h2{font-family:'Lora',serif;font-size:19px;margin:0 0 10px}
+.ag-preparo ul{list-style:none;margin:0;padding:0}
+.ag-preparo li{position:relative;padding:7px 0 7px 20px;font-size:15px;line-height:1.55;color:#2d3748}
+.ag-preparo li::before{content:'';position:absolute;left:0;top:15px;width:6px;height:6px;
+  border-radius:50%;background:var(--accent)}
+.ag-preparo .ag-ok-lista{text-align:left;display:inline-block;margin-top:6px}
+
+@media(max-width:640px){.ag-bloco{padding:20px}.ag-slot{flex:1 1 calc(50% - 4px)}}
+</style>
+</head>
+<body>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <span class="hdr-nota">Reunião mensal de acompanhamento</span>
+  </div>
+</header>
+
+<main style="padding:110px 0 70px">
+<div class="ag-wrap">
+
+  <div style="margin-bottom:26px">
+    <div class="ag-passo">Reunião de acompanhamento</div>
+    <h1 style="font-family:'Lora',serif;font-size:clamp(28px,4vw,38px);line-height:1.2;margin:0 0 12px">
+      Escolha um horário</h1>
+    <p style="font-size:17px;line-height:1.65;color:#2d3748;margin:0;max-width:56ch">
+      Nossa reunião mensal de acompanhamento patrimonial. Até 60 minutos para revisar
+      posição, ajustar rota e tratar decisões pendentes.
+    </p>
+  </div>
+
+  <div class="ag-preparo">
+    <h2>Para aproveitar melhor o tempo, anote antes</h2>
+    <ul>
+      <li>Alguma mudança de renda, despesa ou objetivo desde a última reunião.</li>
+      <li>Dúvidas ou decisões que surgiram no período.</li>
+      <li>Qualquer evento relevante, como herança, venda de imóvel ou mudança profissional.</li>
+    </ul>
+  </div>
+
+  <div id="agErro" class="ag-aviso erro ag-esconde" role="alert"></div>
+
+  <!-- passo 1 -->
+  <div class="ag-bloco" id="agBlocoHorarios">
+    <div class="ag-passo">Passo 1</div>
+    <h2>Quando fica melhor</h2>
+    <p class="ag-ajuda">Horários de Brasília, nos próximos 7 dias úteis. Cada reunião reserva uma hora.</p>
+    <div id="agDias" class="ag-dias">
+      <p class="ag-ajuda" id="agCarregando">Carregando horários...</p>
+    </div>
+  </div>
+
+  <!-- passo 2 -->
+  <div class="ag-bloco ag-esconde" id="agBlocoDados">
+    <div class="ag-passo">Passo 2</div>
+    <h2>Seus dados</h2>
+    <p class="ag-ajuda" id="agEscolhido"></p>
+
+    <form id="agForm" novalidate>
+      <div class="ag-campo">
+        <label for="agNome">Nome<span class="req">*</span></label>
+        <input id="agNome" name="nome" type="text" autocomplete="name" required>
+      </div>
+      <div class="ag-campo">
+        <label for="agEmail">E-mail<span class="req">*</span></label>
+        <input id="agEmail" name="email" type="email" autocomplete="email" required>
+        <p class="nota">É para onde vai a confirmação com o link da sala.</p>
+      </div>
+      <div class="ag-campo">
+        <label for="agContexto">Quer adiantar alguma coisa?</label>
+        <textarea id="agContexto" name="contexto" maxlength="500"
+          placeholder="Opcional. O que mudou desde a última reunião, ou o que você quer tratar nesta."></textarea>
+      </div>
+
+      <div class="ag-aviso info">
+        Seus dados servem para esta reunião e para o contato sobre ela. Detalhe na
+        <a href="/privacidade">Política de Privacidade</a>.
+      </div>
+
+      <button type="submit" class="ag-btn" id="agBtn">Confirmar reunião</button>
+    </form>
+  </div>
+
+  <!-- passo 3 -->
+  <div class="ag-bloco ag-esconde" id="agBlocoOk">
+    <div class="ag-ok">
+      <div class="marca">Reunião marcada.</div>
+      <div class="quando" id="agOkQuando"></div>
+      <p class="ag-ajuda" style="margin-bottom:6px">
+        A confirmação foi para o seu e-mail, com o link abaixo.
+      </p>
+      <p class="ag-ajuda" id="agOkMeet"></p>
+      <div class="ag-preparo ag-ok-lista" style="margin-top:22px">
+        <h2>Antes da reunião</h2>
+        <ul>
+          <li>Mudança de renda, despesa ou objetivo desde a última reunião.</li>
+          <li>Dúvidas ou decisões que surgiram no período.</li>
+          <li>Evento relevante, como herança, venda de imóvel ou mudança profissional.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegar</h4>
+        <a href="metodo.html">Método</a>
+        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
+        <a href="sobre.html">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <h4>Falar comigo</h4>
+        <a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="termos.html">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <h4>Utilizamos cookies</h4>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function loadA(){
+  if(_al) return;
+  var r=localStorage.getItem('cookie_consent'); if(!r) return;
+  var c=JSON.parse(r); if(!c.analytics&&!c.marketing) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
+(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+
+<script>
+/* Agendamento da reunião de acompanhamento. Mesmo backend de /agendar, com
+   tipo=acompanhamento: 60 minutos e sem pergunta de origem. Não depende de
+   consentimento de cookie, e isso é deliberado. */
+(function(){
+  var API = "https://luana-backend-production.up.railway.app";
+  var TIPO = "acompanhamento";
+  var escolhido = null;
+
+  var elDias = document.getElementById('agDias');
+  var elCarregando = document.getElementById('agCarregando');
+  var elErro = document.getElementById('agErro');
+  var elDados = document.getElementById('agBlocoDados');
+  var elEscolhido = document.getElementById('agEscolhido');
+  var elForm = document.getElementById('agForm');
+  var elBtn = document.getElementById('agBtn');
+
+  function erro(msg){
+    elErro.textContent = msg;
+    elErro.classList.remove('ag-esconde');
+    elErro.scrollIntoView({behavior:'smooth', block:'center'});
+  }
+  function limpaErro(){ elErro.classList.add('ag-esconde'); }
+
+  /* agrupa por dia para a lista não virar um paredão de botões */
+  function porDia(lista){
+    var mapa = {}, ordem = [];
+    lista.forEach(function(s){
+      var dia = s.label.split(', às ')[0];
+      if (!mapa[dia]){ mapa[dia] = []; ordem.push(dia); }
+      mapa[dia].push(s);
+    });
+    return ordem.map(function(d){ return {dia:d, slots:mapa[d]}; });
+  }
+
+  function desenha(lista){
+    if (elCarregando) elCarregando.remove();
+    if (!lista.length){
+      elDias.innerHTML = '<p class="ag-ajuda">Não há horários abertos nos próximos 7 dias úteis. ' +
+        'Escreva para <a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a> ' +
+        'que a gente encontra um horário.</p>';
+      return;
+    }
+    elDias.innerHTML = '';
+    porDia(lista).forEach(function(g){
+      var bloco = document.createElement('div');
+      bloco.className = 'ag-dia';
+      var t = document.createElement('b');
+      t.textContent = g.dia.charAt(0).toUpperCase() + g.dia.slice(1);
+      bloco.appendChild(t);
+      var slots = document.createElement('div'); slots.className = 'ag-slots';
+      g.slots.forEach(function(s){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'ag-slot';
+        b.setAttribute('aria-pressed','false');
+        b.textContent = (s.label.split(', às ')[1] || s.label);
+        b.addEventListener('click', function(){
+          Array.prototype.forEach.call(document.querySelectorAll('.ag-slot'), function(o){
+            o.setAttribute('aria-pressed','false');
+          });
+          b.setAttribute('aria-pressed','true');
+          escolhido = s;
+          elEscolhido.textContent = 'Escolhido: ' + s.label + '.';
+          elDados.classList.remove('ag-esconde');
+          elDados.scrollIntoView({behavior:'smooth', block:'start'});
+          limpaErro();
+        });
+        slots.appendChild(b);
+      });
+      bloco.appendChild(slots);
+      elDias.appendChild(bloco);
+    });
+  }
+
+  function carrega(){
+    return fetch(API + '/agenda/horarios?tipo=' + TIPO)
+      .then(function(r){ if(!r.ok) throw new Error('http ' + r.status); return r.json(); })
+      .then(function(j){ desenha(j.horarios || []); });
+  }
+
+  carrega().catch(function(){
+    if (elCarregando) elCarregando.remove();
+    elDias.innerHTML = '<p class="ag-ajuda">Não consegui carregar os horários agora. ' +
+      'Recarregue a página, ou escreva para ' +
+      '<a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a>.</p>';
+  });
+
+  elForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    limpaErro();
+    if (!escolhido){ erro('Escolha um horário antes de confirmar.'); return; }
+
+    var body = {
+      tipo: TIPO,
+      nome: document.getElementById('agNome').value.trim(),
+      email: document.getElementById('agEmail').value.trim(),
+      contexto: document.getElementById('agContexto').value.trim(),
+      inicio: escolhido.inicio,
+      consentimento: true
+    };
+    if (!body.nome){ erro('Informe seu nome.'); return; }
+    if (!/^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$/.test(body.email)){ erro('Informe um e-mail válido.'); return; }
+
+    elBtn.disabled = true; elBtn.textContent = 'Confirmando...';
+    fetch(API + '/agenda/marcar', {
+      method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(body)
+    })
+    .then(function(r){ return r.json().then(function(j){ return {ok:r.ok, status:r.status, j:j}; }); })
+    .then(function(res){
+      if (res.ok && res.j.ok){
+        document.getElementById('agBlocoHorarios').classList.add('ag-esconde');
+        elDados.classList.add('ag-esconde');
+        document.getElementById('agOkQuando').textContent = res.j.quando;
+        if (res.j.meet_link){
+          document.getElementById('agOkMeet').innerHTML =
+            'Link da reunião: <a href="' + res.j.meet_link + '">' + res.j.meet_link + '</a>' +
+            '<br>É a mesma sala de sempre, pode salvar.';
+        }
+        document.getElementById('agBlocoOk').classList.remove('ag-esconde');
+        window.scrollTo({top:0, behavior:'smooth'});
+        return;
+      }
+      elBtn.disabled = false; elBtn.textContent = 'Confirmar reunião';
+      erro(res.j.erro || 'Não consegui confirmar. Tente de novo.');
+      /* horário tomado no meio do caminho: recarrega a lista */
+      if (res.status === 409){
+        escolhido = null;
+        document.getElementById('agBlocoHorarios').classList.remove('ag-esconde');
+        elDias.innerHTML = '<p class="ag-ajuda" id="agCarregando">Atualizando...</p>';
+        elCarregando = document.getElementById('agCarregando');
+        carrega();
+      }
+    })
+    .catch(function(){
+      elBtn.disabled = false; elBtn.textContent = 'Confirmar reunião';
+      erro('Falhou a conexão. Tente de novo em instantes.');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

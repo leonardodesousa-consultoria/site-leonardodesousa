@@ -1,5 +1,6 @@
 User-agent: *
 Disallow: /atualizacao
+Disallow: /reuniao-mensal
 Allow: /
 
 Sitemap: https://leonardodesousa.com.br/sitemap.xml
