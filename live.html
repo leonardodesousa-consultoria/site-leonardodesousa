@@ -255,6 +255,23 @@ a{ color:inherit; }
   .step .st{ max-width:none; }
   .footer-top{ grid-template-columns:1fr; }
 }
+
+/* Quem te convidou: escolha visual, sem obrigar. Cor e raio herdados dos tokens. */
+.label-g{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.convidou{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.convidou .cv{cursor:pointer;margin:0}
+.convidou .cv input{position:absolute;opacity:0;width:0;height:0}
+.convidou .cv-in{display:flex;flex-direction:column;align-items:center;gap:8px;
+  padding:14px 8px;border:1px solid var(--line);border-radius:12px;
+  transition:border-color .18s,background .18s;text-align:center;font-size:14px;line-height:1.2}
+.convidou .cv-in img{border-radius:50%;object-fit:cover;width:44px;height:44px}
+.convidou .cv-ph{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;font-size:18px;font-weight:600;
+  background:var(--line-soft);color:var(--ghost)}
+.convidou .cv input:focus-visible + .cv-in{outline:2px solid var(--accent);outline-offset:2px}
+.convidou .cv input:checked + .cv-in{border-color:var(--accent);background:rgba(31,168,106,.07)}
+@media (max-width:380px){.convidou{grid-template-columns:1fr;gap:8px}
+  .convidou .cv-in{flex-direction:row;justify-content:flex-start;gap:12px;padding:10px 12px;text-align:left}}
 </style>
 
 <!-- SEO / social -->
@@ -317,7 +334,7 @@ a{ color:inherit; }
     </div>
     <div class="hero-in">
       <h1 class="h1 rev d1">Previdência e sucessão: o que resolver <span class="hl">antes do fim do ano</span>.</h1>
-      <p class="hero-sub rev d2">Uma conversa ao vivo entre dois consultores patrimoniais, sem venda de produto. Sessenta minutos: quarenta de conteúdo, quinze de perguntas ao vivo.</p>
+      <p class="hero-sub rev d2">Uma conversa ao vivo entre dois consultores patrimoniais, sem venda de produto. Sessenta minutos, e as suas perguntas são respondidas na hora.</p>
       <div class="hero-cta rev d3">
         <a class="btn btn-lg btn-solid btn-arrow" href="#inscricao">Fazer minha inscrição</a>
       </div>
@@ -391,7 +408,6 @@ a{ color:inherit; }
         <ul class="no">
           <li>Não é recomendação de investimento</li>
           <li>Nenhum produto será indicado ou vendido</li>
-          <li>Cada caso exige análise individual antes de qualquer decisão</li>
         </ul>
       </div>
     </div>
@@ -407,7 +423,7 @@ a{ color:inherit; }
       <div id="formWrap">
         <div class="card-head">
           <span class="eyebrow">Inscrição</span>
-          <h2>Três campos, e o link chega por e-mail.</h2>
+          <h2>Quatro campos, e o link chega por e-mail.</h2>
           <p>Você recebe a confirmação na hora, um lembrete na véspera e outro uma hora antes.</p>
         </div>
 
@@ -429,9 +445,28 @@ a{ color:inherit; }
             <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" placeholder="(44) 90000-0000">
           </div>
 
+          <div class="field" id="f-convidou">
+            <span class="label-g" id="lbl-convidou">Quem te convidou?</span>
+            <div class="convidou" role="radiogroup" aria-labelledby="lbl-convidou">
+              <label class="cv">
+                <input type="radio" name="convidou" value="leonardo" required>
+                <span class="cv-in"><img src="foto-leo.webp" alt="" width="44" height="44" loading="lazy"><span>Leonardo</span></span>
+              </label>
+              <label class="cv">
+                <input type="radio" name="convidou" value="henrique">
+                <span class="cv-in"><img src="live-henrique.webp" alt="" width="44" height="44" loading="lazy"><span>Henrique</span></span>
+              </label>
+              <label class="cv">
+                <input type="radio" name="convidou" value="outro">
+                <span class="cv-in"><span class="cv-ph" aria-hidden="true">?</span><span>Outro</span></span>
+              </label>
+            </div>
+            <p class="fmsg" id="e-convidou">Escolha uma das três opções.</p>
+          </div>
+
           <label class="check" for="consentimento">
             <input type="checkbox" id="consentimento" name="consentimento">
-            <span>Autorizo o uso do meu nome, e-mail e WhatsApp para a minha inscrição na live e para o contato sobre ela, conforme a <a href="/privacidade" target="_blank" rel="noopener" onclick="event.stopPropagation()">Política de Privacidade</a>.</span>
+            <span>Autorizo o uso do meu nome, e-mail, WhatsApp e da indicação informada para a minha inscrição na live e para o contato sobre ela, conforme a <a href="/privacidade" target="_blank" rel="noopener" onclick="event.stopPropagation()">Política de Privacidade</a>.</span>
           </label>
 
           <div class="submit-row">
@@ -580,6 +615,13 @@ a{ color:inherit; }
         if(!first) first=el;
       }
     });
+    var cvBox=document.getElementById('f-convidou');
+    if(document.querySelector('input[name="convidou"]:checked')){
+      cvBox.classList.remove('err');
+    }else{
+      cvBox.classList.add('err');
+      if(!first) first=document.querySelector('input[name="convidou"]');
+    }
     if(first){ first.focus({preventScroll:false}); return false; }
     return true;
   }
@@ -598,6 +640,10 @@ a{ color:inherit; }
     try{ done.scrollIntoView({behavior:'smooth', block:'center'}); }catch(e){ done.scrollIntoView(); }
   }
 
+  Array.prototype.forEach.call(document.querySelectorAll('input[name="convidou"]'), function(r){
+    r.addEventListener('change', function(){ document.getElementById('f-convidou').classList.remove('err'); });
+  });
+
   form.addEventListener('submit', function(ev){
     ev.preventDefault();
     hideError();
@@ -609,6 +655,7 @@ a{ color:inherit; }
       nome: document.getElementById('nome').value.trim(),
       email: document.getElementById('email').value.trim(),
       telefone: document.getElementById('telefone').value.trim(),
+      convidou: (document.querySelector('input[name="convidou"]:checked') || {}).value || '',
       consentimento: lgpd.checked,
       utm: {
         utm_source: utm.utm_source,
