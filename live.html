@@ -258,6 +258,8 @@ a{ color:inherit; }
 
 /* Quem te convidou: escolha visual, sem obrigar. Cor e raio herdados dos tokens. */
 .label-g{display:block;font-size:14px;font-weight:600;margin-bottom:8px}
+.btn-hint{font-family:var(--sans);font-size:13.5px;color:var(--mut);margin-top:9px;line-height:1.5}
+.btn-hint.off{display:none}
 .convidou{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
 .convidou .cv{cursor:pointer;margin:0}
 .convidou .cv input{position:absolute;opacity:0;width:0;height:0}
@@ -446,7 +448,7 @@ a{ color:inherit; }
           </div>
 
           <div class="field" id="f-convidou">
-            <span class="label-g" id="lbl-convidou">Quem te convidou?</span>
+            <span class="label-g" id="lbl-convidou">Como você chegou até aqui?</span>
             <div class="convidou" role="radiogroup" aria-labelledby="lbl-convidou">
               <label class="cv">
                 <input type="radio" name="convidou" value="leonardo" required>
@@ -457,8 +459,8 @@ a{ color:inherit; }
                 <span class="cv-in"><img src="live-henrique.webp" alt="" width="44" height="44" loading="lazy"><span>Henrique</span></span>
               </label>
               <label class="cv">
-                <input type="radio" name="convidou" value="outro">
-                <span class="cv-in"><span class="cv-ph" aria-hidden="true">?</span><span>Outro</span></span>
+                <input type="radio" name="convidou" value="anuncio">
+                <span class="cv-in"><span class="cv-ph" aria-hidden="true">&#9655;</span><span>Vim pelo anúncio</span></span>
               </label>
             </div>
             <p class="fmsg" id="e-convidou">Escolha uma das três opções.</p>
@@ -471,6 +473,7 @@ a{ color:inherit; }
 
           <div class="submit-row">
             <button type="submit" class="btn btn-lg btn-solid" id="submitBtn" disabled>Confirmar minha inscrição</button>
+            <p class="btn-hint" id="btnHint">Marque a autorização acima para liberar o envio.</p>
           </div>
 
           <p class="form-note">Seus dados servem para enviar o link e os lembretes da live. Não são vendidos nem usados para outra finalidade, e você pode sair da lista pelo link de descadastro no rodapé de qualquer e-mail. O site usa serviços de hospedagem, envio de e-mail e medição, listados na <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a>.</p>
@@ -583,10 +586,29 @@ a{ color:inherit; }
 
   var BTN_LABEL=btn.textContent;
 
-  /* o botão nasce travado; só o consentimento marcado destrava (LGPD) */
-  function sincronizarBotao(){ btn.disabled=!lgpd.checked; }
+  /* o botão nasce travado; só o consentimento marcado destrava (LGPD).
+     A dica ao lado existe porque, ate 24/08, o botao ficava apagado sem que
+     nada dissesse o motivo. */
+  var btnHint=document.getElementById('btnHint');
+  function sincronizarBotao(){
+    btn.disabled=!lgpd.checked;
+    if(btnHint){ btnHint.classList.toggle('off', !!lgpd.checked); }
+  }
   lgpd.addEventListener('change', sincronizarBotao);
   sincronizarBotao();
+
+  /* Quem chega por link identificado ja vem com a opcao marcada. E preselecao,
+     nao trava: a pessoa pode trocar. O utm_content carrega o grupo do convite
+     (henrique, leonardo, colegas, amigos), e colegas e amigos sao listas do
+     proprio Leonardo. Quem vem de anuncio ja cai em "Vim pelo anuncio". */
+  (function(){
+    var mapa={ henrique:'henrique', leonardo:'leonardo', colegas:'leonardo', amigos:'leonardo' };
+    var alvo = mapa[(utm.utm_content||'').toLowerCase()];
+    if((utm.utm_source||'').toLowerCase()==='meta'){ alvo='anuncio'; }
+    if(!alvo) return;
+    var r=document.querySelector('input[name="convidou"][value="'+alvo+'"]');
+    if(r && !document.querySelector('input[name="convidou"]:checked')){ r.checked=true; }
+  })();
 
   var fields=[
     {id:'nome',  box:'f-nome',  check:function(v){ return v.trim().length>=2; }},
