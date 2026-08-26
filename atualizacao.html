@@ -11,6 +11,7 @@
 <style>
 /* ============================================================
    FORMULÁRIO DE ATUALIZAÇÃO · versão web
+   Contrato do formulário: versão 2026-09 (SPEC §21.4).
    Deriva do formulário local (formulario-atualizacao-cliente.html).
    Diferença: liga em um link pessoal com token, envia direto para
    a função Supabase em vez de copiar texto para o WhatsApp.
@@ -162,6 +163,11 @@ textarea.control{min-height:76px; padding-right:14px; resize:vertical; line-heig
 .addbtn:active{background:rgba(62,207,142,.2)}
 
 .sub-cond{margin-top:12px; padding-top:12px; border-top:1px dashed var(--border)}
+
+/* aviso suave dentro de um cartão de meta (nunca bloqueia o envio) */
+.aviso-meta{display:none; margin-top:10px; font-size:12.5px; line-height:1.45; color:var(--warn);
+  background:rgba(224,121,26,.08); border:1px solid rgba(224,121,26,.28); border-radius:10px; padding:9px 11px}
+.aviso-meta.show{display:block}
 
 /* confirmar seção */
 .confirmar-sec{width:100%; margin-top:18px; font:inherit; font-size:15px; font-weight:800;
@@ -333,19 +339,26 @@ const CONFIG = {
    pré-preenchido aqui. Cada resposta é do próprio cliente.
    ============================================================ */
 const DADOS_INICIAIS = {
-  versao: "2026-07",
+  versao: "2026-09",
   familia: {
     estadoCivil: "Solteiro(a)",
     regimeBens: "",
+    ufDomicilio: "Não sei",              // 2026-09: sem UF nao ha leitura de ITCMD possivel
+    uniaoEstavelFormalizada: "nao_sei",  // 2026-09: so aparece em uniao estavel
     dependentes: "",
     idadesDependentes: "",
+    dependentesIdades: [],               // 2026-09: lista de numeros lida do campo de texto acima
+    filhosOutrosVinculos: "",            // 2026-09: sim | nao
+    filhosOutrosVinculosDetalhe: "",
     mudancas: []
   },
   objetivo: {
     rendaMensal: 0,
     idadeAlvo: "",
-    duracaoAte: "",
-    planoNovo: ""
+    duracaoAte: 90,   // padrao da casa: 90 anos. O cliente pode mudar; valor abaixo de 90 vira ponto de revisao no parser.
+    metas: [],        // {descricao, valor, ano, prioridade}
+    observacao: "",
+    planoNovo: ""     // legado da versao 2026-07: espelha a observacao no payload
   },
   rendaCusto: {
     rendaMembro1: 0,
@@ -354,18 +367,30 @@ const DADOS_INICIAIS = {
   },
   irpf: {
     modelo: "nao_sei",
-    rendaBrutaAnual: 0
+    rendaBrutaAnual: 0,
+    modeloConjuge: "nao_sei",          // só aparece para casado(a) ou união estável
+    rendaBrutaAnualConjuge: 0,
+    dependentes: ""                    // dependentes NA DECLARACAO, nao na renda
   },
   sucessao: {
     testamento: "nao_sei",
+    testamentoAno: "",                 // 2026-09: desdobramento quando testamento = sim
+    testamentoTipo: "não sei",         // 2026-09: público | particular | não sei
     inventario: "nao_sei",
     doacoes: "nao_sei",
-    notas: { testamento:"", inventario:"", doacoes:"" }
+    doacaoPlanejada: "nao_sei",
+    herancaEsperada: "nao_sei",
+    notas: { testamento:"", inventario:"", doacoes:"", doacaoPlanejada:"", herancaEsperada:"" }
   },
   contas: [],
   imoveis: [],
-  empresa: { tem: false, valor: 0, participacao: "" },
+  empresa: {
+    tem: false, valor: 0, participacao: "",
+    clausulaMorte: "nao_sei",          // 2026-09: sim | nao | nao_sei | nao_li
+    procuracaoSociedade: "nao_sei"     // 2026-09: sim | nao | nao_sei
+  },
   dividas: [],
+  contingencias: { aval:"nao_sei", avalNota:"", processo:"nao_sei", processoNota:"" },
   pilares: {
     dividasCaras:  "nao_sei",
     reserva:       "nao_sei",
@@ -373,6 +398,9 @@ const DADOS_INICIAIS = {
     previdencia:   "nao_sei",
     seguroVida:    "nao_sei",
     seguroCapital: 0,
+    seguroBeneficiarios:     "nao_sei",   // 2026-09: beneficiarios indicados na apolice
+    seguroBeneficiariosQuem: "",          // 2026-09: opcional, texto curto
+    invalidez:     "nao_sei",
     saude:         "nao_sei",
     internacional: "nao_sei",
     offshore:      "nao_sei"
@@ -438,7 +466,37 @@ function montarApp(){
     if(estado.familia.regimeBens === undefined) estado.familia.regimeBens = DADOS_INICIAIS.familia.regimeBens;
     if(!estado.irpf) estado.irpf = structuredClone(DADOS_INICIAIS.irpf);
     if(!estado.sucessao) estado.sucessao = structuredClone(DADOS_INICIAIS.sucessao);
-    if(!estado.sucessao.notas) estado.sucessao.notas = { testamento:"", inventario:"", doacoes:"" };
+    if(!estado.sucessao.notas) estado.sucessao.notas = structuredClone(DADOS_INICIAIS.sucessao.notas);
+    if(!Array.isArray(estado.objetivo.metas)) estado.objetivo.metas = [];
+    // campos que nasceram na versao 2026-08b: rascunho antigo nao os tem
+    ['modeloConjuge','rendaBrutaAnualConjuge','dependentes'].forEach(k=>{
+      if(estado.irpf[k] === undefined) estado.irpf[k] = DADOS_INICIAIS.irpf[k];
+    });
+    ['doacaoPlanejada','herancaEsperada'].forEach(k=>{
+      if(estado.sucessao[k] === undefined) estado.sucessao[k] = 'nao_sei';
+      if(estado.sucessao.notas[k] === undefined) estado.sucessao.notas[k] = '';
+    });
+    if(!estado.contingencias) estado.contingencias = structuredClone(DADOS_INICIAIS.contingencias);
+    if(!estado.pilares) estado.pilares = structuredClone(DADOS_INICIAIS.pilares);
+    if(estado.pilares.invalidez === undefined) estado.pilares.invalidez = 'nao_sei';
+    // campos que nasceram na versao 2026-09: rascunho antigo nao os tem
+    if(!estado.empresa) estado.empresa = structuredClone(DADOS_INICIAIS.empresa);
+    ['ufDomicilio','uniaoEstavelFormalizada','filhosOutrosVinculos','filhosOutrosVinculosDetalhe'].forEach(k=>{
+      if(estado.familia[k] === undefined) estado.familia[k] = DADOS_INICIAIS.familia[k];
+    });
+    if(!Array.isArray(estado.familia.dependentesIdades)) estado.familia.dependentesIdades = [];
+    ['testamentoAno','testamentoTipo'].forEach(k=>{
+      if(estado.sucessao[k] === undefined) estado.sucessao[k] = DADOS_INICIAIS.sucessao[k];
+    });
+    ['clausulaMorte','procuracaoSociedade'].forEach(k=>{
+      if(estado.empresa[k] === undefined) estado.empresa[k] = DADOS_INICIAIS.empresa[k];
+    });
+    ['seguroBeneficiarios','seguroBeneficiariosQuem'].forEach(k=>{
+      if(estado.pilares[k] === undefined) estado.pilares[k] = DADOS_INICIAIS.pilares[k];
+    });
+    // retrocompatibilidade: texto livre da versao antiga vira a observacao
+    if(!estado.objetivo.observacao) estado.objetivo.observacao = estado.objetivo.planoNovo || "";
+    estado.objetivo.planoNovo = estado.objetivo.observacao;
   })();
   const secoesConfirmadas = new Set();
 
@@ -571,16 +629,34 @@ function montarApp(){
   }
 
   /* -------- 1. Família -------- */
+  // 2026-09: a UF decide a regra de ITCMD da família; sem ela não há leitura possível
+  const UFS = ['Não sei','AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA','PB',
+               'PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO'];
+  const ESTADOS_CIVIS = ['Solteiro(a)','Casado(a)','União estável',
+                         'Separado(a) de fato, sem divórcio averbado','Divorciado(a)','Viúvo(a)'];
+  const COM_REGIME = ['Casado(a)','União estável','Separado(a) de fato, sem divórcio averbado'];
   bloco(1,'Sua família','O que mudou no último ano', body=>{
     body.appendChild(campoSelect({label:'Estado civil', valor:estado.familia.estadoCivil,
-      opcoes:['Solteiro(a)','Casado(a)','União estável','Divorciado(a)','Viúvo(a)'],
-      onInput:v=>{ estado.familia.estadoCivil=v; renderRegime(); }}));
+      opcoes:ESTADOS_CIVIS,
+      onInput:v=>{ estado.familia.estadoCivil=v; renderRegime(); renderUniaoEstavel(); renderIrpfConjuge(); }}));
     const contRegime = document.createElement('div'); contRegime.id='blocoRegime'; body.appendChild(contRegime);
     renderRegime();
+    const contUniao = document.createElement('div'); contUniao.id='blocoUniaoEstavel'; body.appendChild(contUniao);
+    renderUniaoEstavel();
+    body.appendChild(campoSelect({label:'UF de domicílio fiscal', valor:estado.familia.ufDomicilio || 'Não sei',
+      opcoes:UFS, hint:'o estado onde você declara o imposto de renda; é ele que define a regra de transmissão da família',
+      onInput:v=>estado.familia.ufDomicilio=v}));
     body.appendChild(campoTexto({label:'Quantos dependentes hoje', num:true, valor:estado.familia.dependentes,
       hint:'quem depende da sua renda', onInput:v=>estado.familia.dependentes=v}));
     body.appendChild(campoTexto({label:'Idades dos dependentes', valor:estado.familia.idadesDependentes,
-      placeholder:'ex: 9 e 12', onInput:v=>estado.familia.idadesDependentes=v}));
+      placeholder:'ex: 9, 12', hint:'separe por vírgula, uma idade por dependente',
+      onInput:v=>{ estado.familia.idadesDependentes=v; estado.familia.dependentesIdades=idadesDeclaradas(v); }}));
+    body.appendChild(segmentado({label:'Tem filhos de outros vínculos', valor:estado.familia.filhosOutrosVinculos,
+      opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'}],
+      hint:'filhos de união anterior contam igual aos demais na transmissão',
+      onInput:v=>{ estado.familia.filhosOutrosVinculos=v; renderFilhosOutros(); mudou(); }}));
+    const contFilhos = document.createElement('div'); contFilhos.id='blocoFilhosOutros'; body.appendChild(contFilhos);
+    renderFilhosOutros();
 
     const g = document.createElement('div'); g.className='grupo';
     g.innerHTML = '<label class="lab">Alguma mudança grande no último ano</label>';
@@ -606,7 +682,7 @@ function montarApp(){
   function renderRegime(){
     const c = $('#blocoRegime'); if(!c) return; c.innerHTML='';
     const ec = estado.familia.estadoCivil;
-    if(ec==='Casado(a)' || ec==='União estável'){
+    if(COM_REGIME.includes(ec)){
       if(!estado.familia.regimeBens) estado.familia.regimeBens='Comunhão parcial';
       c.appendChild(campoSelect({label:'Regime de bens', valor:estado.familia.regimeBens,
         opcoes:['Comunhão parcial','Comunhão universal','Separação total','Participação final nos aquestos','Não sei'],
@@ -616,18 +692,124 @@ function montarApp(){
       estado.familia.regimeBens='';
     }
   }
+  function renderUniaoEstavel(){
+    const c = $('#blocoUniaoEstavel'); if(!c) return; c.innerHTML='';
+    if(estado.familia.estadoCivil !== 'União estável') return;
+    c.appendChild(segmentado({label:'A união estável está formalizada em contrato',
+      valor:estado.familia.uniaoEstavelFormalizada,
+      opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
+      hint:'escritura pública ou contrato particular de convivência; sem ele o regime fica em aberto',
+      onInput:v=>estado.familia.uniaoEstavelFormalizada=v}));
+  }
+  function renderFilhosOutros(){
+    const c = $('#blocoFilhosOutros'); if(!c) return; c.innerHTML='';
+    if(estado.familia.filhosOutrosVinculos !== 'sim') return;
+    c.appendChild(campoTexto({label:'Quantos e que idades', valor:estado.familia.filhosOutrosVinculosDetalhe,
+      placeholder:'ex: 1, com 22 anos', onInput:v=>estado.familia.filhosOutrosVinculosDetalhe=v}));
+  }
+  function idadesDeclaradas(texto){
+    // o texto livre continua sendo o campo; a lista de numeros e o que permite ver herdeiro menor
+    const achados = String(texto ?? '').match(/\d{1,3}/g) || [];
+    return achados.map(Number).filter(n=>n>=0 && n<=120);
+  }
 
   /* -------- 2. Objetivo âncora -------- */
+  const PRIORIDADES = ['essencial','importante','desejável'];
+  const MOEDAS = ['R$','US$','€'];
+  const TITULARES = ['você','cônjuge','conjunto'];
+  const ANO_ATUAL = new Date().getFullYear();
+  const ANO_LIMITE = ANO_ATUAL + 60;
   bloco(2,'Seu objetivo','A renda que o plano precisa entregar', body=>{
     body.appendChild(campoTexto({label:'Renda mensal desejada na aposentadoria', money:true, valor:estado.objetivo.rendaMensal,
       hint:'em valor de hoje, poder de compra atual', onInput:v=>estado.objetivo.rendaMensal=v}));
     body.appendChild(campoTexto({label:'Idade em que quer poder parar', num:true, valor:estado.objetivo.idadeAlvo,
       hint:'anos', onInput:v=>estado.objetivo.idadeAlvo=v}));
     body.appendChild(campoTexto({label:'Até que idade o dinheiro precisa durar', num:true, valor:estado.objetivo.duracaoAte,
-      hint:'expectativa de vida usada no plano', onInput:v=>estado.objetivo.duracaoAte=v}));
-    body.appendChild(campoTexto({label:'Algum plano novo de vida', textarea:true, valor:estado.objetivo.planoNovo,
-      placeholder:'morar fora, casa de praia, apoiar os filhos, nada por enquanto', onInput:v=>estado.objetivo.planoNovo=v}));
+      hint:'usamos 90 anos como padrão. Se preferir outro número, é só trocar', onInput:v=>estado.objetivo.duracaoAte=v}));
+
+    const tm = document.createElement('label'); tm.className='lab'; tm.style.cssText='font-size:14px;color:var(--ink);margin-top:22px';
+    tm.textContent='Seus planos com data';
+    body.appendChild(tm);
+    const hm = document.createElement('div'); hm.className='hint'; hm.style.marginTop='2px'; hm.style.marginBottom='4px';
+    hm.textContent='um por linha, em valor de hoje. Com valor e ano, o plano entra na conta';
+    body.appendChild(hm);
+    const contMetas = document.createElement('div'); contMetas.id='listaMetas'; body.appendChild(contMetas);
+    const addMeta = document.createElement('button'); addMeta.type='button'; addMeta.className='addbtn'; addMeta.textContent='+ Adicionar meta';
+    addMeta.addEventListener('click', ()=>{
+      estado.objetivo.metas.push({descricao:'', valor:0, ano:'', moeda:'R$', prioridade:'importante'});
+      renderMetas(); mudou();
+    });
+    body.appendChild(addMeta);
+    renderMetas();
+
+    body.appendChild(campoTexto({label:'Algo mais sobre seus planos', textarea:true, valor:estado.objetivo.observacao,
+      placeholder:'morar fora, apoiar os filhos, nada por enquanto', onInput:v=>estado.objetivo.observacao=v}));
   });
+  function anoDeclarado(v){
+    // ano só vale como dado quando vem com quatro dígitos; o resto é rascunho de digitação
+    const t = String(v ?? '').trim();
+    return /^\d{4}$/.test(t) ? Number(t) : null;
+  }
+  function renderMetas(){
+    const c = $('#listaMetas'); if(!c) return; c.innerHTML='';
+    estado.objetivo.metas.forEach((item,i)=>{
+      const box = document.createElement('div'); box.className='item';
+      box.appendChild(itemHead('Meta '+(i+1), ()=>{ estado.objetivo.metas.splice(i,1); renderMetas(); mudou(); }));
+      box.appendChild(campoTexto({label:'O que é', valor:item.descricao,
+        placeholder:'reforma da casa, MBA do filho, casa de praia', onInput:v=>item.descricao=v}));
+      const r = document.createElement('div'); r.className='row2';
+      r.appendChild(campoTexto({label:'Quanto custa hoje', money:true, valor:item.valor, onInput:v=>item.valor=v}));
+      r.appendChild(campoTexto({label:'Em que ano', num:true, valor:item.ano||'',
+        hint:'quatro dígitos, ex: '+(ANO_ATUAL+3), onInput:v=>item.ano=v}));
+      box.appendChild(r);
+      if(!item.moeda) item.moeda = 'R$';
+      const r2 = document.createElement('div'); r2.className='row2';
+      r2.appendChild(campoSelect({label:'Prioridade', valor:item.prioridade||'importante',
+        opcoes:PRIORIDADES, onInput:v=>item.prioridade=v}));
+      r2.appendChild(campoSelect({label:'Moeda', valor:item.moeda, opcoes:MOEDAS, onInput:v=>item.moeda=v}));
+      box.appendChild(r2);
+      const av = document.createElement('div'); av.className='aviso-meta'; box.appendChild(av);
+      c.appendChild(box);
+    });
+    atualizarAvisosMetas();
+  }
+  function atualizarAvisosMetas(){
+    const c = $('#listaMetas'); if(!c) return;
+    const boxes = c.querySelectorAll('.item');
+    estado.objetivo.metas.forEach((item,i)=>{
+      const av = boxes[i] ? boxes[i].querySelector('.aviso-meta') : null; if(!av) return;
+      const temDescricao = String(item.descricao||'').trim() !== '';
+      const ano = anoDeclarado(item.ano);
+      let msg = '';
+      if(ano && (ano < ANO_ATUAL || ano > ANO_LIMITE)){
+        msg = 'Confira o ano: use algum entre ' + ANO_ATUAL + ' e ' + ANO_LIMITE + '.';
+      } else if(temDescricao && !(item.valor > 0) && !ano){
+        msg = 'Sem valor e ano, essa meta entra como pauta de conversa, não no plano.';
+      }
+      av.textContent = msg;
+      av.classList.toggle('show', msg !== '');
+    });
+  }
+  function objetivoPayload(){
+    const obs = String(estado.objetivo.observacao || '');
+    const metas = (estado.objetivo.metas || [])
+      .filter(m => String(m.descricao||'').trim() !== '')
+      .map(m => ({
+        descricao: String(m.descricao).trim(),
+        valor: m.valor > 0 ? m.valor : null,
+        moeda: m.moeda || 'R$',
+        ano: anoDeclarado(m.ano),
+        prioridade: m.prioridade || 'importante'
+      }));
+    return {
+      rendaMensal: estado.objetivo.rendaMensal,
+      idadeAlvo: estado.objetivo.idadeAlvo,
+      duracaoAte: estado.objetivo.duracaoAte,
+      metas: metas,
+      observacao: obs,
+      planoNovo: obs   // espelho do campo livre da versao 2026-07, para quem le o payload antigo
+    };
+  }
 
   /* -------- 3. Renda e custo de vida -------- */
   bloco(3,'Renda e custo de vida','O que entra e o que sai por mês', body=>{
@@ -643,16 +825,33 @@ function montarApp(){
 
     const ti = document.createElement('label'); ti.className='lab'; ti.style.cssText='font-size:14px;color:var(--ink);margin-top:22px'; ti.textContent='Sua declaração de imposto';
     body.appendChild(ti);
-    body.appendChild(segmentado({label:'Declara em qual modelo', valor:estado.irpf.modelo,
+    body.appendChild(segmentado({label:'Declara em qual modelo, você', valor:estado.irpf.modelo,
       opcoes:[{v:'simplificado',txt:'Simplificado'},{v:'completa',txt:'Completa'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
       onInput:v=>estado.irpf.modelo=v}));
-    body.appendChild(campoTexto({label:'Renda bruta anual aproximada', money:true, valor:estado.irpf.rendaBrutaAnual,
+    body.appendChild(campoTexto({label:'Renda bruta anual aproximada, você', money:true, valor:estado.irpf.rendaBrutaAnual,
       hint:'some salário e outras rendas antes dos descontos; aproximado serve',
       onInput:v=>estado.irpf.rendaBrutaAnual=v}));
+    const contIrpfConjuge = document.createElement('div'); contIrpfConjuge.id='blocoIrpfConjuge';
+    body.appendChild(contIrpfConjuge);
+    renderIrpfConjuge();
+    body.appendChild(campoTexto({label:'Dependentes na declaração (IRPF)', num:true, valor:estado.irpf.dependentes,
+      hint:'dependente fiscal não é o mesmo que dependente da renda',
+      onInput:v=>estado.irpf.dependentes=v}));
     const irpfNota = document.createElement('div'); irpfNota.className='instr';
     irpfNota.textContent = 'Essa resposta define se a previdência dedutível devolve imposto para o seu plano.';
     body.appendChild(irpfNota);
   });
+  function renderIrpfConjuge(){
+    const c = $('#blocoIrpfConjuge'); if(!c) return; c.innerHTML='';
+    const ec = estado.familia.estadoCivil;
+    if(ec!=='Casado(a)' && ec!=='União estável') return;
+    c.appendChild(segmentado({label:'Modelo do cônjuge', valor:estado.irpf.modeloConjuge,
+      opcoes:[{v:'simplificado',txt:'Simplificado'},{v:'completa',txt:'Completa'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
+      hint:'se declaram em conjunto, marque o mesmo modelo nos dois',
+      onInput:v=>estado.irpf.modeloConjuge=v}));
+    c.appendChild(campoTexto({label:'Renda bruta anual do cônjuge', money:true, valor:estado.irpf.rendaBrutaAnualConjuge,
+      hint:'aproximada, antes dos descontos', onInput:v=>estado.irpf.rendaBrutaAnualConjuge=v}));
+  }
   function atualizarSobra(){
     const el = $('#sobraLin'); if(!el) return;
     const s = (estado.rendaCusto.rendaMembro1||0)+(estado.rendaCusto.rendaMembro2||0)-(estado.rendaCusto.custoVida||0);
@@ -660,19 +859,25 @@ function montarApp(){
   }
 
   /* -------- 4. A árvore (repetíveis) -------- */
+  const CONTINGENCIAS = [
+    {k:'aval',     nk:'avalNota',     q:'Já prestou aval ou fiança para alguém ou para empresa?',
+     hint:'inclui contrato de aluguel e empréstimo de empresa da família'},
+    {k:'processo', nk:'processoNota', q:'Existe processo ou disputa em curso que possa alcançar o patrimônio?',
+     hint:'trabalhista, tributário, societário, inventário disputado'}
+  ];
   bloco(4,'O desenho do seu patrimônio','Contas, bens, empresa e dívidas', body=>{
     const t1 = document.createElement('label'); t1.className='lab'; t1.style.fontSize='14px'; t1.style.color='var(--ink)'; t1.textContent='Contas e investimentos';
     body.appendChild(t1);
     const cont = document.createElement('div'); cont.id='listaContas'; body.appendChild(cont);
     const add1 = document.createElement('button'); add1.type='button'; add1.className='addbtn'; add1.textContent='+ Adicionar outra conta';
-    add1.addEventListener('click', ()=>{ estado.contas.push({instituicao:'',tipo:'corretora',custodia:'Brasil',valor:0,regime:'',aporteMensal:0}); renderContas(); mudou(); });
+    add1.addEventListener('click', ()=>{ estado.contas.push({instituicao:'',tipo:'corretora',custodia:'Brasil',titular:TITULARES[0],valor:0,regime:'',tabela:'não sei',beneficiario:'não sei',aporteMensal:0}); renderContas(); mudou(); });
     body.appendChild(add1);
 
     const t2 = document.createElement('label'); t2.className='lab'; t2.style.cssText='font-size:14px;color:var(--ink);margin-top:22px'; t2.textContent='Imóveis e bens';
     body.appendChild(t2);
     const cont2 = document.createElement('div'); cont2.id='listaImoveis'; body.appendChild(cont2);
     const add2 = document.createElement('button'); add2.type='button'; add2.className='addbtn'; add2.textContent='+ Adicionar outro bem';
-    add2.addEventListener('click', ()=>{ estado.imoveis.push({descricao:'',valor:0,temFinanciamento:false,saldoDevedor:0,parcela:0}); renderImoveis(); mudou(); });
+    add2.addEventListener('click', ()=>{ estado.imoveis.push({descricao:'',titular:TITULARES[0],uf:'Não sei',valor:0,temFinanciamento:false,saldoDevedor:0,parcela:0}); renderImoveis(); mudou(); });
     body.appendChild(add2);
 
     const t3 = document.createElement('label'); t3.className='lab'; t3.style.cssText='font-size:14px;color:var(--ink);margin-top:22px'; t3.textContent='Empresa ou participação';
@@ -689,8 +894,28 @@ function montarApp(){
     add4.addEventListener('click', ()=>{ estado.dividas.push({tipo:'',saldo:0,custo:0,parcela:0}); renderDividas(); mudou(); });
     body.appendChild(add4);
 
+    const t5 = document.createElement('label'); t5.className='lab'; t5.style.cssText='font-size:14px;color:var(--ink);margin-top:22px'; t5.textContent='Compromissos que não aparecem no extrato';
+    body.appendChild(t5);
+    const h5 = document.createElement('div'); h5.className='hint'; h5.style.marginTop='2px'; h5.style.marginBottom='4px'; h5.textContent='dívida de terceiro e disputa em curso alcançam o patrimônio sem aparecer em conta nenhuma';
+    body.appendChild(h5);
+    const cont5 = document.createElement('div'); cont5.id='blocoContingencias'; body.appendChild(cont5);
+    renderContingencias();
+
     renderContas(); renderImoveis(); renderDividas();
   });
+
+  function renderContingencias(){
+    const c = $('#blocoContingencias'); if(!c) return; c.innerHTML='';
+    CONTINGENCIAS.forEach(s=>{
+      c.appendChild(segmentado({label:s.q, hint:s.hint, valor:estado.contingencias[s.k],
+        opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
+        onInput:v=>{ estado.contingencias[s.k]=v; renderContingencias(); mudou(); }}));
+      if(estado.contingencias[s.k]==='sim'){
+        c.appendChild(campoTexto({label:'Conta em uma linha, sem detalhe', valor:estado.contingencias[s.nk],
+          placeholder:'opcional', onInput:v=>estado.contingencias[s.nk]=v}));
+      }
+    });
+  }
 
   function itemHead(titulo, onRemove){
     const h = document.createElement('div'); h.className='item-head';
@@ -709,10 +934,16 @@ function montarApp(){
       r.appendChild(campoSelect({label:'Tipo', valor:item.tipo, opcoes:['corretora','banco','previdência'], onInput:v=>{item.tipo=v; renderContas(); mudou();}}));
       r.appendChild(campoSelect({label:'Custódia', valor:item.custodia, opcoes:['Brasil','Exterior'], onInput:v=>item.custodia=v}));
       box.appendChild(r);
+      if(!item.titular) item.titular = TITULARES[0];
+      box.appendChild(campoSelect({label:'Titular', valor:item.titular, opcoes:TITULARES, onInput:v=>item.titular=v}));
       box.appendChild(campoTexto({label:'Valor aproximado', money:true, valor:item.valor, onInput:v=>item.valor=v}));
       if(item.tipo==='previdência'){
         const sub = document.createElement('div'); sub.className='sub-cond';
         sub.appendChild(campoSelect({label:'Regime', valor:item.regime||'PGBL', opcoes:['PGBL','VGBL'], onInput:v=>item.regime=v}));
+        sub.appendChild(campoSelect({label:'Tabela', valor:item.tabela||'não sei', opcoes:['regressiva','progressiva','não sei'],
+          hint:'a regressiva premia o tempo; a progressiva depende da sua renda no ano do resgate', onInput:v=>item.tabela=v}));
+        sub.appendChild(campoSelect({label:'Beneficiário indicado', valor:item.beneficiario||'não sei', opcoes:['sim','não','não sei'],
+          hint:'quem recebe o saldo está escrito na apólice', onInput:v=>item.beneficiario=v}));
         sub.appendChild(campoTexto({label:'Aporte mensal', money:true, valor:item.aporteMensal, onInput:v=>item.aporteMensal=v}));
         box.appendChild(sub);
       }
@@ -725,6 +956,13 @@ function montarApp(){
       const box = document.createElement('div'); box.className='item';
       box.appendChild(itemHead('Bem '+(i+1), ()=>{ estado.imoveis.splice(i,1); renderImoveis(); mudou(); }));
       box.appendChild(campoTexto({label:'Descrição', valor:item.descricao, placeholder:'moradia, terreno', onInput:v=>item.descricao=v}));
+      if(!item.titular) item.titular = TITULARES[0];
+      if(!item.uf) item.uf = 'Não sei';
+      const rt = document.createElement('div'); rt.className='row2';
+      rt.appendChild(campoSelect({label:'Titular', valor:item.titular, opcoes:TITULARES, onInput:v=>item.titular=v}));
+      rt.appendChild(campoSelect({label:'UF onde fica', valor:item.uf, opcoes:UFS,
+        hint:'a regra de transmissão do imóvel é a do estado dele', onInput:v=>item.uf=v}));
+      box.appendChild(rt);
       box.appendChild(campoTexto({label:'Valor estimado hoje', money:true, valor:item.valor, onInput:v=>item.valor=v}));
       box.appendChild(segmentado({label:'Tem financiamento', valor:item.temFinanciamento,
         opcoes:[{v:true,txt:'Sim'},{v:false,txt:'Não', cls:'no'}], onInput:v=>{item.temFinanciamento=v; renderImoveis(); mudou();}}));
@@ -745,6 +983,17 @@ function montarApp(){
       const sub = document.createElement('div'); sub.className='sub-cond';
       sub.appendChild(campoTexto({label:'Valor estimado', money:true, valor:estado.empresa.valor, onInput:v=>estado.empresa.valor=v}));
       sub.appendChild(campoTexto({label:'Sua participação (%)', num:true, valor:estado.empresa.participacao, onInput:v=>estado.empresa.participacao=v}));
+      sub.appendChild(segmentado({label:'O contrato social tem cláusula para morte de sócio',
+        valor:estado.empresa.clausulaMorte || 'nao_sei',
+        opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'},
+                {v:'nao_li',txt:'Não li o contrato', cls:'dunno'}],
+        hint:'é a cláusula que diz o que acontece com a quota quando um sócio morre',
+        onInput:v=>estado.empresa.clausulaMorte=v}));
+      sub.appendChild(segmentado({label:'Existe procuração outorgada pela própria sociedade',
+        valor:estado.empresa.procuracaoSociedade || 'nao_sei',
+        opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
+        hint:'procuração assinada pela empresa, para alguém seguir assinando por ela',
+        onInput:v=>estado.empresa.procuracaoSociedade=v}));
       c.appendChild(sub);
     }
   }
@@ -763,17 +1012,18 @@ function montarApp(){
     });
   }
 
-  /* -------- 5. Os 7 pilares -------- */
+  /* -------- 5. Os pilares -------- */
   const PILARES = [
     {k:'dividasCaras',  nome:'Dívidas caras quitadas'},
     {k:'reserva',       nome:'Reserva de emergência', extra:'meses'},
     {k:'previdencia',   nome:'Previdência ativa'},
     {k:'seguroVida',    nome:'Seguro de vida', extra:'capital'},
+    {k:'invalidez',     nome:'Cobertura de invalidez'},
     {k:'saude',         nome:'Plano de saúde'},
     {k:'internacional', nome:'Investimento fora do Brasil'},
     {k:'offshore',      nome:'Estrutura offshore'}
   ];
-  bloco(5,'Os sete pilares','O que você já tem hoje', body=>{
+  bloco(5,'Os pilares','O que você já tem hoje', body=>{
     const hint = document.createElement('div'); hint.className='arvore-legenda';
     hint.innerHTML = 'Toque em uma opção por pilar. O que ficar em <b style="color:var(--warn)">não sei</b> vira uma interrogação âmbar no seu desenho, e a gente confirma junto depois.';
     body.appendChild(hint);
@@ -794,6 +1044,15 @@ function montarApp(){
     if(estado.pilares.seguroVida==='tenho'){
       c.appendChild(campoTexto({label:'Seguro de vida: capital segurado', money:true, valor:estado.pilares.seguroCapital,
         hint:'se souber', onInput:v=>estado.pilares.seguroCapital=v}));
+      c.appendChild(segmentado({label:'Seguro de vida: beneficiários indicados na apólice',
+        valor:estado.pilares.seguroBeneficiarios || 'nao_sei',
+        opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
+        hint:'com beneficiário indicado, o capital chega direto a quem você escolheu',
+        onInput:v=>{ estado.pilares.seguroBeneficiarios=v; renderPilarExtra(); mudou(); }}));
+      if(estado.pilares.seguroBeneficiarios==='sim'){
+        c.appendChild(campoTexto({label:'Quem está indicado', valor:estado.pilares.seguroBeneficiariosQuem,
+          placeholder:'opcional', onInput:v=>estado.pilares.seguroBeneficiariosQuem=v}));
+      }
     }
   }
 
@@ -802,7 +1061,11 @@ function montarApp(){
     {k:'testamento', q:'Tem testamento?',                                   chip:'Testamento'},
     {k:'inventario', q:'Algum inventário em andamento na família?',         chip:'Inventário na família'},
     {k:'doacoes',    q:'Já fez doações em vida?',                           chip:'Doações em vida',
-     hint:'imóvel, participação, dinheiro relevante'}
+     hint:'imóvel, participação, dinheiro relevante'},
+    {k:'doacaoPlanejada', q:'Pretende doar parte do patrimônio em vida?',   chip:'Doação em vida planejada',
+     hint:'mesmo que ainda seja só uma intenção, sem data'},
+    {k:'herancaEsperada', q:'Espera receber herança relevante?',            chip:'Herança esperada',
+     hint:'só o que muda o tamanho do seu plano'}
   ];
   bloco(6,'Sucessão','O que já está encaminhado para quem fica', body=>{
     SUCESSAO.forEach(s=>{
@@ -820,6 +1083,14 @@ function montarApp(){
     SUCESSAO.forEach(s=>{
       const c = $('#sucNota-'+s.k); if(!c) return; c.innerHTML='';
       if(estado.sucessao[s.k]==='sim'){
+        if(s.k==='testamento'){
+          const r = document.createElement('div'); r.className='row2';
+          r.appendChild(campoTexto({label:'Feito em que ano', num:true, valor:estado.sucessao.testamentoAno,
+            hint:'quatro dígitos', onInput:v=>estado.sucessao.testamentoAno=v}));
+          r.appendChild(campoSelect({label:'Tipo', valor:estado.sucessao.testamentoTipo || 'não sei',
+            opcoes:['público','particular','não sei'], onInput:v=>estado.sucessao.testamentoTipo=v}));
+          c.appendChild(r);
+        }
         c.appendChild(campoTexto({label:'Se quiser, conta em uma linha, sem detalhe',
           valor:estado.sucessao.notas[s.k], placeholder:'opcional',
           onInput:v=>estado.sucessao.notas[s.k]=v}));
@@ -858,6 +1129,7 @@ function montarApp(){
   }
   function desenharArvore(){
     atualizarSobra();
+    atualizarAvisosMetas();
     const a = calcArvore();
     const org = $('#org'); if(!org) return;
     let folhasBr = '';
@@ -921,12 +1193,14 @@ function montarApp(){
     function montarPayload(){
       const a = calcArvore();
       const hoje = new Date().toISOString().slice(0,10);
+      // 2026-09: a lista estruturada sai sempre do mesmo texto livre, para as duas nunca discordarem
+      estado.familia.dependentesIdades = idadesDeclaradas(estado.familia.idadesDependentes);
       return {
         versao: estado.versao,
         gerado_em: hoje,
         familia: estado.familia,
         regime_bens: estado.familia.regimeBens || "",
-        objetivo: estado.objetivo,
+        objetivo: objetivoPayload(),
         renda_custo: {
           renda_titular: estado.rendaCusto.rendaMembro1,
           renda_conjuge: estado.rendaCusto.rendaMembro2,
@@ -935,12 +1209,19 @@ function montarApp(){
         },
         irpf: {
           modelo: estado.irpf.modelo,
-          renda_bruta_anual: estado.irpf.rendaBrutaAnual
+          renda_bruta_anual: estado.irpf.rendaBrutaAnual,
+          modelo_conjuge: estado.irpf.modeloConjuge,
+          renda_bruta_anual_conjuge: estado.irpf.rendaBrutaAnualConjuge,
+          dependentes: estado.irpf.dependentes
         },
         sucessao: {
           testamento: estado.sucessao.testamento,
+          testamento_ano: anoDeclarado(estado.sucessao.testamentoAno),
+          testamento_tipo: estado.sucessao.testamentoTipo || 'não sei',
           inventario: estado.sucessao.inventario,
           doacoes: estado.sucessao.doacoes,
+          doacao_planejada: estado.sucessao.doacaoPlanejada,
+          heranca_esperada: estado.sucessao.herancaEsperada,
           notas: estado.sucessao.notas
         },
         arvore: {
@@ -948,6 +1229,7 @@ function montarApp(){
           imoveis: estado.imoveis,
           empresa: estado.empresa,
           dividas: estado.dividas,
+          contingencias: estado.contingencias,
           resumo: { bruto: a.bruto, dividas: a.dividaTotal, liquido: a.liquido }
         },
         pilares: estado.pilares
