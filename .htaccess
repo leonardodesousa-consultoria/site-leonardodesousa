@@ -62,8 +62,8 @@ RewriteRule ^descadastro/?$ https://luana-backend-production.up.railway.app/desc
 # entrou na live de quem faltou, ou seja, separa o T4 do T5.
 RewriteRule ^aula/gravacao/([A-Za-z0-9_-]{6,64})/?$ /aula-gravacao.html [L]
 RewriteRule ^aula/gravacao/?$ /aula-gravacao.html [L]
-RewriteRule ^aula/([A-Za-z0-9_-]{6,64})/?$ https://www.youtube.com/@leonardopdesousa [R=302,QSA,L]
-RewriteRule ^aula/?$ https://www.youtube.com/@leonardopdesousa [R=302,QSA,L]
+RewriteRule ^aula/([A-Za-z0-9_-]{6,64})/?$ https://www.youtube.com/live/1ZrQpatNjIE [R=302,QSA,L]
+RewriteRule ^aula/?$ https://www.youtube.com/live/1ZrQpatNjIE [R=302,QSA,L]
 
 # 1e) O clique para a Luana passa pelo dominio antes de ir para o WhatsApp.
 #
