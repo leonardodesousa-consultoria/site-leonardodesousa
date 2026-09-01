@@ -34,6 +34,57 @@ RewriteRule ^raio-x/pdf/([A-Za-z0-9-]+)/?$ https://luana-backend-production.up.r
 # que a rota /descadastro tambem atende, lendo o token da query.
 RewriteRule ^descadastro/?$ https://luana-backend-production.up.railway.app/descadastro [R=302,QSA,L]
 
+# 1d) Live de 17/09, campanha 2026-09-live-internacional.
+# Enderecos fixos no dominio para os botoes de URL dos templates T3, T4 e T5 e
+# para o link dos cinco e-mails do Resend. A URL do botao de template congela na
+# aprovacao da Meta e editar template aprovado custa nova analise; este redirect
+# nao congela. Quando o evento no YouTube existir, muda so aqui, num lugar so.
+#
+# 302 e nao 301: o destino muda pelo menos duas vezes (canal, depois evento,
+# depois gravacao) e 301 fica em cache no navegador de quem ja clicou.
+# QSA preserva parametro de origem quando houver.
+#
+# A ORDEM DESTAS QUATRO LINHAS IMPORTA. As duas de /aula/gravacao precisam vir
+# antes da regra de identificador da live, senao "gravacao" e lido como se fosse
+# um identificador e a pagina nunca e servida.
+#
+# /aula/gravacao NAO e redirect: e reescrita interna para a pagina propria, que
+# leva o video embutido, o resumo das tres contas e um destino unico. O arquivo
+# mora na raiz, aula-gravacao.html, de proposito: criar um diretorio /aula de
+# verdade mudaria o comportamento das regras 2 e 3 logo abaixo.
+#
+# As variantes com identificador por pessoa existem para o botao do T3 e para os
+# do T4 e T5, e HOJE NAO TEM QUEM AS ALIMENTE: os templates foram submetidos com
+# uma variavel so, o primeiro nome, e botao de URL fixo. Enquanto isso nao mudar,
+# nenhum acesso chega com identificador e o que se mede e volume, nao pessoa.
+# As duas saidas, com o custo de cada uma, estao no comentario da pagina.
+# Ter identificador e o pre-requisito do item F6 do fluxo v7, que separa quem
+# entrou na live de quem faltou, ou seja, separa o T4 do T5.
+RewriteRule ^aula/gravacao/([A-Za-z0-9_-]{6,64})/?$ /aula-gravacao.html [L]
+RewriteRule ^aula/gravacao/?$ /aula-gravacao.html [L]
+RewriteRule ^aula/([A-Za-z0-9_-]{6,64})/?$ https://www.youtube.com/@leonardosousa [R=302,QSA,L]
+RewriteRule ^aula/?$ https://www.youtube.com/@leonardosousa [R=302,QSA,L]
+
+# 1e) O clique para a Luana passa pelo dominio antes de ir para o WhatsApp.
+#
+# POR QUE, e este e o ponto: o evento de clique no navegador so dispara para
+# quem aceitou cookies, entao quem recusa fica invisivel. Passando por aqui, o
+# clique vira uma linha no log de acesso do Apache: do lado do servidor, sem
+# cookie, sem consentimento no caminho, e vale para 100% de quem clica.
+# DEPENDENCIA A CONFERIR: isso so vira numero se o log de acesso da KingHost
+# estiver acessivel no painel. Se nao estiver, esta regra nao mede nada e o
+# unico dado continua sendo o evento parcial do navegador.
+#
+# O numero do WhatsApp mora AQUI e em nenhum outro lugar do site. Mudou o
+# numero, muda uma linha. A pagina nao carrega numero nenhum.
+#
+# A variante com identificador injeta o ref no fim do texto da mensagem, que e
+# a unica forma de a Luana ligar a conversa a uma pessoa. Ela so entra em uso
+# quando existir quem emita o identificador, ver o comentario da pagina.
+# %0A e quebra de linha, %20 e espaco: o texto ja vai codificado para a URL.
+RewriteRule ^aula/ir/([A-Za-z0-9_-]{6,64})/?$ https://wa.me/554488239993?text=Assisti%20a%20aula%20sobre%20dinheiro%20fora%20do%20Brasil%20e%20quero%20entender%20a%20minha%20exposi%C3%A7%C3%A3o.%0Aref%20$1 [R=302,L]
+RewriteRule ^aula/ir/?$ https://wa.me/554488239993?text=Assisti%20a%20aula%20sobre%20dinheiro%20fora%20do%20Brasil%20e%20quero%20entender%20a%20minha%20exposi%C3%A7%C3%A3o. [R=302,L]
+
 # 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]

@@ -224,6 +224,13 @@ a{ color:inherit; }
   .sub-card .btn{ width:100%; }
   .footer-top{ grid-template-columns:1fr; }
 }
+
+/* Redes sociais no rodape. Decisao de 01/09/2026: sempre presentes, em todas
+   as paginas. Ficam no rodape e nao perto de botao de acao, para nao competir
+   com o destino da pagina. */
+.social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
+.social a{ text-decoration:none; color:#b8c2bd; border-bottom:1px solid var(--line-deep); padding-bottom:2px; }
+.social a:hover{ color:var(--on-deep); border-bottom-color:var(--accent-br); }
 </style>
 
 <!-- SEO / social (portado do Replit) -->
@@ -443,6 +450,12 @@ a{ color:inherit; }
         <div class="fb-name">Leonardo Sousa</div>
         <div class="fb-role">Consultor Patrimonial</div>
         <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      <div class="social">
+        <a href="https://www.instagram.com/leonardodesousa/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/leonardopsousa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@leonardosousa" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://leonardodesousa.substack.com/" target="_blank" rel="noopener">Substack</a>
+      </div>
       </div>
       <div class="footer-col">
         <h4>Navegar</h4>

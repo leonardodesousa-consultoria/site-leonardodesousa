@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gravação da aula · Dinheiro fora do Brasil · Leonardo Sousa</title>
+<meta name="description" content="A gravação da aula de 17 de setembro de 2026 sobre o custo de ter dinheiro fora do Brasil: o que se paga para sair, o que se paga todo ano e o que a família paga depois.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://leonardodesousa.com.br/aula/gravacao">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:title" content="Dinheiro fora do Brasil: as três contas que ninguém soma">
+<meta property="og:description" content="A gravação da aula de 17 de setembro de 2026: o que se paga para tirar dinheiro do Brasil, o que se paga todo ano, e o que a família paga depois.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leonardodesousa.com.br/aula/gravacao">
+<meta property="og:image" content="https://leonardodesousa.com.br/opengraph.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Dinheiro fora do Brasil: as três contas que ninguém soma">
+<meta name="twitter:description" content="A gravação da aula de 17 de setembro de 2026: o que se paga para tirar dinheiro do Brasil, o que se paga todo ano, e o que a família paga depois.">
+<meta name="twitter:image" content="https://leonardodesousa.com.br/opengraph.jpg">
+
+<!-- ============================================================
+     GRAVACAO DA AULA DE 17/09/2026 · campanha 2026-09-live-internacional
+
+     Servida em /aula/gravacao e em /aula/gravacao/<identificador> por reescrita
+     interna no .htaccess, bloco 1d. O arquivo mora na raiz de proposito: criar
+     um diretorio /aula de verdade mudaria o comportamento das regras 2 e 3.
+
+     Destino dos botoes de URL dos templates T4 e T5 do WhatsApp e do link dos
+     e-mails live-int-04 e live-int-05.
+
+     ANTES DE PUBLICAR, DOIS ITENS:
+     1. Trocar VIDEO_ID_AQUI pelo id do video da gravacao. Enquanto o valor for
+        o sentinela, a pagina mostra o estado "ainda nao publicada" em vez de um
+        player quebrado.
+     2. A pagina e peca publica: passa por vendas-compliance-cvm antes do deploy.
+
+     MEDICAO, E O LIMITE PRECISA SER LIDO ANTES DE QUALQUER VERBA ENTRAR:
+     - VOLUME, isso funciona hoje: o CTA aponta para /aula/ir, que passa pelo
+       dominio antes do WhatsApp. Cada clique vira linha no log do Apache, para
+       quem aceita e para quem recusa cookie. Depende de o log da KingHost estar
+       acessivel no painel, o que ainda nao foi conferido.
+     - PESSOA, isso NAO funciona hoje: ninguem emite o identificador por pessoa.
+       T4 e T5 foram submetidos com uma variavel so, o primeiro nome, e botao de
+       URL fixo. Ver o comentario do script, que detalha as duas saidas.
+     - O evento de pixel e camada extra e so cobre quem aceitou cookies.
+
+     Sistema de design herdado do index.html: Lora + Inter, editorial claro.
+     Cor de texto sempre solida, nunca rgba, conforme design.json.
+     ============================================================ -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#f5f5f0; --paper:#ffffff;
+  --ink:#0a1914; --ink2:#2d4a3e; --ink3:#2d3748;
+  --accent:#1fa86a; --accent-br:#3ecf8e;
+  /* Verde escurecido, usado SO em texto pequeno sobre fundo claro: rotulo de
+     secao e numeracao da lista. O #1fa86a do resto do site rende 2,8:1 sobre
+     #f5f5f0, abaixo do minimo de 4,5:1. Este rende 4,57:1. O verde da marca
+     continua onde o contraste nao e problema: botao, barra, fundo escuro. */
+  --accent-ink:#1a7f52;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-soft:#16302a; --on-deep:#ffffff; --on-deep-soft:#c9d6cf; --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora', Georgia, 'Times New Roman', serif;
+  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --wrap:1000px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.2rem, 7vw, 5.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
+  /* O banner de cookie e fixo no rodape. Sem esta folga ele cobre o unico
+     destino da pagina no celular, que e o pior lugar possivel para cobrir. */
+  padding-bottom:190px; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+.wrap{ max-width:var(--wrap); margin:0 auto; padding-left:var(--pad-x); padding-right:var(--pad-x); }
+
+/* HEADER enxuto. A pagina tem um destino de conversao so, entao o cabecalho nao
+   carrega botao de acao concorrente. A marca continua clicavel para a home,
+   que e navegacao e nao disputa com o CTA. */
+.hdr{ border-bottom:1px solid var(--line-soft); background:var(--bg); }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 0; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; letter-spacing:-.01em; }
+.wm span{ font-family:var(--sans); font-weight:500; font-size:.78rem; color:var(--ink3); }
+.hdr-date{ font-family:var(--sans); font-size:.76rem; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--ink3); }
+
+.eyebrow{ display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:16px; }
+.eyebrow.on-deep{ color:var(--accent-br); }
+
+/* HERO */
+.hero{ padding:clamp(2.6rem,6vw,4.2rem) 0 clamp(1.6rem,3vw,2.2rem); }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.08;
+  font-size:clamp(2.05rem, 5.2vw, 3.35rem); max-width:20ch; }
+.hero-sub{ margin-top:20px; font-size:clamp(1.02rem,1.9vw,1.16rem); color:var(--ink2); max-width:60ch; }
+
+/* VIDEO */
+.video-sec{ padding-bottom:var(--sec-y); }
+.video-frame{ position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden;
+  background:var(--deep); border:1px solid var(--line); }
+.video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+.video-espera{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
+  gap:14px; text-align:center; padding:28px; color:var(--on-deep); }
+.video-espera b{ font-family:var(--serif); font-size:1.25rem; font-weight:600; }
+.video-espera p{ font-size:.95rem; color:var(--on-deep-soft); max-width:44ch; }
+.video-nota{ margin-top:14px; font-size:.88rem; color:var(--ink3); }
+
+/* SECOES claras */
+.sec{ padding:var(--sec-y) 0; }
+.sec-paper{ background:var(--paper); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); }
+.h2{ font-family:var(--serif); font-weight:600; letter-spacing:-.015em; line-height:1.16;
+  font-size:clamp(1.5rem,3.2vw,2.05rem); max-width:24ch; }
+.contas{ list-style:none; margin-top:34px; display:grid; gap:26px; }
+.contas li{ display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start;
+  padding-bottom:26px; border-bottom:1px solid var(--line-soft); }
+.contas li:last-child{ border-bottom:none; padding-bottom:0; }
+.contas .n{ font-family:var(--serif); font-size:1.5rem; font-weight:600; color:var(--accent-ink); line-height:1.1; }
+.contas .t b{ display:block; font-family:var(--serif); font-size:1.12rem; font-weight:600; margin-bottom:7px; }
+.contas .t{ color:var(--ink2); }
+
+.fora{ max-width:62ch; }
+.fora p{ margin-top:16px; color:var(--ink2); }
+
+/* BANDA ESCURA COM O UNICO DESTINO */
+.book{ background:var(--deep); color:var(--on-deep); }
+/* Assinatura com rosto. Fica ACIMA do rotulo, alinhada no mesmo trilho de
+   113px de todo o resto: o rosto trabalha a familiaridade no momento da
+   decisao sem quebrar o alinhamento nem abrir uma segunda saida. */
+.assina{ display:flex; align-items:center; gap:16px; margin-bottom:26px; }
+.assina img{ width:96px; height:112px; object-fit:cover; object-position:center top; border-radius:8px; }
+.assina b{ display:block; font-family:var(--serif); font-size:1.05rem; font-weight:600; }
+.assina span{ display:block; font-size:.84rem; color:var(--on-deep-soft); margin-top:2px; }
+.assina-vazio{ width:96px; height:112px; border-radius:8px; background:var(--deep-soft); }
+.book .h2{ color:var(--on-deep); }
+.book .lead{ margin-top:18px; color:var(--on-deep-soft); max-width:58ch; }
+.btn{ display:inline-flex; align-items:center; gap:11px; font-family:var(--sans); font-weight:600; font-size:1rem;
+  padding:17px 30px; border-radius:4px; text-decoration:none; background:var(--accent-br); color:#0a1914;
+  transition:opacity .15s; margin-top:28px; }
+.btn:hover{ opacity:.88; }
+.btn:focus-visible, a:focus-visible, button:focus-visible{ outline:2px solid var(--accent-br); outline-offset:3px; }
+.book-nota{ margin-top:18px; font-size:.92rem; color:var(--on-deep-soft); max-width:58ch; }
+.disc{ margin-top:30px; padding-top:18px; border-top:1px solid var(--line-deep); font-size:.84rem; color:var(--on-deep-soft); max-width:70ch; }
+
+/* RODAPE */
+.footer{ background:var(--bg); padding:52px 0 40px; border-top:1px solid var(--line-soft); }
+.footer-brand .fb-name{ font-family:var(--serif); font-size:1.1rem; font-weight:600; }
+.footer-brand .fb-role{ font-size:.82rem; color:var(--ink3); margin-top:2px; }
+.footer-brand p{ margin-top:12px; font-size:.9rem; color:var(--ink3); max-width:46ch; }
+/* Redes no RODAPE, e nao perto do botao, de proposito: aqui elas nao disputam
+   com o destino unico da pagina, que e o que a campanha esta pagando. */
+.social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
+.social a{ text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; color:var(--ink3); }
+.social a:hover{ border-bottom-color:var(--accent-ink); color:var(--ink); }
+.footer-legal{ margin-top:30px; padding-top:18px; border-top:1px solid var(--line-soft); }
+.footer-legal p{ font-size:.8rem; color:var(--ink3); }
+.footer-legal p + p{ margin-top:7px; }
+.footer-legal a{ text-decoration:underline; }
+
+@media(max-width:640px){
+  .contas li{ grid-template-columns:1fr; gap:8px; }
+  .hdr-date{ display:none; }
+}
+
+/* Cookie banner (LGPD) */
+.ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
+.ck-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ck-tx{flex:1;min-width:220px}
+.ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.ck-tx p{font-family:var(--sans);font-size:13px;color:var(--ink3);line-height:1.6}
+.ck-tx a{color:var(--accent-ink);text-decoration:underline}
+.ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
+.ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.ck-no{background:transparent;border:1.5px solid var(--line);color:var(--ink3)}
+.ck-ok{background:var(--deep);color:#ffffff;border:none}
+.ck-no:hover,.ck-ok:hover{opacity:.82}
+</style>
+</head>
+<body>
+
+<header class="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <span class="hdr-date">Aula de 17 de setembro de 2026</span>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">A gravação</span>
+    <h1 class="h1">Dinheiro fora do Brasil: as três contas que ninguém soma</h1>
+    <p class="hero-sub">Quatro blocos, uma situação acompanhada desde o envio do dinheiro até a sucessão. A gravação está aqui embaixo.</p>
+  </div>
+</section>
+
+<section class="video-sec">
+  <div class="wrap">
+    <div class="video-frame" id="videoFrame" data-video="VIDEO_ID_AQUI">
+      <div class="video-espera" id="videoEspera">
+        <b>A gravação ainda não foi publicada.</b>
+        <p>Ela entra aqui logo depois da aula. Se você chegou antes, é só voltar a este mesmo endereço.</p>
+      </div>
+    </div>
+    <p class="video-nota">O bloco de perguntas do fim não entra na gravação. Ele só existiu ao vivo.</p>
+  </div>
+</section>
+
+<section class="sec sec-paper">
+  <div class="wrap">
+    <span class="eyebrow">O que a aula cobriu</span>
+    <h2 class="h2">Três contas que raramente aparecem juntas</h2>
+    <ul class="contas">
+      <li>
+        <span class="n num">01</span>
+        <span class="t"><b>O que custa sair</b>
+        A finalidade da operação, declarada no contrato de câmbio, decide se a alíquota de IOF é de <span class="num">3,50%</span> ou de <span class="num">1,10%</span>. Não é escolha de quem envia. A finalidade real da operação é que define, e quem classifica é a instituição. O que dá para fazer é perguntar antes de mandar.</span>
+      </li>
+      <li>
+        <span class="n num">02</span>
+        <span class="t"><b>O que se paga todo ano</b>
+        O rendimento de aplicação financeira no exterior é tributado a <span class="num">15%</span>, na declaração anual, desde 2024. Não existe cobrança sobre valorização que ainda não foi realizada. O imposto retido lá fora entra como crédito, limitado ao imposto devido aqui.</span>
+      </li>
+      <li>
+        <span class="n num">03</span>
+        <span class="t"><b>O que a família paga depois</b>
+        Um fundo de índice domiciliado nos Estados Unidos é, para a lei americana, um bem americano, e o que decide isso é quem emitiu o papel, não onde ele está guardado. Para quem não é residente lá, o imposto sucessório americano começa a incidir acima de <span class="num">60 mil</span> dólares. No Brasil, o Paraná cobra ITCMD de <span class="num">4%</span> sobre bens móveis de quem era domiciliado no estado. É imposto de transmissão, não é anual, e o alcance retroativo ainda vai ser discutido.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="fora">
+      <span class="eyebrow">O que ficou de fora</span>
+      <h2 class="h2">Duas coisas não couberam no tempo</h2>
+      <p>Como se identifica o domicílio de um veículo, e como funciona o prazo quando um resgate já aconteceu.</p>
+      <p>As duas dependem inteiramente da situação de cada um. Por isso são assunto de reunião, com contrato, e não de página nem de mensagem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec book">
+  <div class="wrap">
+    <div class="assina">
+      <img src="/foto-leo.webp" alt="Leonardo Sousa, Consultor Patrimonial" width="96" height="112" loading="lazy"
+           onerror="this.outerHTML='&lt;div class=\'assina-vazio\' aria-hidden=\'true\'&gt;&lt;/div&gt;'">
+      <div>
+        <b>Leonardo Sousa</b>
+        <span>Consultor Patrimonial</span>
+      </div>
+    </div>
+    <span class="eyebrow on-deep">O próximo passo é seu</span>
+    <h2 class="h2">As três contas estão na gravação. Falta saber quais alcançam você.</h2>
+    <p class="lead">São quatro perguntas no WhatsApp, respondidas por escrito, no seu tempo. No fim delas você sabe se faz sentido marcar uma conversa comigo. Quem conduz as quatro é a Luana, minha assistente.</p>
+    <a class="btn" id="ctaLuana" href="/aula/ir" target="_blank" rel="noopener">Responda as quatro perguntas</a>
+    <p class="book-nota">A Luana não lê a situação de ninguém por mensagem. Ela registra o que você contar e organiza a conversa. Enquadrar o seu caso, dizer qual das três contas alcança você, é o trabalho da reunião, com contrato.</p>
+    <p class="disc">As informações têm caráter educativo e não constituem recomendação de investimento nem parecer jurídico ou tributário. Orientação sobre a sua situação exige análise individual, em relação de consultoria formalizada em contrato.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-brand">
+      <div class="fb-name">Leonardo Sousa</div>
+      <div class="fb-role">Consultor Patrimonial</div>
+      <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      <div class="social">
+        <a href="https://www.instagram.com/leonardodesousa/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/leonardopsousa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@leonardosousa" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://leonardodesousa.substack.com/" target="_blank" rel="noopener">Substack</a>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <p>Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p>&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="/termos">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <h4>Utilizamos cookies</h4>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* Player: so monta o iframe quando existe id de verdade. Enquanto o valor for o
+   sentinela, fica o estado de espera, que e honesto. Player quebrado nao. */
+(function(){
+  var el=document.getElementById('videoFrame');
+  if(!el) return;
+  var id=el.getAttribute('data-video');
+  if(!id || id==='VIDEO_ID_AQUI') return;
+  var espera=document.getElementById('videoEspera');
+  if(espera) espera.remove();
+  var f=document.createElement('iframe');
+  f.src='https://www.youtube-nocookie.com/embed/'+encodeURIComponent(id);
+  f.title='Gravação da aula de 17 de setembro de 2026';
+  f.allow='accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share';
+  f.setAttribute('allowfullscreen','');
+  f.setAttribute('referrerpolicy','strict-origin-when-cross-origin');
+  el.appendChild(f);
+})();
+
+/* IDENTIFICADOR POR PESSOA, E O ESTADO REAL DELE HOJE
+   A URL pode chegar como /aula/gravacao/<identificador>. O .htaccess preserva
+   esse pedaco e a pagina o le aqui. Havendo identificador, o CTA passa a
+   apontar para /aula/ir/<identificador>, e o .htaccess injeta o ref no texto da
+   mensagem. E a unica forma de a Luana ligar a conversa a uma pessoa sem
+   cookie: o clique-para-conversar nao carrega nada alem do texto.
+
+   HOJE NINGUEM EMITE ESSE IDENTIFICADOR, e isso precisa ser dito sem rodeio:
+   - T4 e T5 foram submetidos a Meta com uma variavel so, o primeiro nome. O
+     botao de URL deles e fixo. Ter identificador por pessoa exige ressubmeter
+     os templates com botao de URL dinamico, e a URL congela na aprovacao.
+   - Os e-mails live-int-04 e live-int-05 podem carregar link por pessoa se
+     forem enviados montando o link no disparo. O que nao aceita variavel
+     customizada e o conector usado para criar os rascunhos, nao o Resend.
+   Enquanto um dos dois nao emitir, refDaUrl() devolve null para todo mundo, o
+   ref nao existe, e o que se mede e volume, nao pessoa.
+
+   O QUE MEDE HOJE, sem depender de nada disso: o CTA aponta para /aula/ir, que
+   passa pelo dominio antes do WhatsApp. Cada clique vira linha no log do
+   Apache, do lado do servidor, para quem aceita e para quem recusa cookie.
+   O evento de pixel abaixo e camada extra, e so cobre quem aceitou. */
+function refDaUrl(){
+  var m = location.pathname.match(/\/aula\/gravacao\/([A-Za-z0-9_-]{6,64})\/?$/);
+  return m ? m[1] : null;
+}
+(function(){
+  var a=document.getElementById('ctaLuana'); if(!a) return;
+  var ref=refDaUrl();
+  if(ref){
+    a.setAttribute('data-ref', ref);
+    a.setAttribute('href', '/aula/ir/' + encodeURIComponent(ref));
+  }
+  a.addEventListener('click', function(){
+    var d = { ref: ref || 'sem-ref' };
+    if(window.fbq) fbq('trackCustom','CliqueLuanaGravacao', d);
+    if(window.gtag) gtag('event','clique_luana', d);
+  });
+})();
+
+/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function lerConsentimento(){
+  try{ return localStorage.getItem('cookie_consent'); }catch(err){ return null; }
+}
+function loadA(){
+  if(_al) return;
+  var r=lerConsentimento(); if(!r) return;
+  var c; try{ c=JSON.parse(r); }catch(err){ return; }
+  if(!c || (!c.analytics&&!c.marketing)) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+function gravarConsentimento(v){ try{ localStorage.setItem('cookie_consent',JSON.stringify(v)); }catch(err){} }
+function ckOk(){ gravarConsentimento({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()}); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ gravarConsentimento({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()}); document.getElementById('ck').style.display='none'; }
+/* Navegador que bloqueia site data lanca na leitura. Sem o try/catch de
+   lerConsentimento, esta IIFE quebraria e o banner nunca apareceria, que e
+   exatamente o oposto do que a LGPD exige. */
+(function(){ var r=lerConsentimento(); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+</body>
+</html>
