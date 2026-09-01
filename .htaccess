@@ -71,9 +71,18 @@ RewriteRule ^aula/?$ https://www.youtube.com/live/1ZrQpatNjIE [R=302,QSA,L]
 # quem aceitou cookies, entao quem recusa fica invisivel. Passando por aqui, o
 # clique vira uma linha no log de acesso do Apache: do lado do servidor, sem
 # cookie, sem consentimento no caminho, e vale para 100% de quem clica.
-# DEPENDENCIA A CONFERIR: isso so vira numero se o log de acesso da KingHost
-# estiver acessivel no painel. Se nao estiver, esta regra nao mede nada e o
-# unico dado continua sendo o evento parcial do navegador.
+# CONFERIDO EM 01/09/2026, E A RESPOSTA E NAO. A KingHost entrega AWStats, nao
+# log cru, e o AWStats joga resposta 302 em "trafego nao visualizado", que e
+# agregado e nao abre por URL. Prova: /aula/gravacao aparece na lista de URLs
+# porque responde 200; /aula e /aula/ir nao aparecem, apesar de terem sido
+# batidos dezessete vezes no mesmo dia. Log cru tambem nao e alcancavel: o
+# WebFTP pede credencial de FTP e a conta cai dentro de /www.
+#
+# ENTAO ESTE REDIRECT NAO MEDE, e quem mede e outra coisa: o texto fixo que ele
+# monta vira uma linha em luana_traces quando a pessoa envia. Isso pega quem
+# CHEGOU, que e melhor que clique, e deixa desconhecida a diferenca entre
+# clicar e enviar. A regra continua valendo pelos outros dois motivos: o numero
+# mora num lugar so, e a mensagem ja vem escrita.
 #
 # O numero do WhatsApp mora AQUI e em nenhum outro lugar do site. Mudou o
 # numero, muda uma linha. A pagina nao carrega numero nenhum.
