@@ -81,9 +81,16 @@ RewriteRule ^aula/?$ https://www.youtube.com/@leonardosousa [R=302,QSA,L]
 # A variante com identificador injeta o ref no fim do texto da mensagem, que e
 # a unica forma de a Luana ligar a conversa a uma pessoa. Ela so entra em uso
 # quando existir quem emita o identificador, ver o comentario da pagina.
-# %0A e quebra de linha, %20 e espaco: o texto ja vai codificado para a URL.
-RewriteRule ^aula/ir/([A-Za-z0-9_-]{6,64})/?$ https://wa.me/554488239993?text=Assisti%20a%20aula%20sobre%20dinheiro%20fora%20do%20Brasil%20e%20quero%20entender%20a%20minha%20exposi%C3%A7%C3%A3o.%0Aref%20$1 [R=302,L]
-RewriteRule ^aula/ir/?$ https://wa.me/554488239993?text=Assisti%20a%20aula%20sobre%20dinheiro%20fora%20do%20Brasil%20e%20quero%20entender%20a%20minha%20exposi%C3%A7%C3%A3o. [R=302,L]
+#
+# DUAS ARMADILHAS DO APACHE AQUI, as duas pegas em producao em 01/09/2026:
+# 1. Na substituicao, %N e referencia a grupo de RewriteCond, nao percentual.
+#    Sem escapar, %20 virou "0" e %0A virou "A", e o texto chegou destrocado.
+#    Por isso todo percentual vai como \%.
+# 2. Sem a flag NE, o mod_rewrite codifica de novo o que ja esta codificado, e
+#    a cedilha saiu como %25C3%25A7. NE desliga essa segunda codificacao.
+# \%20 e espaco, \%0A e quebra de linha, \%C3\%A7 e c cedilha, \%C3\%A3 e a til.
+RewriteRule ^aula/ir/([A-Za-z0-9_-]{6,64})/?$ https://wa.me/554488239993?text=Assisti\%20a\%20aula\%20sobre\%20dinheiro\%20fora\%20do\%20Brasil\%20e\%20quero\%20entender\%20a\%20minha\%20exposi\%C3\%A7\%C3\%A3o.\%0Aref\%20$1 [R=302,NE,L]
+RewriteRule ^aula/ir/?$ https://wa.me/554488239993?text=Assisti\%20a\%20aula\%20sobre\%20dinheiro\%20fora\%20do\%20Brasil\%20e\%20quero\%20entender\%20a\%20minha\%20exposi\%C3\%A7\%C3\%A3o. [R=302,NE,L]
 
 # 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
