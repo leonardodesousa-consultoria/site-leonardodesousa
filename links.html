@@ -54,8 +54,11 @@ a{ color:inherit; }
 
 /* IDENTIFICAÇÃO */
 .head{ text-align:center; }
-.avatar{ width:104px; height:104px; border-radius:50%; object-fit:cover; margin:0 auto 18px;
-  border:1px solid var(--line); }
+/* foto-leo.webp e o asset canonico da marca, o mesmo das outras paginas, e e
+   retrato de 800x934. No circulo o cover descarta 134px na vertical: com o
+   padrao centralizado o corte encosta no alto da cabeca, entao ancora no topo. */
+.avatar{ width:104px; height:104px; border-radius:50%; object-fit:cover; object-position:50% 0;
+  margin:0 auto 18px; border:1px solid var(--line); }
 .name{ font-family:var(--serif); font-weight:700; font-size:1.62rem; letter-spacing:-.022em; line-height:1.1; }
 .role{ margin-top:7px; font-size:.74rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-ink); }
 .tag{ margin-top:13px; font-size:.97rem; color:var(--ink2); }
@@ -122,7 +125,7 @@ a{ color:inherit; }
 <body>
   <div class="wrap">
     <div class="head">
-      <img class="avatar" src="/avatar.webp" alt="Leonardo Sousa" width="104" height="104">
+      <img class="avatar" src="/foto-leo.webp" alt="Leonardo Sousa, Consultor Patrimonial" width="104" height="104">
       <div class="name">Leonardo Sousa</div>
       <div class="role">Consultor Patrimonial</div>
       <div class="tag">Clareza, não produtos. Processo, não promessas.</div>
