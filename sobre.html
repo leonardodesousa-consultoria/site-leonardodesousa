@@ -271,6 +271,7 @@ a{ color:inherit; }
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://leonardodesousa.com.br/#organizacao",
   "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
   "alternateName": "Leonardo Sousa",
   "url": "https://leonardodesousa.com.br/",
@@ -291,7 +292,11 @@ a{ color:inherit; }
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["FinancialService", "Organization"],
+  "@type": [
+    "FinancialService",
+    "Organization"
+  ],
+  "@id": "https://leonardodesousa.com.br/#organizacao",
   "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
   "alternateName": "Leonardo Sousa",
   "description": "Leonardo Sousa é consultor patrimonial independente especializado em planejamento financeiro para empresários, profissionais liberais e investidores com patrimônio diversificado. Atua nas áreas de liquidez, proteção, investimentos, aposentadoria e sucessão.",
@@ -304,17 +309,95 @@ a{ color:inherit; }
   ],
   "founder": {
     "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
     "name": "Leonardo Sousa",
     "jobTitle": "Consultor Patrimonial",
-    "description": "Graduado em Finanças, Investimentos e Banking pela PUC-RS. Mais de 5 anos de experiência em consultoria patrimonial independente. Atende mais de 60 famílias em todo o Brasil.",
+    "url": "https://leonardodesousa.com.br/sobre"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Brasil"
+  },
+  "serviceType": [
+    "Consultoria Patrimonial Independente",
+    "Planejamento Financeiro",
+    "Consultoria de Investimentos",
+    "Planejamento Sucessório",
+    "Planejamento de Aposentadoria",
+    "Proteção Patrimonial"
+  ],
+  "priceRange": "$$$$"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://leonardodesousa.com.br/sobre#pagina",
+  "url": "https://leonardodesousa.com.br/sobre",
+  "name": "Sobre Leonardo Sousa, consultor patrimonial independente",
+  "inLanguage": "pt-BR",
+  "dateModified": "2026-09-22",
+  "mainEntity": {
+    "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
+    "name": "Leonardo Sousa",
+    "jobTitle": "Consultor Patrimonial",
+    "description": "Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Acompanha há mais de 5 anos o patrimônio de famílias em todo o Brasil, cobrindo liquidez, proteção, investimentos, aposentadoria e sucessão.",
+    "url": "https://leonardodesousa.com.br/sobre",
+    "image": "https://leonardodesousa.com.br/foto-leo.webp",
+    "worksFor": {
+      "@type": "Organization",
+      "@id": "https://leonardodesousa.com.br/#organizacao",
+      "name": "Leonardo Sousa - Consultoria Patrimonial Independente"
+    },
+    "hasCredential": [
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "CEA - Certificação de Especialista em Investimentos ANBIMA",
+        "credentialCategory": "certification",
+        "recognizedBy": {
+          "@type": "Organization",
+          "name": "ANBIMA",
+          "url": "https://www.anbima.com.br/"
+        }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Pós-graduação em Finanças, Banking e Investimentos",
+        "credentialCategory": "degree",
+        "recognizedBy": {
+          "@type": "CollegeOrUniversity",
+          "name": "PUC"
+        }
+      },
+      {
+        "@type": "EducationalOccupationalCredential",
+        "name": "Formação em constituição e governança de holdings patrimoniais",
+        "credentialCategory": "certificate"
+      }
+    ],
+    "award": "Top 25 Global da rede Prudential, Dubai, 2025",
+    "knowsAbout": [
+      "Consultoria patrimonial independente",
+      "Planejamento financeiro",
+      "Planejamento sucessório",
+      "Holding patrimonial",
+      "ITCMD",
+      "Previdência privada (PGBL e VGBL)",
+      "Seguro de vida",
+      "Investimentos no exterior",
+      "Aposentadoria",
+      "Reserva de liquidez"
+    ],
+    "knowsLanguage": "pt-BR",
     "sameAs": [
       "https://www.linkedin.com/in/leonardopsousa/",
-      "https://www.instagram.com/leonardodesousa/"
+      "https://www.instagram.com/leonardodesousa/",
+      "https://leonardodesousa.substack.com/",
+      "https://www.youtube.com/@leonardopdesousa"
     ]
-  },
-  "areaServed": { "@type": "Country", "name": "Brasil" },
-  "serviceType": ["Consultoria Patrimonial Independente","Planejamento Financeiro","Gestão de Investimentos","Planejamento Sucessório","Planejamento de Aposentadoria","Proteção Patrimonial"],
-  "priceRange": "$$$$"
+  }
 }
 </script>
 </head>

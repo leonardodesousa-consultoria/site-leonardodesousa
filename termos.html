@@ -200,6 +200,7 @@ a{ color:inherit; }
 {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://leonardodesousa.com.br/#organizacao",
   "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
   "alternateName": "Leonardo Sousa",
   "url": "https://leonardodesousa.com.br/",
@@ -220,7 +221,11 @@ a{ color:inherit; }
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": ["FinancialService", "Organization"],
+  "@type": [
+    "FinancialService",
+    "Organization"
+  ],
+  "@id": "https://leonardodesousa.com.br/#organizacao",
   "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
   "alternateName": "Leonardo Sousa",
   "description": "Leonardo Sousa é consultor patrimonial independente especializado em planejamento financeiro para empresários, profissionais liberais e investidores com patrimônio diversificado. Atua nas áreas de liquidez, proteção, investimentos, aposentadoria e sucessão.",
@@ -233,16 +238,23 @@ a{ color:inherit; }
   ],
   "founder": {
     "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
     "name": "Leonardo Sousa",
     "jobTitle": "Consultor Patrimonial",
-    "description": "Graduado em Finanças, Investimentos e Banking pela PUC-RS. Mais de 5 anos de experiência em consultoria patrimonial independente. Atende mais de 60 famílias em todo o Brasil.",
-    "sameAs": [
-      "https://www.linkedin.com/in/leonardopsousa/",
-      "https://www.instagram.com/leonardodesousa/"
-    ]
+    "url": "https://leonardodesousa.com.br/sobre"
   },
-  "areaServed": { "@type": "Country", "name": "Brasil" },
-  "serviceType": ["Consultoria Patrimonial Independente","Planejamento Financeiro","Gestão de Investimentos","Planejamento Sucessório","Planejamento de Aposentadoria","Proteção Patrimonial"],
+  "areaServed": {
+    "@type": "Country",
+    "name": "Brasil"
+  },
+  "serviceType": [
+    "Consultoria Patrimonial Independente",
+    "Planejamento Financeiro",
+    "Consultoria de Investimentos",
+    "Planejamento Sucessório",
+    "Planejamento de Aposentadoria",
+    "Proteção Patrimonial"
+  ],
   "priceRange": "$$$$"
 }
 </script>
