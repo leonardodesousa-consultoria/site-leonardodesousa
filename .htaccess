@@ -14,6 +14,9 @@
 
 Options -MultiViews -Indexes
 DirectoryIndex index.html
+# /cartas é página (cartas.html) e também pasta das cartas: sem isto o Apache
+# redireciona /cartas para /cartas/ antes da reescrita. As demais pastas só têm arquivos.
+DirectorySlash Off
 # Acentos do robots.txt e do llms.txt (leitura por agentes de IA)
 AddCharset utf-8 .txt
 RewriteEngine On
