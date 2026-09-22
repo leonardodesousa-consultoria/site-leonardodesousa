@@ -356,6 +356,21 @@ a{ color:inherit; }
 .social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
 .social a{ text-decoration:none; color:#b8c2bd; border-bottom:1px solid var(--line-deep); padding-bottom:2px; }
 .social a:hover{ color:var(--on-deep); border-bottom-color:var(--accent-br); }
+
+/* FAQ (Fase 3 AEO, igual ao da home) */
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 26px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
+.faq .fb a{ color:var(--accent); }
+.faq-data{ margin-top:22px; }
 </style>
 
 <!-- SEO / social (portado do Replit) -->
@@ -434,6 +449,63 @@ a{ color:inherit; }
     "Proteção Patrimonial"
   ],
   "priceRange": "$$$$"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "dateModified": "2026-09-22",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O que eu recebo antes de contratar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A conversa exploratória, sem custo e sem compromisso, para entender o seu momento. Se fizer sentido seguir, o Mapa Patrimonial de uma página, também sem custo, em 48 horas."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que é o Mapa Patrimonial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "É o seu patrimônio desenhado em uma página, do jeito que você contou: o conjunto por geografia de custódia, as dívidas subtraídas e as frentes abertas visíveis. Onde há um número, veio de você. Onde há uma interrogação, ninguém está olhando ainda."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que é o protocolo de queda?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "É o documento que define o que fazer quando o mercado assusta, decidido antes de assustar. Ele é assinado no kick-off, junto com o plano de referência e a política de investimento."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Com que frequência o plano é revisto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No mês, o pulso: o que mudou. No trimestre, a prestação de contas, com cada movimento apontando para o pilar que serve. No ano, o replanejamento, porque a vida muda e o plano acompanha."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Preciso transferir meus investimentos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Não. Seus ativos continuam na instituição que você escolher. O trabalho lê o conjunto e orienta as decisões, e a custódia permanece com você."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que é o organograma patrimonial?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "É o patrimônio inteiro desenhado como uma árvore. A raiz é o patrimônio líquido, bruto menos dívidas. Os galhos são a geografia de custódia, Brasil e Exterior. Cada folha é um ativo, e o nó tracejado é uma frente aberta: uma decisão pendente, não uma ausência."
+      }
+    }
+  ]
 }
 </script>
 </head>
@@ -714,6 +786,41 @@ a{ color:inherit; }
         <p>Não coloco nada na sua carteira para ganhar com isso. O trabalho é conselho, não intermediação. A custódia permanece com você.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============================================================ FAQ (Fase 3 AEO) ============================================================ -->
+<section class="sec" id="faq">
+  <div class="wrap" style="max-width:880px">
+    <span class="eyebrow">Perguntas frequentes</span>
+    <h2 class="stmt" style="margin-top:14px">Perguntas sobre o método.</h2>
+    <div class="faq">
+      <details>
+        <summary>O que eu recebo antes de contratar?</summary>
+        <div class="fb"><p>A conversa exploratória, sem custo e sem compromisso, para entender o seu momento. Se fizer sentido seguir, o Mapa Patrimonial de uma página, também sem custo, em 48 horas.</p></div>
+      </details>
+      <details>
+        <summary>O que é o Mapa Patrimonial?</summary>
+        <div class="fb"><p>É o seu patrimônio desenhado em uma página, do jeito que você contou: o conjunto por geografia de custódia, as dívidas subtraídas e as frentes abertas visíveis. Onde há um número, veio de você. Onde há uma interrogação, ninguém está olhando ainda.</p></div>
+      </details>
+      <details>
+        <summary>O que é o protocolo de queda?</summary>
+        <div class="fb"><p>É o documento que define o que fazer quando o mercado assusta, decidido antes de assustar. Ele é assinado no kick-off, junto com o plano de referência e a política de investimento.</p></div>
+      </details>
+      <details>
+        <summary>Com que frequência o plano é revisto?</summary>
+        <div class="fb"><p>No mês, o pulso: o que mudou. No trimestre, a prestação de contas, com cada movimento apontando para o pilar que serve. No ano, o replanejamento, porque a vida muda e o plano acompanha.</p></div>
+      </details>
+      <details>
+        <summary>Preciso transferir meus investimentos?</summary>
+        <div class="fb"><p>Não. Seus ativos continuam na instituição que você escolher. O trabalho lê o conjunto e orienta as decisões, e a custódia permanece com você.</p></div>
+      </details>
+      <details>
+        <summary>O que é o organograma patrimonial?</summary>
+        <div class="fb"><p>É o patrimônio inteiro desenhado como uma árvore. A raiz é o patrimônio líquido, bruto menos dívidas. Os galhos são a geografia de custódia, Brasil e Exterior. Cada folha é um ativo, e o nó tracejado é uma frente aberta: uma decisão pendente, não uma ausência.</p></div>
+      </details>
+    </div>
+    <p class="micro faq-data">Página atualizada em <time datetime="2026-09-22">22 de setembro de 2026</time>.</p>
   </div>
 </section>
 

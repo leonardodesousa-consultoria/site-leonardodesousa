@@ -40,4 +40,5 @@ jobs:
             **/.github
             **/.github/**
             README.md
+            _molde/**
             .gitignore

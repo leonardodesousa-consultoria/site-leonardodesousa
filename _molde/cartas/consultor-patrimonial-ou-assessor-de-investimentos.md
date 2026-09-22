@@ -1,0 +1,78 @@
+---
+titulo: Consultor patrimonial ou assessor de investimentos: qual a diferença
+slug: consultor-patrimonial-ou-assessor-de-investimentos
+descricao: A diferença está em quem paga, a quem o profissional está vinculado e até onde vai o trabalho. Um guia para comparar os dois modelos e conferir o registro de cada um.
+tema: Método
+publicado: 2026-09-22
+atualizado: 2026-09-22
+resumo: A diferença não está na competência de quem atende. Está em quem paga pelo trabalho, a quem o profissional responde e até onde vai a conversa.
+---
+
+> O assessor de investimentos atua como preposto de uma ou mais corretoras e distribuidoras e, em geral, é remunerado por elas, conforme os produtos e as operações dos clientes. O consultor de valores mobiliários precisa de autorização da CVM para orientar sobre investimentos e, pela regra, não pode receber de terceiros remuneração que comprometa a sua independência. Consultor patrimonial é o nome que muitos consultores usam quando o trabalho vai além da carteira e inclui proteção, aposentadoria e sucessão.
+
+## O assessor de investimentos
+
+O assessor de investimentos é regulado pela Resolução CVM 178, de 2023. Ele atua como preposto de um ou mais intermediários, como corretoras e distribuidoras, diretamente ou por meio de um escritório de assessoria, e precisa de credenciamento em uma entidade autorizada pela CVM.
+
+Na prática, o assessor faz a ponte entre o investidor e as plataformas com que tem contrato: orienta, recomenda investimentos, recebe ordens e acompanha a carteira aberta naquelas instituições. A remuneração costuma vir do intermediário, a partir da receita gerada pelos produtos e pelas operações dos clientes. Por isso o serviço parece gratuito para quem investe: quem paga é a estrutura do produto.
+
+Isso não diz nada sobre a qualidade de um assessor específico. Diz sobre o desenho do modelo, em que a remuneração depende do que entra na carteira e de onde ela está. A própria norma obriga o assessor a descrever como é remunerado quando o cliente pergunta (Resolução CVM 178, art. 23).
+
+## O consultor de valores mobiliários
+
+A consultoria de valores mobiliários é regulada pela Resolução CVM 19, de 2021. Só pode exercer a atividade quem tem autorização da CVM, seja pessoa natural, seja empresa.
+
+O consultor orienta, e as decisões continuam com o cliente: as ordens são dadas por ele, na instituição que escolher, e a norma proíbe o consultor de atuar como procurador do cliente. Pela regra da CVM, o consultor não pode receber de terceiros remuneração que comprometa a sua independência, salvo com investidor profissional que assine um termo de ciência (Resolução CVM 19, art. 18). Na prática, quem paga é o cliente, por uma taxa fixa ou por um percentual sobre o patrimônio acompanhado.
+
+## E o consultor patrimonial?
+
+Consultor patrimonial não é uma categoria da CVM. É o nome de mercado para um trabalho que olha o patrimônio inteiro: reserva de liquidez, proteção da renda, investimentos, aposentadoria e sucessão. A parte de investimentos segue as regras da consultoria de valores mobiliários. As outras frentes, como seguros, previdência e sucessão, costumam envolver advogado e contador quando chega a hora de executar.
+
+## Lado a lado
+
+| | Assessor de investimentos | Consultor de valores mobiliários |
+|---|---|---|
+| Norma da CVM | Resolução CVM 178/2023 | Resolução CVM 19/2021 |
+| Vínculo | Com um ou mais intermediários, como preposto | Com o cliente, sob autorização da CVM |
+| Quem costuma pagar | O intermediário, a partir da receita dos produtos e das operações | O cliente, por taxa fixa ou percentual combinado |
+| Onde ficam os investimentos | Nas instituições com que o assessor mantém contrato | Na instituição que o cliente escolher |
+| Escopo típico | Recomendação e execução dentro dessas plataformas | Orientação sobre a carteira e, no modelo patrimonial, sobre o patrimônio inteiro |
+
+## Como escolher
+
+A pergunta útil não é qual modelo é melhor em abstrato. É qual combina com a decisão que você tem pela frente.
+
+- Se você quer recomendações e execução dentro das plataformas em que já investe, o assessor atende bem.
+- Se você quer ajuda para decidir, com a carteira como consequência de um plano, e prefere que a remuneração de quem orienta não dependa do produto escolhido, o consultor faz mais sentido.
+
+Três perguntas valem para qualquer profissional que você esteja avaliando:
+
+1. Como você é remunerado, e por quem?
+2. Você recebe algum valor de banco, corretora, gestora ou seguradora pelos produtos que eu contratar?
+3. Meus investimentos precisam sair de onde estão?
+
+## Como conferir o registro
+
+Consultores de valores mobiliários autorizados, pessoas ou empresas, aparecem no Cadastro Geral da Central de Sistemas da CVM, no tipo de participante Consultor de Valores Mobiliários. O assessor também aparece nesse cadastro, e o credenciamento dele pode ser confirmado com a entidade credenciadora. Na dúvida, pergunte ao profissional qual é o registro dele e confira.
+
+## Como eu trabalho
+
+Trabalho como consultor patrimonial independente. A remuneração é um fee fixo anual, pago pelo cliente, sem comissão de produto. Os investimentos continuam na instituição que o cliente escolher, e o plano vem antes da carteira. O passo a passo está no [método](/metodo).
+
+## Perguntas frequentes
+
+### Assessor de investimentos cobra do cliente?
+
+Em geral, não de forma direta. A remuneração costuma vir da corretora ou distribuidora, a partir da receita dos produtos e das operações. Por isso o serviço parece gratuito para quem investe. O assessor é obrigado a explicar como é remunerado quando o cliente pergunta.
+
+### Consultor patrimonial é uma profissão regulamentada?
+
+O nome não é uma categoria da CVM. A orientação sobre investimentos que faz parte do trabalho é regulada pela Resolução CVM 19/2021 e exige autorização da CVM.
+
+### Preciso transferir meus investimentos para contratar um consultor?
+
+Não. O consultor orienta, e as ordens continuam sendo dadas pelo cliente, na instituição que ele escolher.
+
+### Posso ter um assessor e um consultor ao mesmo tempo?
+
+Sim. Há quem mantenha a conta com um assessor na plataforma e use um consultor para definir o plano e a alocação. O que importa é saber quem está sendo pago por quem.

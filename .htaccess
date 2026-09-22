@@ -110,6 +110,11 @@ RewriteRule ^guia/ir/([A-Za-z0-9_-]{6,64})/?$ https://wa.me/554488239993?text=Li
 RewriteRule ^guia/ir/?$ https://wa.me/554488239993?text=Li\%20o\%20guia\%20sobre\%20dinheiro\%20fora\%20do\%20Brasil\%20e\%20quero\%20entender\%20a\%20minha\%20exposi\%C3\%A7\%C3\%A3o.\%0Aref\%20guia [R=302,NE,L]
 
 # 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
+# Cartas: /cartas é a página índice (cartas.html) e /cartas/<slug> é a carta.
+# A regra explícita é necessária porque a pasta cartas/ existe e a regra genérica ignora pastas.
+RewriteRule ^cartas/?$ /cartas.html [L]
+RewriteRule ^cartas/([a-z0-9-]+)/?$ /cartas/$1.html [L]
+
 RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
 RewriteRule ^ /%1 [R=301,L]
 
