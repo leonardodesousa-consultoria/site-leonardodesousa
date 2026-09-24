@@ -12,9 +12,12 @@
      Fundo claro dominante, uma banda escura de respiro no CTA final.
      ============================================================ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+</style>
 
 <style>
 /* ============================================================
@@ -27,10 +30,10 @@
 
   --ink:#0a1914;
   --ink2:#2d4a3e;
-  --mut:rgba(10,25,20,.52);
-  --ghost:rgba(10,25,20,.46);
+  --mut:rgba(10,25,20,.64);
+  --ghost:rgba(10,25,20,.60);
 
-  --accent:#1fa86a;
+  --accent:#1fa86a; --accent-tx:#15804f;
   --accent-br:#3ecf8e;
   --amber:#c17a1e;
   --danger:#c0442e;
@@ -76,14 +79,14 @@ a{ color:inherit; }
 .eyebrow{
   display:inline-flex; align-items:center; gap:12px;
   font-family:var(--sans); font-size:.72rem; font-weight:600;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--accent);
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx);
 }
 .eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
 .eyebrow.on-deep{ color:var(--accent-br); }
 .eyebrow.on-deep::before{ background:var(--accent-br); }
 
 .serif{ font-family:var(--serif); }
-.hl{ color:var(--accent); }
+.hl{ color:var(--accent-tx); }
 .hl-deep{ color:var(--accent-br); }
 
 .lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:52ch; }
@@ -107,7 +110,7 @@ a{ color:inherit; }
 
 .tlink{
   display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none;
-  color:var(--accent); border-bottom:1px solid transparent; padding-bottom:2px;
+  color:var(--accent-tx); border-bottom:1px solid transparent; padding-bottom:2px;
   transition:border-color .2s;
 }
 .tlink::after{ content:'\2192'; transition:transform .2s; }
@@ -115,7 +118,7 @@ a{ color:inherit; }
 .tlink:hover::after{ transform:translateX(3px); }
 
 .micro{ font-size:.9rem; color:var(--mut); }
-.micro .tk{ color:var(--accent); font-weight:700; }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
 .micro.on-deep{ color:var(--on-deep-soft); }
 .micro.on-deep .tk{ color:var(--accent-br); }
 
@@ -135,8 +138,8 @@ a{ color:inherit; }
 .wm span{ color:var(--mut); font-weight:500; }
 .nav{ display:flex; align-items:center; gap:2px; }
 .nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
-.nav a.lk:hover{ color:var(--accent); }
-.nav a.lk[aria-current="page"]{ color:var(--accent); }
+.nav a.lk:hover{ color:var(--accent-tx); }
+.nav a.lk[aria-current="page"]{ color:var(--accent-tx); }
 .nav .btn{ margin-left:10px; }
 .burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
 
@@ -158,7 +161,7 @@ a{ color:inherit; }
   display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap;
 }
-.masthead .idx{ color:var(--accent); }
+.masthead .idx{ color:var(--accent-tx); }
 .masthead .sep{ width:1px; height:12px; background:var(--line); }
 .hero-h{ margin-top:clamp(1.4rem,3.2vw,2.4rem); }
 .ghost{
@@ -186,17 +189,17 @@ a{ color:inherit; }
 .acc details{ border-bottom:1px solid var(--line); }
 .acc summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:auto 1fr auto; gap:20px; align-items:baseline; padding:24px 4px; }
 .acc summary::-webkit-details-marker{ display:none; }
-.acc .an{ font-family:var(--serif); font-size:clamp(1.4rem,2.6vw,2rem); font-weight:700; letter-spacing:-.02em; color:var(--accent); line-height:1; }
+.acc .an{ font-family:var(--serif); font-size:clamp(1.4rem,2.6vw,2rem); font-weight:700; letter-spacing:-.02em; color:var(--accent-tx); line-height:1; }
 .acc .at-wrap{ display:flex; flex-direction:column; gap:5px; }
 .acc .at{ font-family:var(--serif); font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:600; color:var(--ink); line-height:1.1; }
 .acc .aw{ font-size:.72rem; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--mut); }
-.acc .plus{ font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; line-height:1; }
+.acc .plus{ font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; line-height:1; }
 .acc details[open] .plus{ transform:rotate(45deg); }
 .acc .ab{ padding:0 4px 26px 62px; }
 .acc .ab p{ color:var(--ink2); line-height:1.6; max-width:60ch; }
 .acc .arec{ margin-top:16px; display:flex; gap:10px; align-items:flex-start; font-size:.95rem; color:var(--ink2);
   background:rgba(31,168,106,.05); border:1px solid rgba(31,168,106,.2); border-radius:6px; padding:12px 15px; max-width:62ch; }
-.acc .arec .k{ color:var(--accent); font-weight:700; white-space:nowrap; }
+.acc .arec .k{ color:var(--accent-tx); font-weight:700; white-space:nowrap; }
 
 /* ============================================================
    7. ÁRVORE DIDÁTICA · Exterior preenchido + offshore aberta
@@ -214,7 +217,7 @@ a{ color:inherit; }
 .dbranches{ display:grid; grid-template-columns:1.6fr 1fr; gap:clamp(1rem,3vw,2.4rem); width:100%; margin-top:22px; align-items:start; }
 .dbranch{ display:flex; flex-direction:column; align-items:center; }
 .dhub{ background:rgba(31,168,106,.06); border:1px solid rgba(31,168,106,.28); border-radius:8px; padding:9px 24px; text-align:center; }
-.dhub .hk{ display:block; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+.dhub .hk{ display:block; font-size:.7rem; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--accent-tx); }
 .dhub .hs{ display:block; font-size:.68rem; color:var(--mut); margin-top:1px; }
 .dleafs{ display:grid; grid-template-columns:1fr 1fr; gap:14px; width:100%; margin-top:22px; }
 .dleafs.one{ grid-template-columns:1fr; }
@@ -229,7 +232,7 @@ a{ color:inherit; }
 .dleaf .dn{ font-size:.8rem; color:var(--ink2); margin-top:6px; line-height:1.4; }
 .dleaf .dn .sub{ color:var(--amber); font-weight:600; }
 .dleaf.wide{ grid-column:1 / -1; }
-.dleaf.ext .dt{ color:var(--accent); }
+.dleaf.ext .dt{ color:var(--accent-tx); }
 .dleaf.divida{ border-color:rgba(192,68,46,.45); background:rgba(192,68,46,.05); }
 .dleaf.divida .dv{ color:var(--danger); }
 .dleaf .etq{ display:inline-block; margin-top:9px; font-size:.64rem; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:var(--danger); border-radius:5px; padding:4px 9px; }
@@ -257,7 +260,7 @@ a{ color:inherit; }
 .cmp-cell.dim{ color:var(--mut); }
 .cmp-head{ background:var(--paper-2); }
 .cmp-head .cmp-cell{ font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; }
-.cmp-head .col-a{ color:var(--accent); }
+.cmp-head .col-a{ color:var(--accent-tx); }
 .cmp-head .col-b{ color:var(--mut); }
 .cmp-key{ font-weight:600; color:var(--ink2); }
 .col-a{ border-left:2px solid rgba(31,168,106,.32); background:rgba(31,168,106,.035); }
@@ -271,7 +274,7 @@ a{ color:inherit; }
    ============================================================ */
 .steps{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:30px; }
 .step{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:26px 24px; }
-.step .sn{ font-family:var(--serif); font-size:.95rem; font-weight:700; color:var(--accent); letter-spacing:.04em; }
+.step .sn{ font-family:var(--serif); font-size:.95rem; font-weight:700; color:var(--accent-tx); letter-spacing:.04em; }
 .step h3{ font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:600; color:var(--ink); margin:12px 0 8px; }
 .step p{ font-size:.94rem; color:var(--ink2); line-height:1.55; }
 
@@ -290,7 +293,7 @@ a{ color:inherit; }
 .fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
 .fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
 .footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
-.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
 .footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
 .footer-col a:hover{ color:var(--on-deep); }
 .footer-legal{ padding-block:26px 40px; }
@@ -303,13 +306,14 @@ a{ color:inherit; }
 /* ============================================================
    11. NAV-DOTS
    ============================================================ */
-.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:13px; }
-.nav-dots a{ width:10px; height:10px; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
-.nav-dots a::after{ content:attr(data-label); position:absolute; right:22px; top:50%; transform:translateY(-50%) translateX(6px);
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:0; }
+.nav-dots a{ width:24px; height:24px; padding:7px; box-sizing:border-box; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:29px; top:50%; transform:translateY(-50%) translateX(6px);
   white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
   padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
 .nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
 .nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+.nav-dots a, .nav-dots a.on{ background-clip:content-box; }
 
 /* ============================================================
    12. REVEAL
@@ -342,7 +346,7 @@ a{ color:inherit; }
   .cmp-head{ display:none; }
   .col-a{ border-left:none; border-top:2px solid rgba(31,168,106,.32); }
   .cmp-cell.dim::before{ content:'A moda do mercado: '; font-weight:700; color:var(--ink2); }
-  .col-a.cmp-mark::before{ content:'A régua do plano: '; display:block; font-weight:700; color:var(--accent); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
+  .col-a.cmp-mark::before{ content:'A régua do plano: '; display:block; font-weight:700; color:var(--accent-tx); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
   .cmp-key{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); }
   .dleaf::before{ display:none; }
   .acc .ab{ padding-left:4px; }
@@ -363,13 +367,13 @@ a{ color:inherit; }
 .faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
   font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
 .faq summary::-webkit-details-marker{ display:none; }
-.faq summary:hover{ color:var(--accent); }
+.faq summary:hover{ color:var(--accent-tx); }
 .faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
 .faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
 .faq .fb{ padding:0 44px 26px 4px; }
 .faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
-.faq .fb a{ color:var(--accent); }
+.faq .fb a{ color:var(--accent-tx); }
 .faq-data{ margin-top:22px; }
 </style>
 
@@ -542,12 +546,12 @@ a{ color:inherit; }
 
 <!-- nav-dots -->
 <nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
-  <a href="#hero" data-label="Início"></a>
-  <a href="#estagios" data-label="Os estágios"></a>
-  <a href="#arvore" data-label="A árvore"></a>
-  <a href="#regua" data-label="A régua do plano"></a>
-  <a href="#remuneracao" data-label="Remuneração"></a>
-  <a href="#conversa" data-label="Conversar"></a>
+  <a href="#hero" data-label="Início" aria-label="Início"></a>
+  <a href="#estagios" data-label="Os estágios" aria-label="Os estágios"></a>
+  <a href="#arvore" data-label="A árvore" aria-label="A árvore"></a>
+  <a href="#regua" data-label="A régua do plano" aria-label="A régua do plano"></a>
+  <a href="#remuneracao" data-label="Remuneração" aria-label="Remuneração"></a>
+  <a href="#conversa" data-label="Conversar" aria-label="Conversar"></a>
 </nav>
 
 <main>
@@ -564,7 +568,7 @@ a{ color:inherit; }
     </div>
     <div class="hero-h">
       <p class="ghost rev">A maioria começa pela carteira: onde alocar agora.</p>
-      <h1 class="h1 rev d1">O plano vem primeiro. A carteira é o <span class="hl">anexo técnico</span>.</h1>
+      <h1 class="h1">O plano vem primeiro. A carteira é o <span class="hl">anexo técnico</span>.</h1>
     </div>
     <p class="lead hero-lead rev d1">Aqui a ordem é outra. Primeiro o plano da sua vida, os cinco pilares, o destino escolhido. A carteira é a consequência de uma decisão que já foi tomada com clareza.</p>
     <div class="anchor rev d2">
@@ -857,14 +861,14 @@ a{ color:inherit; }
       </div>
       </div>
       <div class="footer-col">
-        <h4>Navegar</h4>
+        <p class="fcol-t">Navegar</p>
         <a href="metodo.html">Método</a>
         <a href="plano-exemplo.html">Plano de exemplo</a>
         <a href="cartas.html">Cartas de Vida e Patrimônio</a>
         <a href="sobre.html">Sobre</a>
       </div>
       <div class="footer-col">
-        <h4>Conversar</h4>
+        <p class="fcol-t">Conversar</p>
         <a href="conversa.html">Conversa exploratória</a>
         <a href="/agendar">Agendar conversa</a>
       </div>
@@ -883,7 +887,7 @@ a{ color:inherit; }
 
   var hdr = document.getElementById('hdr');
   var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
-  onScroll();
+  requestAnimationFrame(onScroll);
   window.addEventListener('scroll', onScroll, {passive:true});
 
   var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
@@ -926,7 +930,7 @@ a{ color:inherit; }
 .ck-tx{flex:1;min-width:220px}
 .ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
 .ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
-.ck-tx a{color:var(--accent);text-decoration:underline}
+.ck-tx a{color:var(--accent-tx);text-decoration:underline}
 .ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
 .ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
 .ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}

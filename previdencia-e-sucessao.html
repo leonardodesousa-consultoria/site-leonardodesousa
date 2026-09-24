@@ -23,9 +23,12 @@
      estrutura, design e saídas.
      ============================================================ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+</style>
 <link rel="canonical" href="https://leonardodesousa.com.br/previdencia-e-sucessao">
 <meta property="og:title" content="Previdência e sucessão: o que mudou">
 <meta property="og:description" content="O Supremo afastou o ITCMD sobre VGBL e PGBL. O que a decisão muda na prática.">
@@ -38,8 +41,8 @@
    ============================================================ */
 :root{
   --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
-  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
-  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.64); --ghost:rgba(10,25,20,.60);
+  --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --amber:#c17a1e;
   --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
   --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
   --serif:'Lora', Georgia, 'Times New Roman', serif;
@@ -60,7 +63,7 @@ a{ color:inherit; }
 .col{ max-width:44rem; margin:0 auto; }
 .sec{ padding-block:var(--sec-y); }
 .eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx); }
 .eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
 .eyebrow.on-deep{ color:var(--accent-br); }
 .eyebrow.on-deep::before{ background:var(--accent-br); }
@@ -89,7 +92,7 @@ a{ color:inherit; }
 .wm span{ color:var(--mut); font-weight:500; }
 .nav{ display:flex; align-items:center; gap:2px; }
 .nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s; }
-.nav a.lk:hover{ color:var(--accent); }
+.nav a.lk:hover{ color:var(--accent-tx); }
 .nav .btn{ margin-left:10px; }
 @media (max-width:900px){ .nav .lk{ display:none; } }
 
@@ -99,10 +102,10 @@ a{ color:inherit; }
 .hero{ padding-top:clamp(6.4rem,12vh,8.2rem); padding-bottom:clamp(2rem,4vw,3rem); }
 .masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
-.masthead .idx{ color:var(--accent); }
+.masthead .idx{ color:var(--accent-tx); }
 .h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
   font-size:clamp(2.2rem,4.8vw,3.5rem); margin-top:clamp(1.8rem,3.5vw,2.6rem); }
-.h1 .hl{ color:var(--accent); }
+.h1 .hl{ color:var(--accent-tx); }
 .standfirst{ font-family:var(--serif); font-weight:500; font-size:clamp(1.12rem,2vw,1.36rem); line-height:1.5;
   color:var(--ink2); margin-top:1.2rem; }
 
@@ -139,7 +142,7 @@ a{ color:inherit; }
    ============================================================ */
 .depois{ padding-block:clamp(2.6rem,5vw,3.6rem); }
 .depois p{ color:var(--ink2); line-height:1.7; }
-.depois a{ color:var(--accent); font-weight:600; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
+.depois a{ color:var(--accent-tx); font-weight:600; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s; }
 .depois a:hover{ border-color:var(--accent); }
 .disc-page{ font-size:.88rem; color:var(--mut); line-height:1.6; border-top:1px solid var(--line); padding-top:1.4rem; margin-top:2rem; }
 
@@ -148,7 +151,7 @@ a{ color:inherit; }
 .fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
 .fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
 .footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
-.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
 .footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
 .footer-col a:hover{ color:var(--on-deep); }
 .footer-legal{ padding-block:26px 40px; }
@@ -314,14 +317,14 @@ a{ color:inherit; }
       </div>
       </div>
       <div class="footer-col">
-        <h4>Navegar</h4>
+        <p class="fcol-t">Navegar</p>
         <a href="metodo.html">Método</a>
         <a href="plano-exemplo.html">Plano de exemplo</a>
         <a href="cartas.html">Cartas de Vida e Patrimônio</a>
         <a href="sobre.html">Sobre</a>
       </div>
       <div class="footer-col">
-        <h4>Conversar</h4>
+        <p class="fcol-t">Conversar</p>
         <a href="/live">Live de 27 de agosto</a>
         <a href="/agendar">Agendar conversa</a>
       </div>

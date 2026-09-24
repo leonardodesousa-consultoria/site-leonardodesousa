@@ -13,9 +13,12 @@
      Fundo claro dominante, uma banda escura de respiro no CTA final.
      ============================================================ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+</style>
 
 <style>
 /* ============================================================
@@ -30,11 +33,11 @@
   /* tinta */
   --ink:#0a1914;           /* texto principal                   */
   --ink2:#2d4a3e;          /* texto secundário                  */
-  --mut:rgba(10,25,20,.52);/* muted                             */
-  --ghost:rgba(10,25,20,.46);/* camada fantasma da headline     */
+  --mut:rgba(10,25,20,.64);/* muted                             */
+  --ghost:rgba(10,25,20,.60);/* camada fantasma da headline     */
 
   /* acento e atenção */
-  --accent:#1fa86a;        /* ênfase sobre claro                */
+  --accent:#1fa86a; --accent-tx:#15804f;        /* ênfase sobre claro                */
   --accent-br:#3ecf8e;     /* ênfase sobre escuro               */
   --amber:#c17a1e;         /* frente aberta / estrutura offshore*/
 
@@ -83,14 +86,14 @@ a{ color:inherit; }
 .eyebrow{
   display:inline-flex; align-items:center; gap:12px;
   font-family:var(--sans); font-size:.72rem; font-weight:600;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--accent);
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx);
 }
 .eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
 .eyebrow.on-deep{ color:var(--accent-br); }
 .eyebrow.on-deep::before{ background:var(--accent-br); }
 
 .serif{ font-family:var(--serif); }
-.hl{ color:var(--accent); }
+.hl{ color:var(--accent-tx); }
 .hl-deep{ color:var(--accent-br); }
 
 .lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
@@ -114,7 +117,7 @@ a{ color:inherit; }
 
 .tlink{
   display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none;
-  color:var(--accent); border-bottom:1px solid transparent; padding-bottom:2px;
+  color:var(--accent-tx); border-bottom:1px solid transparent; padding-bottom:2px;
   transition:border-color .2s;
 }
 .tlink::after{ content:'\2192'; transition:transform .2s; }
@@ -123,7 +126,7 @@ a{ color:inherit; }
 .tlink.on-deep{ color:var(--accent-br); }
 
 .micro{ font-size:.9rem; color:var(--mut); }
-.micro .tk{ color:var(--accent); font-weight:700; }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
 .micro.on-deep{ color:var(--on-deep-soft); }
 .micro.on-deep .tk{ color:var(--accent-br); }
 
@@ -143,7 +146,7 @@ a{ color:inherit; }
 .wm span{ color:var(--mut); font-weight:500; }
 .nav{ display:flex; align-items:center; gap:2px; }
 .nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
-.nav a.lk:hover{ color:var(--accent); }
+.nav a.lk:hover{ color:var(--accent-tx); }
 .nav .btn{ margin-left:10px; }
 .burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
 
@@ -166,7 +169,7 @@ a{ color:inherit; }
   display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap;
 }
-.masthead .idx{ color:var(--accent); }
+.masthead .idx{ color:var(--accent-tx); }
 .masthead .sep{ width:1px; height:12px; background:var(--line); }
 .hero-h{ margin-top:clamp(1.4rem,3.2vw,2.4rem); }
 .ghost{
@@ -190,9 +193,9 @@ a{ color:inherit; }
 .proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
 .pitem{ padding:clamp(1.6rem,3vw,2.2rem) clamp(1rem,2.4vw,2rem); position:relative; }
 .pitem + .pitem{ border-left:1px solid var(--line); }
-.pk{ font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent); }
+.pk{ font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx); }
 .pv{ font-family:var(--serif); font-size:clamp(2.1rem,4.4vw,3.1rem); font-weight:700; line-height:1; margin-top:12px; letter-spacing:-.02em; }
-.pv .u{ color:var(--accent); }
+.pv .u{ color:var(--accent-tx); }
 .pl{ font-size:.9rem; color:var(--ink2); margin-top:10px; line-height:1.45; max-width:26ch; }
 
 /* ============================================================
@@ -212,7 +215,7 @@ a{ color:inherit; }
 .cmp-cell.dim{ color:var(--mut); }
 .cmp-head{ background:var(--paper-2); }
 .cmp-head .cmp-cell{ font-weight:700; font-size:.7rem; text-transform:uppercase; letter-spacing:.1em; }
-.cmp-head .col-a{ color:var(--accent); }
+.cmp-head .col-a{ color:var(--accent-tx); }
 .cmp-head .col-b{ color:var(--mut); }
 .cmp-key{ font-weight:600; color:var(--ink2); }
 .col-a{ border-left:2px solid rgba(31,168,106,.32); background:rgba(31,168,106,.035); }
@@ -225,13 +228,13 @@ a{ color:inherit; }
 .acc details{ border-bottom:1px solid var(--line); }
 .acc summary{ list-style:none; cursor:pointer; display:grid; grid-template-columns:auto 1fr auto; gap:20px; align-items:baseline; padding:24px 4px; }
 .acc summary::-webkit-details-marker{ display:none; }
-.acc .an{ font-size:.78rem; font-weight:600; letter-spacing:.14em; color:var(--accent); }
+.acc .an{ font-size:.78rem; font-weight:600; letter-spacing:.14em; color:var(--accent-tx); }
 .acc .at{ font-family:var(--serif); font-size:clamp(1.2rem,2.2vw,1.55rem); font-weight:600; color:var(--ink); }
-.acc .plus{ font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; line-height:1; }
+.acc .plus{ font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; line-height:1; }
 .acc details[open] .plus{ transform:rotate(45deg); }
 .acc .ab{ padding:0 4px 26px 60px; }
 .acc .ab p{ color:var(--ink2); line-height:1.6; max-width:56ch; }
-.acc .ab .tag{ display:inline-block; margin-top:14px; font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--accent); }
+.acc .ab .tag{ display:inline-block; margin-top:14px; font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.12em; color:var(--accent-tx); }
 @media (max-width:560px){ .acc .ab{ padding-left:4px; } }
 
 /* ============================================================
@@ -254,7 +257,7 @@ a{ color:inherit; }
 .cleaf .lp{ font-size:.72rem; color:var(--mut); margin-top:6px; font-weight:600; letter-spacing:.02em; }
 .cleaf .bar{ height:3px; background:var(--line-soft); border-radius:3px; margin-top:11px; overflow:hidden; }
 .cleaf .bar i{ display:block; height:100%; background:var(--accent); border-radius:3px; }
-.cleaf.ext .lk{ color:var(--accent); }
+.cleaf.ext .lk{ color:var(--accent-tx); }
 .cleaf.aberta{ border-style:dashed; border-color:rgba(193,122,30,.55); background:rgba(193,122,30,.045); grid-column:1 / -1; }
 .cleaf.aberta .lk{ color:var(--amber); }
 .cleaf.aberta .lv{ font-size:1.02rem; color:var(--amber); }
@@ -272,12 +275,12 @@ a{ color:inherit; }
 .tst .who::before{ content:''; display:block; width:34px; height:1px; background:var(--line); margin-bottom:14px; }
 .tst .nm{ font-size:.8rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--ink); }
 .tst .rl{ font-size:.85rem; color:var(--ink2); margin-top:5px; }
-.tst .since{ font-size:.76rem; color:var(--accent); margin-top:7px; letter-spacing:.02em; font-weight:600; }
+.tst .since{ font-size:.76rem; color:var(--accent-tx); margin-top:7px; letter-spacing:.02em; font-weight:600; }
 
 .case{ margin-top:26px; display:grid; grid-template-columns:auto 1fr; gap:clamp(1.4rem,4vw,3rem); align-items:center;
   background:var(--paper); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:clamp(1.6rem,4vw,2.4rem); }
 .case-big{ font-family:var(--serif); font-size:clamp(2.4rem,5vw,3.4rem); font-weight:700; color:var(--ink); line-height:1; letter-spacing:-.02em; }
-.case-big .u{ color:var(--accent); }
+.case-big .u{ color:var(--accent-tx); }
 .case-lab{ font-size:.78rem; color:var(--mut); margin-top:8px; text-transform:uppercase; letter-spacing:.1em; font-weight:600; }
 .case-txt{ color:var(--ink2); line-height:1.62; }
 .case-txt b{ color:var(--ink); font-weight:600; }
@@ -288,7 +291,7 @@ a{ color:inherit; }
 .letters{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(1.4rem,3.5vw,2.6rem); margin-top:24px; }
 .lcard{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:26px 26px 24px; display:flex; flex-direction:column; transition:transform .3s, box-shadow .3s, border-color .3s; }
 .lcard:hover{ transform:translateY(-4px); box-shadow:0 16px 40px rgba(10,25,20,.1); border-color:rgba(31,168,106,.4); }
-.lcard .lc-meta{ font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--accent); }
+.lcard .lc-meta{ font-size:.72rem; font-weight:600; text-transform:uppercase; letter-spacing:.14em; color:var(--accent-tx); }
 .lcard h3{ font-family:var(--serif); font-size:clamp(1.2rem,2.2vw,1.5rem); font-weight:600; color:var(--ink); margin:14px 0 12px; line-height:1.14; letter-spacing:-.01em; }
 .lcard p{ color:var(--ink2); font-size:.95rem; line-height:1.55; margin-bottom:20px; }
 .lcard .tlink{ margin-top:auto; }
@@ -306,9 +309,9 @@ a{ color:inherit; }
 .faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
   font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
 .faq summary::-webkit-details-marker{ display:none; }
-.faq summary:hover{ color:var(--accent); }
+.faq summary:hover{ color:var(--accent-tx); }
 .faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
 .faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
 .faq .fb{ padding:0 44px 26px 4px; }
 .faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
@@ -333,7 +336,7 @@ a{ color:inherit; }
 .fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
 .fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
 .footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
-.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
 .footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
 .footer-col a:hover{ color:var(--on-deep); }
 .footer-legal{ padding-block:26px 40px; }
@@ -346,13 +349,14 @@ a{ color:inherit; }
 /* ============================================================
    13. NAV-DOTS
    ============================================================ */
-.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:13px; }
-.nav-dots a{ width:10px; height:10px; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
-.nav-dots a::after{ content:attr(data-label); position:absolute; right:22px; top:50%; transform:translateY(-50%) translateX(6px);
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:0; }
+.nav-dots a{ width:24px; height:24px; padding:7px; box-sizing:border-box; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:29px; top:50%; transform:translateY(-50%) translateX(6px);
   white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
   padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
 .nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
 .nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+.nav-dots a, .nav-dots a.on{ background-clip:content-box; }
 
 /* ============================================================
    14. REVEAL
@@ -392,7 +396,7 @@ a{ color:inherit; }
   .cmp-head{ display:none; }
   .col-a{ border-left:none; border-top:2px solid rgba(31,168,106,.32); }
   .cmp-cell.dim::before{ content:'Carteira primeiro: '; font-weight:700; color:var(--ink2); }
-  .col-a.cmp-mark::before{ content:'Plano antes da carteira: '; display:block; font-weight:700; color:var(--accent); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
+  .col-a.cmp-mark::before{ content:'Plano antes da carteira: '; display:block; font-weight:700; color:var(--accent-tx); font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:2px; }
   .cmp-key{ font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--mut); }
   .leafs{ grid-template-columns:1fr; }
   .cleaf::before{ display:none; }
@@ -576,15 +580,15 @@ a{ color:inherit; }
 
 <!-- nav-dots -->
 <nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
-  <a href="#hero" data-label="Início"></a>
-  <a href="#prova" data-label="Números"></a>
-  <a href="#conselho" data-label="Conselho ou produto"></a>
-  <a href="#metodo" data-label="O método"></a>
-  <a href="#arvore" data-label="Seu patrimônio"></a>
-  <a href="#depoimentos" data-label="Quem confia"></a>
-  <a href="#cartas" data-label="Cartas"></a>
-  <a href="#faq" data-label="Perguntas"></a>
-  <a href="#conversa" data-label="Conversar"></a>
+  <a href="#hero" data-label="Início" aria-label="Início"></a>
+  <a href="#prova" data-label="Números" aria-label="Números"></a>
+  <a href="#conselho" data-label="Conselho ou produto" aria-label="Conselho ou produto"></a>
+  <a href="#metodo" data-label="O método" aria-label="O método"></a>
+  <a href="#arvore" data-label="Seu patrimônio" aria-label="Seu patrimônio"></a>
+  <a href="#depoimentos" data-label="Quem confia" aria-label="Quem confia"></a>
+  <a href="#cartas" data-label="Cartas" aria-label="Cartas"></a>
+  <a href="#faq" data-label="Perguntas" aria-label="Perguntas"></a>
+  <a href="#conversa" data-label="Conversar" aria-label="Conversar"></a>
 </nav>
 
 <main>
@@ -601,7 +605,7 @@ a{ color:inherit; }
     </div>
     <div class="hero-h">
       <p class="ghost rev">Patrimônio espalhado, sem visão de conjunto.</p>
-      <h1 class="h1 rev d1">Clareza patrimonial para quem já <span class="hl">acumulou</span>.</h1>
+      <h1 class="h1">Clareza patrimonial para quem já <span class="hl">acumulou</span>.</h1>
     </div>
     <div class="hero-foot">
       <p class="lead rev d1">Para investidores que construíram patrimônio e querem ver o conjunto com nitidez: liquidez, proteção, investimentos, aposentadoria e sucessão, em uma visão só.</p>
@@ -825,19 +829,19 @@ a{ color:inherit; }
         <div class="lc-meta">Carta · Sucessão</div>
         <h3>O que você deixa, e como</h3>
         <p>Sucessão não é sobre imposto. É sobre o recado que fica.</p>
-        <a class="tlink" href="https://leonardodesousa.substack.com/p/o-que-voce-deixa-e-como" target="_blank" rel="noopener">Ler no Substack</a>
+        <a class="tlink" href="https://leonardodesousa.substack.com/p/o-que-voce-deixa-e-como" target="_blank" rel="noopener" aria-label="Ler no Substack: O que você deixa, e como">Ler no Substack</a>
       </article>
       <article class="lcard rev d2">
         <div class="lc-meta">Carta · Plano</div>
         <h3>Metade do ano não é um placar</h3>
         <p>Por que o semestre castigou quem tentou adivinhar, e o que de fato vale revisar agora.</p>
-        <a class="tlink" href="https://leonardodesousa.substack.com/p/metade-do-ano-nao-e-um-placar" target="_blank" rel="noopener">Ler no Substack</a>
+        <a class="tlink" href="https://leonardodesousa.substack.com/p/metade-do-ano-nao-e-um-placar" target="_blank" rel="noopener" aria-label="Ler no Substack: Metade do ano não é um placar">Ler no Substack</a>
       </article>
       <article class="lcard rev d3">
         <div class="lc-meta">Carta · Estrutura</div>
         <h3>Quando o juro cai, a estrutura aparece</h3>
         <p>Por que reagir a cada decisão de juros cobra um preço que não está na carteira.</p>
-        <a class="tlink" href="https://leonardodesousa.substack.com/p/quando-o-juro-cai-a-estrutura-aparece" target="_blank" rel="noopener">Ler no Substack</a>
+        <a class="tlink" href="https://leonardodesousa.substack.com/p/quando-o-juro-cai-a-estrutura-aparece" target="_blank" rel="noopener" aria-label="Ler no Substack: Quando o juro cai, a estrutura aparece">Ler no Substack</a>
       </article>
       <article class="lcard sub rev d3">
         <div class="lc-meta">Assinar</div>
@@ -919,14 +923,14 @@ a{ color:inherit; }
       </div>
       </div>
       <div class="footer-col">
-        <h4>Navegar</h4>
+        <p class="fcol-t">Navegar</p>
         <a href="metodo.html">Método</a>
         <a href="plano-exemplo.html">Plano de exemplo</a>
         <a href="cartas.html">Cartas de Vida e Patrimônio</a>
         <a href="sobre.html">Sobre</a>
       </div>
       <div class="footer-col">
-        <h4>Conversar</h4>
+        <p class="fcol-t">Conversar</p>
         <a href="conversa.html">Conversa exploratória</a>
         <a href="/agendar">Agendar conversa</a>
       </div>
@@ -946,7 +950,7 @@ a{ color:inherit; }
   /* header scroll state */
   var hdr = document.getElementById('hdr');
   var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
-  onScroll();
+  requestAnimationFrame(onScroll);
   window.addEventListener('scroll', onScroll, {passive:true});
 
   /* mobile menu */
@@ -992,7 +996,7 @@ a{ color:inherit; }
 .ck-tx{flex:1;min-width:220px}
 .ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
 .ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
-.ck-tx a{color:var(--accent);text-decoration:underline}
+.ck-tx a{color:var(--accent-tx);text-decoration:underline}
 .ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
 .ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
 .ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}

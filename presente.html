@@ -14,9 +14,12 @@
      Herda o sistema de design do index.html (Lora + Inter). Um unico destino.
      ============================================================ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+</style>
 
 <style>
 /* ============================================================
@@ -24,8 +27,8 @@
    ============================================================ */
 :root{
   --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
-  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
-  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.64); --ghost:rgba(10,25,20,.60);
+  --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --amber:#c17a1e;
   --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
   --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
   --serif:'Lora', Georgia, 'Times New Roman', serif;
@@ -48,12 +51,12 @@ a{ color:inherit; }
 .sec + .sec{ border-top:1px solid var(--line-soft); }
 .sec-paper{ background:var(--paper); }
 .eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx); }
 .eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
 .eyebrow.on-deep{ color:var(--accent-br); }
 .eyebrow.on-deep::before{ background:var(--accent-br); }
 .serif{ font-family:var(--serif); }
-.hl{ color:var(--accent); }
+.hl{ color:var(--accent-tx); }
 .lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
 
 /* botões */
@@ -71,7 +74,7 @@ a{ color:inherit; }
 .btn-arrow::after{ content:'\2192'; transition:transform .25s; }
 .btn-arrow:hover::after{ transform:translateX(4px); }
 .micro{ font-size:.9rem; color:var(--mut); }
-.micro .tk{ color:var(--accent); font-weight:700; }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
 .micro.on-deep{ color:var(--on-deep-soft); }
 .micro.on-deep .tk{ color:var(--accent-br); }
 
@@ -87,7 +90,7 @@ a{ color:inherit; }
 .wm span{ color:var(--mut); font-weight:500; }
 .nav{ display:flex; align-items:center; gap:2px; }
 .nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
-.nav a.lk:hover{ color:var(--accent); }
+.nav a.lk:hover{ color:var(--accent-tx); }
 .nav .btn{ margin-left:10px; }
 .burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
 .mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
@@ -106,7 +109,7 @@ a{ color:inherit; }
 .hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
 .masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
-.masthead .idx{ color:var(--accent); }
+.masthead .idx{ color:var(--accent-tx); }
 .masthead .sep{ width:1px; height:12px; background:var(--line); }
 .hero-in{ max-width:46rem; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;
   margin-top:clamp(2rem,4vw,3.2rem); }
@@ -124,7 +127,7 @@ a{ color:inherit; }
 .passos{ list-style:none; display:grid; grid-template-columns:repeat(3,1fr); gap:clamp(1.2rem,3vw,2rem); margin-top:clamp(2rem,4vw,3rem); }
 .passos li{ background:var(--paper); border:1px solid var(--line); border-radius:6px; padding:clamp(1.5rem,3vw,2.1rem);
   display:flex; flex-direction:column; gap:14px; }
-.passos .n{ font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--accent); line-height:1; }
+.passos .n{ font-family:var(--serif); font-size:1.6rem; font-weight:700; color:var(--accent-tx); line-height:1; }
 .passos .t{ color:var(--ink2); line-height:1.55; }
 .passos .t b{ font-weight:600; color:var(--ink); }
 
@@ -149,7 +152,7 @@ a{ color:inherit; }
 .quem-in{ max-width:640px; }
 .quem-txt{ font-family:var(--serif); font-weight:500; font-size:clamp(1.2rem,2.4vw,1.6rem); line-height:1.5;
   letter-spacing:-.01em; color:var(--ink); margin-top:20px; }
-.quem-txt b{ font-weight:600; color:var(--accent); }
+.quem-txt b{ font-weight:600; color:var(--accent-tx); }
 
 /* ============================================================
    8. RODAPÉ (herdado do index)
@@ -159,7 +162,7 @@ a{ color:inherit; }
 .fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
 .fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
 .footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
-.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
 .footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
 .footer-col a:hover{ color:var(--on-deep); }
 .footer-legal{ padding-block:26px 40px; }
@@ -329,7 +332,7 @@ a{ color:inherit; }
     </div>
     <div class="hero-in">
       <span class="eyebrow rev">Você recebeu um presente</span>
-      <h1 class="h1 rev d1">Alguém que confia em você quer te dar <span class="hl">clareza</span>.</h1>
+      <h1 class="h1">Alguém que confia em você quer te dar <span class="hl">clareza</span>.</h1>
       <p class="hero-micro rev d2">Quem te entregou este convite é cliente desta casa e escolheu te dar o que recebeu no próprio começo: uma conversa sobre a sua vida financeira e o seu <span class="hl">patrimônio desenhado em uma página</span>, entregue em 48 horas. Sem compromisso.</p>
       <div class="rev d3">
         <a class="btn btn-xl btn-solid btn-arrow" href="/agendar">Agendar conversa</a>
@@ -393,14 +396,14 @@ a{ color:inherit; }
       </div>
       </div>
       <div class="footer-col">
-        <h4>Navegar</h4>
+        <p class="fcol-t">Navegar</p>
         <a href="metodo.html">Método</a>
         <a href="plano-exemplo.html">Plano de exemplo</a>
         <a href="cartas.html">Cartas de Vida e Patrimônio</a>
         <a href="sobre.html">Sobre</a>
       </div>
       <div class="footer-col">
-        <h4>Conversar</h4>
+        <p class="fcol-t">Conversar</p>
         <a href="conversa.html">Conversa exploratória</a>
         <a href="/agendar">Agendar conversa</a>
       </div>
@@ -419,7 +422,7 @@ a{ color:inherit; }
 
   var hdr = document.getElementById('hdr');
   var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
-  onScroll();
+  requestAnimationFrame(onScroll);
   window.addEventListener('scroll', onScroll, {passive:true});
 
   var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
@@ -455,7 +458,7 @@ a{ color:inherit; }
 .ck-tx{flex:1;min-width:220px}
 .ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
 .ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
-.ck-tx a{color:var(--accent);text-decoration:underline}
+.ck-tx a{color:var(--accent-tx);text-decoration:underline}
 .ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
 .ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
 .ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}

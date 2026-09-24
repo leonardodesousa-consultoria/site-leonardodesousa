@@ -17,17 +17,20 @@
      tracker. O formulário fala direto com o backend.
      ============================================================ -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+</style>
 <style>
 /* ============================================================
    1. TOKENS · sistema editorial (canônico, herdado do index)
    ============================================================ */
 :root{
   --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
-  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.52); --ghost:rgba(10,25,20,.46);
-  --accent:#1fa86a; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.64); --ghost:rgba(10,25,20,.60);
+  --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --amber:#c17a1e;
   --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
   --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
   --serif:'Lora', Georgia, 'Times New Roman', serif;
@@ -50,12 +53,12 @@ a{ color:inherit; }
 .sec + .sec{ border-top:1px solid var(--line-soft); }
 .sec-paper{ background:var(--paper); }
 .eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
-  letter-spacing:.2em; text-transform:uppercase; color:var(--accent); }
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx); }
 .eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
 .eyebrow.on-deep{ color:var(--accent-br); }
 .eyebrow.on-deep::before{ background:var(--accent-br); }
 .serif{ font-family:var(--serif); }
-.hl{ color:var(--accent); }
+.hl{ color:var(--accent-tx); }
 .lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
 
 /* botões */
@@ -73,7 +76,7 @@ a{ color:inherit; }
 .btn-arrow::after{ content:'\2192'; transition:transform .25s; }
 .btn-arrow:hover::after{ transform:translateX(4px); }
 .micro{ font-size:.9rem; color:var(--mut); }
-.micro .tk{ color:var(--accent); font-weight:700; }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
 .micro.on-deep{ color:var(--on-deep-soft); }
 .micro.on-deep .tk{ color:var(--accent-br); }
 
@@ -89,7 +92,7 @@ a{ color:inherit; }
 .wm span{ color:var(--mut); font-weight:500; }
 .nav{ display:flex; align-items:center; gap:2px; }
 .nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
-.nav a.lk:hover{ color:var(--accent); }
+.nav a.lk:hover{ color:var(--accent-tx); }
 .nav .btn{ margin-left:10px; }
 .burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
 .mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
@@ -108,7 +111,7 @@ a{ color:inherit; }
 .hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
 .masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
-.masthead .idx{ color:var(--accent); }
+.masthead .idx{ color:var(--accent-tx); }
 .masthead .sep{ width:1px; height:12px; background:var(--line); }
 .hero-in{ max-width:44rem; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center;
   margin-top:clamp(2rem,4vw,3.2rem); }
@@ -129,7 +132,7 @@ a{ color:inherit; }
 .acontece{ list-style:none; display:flex; flex-direction:column; gap:14px; margin-top:18px; }
 .acontece li{ background:var(--paper); border:1px solid var(--line); border-radius:5px; padding:20px 22px;
   display:flex; gap:16px; align-items:flex-start; }
-.acontece .n{ font-family:var(--serif); font-size:1.1rem; font-weight:700; color:var(--accent); line-height:1.3; flex:0 0 auto; }
+.acontece .n{ font-family:var(--serif); font-size:1.1rem; font-weight:700; color:var(--accent-tx); line-height:1.3; flex:0 0 auto; }
 .acontece .t{ color:var(--ink2); line-height:1.55; }
 .acontece .t b{ font-weight:600; color:var(--ink); }
 .naoe{ list-style:none; display:flex; flex-direction:column; gap:2px; margin-top:18px; border-top:1px solid var(--line); }
@@ -163,9 +166,9 @@ a{ color:inherit; }
 .faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
   font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
 .faq summary::-webkit-details-marker{ display:none; }
-.faq summary:hover{ color:var(--accent); }
+.faq summary:hover{ color:var(--accent-tx); }
 .faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
 .faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
 .faq .fb{ padding:0 44px 26px 4px; }
 .faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
@@ -178,7 +181,7 @@ a{ color:inherit; }
 .fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
 .fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
 .footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
-.footer-col h4{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
 .footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
 .footer-col a:hover{ color:var(--on-deep); }
 .footer-legal{ padding-block:26px 40px; }
@@ -226,7 +229,7 @@ a{ color:inherit; }
 /* ---------- agendamento ---------- */
 .ag-wrap{max-width:760px;margin:0 auto;padding:0 24px}
 .ag-passo{font-size:12px;font-weight:600;letter-spacing:2.4px;text-transform:uppercase;
-  color:var(--accent);margin-bottom:10px}
+  color:var(--accent-tx);margin-bottom:10px}
 .ag-bloco{background:var(--paper);border:1px solid rgba(10,25,20,.10);border-radius:14px;
   padding:26px;margin-bottom:20px}
 .ag-bloco h2{font-family:'Lora',serif;font-size:22px;margin:0 0 6px}
@@ -244,7 +247,7 @@ a{ color:inherit; }
 
 .ag-campo{margin-bottom:16px}
 .ag-campo label{display:block;font-size:14px;font-weight:600;margin-bottom:6px}
-.ag-campo .req{color:var(--accent);margin-left:3px}
+.ag-campo .req{color:var(--accent-tx);margin-left:3px}
 .ag-campo input,.ag-campo select,.ag-campo textarea{width:100%;font:inherit;font-size:16px;
   padding:12px 14px;border:1px solid rgba(10,25,20,.18);border-radius:10px;background:#fff;
   color:var(--ink)}
@@ -264,7 +267,7 @@ a{ color:inherit; }
 .ag-ok{text-align:center;padding:20px 0}
 .ag-ok .marca{font-family:'Lora',serif;font-size:26px;margin-bottom:10px}
 .ag-ok .quando{font-size:19px;font-weight:600;margin:14px 0}
-.ag-ok a{color:var(--accent);font-weight:600}
+.ag-ok a{color:var(--accent-tx);font-weight:600}
 .ag-esconde{display:none}
 
 /* ---------- cartão do anfitrião (mesmo padrão de /reuniao-mensal) ---------- */
@@ -276,7 +279,7 @@ a{ color:inherit; }
 .ag-host-nome{font-family:'Lora',serif;font-size:21px;font-weight:600;line-height:1.2;
   letter-spacing:-.01em}
 .ag-host-papel{font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
-  color:var(--accent);margin-top:5px}
+  color:var(--accent-tx);margin-top:5px}
 
 .ag-meta{display:flex;flex-wrap:wrap;gap:11px 22px;margin-top:20px;padding-top:16px;
   border-top:1px solid var(--line);font-size:14px;color:#2d3748}
@@ -438,14 +441,14 @@ a{ color:inherit; }
       </div>
       </div>
       <div class="footer-col">
-        <h4>Navegar</h4>
+        <p class="fcol-t">Navegar</p>
         <a href="metodo.html">Método</a>
         <a href="plano-exemplo.html">Plano de exemplo</a>
         <a href="cartas.html">Cartas de Vida e Patrimônio</a>
         <a href="sobre.html">Sobre</a>
       </div>
       <div class="footer-col">
-        <h4>Conversar</h4>
+        <p class="fcol-t">Conversar</p>
         <a href="conversa.html">Conversa exploratória</a>
         <a href="/agendar">Agendar conversa</a>
       </div>

@@ -181,7 +181,7 @@ CSS_CARTA = """
 .art-body h3{ font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin-top:1.6em; }
 .art-body ul, .art-body ol{ padding-left:1.3em; }
 .art-body li + li{ margin-top:.45em; }
-.art-body a{ color:var(--accent); text-underline-offset:3px; }
+.art-body a{ color:var(--accent-tx); text-underline-offset:3px; }
 .art-body strong{ color:var(--ink); }
 .art-resposta{ background:var(--paper); border-left:3px solid var(--accent); padding:18px 22px;
   font-family:var(--serif); font-size:1.14rem !important; line-height:1.6 !important; color:var(--ink) !important; }
@@ -198,9 +198,9 @@ CSS_CARTA = """
 .faq summary{ list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
   font-family:var(--serif); font-size:clamp(1.06rem,1.9vw,1.24rem); font-weight:500; color:var(--ink); transition:color .2s; }
 .faq summary::-webkit-details-marker{ display:none; }
-.faq summary:hover{ color:var(--accent); }
+.faq summary:hover{ color:var(--accent-tx); }
 .faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent); transition:transform .25s; }
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
 .faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
 .faq .fb{ padding:0 44px 22px 4px; }
 .faq .fb p{ color:var(--ink2); line-height:1.62; }

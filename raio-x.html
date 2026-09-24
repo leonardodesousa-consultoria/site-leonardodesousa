@@ -4,13 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Raio-X Sucessório 2026</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+</style>
 <style>
   :root{
     --bg:#f5f5f0; --bg2:#fafaf7; --card:#ffffff; --line:rgba(10,25,20,.14);
-    --accent:#1fa86a; --accent-dim:#178a56; --warn:#c17a1e;
+    --accent:#1fa86a; --accent-tx:#15804f; --accent-dim:#178a56; --warn:#c17a1e;
     --txt:#0a1914; --ink2:#2d4a3e; --muted:rgba(10,25,20,.58);
     --serif:'Lora',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
   }
@@ -22,7 +25,7 @@
     padding:32px 18px;line-height:1.6;font-size:18px;
     background-image:radial-gradient(1200px 600px at 70% -10%,rgba(62,207,142,.08),transparent);}
   .wrap{width:100%;max-width:680px}
-  .kicker{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);font-weight:600;margin-bottom:14px}
+  .kicker{font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent-tx);font-weight:600;margin-bottom:14px}
   h1{font-family:var(--serif);font-weight:600;font-size:42px;line-height:1.12;margin-bottom:18px;letter-spacing:-.01em}
   h2{font-family:var(--serif);font-weight:600;font-size:28px;line-height:1.2;margin-bottom:10px}
   h3{font-family:var(--serif);font-weight:600;font-size:21px;margin-bottom:6px}
@@ -59,7 +62,7 @@
     border-radius:12px;padding:14px 16px;margin-top:16px;cursor:pointer}
   .consent input[type=checkbox]{flex:0 0 auto;width:18px;height:18px;margin-top:3px;accent-color:var(--accent);cursor:pointer}
   .consent span{font-size:14.5px;color:var(--ink2);line-height:1.5}
-  .consent a{color:var(--accent);text-decoration:underline}
+  .consent a{color:var(--accent-tx);text-decoration:underline}
   /* result */
   .scen{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0}
   .scen .box{background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:20px}
@@ -71,7 +74,7 @@
   .delta b{color:var(--warn)}
   .flag{display:flex;gap:12px;background:var(--bg2);border:1px solid var(--line);border-left:3px solid var(--accent);
     border-radius:10px;padding:14px 16px;margin-top:10px}
-  .flag .ic{color:var(--accent);font-weight:700;flex:0 0 auto}
+  .flag .ic{color:var(--accent-tx);font-weight:700;flex:0 0 auto}
   .flag h4{font-family:var(--sans);font-size:16px;font-weight:600;margin-bottom:2px}
   .flag p{font-size:15px}
   .lever{font-size:16px;color:var(--txt);padding:8px 0;border-bottom:1px solid var(--line)}
@@ -88,7 +91,7 @@
 .ck-tx{flex:1;min-width:220px}
 .ck-tx h4{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--txt);margin-bottom:3px}
 .ck-tx p{font-family:var(--sans);font-size:13px;color:var(--muted);line-height:1.6}
-.ck-tx a{color:var(--accent);text-decoration:underline}
+.ck-tx a{color:var(--accent-tx);text-decoration:underline}
 .ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
 .ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
 .ck-no{background:transparent;border:1.5px solid var(--line);color:var(--muted)}
@@ -359,7 +362,7 @@ function mostrarResultado(resp){
     </div>
     <p style="margin-top:18px">Qual dessas faz sentido para você não se decide por uma tabela. Depende da composição do seu patrimônio, da sua família e do seu horizonte. É exatamente isso que uma conversa exploratória esclarece.</p>
     <div class="flag" style="border-left-color:var(--accent);margin-top:24px"><span class="ic">&#10003;</span><div><h4>Seu Raio-X completo foi para o seu e-mail</h4><p>Enviamos o PDF com a sua análise para ${email?email:'o e-mail que você cadastrou'}. Se não aparecer em alguns minutos, verifique o spam.</p></div></div>
-    ${resp.pdf_url?'<p style="margin-top:10px;font-size:15px"><a href="'+BACKEND+resp.pdf_url+'" target="_blank" style="color:var(--accent);text-decoration:underline">Se preferir, baixe o PDF agora.</a></p>':''}
+    ${resp.pdf_url?'<p style="margin-top:10px;font-size:15px"><a href="'+BACKEND+resp.pdf_url+'" target="_blank" style="color:var(--accent-tx);text-decoration:underline">Se preferir, baixe o PDF agora.</a></p>':''}
     <a class="btn" href="${WA_LEONARDO}" target="_blank" rel="noopener" style="text-decoration:none">Conversar com Leonardo →</a>
     <div class="disc">Este material tem caráter educativo e as informações nele não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de valores mobiliários. Estimativa ilustrativa, não é parecer jurídico nem tributário. Baseada nas regras vigentes em 2026 (EC 132/2023, LC 227/2026, STF Temas 1214 e 825). As tabelas estaduais estão em transição em 2026 e os valores podem mudar conforme a legislação local. Cada caso exige análise individual.</div>
     <div class="brand">Material produzido por <b>Leonardo Sousa</b> · Consultor Patrimonial</div>
