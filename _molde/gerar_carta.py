@@ -220,9 +220,9 @@ def casca():
     for marca in ("<main>", "</main>", "</head>", "</style>"):
         if marca not in h:
             raise ErroCarta(f"sobre.html mudou de estrutura: não achei {marca}")
-    # blocos JSON-LD próprios do /sobre saem; os da organização ficam
+    # blocos JSON-LD próprios do /sobre (perfil e FAQ) saem; os da organização ficam
     def filtra(m):
-        return "" if '"ProfilePage"' in m.group(0) else m.group(0)
+        return "" if ('"ProfilePage"' in m.group(0) or '"FAQPage"' in m.group(0)) else m.group(0)
     h = re.sub(r'<script type="application/ld\+json">.*?</script>\n?', filtra, h, flags=re.S)
     h = h.replace(' aria-current="page"', "")
     # links relativos passam a absolutos, porque a carta mora em /cartas/
