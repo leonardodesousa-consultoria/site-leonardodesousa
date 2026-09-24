@@ -23,6 +23,11 @@
 <style>
 @font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
 @font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora FB Georgia'; src:local('Georgia'); size-adjust:105.15%; ascent-override:95.68%; descent-override:26.06%; line-gap-override:0.00%; }
+@font-face{ font-family:'Lora FB Times'; src:local('Times New Roman'), local('Liberation Serif'); size-adjust:116.04%; ascent-override:86.69%; descent-override:23.61%; line-gap-override:0.00%; }
+@font-face{ font-family:'Lora FB Noto'; src:local('Noto Serif'); size-adjust:97.13%; ascent-override:103.57%; descent-override:28.21%; line-gap-override:0.00%; }
+@font-face{ font-family:'Inter FB Arial'; src:local('Arial'), local('Liberation Sans'); size-adjust:106.36%; ascent-override:91.08%; descent-override:22.68%; line-gap-override:0.00%; }
+@font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
 </style>
 <style>
 /* Página de links no sistema editorial claro das demais páginas do site.
@@ -40,8 +45,8 @@
   --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --accent-ink:#1a7f52;
   --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
   --deep:#0a1914; --on-deep:#ffffff; --on-deep-soft:#c9d6cf;
-  --serif:'Lora', Georgia, 'Times New Roman', serif;
-  --sans:'Inter', system-ui, -apple-system, sans-serif;
+  --serif:'Lora','Lora FB Georgia','Lora FB Times','Lora FB Noto', Georgia, 'Times New Roman', serif;
+  --sans:'Inter','Inter FB Arial','Inter FB Roboto', system-ui, -apple-system, sans-serif;
 }
 *{ margin:0; padding:0; box-sizing:border-box; }
 html{ -webkit-text-size-adjust:100%; }
@@ -115,7 +120,7 @@ a{ color:inherit; }
 .ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);color:var(--ink);border-top:1px solid var(--line);padding:14px 22px;display:none}
 .ck-in{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;text-align:left}
 .ck-tx{flex:1;min-width:220px}
-.ck-tx h4{font-size:14px;font-weight:600;margin-bottom:3px}
+.ck-tx .ck-t{font-size:14px;font-weight:600;margin-bottom:3px}
 .ck-tx p{font-size:12.5px;color:var(--mut);line-height:1.55}
 .ck-tx a{color:var(--accent-ink);text-decoration:underline}
 .ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
@@ -190,7 +195,7 @@ a{ color:inherit; }
   <div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
     <div class="ck-in">
       <div class="ck-tx">
-        <h4>Utilizamos cookies</h4>
+        <p class="ck-t">Utilizamos cookies</p>
         <p>Este site utiliza cookies para analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com cookies analíticos e de marketing. Consulte a <a href="/privacidade">Política de Privacidade</a>.</p>
       </div>
       <div class="ck-btns">
