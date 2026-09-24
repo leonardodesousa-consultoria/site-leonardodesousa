@@ -117,6 +117,14 @@ RewriteRule ^aula/ir/?$ https://wa.me/554488239993?text=Assisti\%20a\%20live\%20
 RewriteRule ^guia/ir/([A-Za-z0-9_-]{6,64})/?$ https://wa.me/554488239993?text=Li\%20o\%20guia\%20sobre\%20dinheiro\%20fora\%20do\%20Brasil\%20e\%20quero\%20entender\%20a\%20minha\%20exposi\%C3\%A7\%C3\%A3o.\%0Aref\%20$1 [R=302,NE,L]
 RewriteRule ^guia/ir/?$ https://wa.me/554488239993?text=Li\%20o\%20guia\%20sobre\%20dinheiro\%20fora\%20do\%20Brasil\%20e\%20quero\%20entender\%20a\%20minha\%20exposi\%C3\%A7\%C3\%A3o.\%0Aref\%20guia [R=302,NE,L]
 
+# 1f) Home tem um endereço só; URLs do site antigo que o Google ainda rastreia
+# (Search Console, 24/09/2026) vão para o equivalente atual
+RewriteCond %{THE_REQUEST} \s/+index(\.html)?[\s?] [NC]
+RewriteRule ^ / [R=301,L]
+RewriteRule ^politica-privacidade/?$ /privacidade [R=301,L]
+RewriteRule ^blog/?$ /cartas [R=301,L]
+RewriteRule ^checkup-patrimonial/?$ /conversa [R=301,L]
+
 # 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
 # Cartas: /cartas é a página índice (cartas.html) e /cartas/<slug> é a carta.
 # A regra explícita é necessária porque a pasta cartas/ existe e a regra genérica ignora pastas.
