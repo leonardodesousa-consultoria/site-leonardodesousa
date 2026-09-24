@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Página não encontrada · Leonardo Sousa</title>
+
+<!-- ============================================================
+     SOBRE · Site institucional 2026 · v2 "Camadas Editoriais"
+     Herda o sistema de design canônico do index.html (Lora + Inter).
+     ============================================================ -->
+
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora FB Georgia'; src:local('Georgia'); size-adjust:105.15%; ascent-override:95.68%; descent-override:26.06%; line-gap-override:0.00%; }
+@font-face{ font-family:'Lora FB Times'; src:local('Times New Roman'), local('Liberation Serif'); size-adjust:116.04%; ascent-override:86.69%; descent-override:23.61%; line-gap-override:0.00%; }
+@font-face{ font-family:'Lora FB Noto'; src:local('Noto Serif'); size-adjust:97.13%; ascent-override:103.57%; descent-override:28.21%; line-gap-override:0.00%; }
+@font-face{ font-family:'Inter FB Arial'; src:local('Arial'), local('Liberation Sans'); size-adjust:106.36%; ascent-override:91.08%; descent-override:22.68%; line-gap-override:0.00%; }
+@font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
+
+/* ===== Carta do site (gerada por _molde/gerar_carta.py) ===== */
+.art-hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(1.6rem,3vw,2.4rem); }
+.art-hero .h1{ font-size:clamp(2rem,5vw,3.3rem); max-width:22ch; margin-top:clamp(1.4rem,3vw,2rem); }
+.art-hero .lead{ margin-top:18px; max-width:56ch; }
+.art-by{ margin-top:22px; font-size:.9rem; color:var(--mut); display:flex; flex-wrap:wrap; gap:6px 14px; }
+.art-by a{ color:var(--ink2); }
+.art-body{ max-width:720px; margin:0 auto; padding-inline:var(--pad-x); padding-bottom:var(--sec-y); }
+.art-body > *{ margin-top:1.1em; }
+.art-body p, .art-body li{ font-size:1.08rem; line-height:1.72; color:var(--ink2); }
+.art-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.6vw,1.8rem); line-height:1.2;
+  color:var(--ink); margin-top:2.1em; letter-spacing:-.01em; scroll-margin-top:90px; }
+.art-body h3{ font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin-top:1.6em; }
+.art-body ul, .art-body ol{ padding-left:1.3em; }
+.art-body li + li{ margin-top:.45em; }
+.art-body a{ color:var(--accent-tx); text-underline-offset:3px; }
+.art-body strong{ color:var(--ink); }
+.art-resposta{ background:var(--paper); border-left:3px solid var(--accent); padding:18px 22px;
+  font-family:var(--serif); font-size:1.14rem !important; line-height:1.6 !important; color:var(--ink) !important; }
+.art-tabela{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.art-tabela table{ width:100%; min-width:520px; border-collapse:collapse; font-size:.96rem; background:var(--paper); }
+.art-tabela th, .art-tabela td{ text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); line-height:1.5; }
+.art-tabela thead th{ font-weight:600; color:var(--ink); border-bottom:2px solid var(--ink); }
+.art-tabela tbody th{ font-weight:600; color:var(--ink); }
+.art-tabela td{ color:var(--ink2); }
+.art-faq{ margin-top:2.4em !important; }
+.art-faq h2{ margin-bottom:.2em; }
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.06rem,1.9vw,1.24rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 22px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; }
+.art-autor{ display:flex; gap:18px; align-items:center; margin-top:2.6em !important; padding:22px;
+  background:var(--paper); border:1px solid var(--line-soft); }
+.art-autor img{ width:64px; height:64px; border-radius:50%; object-fit:cover; flex:none; }
+.art-autor p{ font-size:.96rem !important; line-height:1.55 !important; margin:0; }
+.art-autor .nm{ font-family:var(--serif); font-weight:600; color:var(--ink); font-size:1.06rem !important; }
+.art-aviso{ font-size:.86rem !important; color:var(--mut) !important; line-height:1.55 !important; }
+@media (max-width:560px){ .art-autor{ flex-direction:column; align-items:flex-start; } }
+
+.nf-lista{ list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
+.nf-lista li{ padding:14px 0; border-top:1px solid var(--line); }
+.nf-lista a{ font-weight:600; color:var(--ink); }
+</style>
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.64); --ghost:rgba(10,25,20,.60);
+  --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora','Lora FB Georgia','Lora FB Times','Lora FB Noto', Georgia, 'Times New Roman', serif;
+  --sans:'Inter','Inter FB Arial','Inter FB Roboto', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent-tx); }
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+.tlink{ display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none; color:var(--accent-tx);
+  border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s; }
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+.tlink.on-deep{ color:var(--accent-br); }
+.micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
+.micro.on-deep{ color:var(--on-deep-soft); }
+.micro.on-deep .tk{ color:var(--accent-br); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent-tx); }
+.nav a.lk[aria-current="page"]{ color:var(--accent-tx); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · masthead + headline em duas camadas + retrato
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent-tx); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.hero-grid{ display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(2rem,5vw,4.4rem); align-items:center;
+  margin-top:clamp(1.6rem,3.6vw,2.6rem); }
+.ghost{ font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.35rem,3vw,2.15rem); letter-spacing:-.01em; margin-bottom:.16em; max-width:24ch; }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.04;
+  font-size:clamp(2.4rem,5.4vw,4rem); max-width:15ch; }
+.hero-copy .lead{ margin-top:clamp(1.4rem,2.6vw,1.9rem); }
+.hero-copy .lead + .lead{ margin-top:16px; }
+
+/* retrato editorial · mesmo tratamento p&b da home v2 */
+.portrait-wrap{ display:flex; justify-content:center; }
+.portrait{ width:100%; max-width:360px; aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 22px 55px rgba(10,25,20,.22); border:1px solid var(--line); }
+.portrait-fallback{ width:100%; max-width:360px; aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid var(--line);
+  box-shadow:0 22px 55px rgba(10,25,20,.22); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.portrait-fallback svg{ width:70%; height:auto; opacity:.5; }
+
+/* ============================================================
+   5. PROVA FRIA · réguas + index numbers (herdado do index)
+   ============================================================ */
+.proof{ background:var(--paper); }
+.proof-in{ padding-block:clamp(2.6rem,5vw,3.6rem); }
+.proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.pitem{ padding:clamp(1.6rem,3vw,2.2rem) clamp(1rem,2.4vw,2rem); position:relative; }
+.pitem + .pitem{ border-left:1px solid var(--line); }
+.pk{ font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx); }
+.pv{ font-family:var(--serif); font-size:clamp(2.1rem,4.4vw,3.1rem); font-weight:700; line-height:1; margin-top:12px; letter-spacing:-.02em; }
+.pv .u{ color:var(--accent-tx); }
+.pl{ font-size:.9rem; color:var(--ink2); margin-top:10px; line-height:1.45; max-width:26ch; }
+
+/* ============================================================
+   6. CREDENCIAIS · fichas de revista
+   ============================================================ */
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 18px; max-width:18ch; }
+.creds{ display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--line); margin-top:30px; }
+.ficha:nth-child(odd){ border-left:none; }
+.ficha{ border-bottom:1px solid var(--line); padding:clamp(1.8rem,3vw,2.4rem) clamp(1.2rem,2.4vw,2rem); position:relative; }
+.ficha + .ficha{ border-left:1px solid var(--line); }
+.ficha .fn{ font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx);
+  display:flex; align-items:center; gap:10px; }
+.ficha .fn .fno{ font-family:var(--serif); font-size:.9rem; color:var(--mut); }
+.ficha h3{ font-family:var(--serif); font-size:clamp(1.28rem,2.2vw,1.6rem); font-weight:700; color:var(--ink);
+  margin:16px 0 12px; line-height:1.1; letter-spacing:-.01em; }
+.ficha p{ font-size:.95rem; color:var(--ink2); line-height:1.56; }
+
+/* ============================================================
+   7. POR QUE INDEPENDENTE · ensaio em duas colunas
+   ============================================================ */
+.essay-lead{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.8vw,2rem); line-height:1.24;
+  letter-spacing:-.015em; color:var(--ink); max-width:24ch; margin:16px 0 6px; }
+.essay{ column-count:2; column-gap:clamp(2rem,4.5vw,3.6rem); margin-top:clamp(1.8rem,3.4vw,2.6rem); }
+.essay p{ color:var(--ink2); line-height:1.72; margin-bottom:18px; break-inside:avoid; }
+.essay p:first-child{ margin-top:0; }
+.essay .reframe{ font-family:var(--serif); font-weight:600; font-size:clamp(1.14rem,2vw,1.42rem);
+  line-height:1.36; color:var(--accent-tx); margin:6px 0 20px; break-inside:avoid; }
+.essay b{ color:var(--ink); font-weight:600; }
+
+/* ============================================================
+   8. CTA FINAL · a única banda escura + rodapé (herdado do index)
+   ============================================================ */
+.final{ background:radial-gradient(ellipse 55% 60% at 12% 18%, rgba(62,207,142,.10), transparent 60%), var(--deep); color:var(--on-deep); }
+.final-grid{ display:grid; grid-template-columns:1fr; justify-items:center; text-align:center; max-width:760px; margin:0 auto; }
+.pfinal{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 20px 50px rgba(0,0,0,.34); border:1px solid rgba(255,255,255,.12); }
+.pfinal-fallback{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.34); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.pfinal-fallback svg{ width:70%; height:auto; opacity:.5; }
+.final h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; color:var(--on-deep); max-width:20ch; }
+.final .lead{ color:var(--on-deep-soft); margin:18px 0 28px; }
+.final .hl{ color:var(--accent-br); }
+
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   9. NAV-DOTS · REVEAL
+   ============================================================ */
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:0; }
+.nav-dots a{ width:24px; height:24px; padding:7px; box-sizing:border-box; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:29px; top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
+  padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
+.nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+.nav-dots a, .nav-dots a.on{ background-clip:content-box; }
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+
+/* ============================================================
+   10. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+  .nav-dots{ display:none; }
+}
+@media (max-width:880px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .portrait-wrap{ order:-1; }
+  .essay{ column-count:1; }
+  .final-grid{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .proof-grid{ grid-template-columns:1fr; }
+  .pitem + .pitem{ border-left:none; border-top:1px solid var(--line); }
+  .creds{ grid-template-columns:1fr; }
+  .ficha + .ficha{ border-left:none; }
+  .btn-lg{ width:100%; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+
+/* Redes sociais no rodape. Decisao de 01/09/2026: sempre presentes, em todas
+   as paginas. Ficam no rodape e nao perto de botao de acao, para nao competir
+   com o destino da pagina. */
+.social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
+.social a{ text-decoration:none; color:#b8c2bd; border-bottom:1px solid var(--line-deep); padding-bottom:2px; }
+.social a:hover{ color:var(--on-deep); border-bottom-color:var(--accent-br); }
+
+/* FAQ (Fase 3 AEO, igual ao da home) */
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 26px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
+.faq .fb a{ color:var(--accent-tx); }
+.faq-data{ margin-top:22px; }
+</style>
+
+<!-- SEO / social (portado do Replit) -->
+<meta name="robots" content="noindex, follow">
+<meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="/metodo">Método</a>
+      <a class="lk" href="/plano-exemplo">Plano de exemplo</a>
+      <a class="lk" href="/cartas">Cartas</a>
+      <a class="lk" href="/sobre">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="/agendar">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="/metodo">Método</a>
+  <a href="/plano-exemplo">Plano de exemplo</a>
+  <a href="/cartas">Cartas</a>
+  <a href="/sobre">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="/agendar">Agendar conversa</a>
+</nav>
+
+<!-- nav-dots -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
+  <a href="#topo" data-label="Quem é" aria-label="Quem é"></a>
+  <a href="#numeros" data-label="Números" aria-label="Números"></a>
+  <a href="#credenciais" data-label="Credenciais" aria-label="Credenciais"></a>
+  <a href="#independente" data-label="Por que independente" aria-label="Por que independente"></a>
+  <a href="#conversa" data-label="Conversar" aria-label="Conversar"></a>
+</nav>
+
+<main>
+<article class="art" id="topo">
+<header class="art-hero">
+  <div class="wrap" style="max-width:880px">
+    <div class="masthead">
+      <span>Erro 404</span>
+      <span class="sep"></span>
+      <span>Página não encontrada</span>
+    </div>
+    <h1 class="h1">Esta página não está aqui.</h1>
+    <p class="lead">O link pode ter um erro de digitação ou apontar para um endereço antigo: o site foi refeito e algumas páginas mudaram de lugar.</p>
+  </div>
+</header>
+<div class="art-body">
+  <p>Por onde seguir:</p>
+  <ul class="nf-lista">
+    <li><a href="/">Início</a>: o que é o trabalho e para quem ele faz sentido.</li>
+    <li><a href="/metodo">O método</a>: como o plano é montado, etapa por etapa.</li>
+    <li><a href="/plano-exemplo">Plano de exemplo</a>: um Mapa Patrimonial completo, com dados fictícios.</li>
+    <li><a href="/cartas">Cartas de Vida e Patrimônio</a>: textos sobre estrutura, proteção, impostos e sucessão. Quem chegou por um link antigo de carta encontra o texto por aqui.</li>
+    <li><a href="/sobre">Sobre</a>: formação, certificações e forma de remuneração.</li>
+  </ul>
+  <p class="art-aviso">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</p>
+</div>
+</article>
+<section class="sec final" id="conversa">
+  <div class="wrap">
+    <div class="final-grid">
+      <div>
+        <span class="eyebrow on-deep rev">O próximo passo</span>
+        <h2 class="rev d1" style="margin:16px 0 6px">Se há mais de R$500 mil em jogo, pode valer uma <span class="hl">conversa</span>.</h2>
+        <p class="lead rev d2">Uma conversa para eu entender o seu momento e onde você quer chegar. Sem apresentação de produto, sem pressão, e sem relógio na mesa. Só uma leitura honesta do ponto onde você está.</p>
+        <div class="rev d3">
+          <a class="btn btn-lg btn-solid on-deep btn-arrow" href="/agendar">Agendar conversa exploratória</a>
+        </div>
+        <p class="micro on-deep rev d3" style="margin-top:18px"><span class="tk">&#8226;</span> Primeira conversa. Sem compromisso, sem custo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      <div class="social">
+        <a href="https://www.instagram.com/leonardodesousa/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/leonardopsousa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@leonardopdesousa" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://leonardodesousa.substack.com/" target="_blank" rel="noopener">Substack</a>
+      </div>
+      </div>
+      <div class="footer-col">
+        <p class="fcol-t">Navegar</p>
+        <a href="/metodo">Método</a>
+        <a href="/plano-exemplo">Plano de exemplo</a>
+        <a href="/cartas">Cartas de Vida e Patrimônio</a>
+        <a href="/sobre">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <p class="fcol-t">Conversar</p>
+        <a href="/conversa">Conversa exploratória</a>
+        <a href="/agendar">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="/termos">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  requestAnimationFrame(onScroll);
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  var dots=document.querySelectorAll('#navDots a'), pairs=[];
+  dots.forEach(function(d){ var s=document.getElementById(d.getAttribute('href').slice(1)); if(s){ pairs.push({dot:d, sec:s}); } });
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ pairs.forEach(function(p){ p.dot.classList.toggle('on', p.sec===e.target); }); } }); },{threshold:.5, rootMargin:'-30% 0px -30% 0px'});
+    pairs.forEach(function(p){ so.observe(p.sec); });
+  }
+})();
+</script>
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<style>
+@media (max-width:560px){
+  
+  
+  
+  
+}
+</style>
+
+
+<style>
+/* Cookie banner (LGPD) */
+.ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
+.ck-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ck-tx{flex:1;min-width:220px}
+.ck-tx .ck-t{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
+.ck-tx a{color:var(--accent-tx);text-decoration:underline}
+.ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
+.ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}
+.ck-ok{background:var(--deep);color:#fff;border:none}
+.ck-no:hover,.ck-ok:hover{opacity:.82}
+</style>
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <p class="ck-t">Utilizamos cookies</p>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<script>
+/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function loadA(){
+  if(_al) return;
+  var r=localStorage.getItem('cookie_consent'); if(!r) return;
+  var c=JSON.parse(r); if(!c.analytics&&!c.marketing) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
+(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+</body>
+</html>

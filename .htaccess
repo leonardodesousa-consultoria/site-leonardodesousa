@@ -159,5 +159,5 @@ RedirectMatch 404 /\.git
   Require all denied
 </FilesMatch>
 
-# Pagina de erro cai na home
-ErrorDocument 404 /index.html
+# Pagina de erro propria (noindex, gerada por _molde/gerar_404.py a partir de sobre.html)
+ErrorDocument 404 /404.html
