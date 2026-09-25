@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cartas de Vida e Patrimônio · Leonardo Sousa</title>
-<meta name="description" content="Cartas de Vida e Patrimônio: cartas periódicas sobre patrimônio, decisões e método, no Substack. Tom editorial, sem urgência, sem promessa de retorno.">
+<meta name="description" content="Cartas de Vida e Patrimônio: cartas semanais sobre estrutura, proteção, impostos e sucessão, publicadas no site e enviadas por e-mail.">
 
 <!-- ============================================================
      CARTAS · Site institucional 2026 · v2 "Camadas Editoriais"
@@ -21,6 +21,28 @@
 @font-face{ font-family:'Lora FB Noto'; src:local('Noto Serif'); size-adjust:97.13%; ascent-override:103.57%; descent-override:28.21%; line-gap-override:0.00%; }
 @font-face{ font-family:'Inter FB Arial'; src:local('Arial'), local('Liberation Sans'); size-adjust:106.36%; ascent-override:91.08%; descent-override:22.68%; line-gap-override:0.00%; }
 @font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
+
+.insc{ background:linear-gradient(150deg,#15402c,#0a1914); color:#fff; border-radius:6px;
+  padding:clamp(26px,4vw,40px); position:relative; }
+.insc .insc-k{ font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#3ecf8e; margin:0 0 10px; }
+.insc h3{ font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:600; color:#fff; line-height:1.25; margin:0 0 10px; }
+.insc .insc-ap{ color:rgba(255,255,255,.78); margin:0 0 20px; }
+.insc form{ display:flex; flex-wrap:wrap; gap:10px; margin:0; }
+.insc input[type=email]{ flex:1 1 220px; min-width:0; font:inherit; font-size:1rem; color:#fff;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.28); border-radius:6px; padding:14px 16px; }
+.insc input[type=email]::placeholder{ color:rgba(255,255,255,.62); }
+.insc input[type=email]:focus{ outline:2px solid #3ecf8e; outline-offset:1px; }
+.insc button{ font-family:var(--sans); font-weight:600; font-size:1rem; color:#062015; background:#3ecf8e;
+  border:0; border-radius:6px; padding:14px 22px; cursor:pointer; }
+.insc button:hover{ background:#4ad998; }
+.insc button[disabled]{ opacity:.6; cursor:wait; }
+.insc .insc-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.insc .insc-sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+.insc .insc-micro{ margin:14px 0 0; font-size:.84rem; line-height:1.5; color:rgba(255,255,255,.78); }
+.insc .insc-micro a{ color:#3ecf8e; text-decoration:underline; text-underline-offset:2px; }
+.insc .insc-ret{ margin:14px 0 0; font-size:.98rem; line-height:1.5; color:#fff; }
+.insc .insc-ret:empty{ display:none; }
+.insc .insc-ret.err{ color:#ffc9bb; }
 </style>
 
 <style>
@@ -250,14 +272,14 @@ a{ color:inherit; }
 <link rel="canonical" href="https://leonardodesousa.com.br/cartas">
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta property="og:title" content="Cartas de Vida e Patrimônio · Leonardo Sousa">
-<meta property="og:description" content="Cartas de Vida e Patrimônio: cartas periódicas sobre patrimônio, decisões e método, no Substack. Tom editorial, sem urgência, sem promessa de retorno.">
+<meta property="og:description" content="Cartas de Vida e Patrimônio: cartas semanais sobre estrutura, proteção, impostos e sucessão, publicadas no site e enviadas por e-mail.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://leonardodesousa.com.br/cartas">
 <meta property="og:image" content="https://leonardodesousa.com.br/opengraph.jpg">
 <meta property="og:locale" content="pt_BR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Cartas de Vida e Patrimônio · Leonardo Sousa">
-<meta name="twitter:description" content="Cartas de Vida e Patrimônio: cartas periódicas sobre patrimônio, decisões e método, no Substack. Tom editorial, sem urgência, sem promessa de retorno.">
+<meta name="twitter:description" content="Cartas de Vida e Patrimônio: cartas semanais sobre estrutura, proteção, impostos e sucessão, publicadas no site e enviadas por e-mail.">
 <meta name="twitter:image" content="https://leonardodesousa.com.br/opengraph.jpg">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
 <script type="application/ld+json">
@@ -371,7 +393,7 @@ a{ color:inherit; }
       <span class="sep"></span>
       <span>Cartas de Vida e Patrimônio</span>
       <span class="sep"></span>
-      <span>No site e no Substack</span>
+      <span>No site e por e-mail</span>
     </div>
     <div class="cover">
       <p class="ktitle rev">Cartas de Vida e Patrimônio</p>
@@ -386,17 +408,24 @@ a{ color:inherit; }
 <section class="sec sec-paper" id="assinar">
   <div class="wrap two">
     <div>
-      <span class="eyebrow rev">Assinar as Cartas</span>
-      <p class="stmt rev d1">Cada nova carta chega ao seu email, no seu tempo.</p>
-      <p class="lead rev d2">A assinatura é gratuita e acontece no Substack. Você recebe a carta quando ela sai, lê quando quiser e sai da lista com um clique, se preferir. Sem sequência de vendas, sem cobrança.</p>
+      <span class="eyebrow rev">Receber as cartas</span>
+      <p class="stmt rev d1">Cada nova carta chega ao seu e-mail.</p>
+      <p class="lead rev d2">Uma carta por semana, sem custo. Nenhuma venda no meio do texto. Para sair, basta um clique no rodapé de qualquer carta.</p>
     </div>
-    <div class="sub-card rev d2">
-      <div class="sc-k">Assinar no Substack</div>
-      <h3>As Cartas, direto na sua caixa de entrada</h3>
-      <p>As Cartas de Vida e Patrimônio, no seu email, sem intermediário.</p>
-      <!-- CTA Substack: link canônico da newsletter. -->
-      <a class="btn btn-lg btn-solid on-deep btn-arrow" href="https://leonardodesousa.substack.com/" target="_blank" rel="noopener">Assinar as Cartas</a>
-      <p class="sc-micro">Gratuito. Cadência real. Sem spam.</p>
+    <div class="rev d2">
+      <div class="insc" id="receber">
+  <p class="insc-k">Inscrição</p>
+  <h3>As cartas, direto na sua caixa de entrada</h3>
+  
+  <form class="insc-f" data-origem="/cartas" novalidate>
+    <label class="insc-sr" for="insc-email-pagina">Seu e-mail</label>
+    <input id="insc-email-pagina" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
+    <input class="insc-hp" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">Quero receber</button>
+  </form>
+  <p class="insc-micro">Você recebe um e-mail para confirmar a inscrição. Uso seu endereço só para enviar as cartas. <a href="/privacidade">Política de Privacidade</a></p>
+  <p class="insc-ret" role="status" aria-live="polite"></p>
+</div>
     </div>
   </div>
 </section>
@@ -419,34 +448,34 @@ a{ color:inherit; }
         </span>
         <span class="toc-go">Ler a carta</span>
       </a>
-      <!-- CARTAS-SITE:FIM -->
-      <a class="toc-item" href="https://leonardodesousa.substack.com/p/o-que-voce-deixa-e-como" target="_blank" rel="noopener">
+      <a class="toc-item" href="/cartas/o-que-voce-deixa-e-como">
         <span class="toc-no num">02</span>
         <span class="toc-main">
-          <span class="toc-meta">Sucessão <span class="date num">Carta recente</span></span>
+          <span class="toc-meta">Sucessão <span class="date num">9 de julho de 2026</span></span>
           <h3>O que você deixa, e como</h3>
           <span class="toc-sub">Sucessão não é sobre imposto. É sobre o recado que fica.</span>
         </span>
-        <span class="toc-go">Ler no Substack</span>
+        <span class="toc-go">Ler a carta</span>
       </a>
-      <a class="toc-item" href="https://leonardodesousa.substack.com/p/metade-do-ano-nao-e-um-placar" target="_blank" rel="noopener">
+      <a class="toc-item" href="/cartas/metade-do-ano-nao-e-um-placar">
         <span class="toc-no num">03</span>
         <span class="toc-main">
-          <span class="toc-meta">Plano <span class="date num">Carta recente</span></span>
+          <span class="toc-meta">Plano <span class="date num">2 de julho de 2026</span></span>
           <h3>Metade do ano não é um placar</h3>
           <span class="toc-sub">Por que o semestre castigou quem tentou adivinhar, e o que de fato vale revisar agora.</span>
         </span>
-        <span class="toc-go">Ler no Substack</span>
+        <span class="toc-go">Ler a carta</span>
       </a>
-      <a class="toc-item" href="https://leonardodesousa.substack.com/p/quando-o-juro-cai-a-estrutura-aparece" target="_blank" rel="noopener">
+      <a class="toc-item" href="/cartas/quando-o-juro-cai-a-estrutura-aparece">
         <span class="toc-no num">04</span>
         <span class="toc-main">
-          <span class="toc-meta">Estrutura <span class="date num">Carta recente</span></span>
+          <span class="toc-meta">Estrutura <span class="date num">25 de junho de 2026</span></span>
           <h3>Quando o juro cai, a estrutura aparece</h3>
           <span class="toc-sub">Por que reagir a cada decisão de juros cobra um preço que não está na carteira.</span>
         </span>
-        <span class="toc-go">Ler no Substack</span>
+        <span class="toc-go">Ler a carta</span>
       </a>
+      <!-- CARTAS-SITE:FIM -->
     </div>
   </div>
 </section>
@@ -620,6 +649,28 @@ window.ckReabrir = ckReabrir;
 function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+<script>
+(function(){
+  var URL_='https://luana-backend-production.up.railway.app/cartas/inscrever', OK="Falta um passo. Mandei um e-mail para você confirmar a inscrição. Se não aparecer em alguns minutos, olhe a pasta de spam ou de promoções.", ERRO="Não consegui registrar agora. Tente de novo em alguns minutos.";
+  Array.prototype.forEach.call(document.querySelectorAll('form.insc-f'), function(f){
+    var ret=f.parentNode.querySelector('.insc-ret'), bt=f.querySelector('button'), em=f.querySelector('input[type=email]');
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!f.reportValidity()) return;
+      bt.disabled=true; ret.className='insc-ret'; ret.textContent='';
+      fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+        body:JSON.stringify({email:em.value.trim(), origem:f.getAttribute('data-origem')||'/cartas',
+                             site:(f.querySelector('.insc-hp')||{}).value||''})})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        f.style.display='none'; ret.textContent=OK;
+        try{ if(window.gtag) gtag('event','inscricao_cartas',{origem:f.getAttribute('data-origem')}); }catch(e){}
+      })
+      .catch(function(){ bt.disabled=false; ret.className='insc-ret err'; ret.textContent=ERRO; });
+    });
+  });
+})();
 </script>
 </body>
 </html>

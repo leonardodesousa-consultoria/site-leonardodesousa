@@ -21,6 +21,75 @@
 @font-face{ font-family:'Lora FB Noto'; src:local('Noto Serif'); size-adjust:97.13%; ascent-override:103.57%; descent-override:28.21%; line-gap-override:0.00%; }
 @font-face{ font-family:'Inter FB Arial'; src:local('Arial'), local('Liberation Sans'); size-adjust:106.36%; ascent-override:91.08%; descent-override:22.68%; line-gap-override:0.00%; }
 @font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
+
+.art-capa{ max-width:880px; margin:0 auto 2.2em; padding:0 var(--pad-x); }
+.art-capa img{ display:block; width:100%; height:auto; border-radius:6px; }
+/* ===== Carta do site (gerada por _molde/gerar_carta.py) ===== */
+.art-hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(1.6rem,3vw,2.4rem); }
+.art-hero .h1{ font-size:clamp(2rem,5vw,3.3rem); max-width:22ch; margin-top:clamp(1.4rem,3vw,2rem); }
+.art-hero .lead{ margin-top:18px; max-width:56ch; }
+.art-by{ margin-top:22px; font-size:.9rem; color:var(--mut); display:flex; flex-wrap:wrap; gap:6px 14px; }
+.art-by a{ color:var(--ink2); }
+.art-body{ max-width:720px; margin:0 auto; padding-inline:var(--pad-x); padding-bottom:var(--sec-y); }
+.art-body > *{ margin-top:1.1em; }
+.art-body p, .art-body li{ font-size:1.08rem; line-height:1.72; color:var(--ink2); }
+.art-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.6vw,1.8rem); line-height:1.2;
+  color:var(--ink); margin-top:2.1em; letter-spacing:-.01em; scroll-margin-top:90px; }
+.art-body h3{ font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin-top:1.6em; }
+.art-body ul, .art-body ol{ padding-left:1.3em; }
+.art-body li + li{ margin-top:.45em; }
+.art-body a{ color:var(--accent-tx); text-underline-offset:3px; }
+.art-body strong{ color:var(--ink); }
+.art-resposta{ background:var(--paper); border-left:3px solid var(--accent); padding:18px 22px;
+  font-family:var(--serif); font-size:1.14rem !important; line-height:1.6 !important; color:var(--ink) !important; }
+.art-tabela{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.art-tabela table{ width:100%; min-width:520px; border-collapse:collapse; font-size:.96rem; background:var(--paper); }
+.art-tabela th, .art-tabela td{ text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); line-height:1.5; }
+.art-tabela thead th{ font-weight:600; color:var(--ink); border-bottom:2px solid var(--ink); }
+.art-tabela tbody th{ font-weight:600; color:var(--ink); }
+.art-tabela td{ color:var(--ink2); }
+.art-faq{ margin-top:2.4em !important; }
+.art-faq h2{ margin-bottom:.2em; }
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.06rem,1.9vw,1.24rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 22px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; }
+.art-autor{ display:flex; gap:18px; align-items:center; margin-top:2.6em !important; padding:22px;
+  background:var(--paper); border:1px solid var(--line-soft); }
+.art-autor img{ width:64px; height:64px; border-radius:50%; object-fit:cover; flex:none; }
+.art-autor p{ font-size:.96rem !important; line-height:1.55 !important; margin:0; }
+.art-autor .nm{ font-family:var(--serif); font-weight:600; color:var(--ink); font-size:1.06rem !important; }
+.art-aviso{ font-size:.86rem !important; color:var(--mut) !important; line-height:1.55 !important; }
+@media (max-width:560px){ .art-autor{ flex-direction:column; align-items:flex-start; } }
+
+.insc{ background:linear-gradient(150deg,#15402c,#0a1914); color:#fff; border-radius:6px;
+  padding:clamp(26px,4vw,40px); position:relative; }
+.insc .insc-k{ font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#3ecf8e; margin:0 0 10px; }
+.insc h3{ font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:600; color:#fff; line-height:1.25; margin:0 0 10px; }
+.insc .insc-ap{ color:rgba(255,255,255,.78); margin:0 0 20px; }
+.insc form{ display:flex; flex-wrap:wrap; gap:10px; margin:0; }
+.insc input[type=email]{ flex:1 1 220px; min-width:0; font:inherit; font-size:1rem; color:#fff;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.28); border-radius:6px; padding:14px 16px; }
+.insc input[type=email]::placeholder{ color:rgba(255,255,255,.62); }
+.insc input[type=email]:focus{ outline:2px solid #3ecf8e; outline-offset:1px; }
+.insc button{ font-family:var(--sans); font-weight:600; font-size:1rem; color:#062015; background:#3ecf8e;
+  border:0; border-radius:6px; padding:14px 22px; cursor:pointer; }
+.insc button:hover{ background:#4ad998; }
+.insc button[disabled]{ opacity:.6; cursor:wait; }
+.insc .insc-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.insc .insc-sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+.insc .insc-micro{ margin:14px 0 0; font-size:.84rem; line-height:1.5; color:rgba(255,255,255,.78); }
+.insc .insc-micro a{ color:#3ecf8e; text-decoration:underline; text-underline-offset:2px; }
+.insc .insc-ret{ margin:14px 0 0; font-size:.98rem; line-height:1.5; color:#fff; }
+.insc .insc-ret:empty{ display:none; }
+.insc .insc-ret.err{ color:#ffc9bb; }
 </style>
 
 <style>
@@ -275,51 +344,6 @@ a{ color:inherit; }
 .faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
 .faq .fb a{ color:var(--accent-tx); }
 .faq-data{ margin-top:22px; }
-
-/* ===== Carta do site (gerada por _molde/gerar_carta.py) ===== */
-.art-hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(1.6rem,3vw,2.4rem); }
-.art-hero .h1{ font-size:clamp(2rem,5vw,3.3rem); max-width:22ch; margin-top:clamp(1.4rem,3vw,2rem); }
-.art-hero .lead{ margin-top:18px; max-width:56ch; }
-.art-by{ margin-top:22px; font-size:.9rem; color:var(--mut); display:flex; flex-wrap:wrap; gap:6px 14px; }
-.art-by a{ color:var(--ink2); }
-.art-body{ max-width:720px; margin:0 auto; padding-inline:var(--pad-x); padding-bottom:var(--sec-y); }
-.art-body > *{ margin-top:1.1em; }
-.art-body p, .art-body li{ font-size:1.08rem; line-height:1.72; color:var(--ink2); }
-.art-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.6vw,1.8rem); line-height:1.2;
-  color:var(--ink); margin-top:2.1em; letter-spacing:-.01em; scroll-margin-top:90px; }
-.art-body h3{ font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin-top:1.6em; }
-.art-body ul, .art-body ol{ padding-left:1.3em; }
-.art-body li + li{ margin-top:.45em; }
-.art-body a{ color:var(--accent-tx); text-underline-offset:3px; }
-.art-body strong{ color:var(--ink); }
-.art-resposta{ background:var(--paper); border-left:3px solid var(--accent); padding:18px 22px;
-  font-family:var(--serif); font-size:1.14rem !important; line-height:1.6 !important; color:var(--ink) !important; }
-.art-tabela{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
-.art-tabela table{ width:100%; min-width:520px; border-collapse:collapse; font-size:.96rem; background:var(--paper); }
-.art-tabela th, .art-tabela td{ text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); line-height:1.5; }
-.art-tabela thead th{ font-weight:600; color:var(--ink); border-bottom:2px solid var(--ink); }
-.art-tabela tbody th{ font-weight:600; color:var(--ink); }
-.art-tabela td{ color:var(--ink2); }
-.art-faq{ margin-top:2.4em !important; }
-.art-faq h2{ margin-bottom:.2em; }
-.faq{ margin-top:14px; border-top:1px solid var(--line); }
-.faq details{ border-bottom:1px solid var(--line); }
-.faq summary{ list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
-  font-family:var(--serif); font-size:clamp(1.06rem,1.9vw,1.24rem); font-weight:500; color:var(--ink); transition:color .2s; }
-.faq summary::-webkit-details-marker{ display:none; }
-.faq summary:hover{ color:var(--accent-tx); }
-.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
-  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
-.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
-.faq .fb{ padding:0 44px 22px 4px; }
-.faq .fb p{ color:var(--ink2); line-height:1.62; }
-.art-autor{ display:flex; gap:18px; align-items:center; margin-top:2.6em !important; padding:22px;
-  background:var(--paper); border:1px solid var(--line-soft); }
-.art-autor img{ width:64px; height:64px; border-radius:50%; object-fit:cover; flex:none; }
-.art-autor p{ font-size:.96rem !important; line-height:1.55 !important; margin:0; }
-.art-autor .nm{ font-family:var(--serif); font-weight:600; color:var(--ink); font-size:1.06rem !important; }
-.art-aviso{ font-size:.86rem !important; color:var(--mut) !important; line-height:1.55 !important; }
-@media (max-width:560px){ .art-autor{ flex-direction:column; align-items:flex-start; } }
 </style>
 
 <!-- SEO / social (portado do Replit) -->
@@ -562,6 +586,7 @@ a{ color:inherit; }
     </p>
   </div>
 </header>
+
 <div class="art-body">
 <p class="art-resposta">O assessor de investimentos atua como preposto de uma ou mais corretoras e distribuidoras e, em geral, é remunerado por elas, conforme os produtos e as operações dos clientes. O consultor de valores mobiliários precisa de autorização da CVM para orientar sobre investimentos e, pela regra, não pode receber de terceiros remuneração que comprometa a sua independência. Consultor patrimonial é o nome que muitos consultores usam quando o trabalho vai além da carteira e inclui proteção, aposentadoria e sucessão.</p>
 <h2 id="o-assessor-de-investimentos">O assessor de investimentos</h2>
@@ -592,7 +617,21 @@ a{ color:inherit; }
     <p>Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
   </div>
 </aside>
-
+<div style="margin-top:2.4em">
+<div class="insc" id="receber">
+  <p class="insc-k">Cartas de Vida e Patrimônio</p>
+  <h3>Receba a próxima carta</h3>
+  <p class="insc-ap">Uma carta por semana, no seu e-mail.</p>
+  <form class="insc-f" data-origem="carta:consultor-patrimonial-ou-assessor-de-investimentos" novalidate>
+    <label class="insc-sr" for="insc-email-1">Seu e-mail</label>
+    <input id="insc-email-1" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
+    <input class="insc-hp" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">Quero receber</button>
+  </form>
+  <p class="insc-micro">Você recebe um e-mail para confirmar a inscrição. Uso seu endereço só para enviar as cartas. <a href="/privacidade">Política de Privacidade</a></p>
+  <p class="insc-ret" role="status" aria-live="polite"></p>
+</div>
+</div>
 <p class="art-aviso">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</p>
 </div>
 </article>
@@ -756,6 +795,28 @@ window.ckReabrir = ckReabrir;
 function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+<script>
+(function(){
+  var URL_='https://luana-backend-production.up.railway.app/cartas/inscrever', OK="Falta um passo. Mandei um e-mail para você confirmar a inscrição. Se não aparecer em alguns minutos, olhe a pasta de spam ou de promoções.", ERRO="Não consegui registrar agora. Tente de novo em alguns minutos.";
+  Array.prototype.forEach.call(document.querySelectorAll('form.insc-f'), function(f){
+    var ret=f.parentNode.querySelector('.insc-ret'), bt=f.querySelector('button'), em=f.querySelector('input[type=email]');
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!f.reportValidity()) return;
+      bt.disabled=true; ret.className='insc-ret'; ret.textContent='';
+      fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+        body:JSON.stringify({email:em.value.trim(), origem:f.getAttribute('data-origem')||'/cartas',
+                             site:(f.querySelector('.insc-hp')||{}).value||''})})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        f.style.display='none'; ret.textContent=OK;
+        try{ if(window.gtag) gtag('event','inscricao_cartas',{origem:f.getAttribute('data-origem')}); }catch(e){}
+      })
+      .catch(function(){ bt.disabled=false; ret.className='insc-ret err'; ret.textContent=ERRO; });
+    });
+  });
+})();
 </script>
 </body>
 </html>

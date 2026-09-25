@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Página não encontrada · Leonardo Sousa</title>
+<title>O que você deixa, e como · Leonardo Sousa</title>
+<meta name="description" content="Sucessão não é sobre imposto. É sobre o recado que fica.">
 
 <!-- ============================================================
      SOBRE · Site institucional 2026 · v2 "Camadas Editoriais"
@@ -68,9 +69,27 @@
 .art-aviso{ font-size:.86rem !important; color:var(--mut) !important; line-height:1.55 !important; }
 @media (max-width:560px){ .art-autor{ flex-direction:column; align-items:flex-start; } }
 
-.nf-lista{ list-style:none; padding:0; margin:18px 0 0; display:grid; gap:12px; }
-.nf-lista li{ padding:14px 0; border-top:1px solid var(--line); }
-.nf-lista a{ font-weight:600; color:var(--ink); }
+.insc{ background:linear-gradient(150deg,#15402c,#0a1914); color:#fff; border-radius:6px;
+  padding:clamp(26px,4vw,40px); position:relative; }
+.insc .insc-k{ font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#3ecf8e; margin:0 0 10px; }
+.insc h3{ font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:600; color:#fff; line-height:1.25; margin:0 0 10px; }
+.insc .insc-ap{ color:rgba(255,255,255,.78); margin:0 0 20px; }
+.insc form{ display:flex; flex-wrap:wrap; gap:10px; margin:0; }
+.insc input[type=email]{ flex:1 1 220px; min-width:0; font:inherit; font-size:1rem; color:#fff;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.28); border-radius:6px; padding:14px 16px; }
+.insc input[type=email]::placeholder{ color:rgba(255,255,255,.62); }
+.insc input[type=email]:focus{ outline:2px solid #3ecf8e; outline-offset:1px; }
+.insc button{ font-family:var(--sans); font-weight:600; font-size:1rem; color:#062015; background:#3ecf8e;
+  border:0; border-radius:6px; padding:14px 22px; cursor:pointer; }
+.insc button:hover{ background:#4ad998; }
+.insc button[disabled]{ opacity:.6; cursor:wait; }
+.insc .insc-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.insc .insc-sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+.insc .insc-micro{ margin:14px 0 0; font-size:.84rem; line-height:1.5; color:rgba(255,255,255,.78); }
+.insc .insc-micro a{ color:#3ecf8e; text-decoration:underline; text-underline-offset:2px; }
+.insc .insc-ret{ margin:14px 0 0; font-size:.98rem; line-height:1.5; color:#fff; }
+.insc .insc-ret:empty{ display:none; }
+.insc .insc-ret.err{ color:#ffc9bb; }
 </style>
 
 <style>
@@ -328,10 +347,147 @@ a{ color:inherit; }
 </style>
 
 <!-- SEO / social (portado do Replit) -->
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index,follow">
 <meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
+<link rel="canonical" href="https://leonardodesousa.com.br/cartas/o-que-voce-deixa-e-como">
 <link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:title" content="O que você deixa, e como · Leonardo Sousa">
+<meta property="og:description" content="Sucessão não é sobre imposto. É sobre o recado que fica.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leonardodesousa.com.br/cartas/o-que-voce-deixa-e-como">
+<meta property="og:image" content="https://leonardodesousa.com.br/cartas/img/o-que-voce-deixa-e-como.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="O que você deixa, e como · Leonardo Sousa">
+<meta name="twitter:description" content="Sucessão não é sobre imposto. É sobre o recado que fica.">
+<meta name="twitter:image" content="https://leonardodesousa.com.br/cartas/img/o-que-voce-deixa-e-como.jpg">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://leonardodesousa.com.br/#organizacao",
+  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
+  "alternateName": "Leonardo Sousa",
+  "url": "https://leonardodesousa.com.br/",
+  "logo": "https://leonardodesousa.com.br/favicon.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/leonardopsousa/",
+    "https://www.instagram.com/leonardodesousa/",
+    "https://leonardodesousa.substack.com/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "availableLanguage": "Portuguese",
+    "url": "https://wa.me/554488239993"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "FinancialService",
+    "Organization"
+  ],
+  "@id": "https://leonardodesousa.com.br/#organizacao",
+  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
+  "alternateName": "Leonardo Sousa",
+  "description": "Leonardo Sousa é consultor patrimonial independente especializado em planejamento financeiro para empresários, profissionais liberais e investidores com patrimônio diversificado. Atua nas áreas de liquidez, proteção, investimentos, aposentadoria e sucessão.",
+  "url": "https://leonardodesousa.com.br/",
+  "logo": "https://leonardodesousa.com.br/favicon.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/leonardopsousa/",
+    "https://www.instagram.com/leonardodesousa/",
+    "https://leonardodesousa.substack.com/"
+  ],
+  "founder": {
+    "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
+    "name": "Leonardo Sousa",
+    "jobTitle": "Consultor Patrimonial",
+    "url": "https://leonardodesousa.com.br/sobre"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Brasil"
+  },
+  "serviceType": [
+    "Consultoria Patrimonial Independente",
+    "Planejamento Financeiro",
+    "Planejamento Sucessório",
+    "Planejamento de Aposentadoria",
+    "Proteção Patrimonial"
+  ],
+  "priceRange": "$$$$",
+  "telephone": "+55 44 98823-9993",
+  "image": "https://leonardodesousa.com.br/opengraph.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://leonardodesousa.com.br/cartas/o-que-voce-deixa-e-como#carta",
+  "mainEntityOfPage": "https://leonardodesousa.com.br/cartas/o-que-voce-deixa-e-como",
+  "url": "https://leonardodesousa.com.br/cartas/o-que-voce-deixa-e-como",
+  "headline": "O que você deixa, e como",
+  "description": "Sucessão não é sobre imposto. É sobre o recado que fica.",
+  "inLanguage": "pt-BR",
+  "datePublished": "2026-07-09T09:00:00-03:00",
+  "dateModified": "2026-07-09T09:00:00-03:00",
+  "articleSection": "Sucessão",
+  "image": "https://leonardodesousa.com.br/cartas/img/o-que-voce-deixa-e-como.jpg",
+  "author": {
+    "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
+    "name": "Leonardo Sousa",
+    "jobTitle": "Consultor Patrimonial",
+    "url": "https://leonardodesousa.com.br/sobre"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://leonardodesousa.com.br/#organizacao",
+    "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leonardodesousa.com.br/favicon.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Cartas de Vida e Patrimônio",
+    "url": "https://leonardodesousa.com.br/cartas"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://leonardodesousa.com.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cartas",
+      "item": "https://leonardodesousa.com.br/cartas"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "O que você deixa, e como",
+      "item": "https://leonardodesousa.com.br/cartas/o-que-voce-deixa-e-como"
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -376,24 +532,73 @@ a{ color:inherit; }
 <header class="art-hero">
   <div class="wrap" style="max-width:880px">
     <div class="masthead">
-      <span>Erro 404</span>
+      <span><a href="/cartas" style="color:inherit;text-decoration:none">Cartas de Vida e Patrimônio</a></span>
       <span class="sep"></span>
-      <span>Página não encontrada</span>
+      <span>Sucessão</span>
     </div>
-    <h1 class="h1">Esta página não está aqui.</h1>
-    <p class="lead">O link pode ter um erro de digitação ou apontar para um endereço antigo: o site foi refeito e algumas páginas mudaram de lugar.</p>
+    <h1 class="h1">O que você deixa, e como</h1>
+    <p class="lead">Sucessão não é sobre imposto. É sobre o recado que fica.</p>
+    <p class="art-by">
+      <span>Por <a href="/sobre">Leonardo Sousa</a>, Consultor Patrimonial</span>
+      <span>Publicada em <time datetime="2026-07-09">9 de julho de 2026</time></span>
+      
+      <span>4 min de leitura</span>
+    </p>
   </div>
 </header>
+<figure class="art-capa"><img src="/cartas/img/o-que-voce-deixa-e-como.webp" width="1600" height="840" alt="Capa da carta: O que você deixa, e como" decoding="async"></figure>
 <div class="art-body">
-  <p>Por onde seguir:</p>
-  <ul class="nf-lista">
-    <li><a href="/">Início</a>: o que é o trabalho e para quem ele faz sentido.</li>
-    <li><a href="/metodo">O método</a>: como o plano é montado, etapa por etapa.</li>
-    <li><a href="/plano-exemplo">Plano de exemplo</a>: um Mapa Patrimonial completo, com dados fictícios.</li>
-    <li><a href="/cartas">Cartas de Vida e Patrimônio</a>: textos sobre estrutura, proteção, impostos e sucessão. Quem chegou por um link antigo de carta encontra o texto por aqui.</li>
-    <li><a href="/sobre">Sobre</a>: formação, certificações e forma de remuneração.</li>
-  </ul>
-  <p class="art-aviso">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</p>
+<p>Essa semana eu escrevi bastante sobre imposto. ITCMD que subiu, dividendo que passou a ser tributado, o cerco fiscal se fechando sobre quem tem patrimônio. É a parte técnica, e ela importa.</p>
+<p>Mas não é sobre isso que eu queria falar hoje. Imposto é a superfície. Embaixo dele tem uma conversa que quase ninguém tem com calma, e que não cabe em planilha nenhuma.</p>
+<p>A conversa sobre o que você deixa. E, principalmente, sobre como.</p>
+<h2 id="o-assunto-que-todo-mundo-adia">O assunto que todo mundo adia</h2>
+<p>Sucessão é, talvez, o único tema de patrimônio que junta duas coisas que a gente prefere não encarar ao mesmo tempo: dinheiro e a própria ausência.</p>
+<p>Por isso ele é sempre adiado. Não por descuido. Ninguém acorda com vontade de imaginar a família dividindo o que levou uma vida para construir. É mais confortável cuidar da carteira, olhar o rendimento, discutir a Selic. São problemas que a gente resolve estando presente.</p>
+<p>Só que o adiamento tem um preço, e ele não é só o imposto que sobe a cada ano. O preço maior é outro. É deixar que uma das decisões mais importantes da sua vida seja tomada por outras pessoas, no pior momento delas, sem você na mesa para explicar o porquê.</p>
+<p>O patrimônio que não tem destino escolhido não fica sem destino. Ele recebe um destino imposto. Pela lei, pelo inventário, pela pressa, pela mágoa que às vezes aparece quando o dinheiro fica na mesa e a pessoa que unia todo mundo não está mais lá.</p>
+<h2 id="nao-e-sobre-o-dinheiro-e-sobre-o-recado">Não é sobre o dinheiro. É sobre o recado.</h2>
+<p>Passei a entender, com o tempo, que planejar a sucessão tem pouco a ver com reduzir imposto, embora reduza. Tem a ver com deixar um recado claro.</p>
+<p>Um patrimônio bem organizado, decidido em vida, diz uma coisa para quem fica: eu pensei em vocês. Eu não deixei isso virar um problema para vocês resolverem no meio da dor. Cada coisa tem um lugar, um porquê, e o porquê está escrito.</p>
+<p>Um patrimônio desorganizado diz o contrário, mesmo sem querer. Diz que a pessoa não teve tempo, ou coragem, de encarar. E deixa para trás não só bens, mas dúvidas. Quem fica com o quê. Por que assim. O que ele teria querido. Perguntas que já não têm resposta, e que às vezes separam famílias que se davam bem.</p>
+<p>A parte técnica, a holding, o seguro, a doação com usufruto, a estrutura que reduz o imposto, tudo isso é ferramenta. Ferramenta a serviço de um recado. Sem o recado, é só engenharia tributária. Com ele, vira cuidado.</p>
+<h2 id="o-que-muda-quando-voce-decide-em-vida">O que muda quando você decide em vida</h2>
+<p>Tem uma diferença enorme entre a sucessão que acontece com você e a que acontece sem você.</p>
+<p>A que acontece sem você é o inventário. Meses, às vezes anos. Custos que se somam, o imposto no topo deles. Bens que não podem ser vendidos nem usados enquanto o processo corre. E, no meio disso, uma família enlutada tendo que tomar decisões financeiras que nunca conversou.</p>
+<p>A que acontece com você é outra coisa. É você escolhendo, com tempo, o que fica com quem. É você explicando, enquanto pode, por que decidiu assim. É você organizando a estrutura de um jeito que a transição seja quase invisível, sem trava, sem susto, sem meio milhão evaporando no caminho só porque a conversa ficou para depois.</p>
+<p>Uma exige a sua presença. A outra, a sua ausência. E a única forma de garantir a primeira é fazer enquanto se está inteiro, com a cabeça boa, sem urgência.</p>
+<p>É por isso que eu digo que sucessão é a decisão de patrimônio que mais barateia com a antecedência. Não só no imposto. Na paz de quem fica.</p>
+<h2 id="o-ano-que-empurra-a-conversa">O ano que empurra a conversa</h2>
+<p>Eu não gosto de usar o calendário fiscal como gatilho de medo. Não é o meu estilo, e não é honesto.</p>
+<p>Mas há um fato simples. Em 2026, o custo de transmitir subiu, e as regras estão em transição. Isso não é motivo para pânico. É motivo para trazer a conversa que já devia ter acontecido para um pouco mais perto.</p>
+<p>Não pela economia de imposto, embora ela seja real. Pela chance de fazer essa decisão do jeito certo: com calma, em vida, com você explicando o porquê. Enquanto ela ainda pode ser sua, e não do inventário.</p>
+<p>A pergunta que fica não é quanto você vai deixar. Quase todo mundo que me procura já resolveu bem a parte de acumular.</p>
+<p>A pergunta é como. Se o que você construiu vai chegar até quem você ama como um cuidado organizado, ou como um problema no pior momento.</p>
+<p>Se essa é uma conversa que você vem adiando, talvez seja a hora de trazê-la para a mesa. Não com pressa. Com atenção.</p>
+<p>Este texto não constitui orientação jurídica. Para o seu caso, consulte um advogado.</p>
+
+<aside class="art-autor" aria-label="Sobre o autor">
+  <img src="/foto-leo.webp" alt="Leonardo Sousa" width="64" height="64" loading="lazy">
+  <div>
+    <p class="nm">Leonardo Sousa</p>
+    <p>Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
+  </div>
+</aside>
+<div style="margin-top:2.4em">
+<div class="insc" id="receber">
+  <p class="insc-k">Cartas de Vida e Patrimônio</p>
+  <h3>Receba a próxima carta</h3>
+  <p class="insc-ap">Uma carta por semana, no seu e-mail.</p>
+  <form class="insc-f" data-origem="carta:o-que-voce-deixa-e-como" novalidate>
+    <label class="insc-sr" for="insc-email-1">Seu e-mail</label>
+    <input id="insc-email-1" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
+    <input class="insc-hp" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">Quero receber</button>
+  </form>
+  <p class="insc-micro">Você recebe um e-mail para confirmar a inscrição. Uso seu endereço só para enviar as cartas. <a href="/privacidade">Política de Privacidade</a></p>
+  <p class="insc-ret" role="status" aria-live="polite"></p>
+</div>
+</div>
+<p class="art-aviso">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</p>
 </div>
 </article>
 <section class="sec final" id="conversa">
@@ -556,6 +761,28 @@ window.ckReabrir = ckReabrir;
 function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
 (function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+<script>
+(function(){
+  var URL_='https://luana-backend-production.up.railway.app/cartas/inscrever', OK="Falta um passo. Mandei um e-mail para você confirmar a inscrição. Se não aparecer em alguns minutos, olhe a pasta de spam ou de promoções.", ERRO="Não consegui registrar agora. Tente de novo em alguns minutos.";
+  Array.prototype.forEach.call(document.querySelectorAll('form.insc-f'), function(f){
+    var ret=f.parentNode.querySelector('.insc-ret'), bt=f.querySelector('button'), em=f.querySelector('input[type=email]');
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!f.reportValidity()) return;
+      bt.disabled=true; ret.className='insc-ret'; ret.textContent='';
+      fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+        body:JSON.stringify({email:em.value.trim(), origem:f.getAttribute('data-origem')||'/cartas',
+                             site:(f.querySelector('.insc-hp')||{}).value||''})})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        f.style.display='none'; ret.textContent=OK;
+        try{ if(window.gtag) gtag('event','inscricao_cartas',{origem:f.getAttribute('data-origem')}); }catch(e){}
+      })
+      .catch(function(){ bt.disabled=false; ret.className='insc-ret err'; ret.textContent=ERRO; });
+    });
+  });
+})();
 </script>
 </body>
 </html>

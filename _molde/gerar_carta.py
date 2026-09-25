@@ -21,6 +21,10 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import carta_email  # noqa: E402  (versão e-mail da carta)
+import inscricao  # noqa: E402  (formulário de inscrição nas cartas)
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMINIO = "https://leonardodesousa.com.br"
 ORG_ID = DOMINIO + "/#organizacao"
@@ -167,6 +171,8 @@ def data_extenso(iso):
 # ---------------------------------------------------------------- página
 
 CSS_CARTA = """
+.art-capa{ max-width:880px; margin:0 auto 2.2em; padding:0 var(--pad-x); }
+.art-capa img{ display:block; width:100%; height:auto; border-radius:6px; }
 /* ===== Carta do site (gerada por _molde/gerar_carta.py) ===== */
 .art-hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(1.6rem,3vw,2.4rem); }
 .art-hero .h1{ font-size:clamp(2rem,5vw,3.3rem); max-width:22ch; margin-top:clamp(1.4rem,3vw,2rem); }
@@ -295,27 +301,59 @@ def schema(meta, url, faq):
                    + "\n</script>\n" for g in grafo)
 
 
+CAPA_NA_PAGINA = True   # False: capa só no compartilhamento, no schema e no e-mail
+
+
+def preparar_capa(slug):
+    """Gera webp e jpg a partir de _molde/capas/<slug>.png. Devolve as URLs ou None."""
+    origem = os.path.join(RAIZ, "_molde", "capas", slug + ".png")
+    pasta = os.path.join(RAIZ, "cartas", "img")
+    webp, jpg = os.path.join(pasta, slug + ".webp"), os.path.join(pasta, slug + ".jpg")
+    if os.path.exists(origem):
+        from PIL import Image
+        os.makedirs(pasta, exist_ok=True)
+        if not os.path.exists(jpg) or os.path.getmtime(jpg) < os.path.getmtime(origem):
+            im = Image.open(origem).convert("RGB")
+            im.resize((1600, 840), Image.LANCZOS).save(webp, "WEBP", quality=78, method=6)
+            im.resize((1200, 630), Image.LANCZOS).save(jpg, "JPEG", quality=82, optimize=True, progressive=True)
+    if os.path.exists(jpg) and os.path.exists(webp):
+        return {"webp": f"/cartas/img/{slug}.webp", "jpg": f"{DOMINIO}/cartas/img/{slug}.jpg"}
+    return None
+
+
 def montar(meta, corpo, faq):
     url = f'{DOMINIO}/cartas/{meta["slug"]}'
     palavras = len(texto_puro(corpo + " ".join(q + " " + r for q, r in faq)).split())
     minutos = max(1, round(palavras / 200))
     h = casca()
     h = trocar_meta(h, meta, url)
-    h = h.replace("</style>", CSS_CARTA + "</style>", 1)
-    h = h.replace("</head>", schema(meta, url, faq) + "</head>", 1)
+    capa = preparar_capa(meta["slug"])
+    if capa:
+        h = re.sub(r'(<meta (?:property="og:image"|name="twitter:image") content=")[^"]*(")',
+                   lambda m: m.group(1) + capa["jpg"] + m.group(2), h)
+    h = h.replace("</style>", CSS_CARTA + inscricao.CSS + "</style>", 1)
+    h = h.replace("</body>", inscricao.js() + "\n</body>", 1)
+    esquema = schema(meta, url, faq)
+    if capa:
+        esquema = esquema.replace(f'"{DOMINIO}/opengraph.jpg"', f'"{capa["jpg"]}"')
+    h = h.replace("</head>", esquema + "</head>", 1)
 
     faq_html = ""
     if faq:
         itens = "".join(f"<details><summary>{inline(q)}</summary><div class=\"fb\">{md_para_html(r)}</div></details>"
                         for q, r in faq)
         faq_html = f'<section class="art-faq" aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2><div class="faq">{itens}</div></section>'
-    substack = ""
-    if meta.get("substack"):
-        substack = f'<p class="art-aviso">Esta carta também saiu na newsletter. <a href="{html.escape(meta["substack"])}" target="_blank" rel="noopener">Ler no Substack</a>.</p>'
+    receber = inscricao.bloco(origem=f'carta:{meta["slug"]}', kicker="Cartas de Vida e Patrimônio",
+                              titulo="Receba a próxima carta",
+                              apoio="Uma carta por semana, no seu e-mail.")
     atualizado = ""
     if meta["atualizado"] != meta["publicado"]:
         atualizado = f'<span>Atualizada em <time datetime="{meta["atualizado"]}">{data_extenso(meta["atualizado"])}</time></span>'
 
+    figura_capa = ""
+    if capa and CAPA_NA_PAGINA:
+        figura_capa = (f'<figure class="art-capa"><img src="{capa["webp"]}" width="1600" height="840" '
+                       f'alt="Capa da carta: {html.escape(meta["titulo"], quote=True)}" decoding="async"></figure>')
     main = f"""<main>
 <article class="art" id="topo">
 <header class="art-hero">
@@ -335,6 +373,7 @@ def montar(meta, corpo, faq):
     </p>
   </div>
 </header>
+{figura_capa}
 <div class="art-body">
 {md_para_html(corpo)}
 {faq_html}
@@ -345,7 +384,9 @@ def montar(meta, corpo, faq):
     <p>Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
   </div>
 </aside>
-{substack}
+<div style="margin-top:2.4em">
+{receber}
+</div>
 <p class="art-aviso">{DISCLAIMER}</p>
 </div>
 </article>
@@ -425,6 +466,15 @@ def gerar(caminho):
     os.makedirs(os.path.join(RAIZ, "cartas"), exist_ok=True)
     destino = os.path.join(RAIZ, "cartas", meta["slug"] + ".html")
     open(destino, "w", encoding="utf-8").write(montar(meta, corpo, faq))
+    saida = os.path.join(RAIZ, "_molde", "saida")
+    os.makedirs(saida, exist_ok=True)
+    capa = preparar_capa(meta["slug"])
+    doc, texto = carta_email.montar_email(meta, corpo, faq, md_para_html, DOMINIO, DISCLAIMER,
+                                          capa_url=capa["jpg"] if capa else None)
+    if "\u2014" in texto:
+        raise ErroCarta("a versão e-mail tem travessão")
+    open(os.path.join(saida, meta["slug"] + ".email.html"), "w", encoding="utf-8").write(doc)
+    open(os.path.join(saida, meta["slug"] + ".email.txt"), "w", encoding="utf-8").write(texto)
     print(f"ok  /cartas/{meta['slug']}  ({len(faq)} perguntas no FAQ)")
 
 

@@ -3,13 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Política de Privacidade · Leonardo Sousa · Consultor Patrimonial</title>
-<meta name="description" content="Política de Privacidade de Leonardo Sousa, Consultor Patrimonial. Como os dados de visitantes e clientes são coletados, usados e protegidos, em conformidade com a LGPD.">
+<title>Inscrição confirmada · Cartas de Vida e Patrimônio</title>
 
 <!-- ============================================================
-     PRIVACIDADE · Site institucional 2026 · v2 "Camadas Editoriais"
+     SOBRE · Site institucional 2026 · v2 "Camadas Editoriais"
      Herda o sistema de design canônico do index.html (Lora + Inter).
-     Página de leitura: coluna única estreita, sem nav-dots.
      ============================================================ -->
 
 <link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -22,6 +20,53 @@
 @font-face{ font-family:'Lora FB Noto'; src:local('Noto Serif'); size-adjust:97.13%; ascent-override:103.57%; descent-override:28.21%; line-gap-override:0.00%; }
 @font-face{ font-family:'Inter FB Arial'; src:local('Arial'), local('Liberation Sans'); size-adjust:106.36%; ascent-override:91.08%; descent-override:22.68%; line-gap-override:0.00%; }
 @font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
+
+.art-capa{ max-width:880px; margin:0 auto 2.2em; padding:0 var(--pad-x); }
+.art-capa img{ display:block; width:100%; height:auto; border-radius:6px; }
+/* ===== Carta do site (gerada por _molde/gerar_carta.py) ===== */
+.art-hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(1.6rem,3vw,2.4rem); }
+.art-hero .h1{ font-size:clamp(2rem,5vw,3.3rem); max-width:22ch; margin-top:clamp(1.4rem,3vw,2rem); }
+.art-hero .lead{ margin-top:18px; max-width:56ch; }
+.art-by{ margin-top:22px; font-size:.9rem; color:var(--mut); display:flex; flex-wrap:wrap; gap:6px 14px; }
+.art-by a{ color:var(--ink2); }
+.art-body{ max-width:720px; margin:0 auto; padding-inline:var(--pad-x); padding-bottom:var(--sec-y); }
+.art-body > *{ margin-top:1.1em; }
+.art-body p, .art-body li{ font-size:1.08rem; line-height:1.72; color:var(--ink2); }
+.art-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.6vw,1.8rem); line-height:1.2;
+  color:var(--ink); margin-top:2.1em; letter-spacing:-.01em; scroll-margin-top:90px; }
+.art-body h3{ font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin-top:1.6em; }
+.art-body ul, .art-body ol{ padding-left:1.3em; }
+.art-body li + li{ margin-top:.45em; }
+.art-body a{ color:var(--accent-tx); text-underline-offset:3px; }
+.art-body strong{ color:var(--ink); }
+.art-resposta{ background:var(--paper); border-left:3px solid var(--accent); padding:18px 22px;
+  font-family:var(--serif); font-size:1.14rem !important; line-height:1.6 !important; color:var(--ink) !important; }
+.art-tabela{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.art-tabela table{ width:100%; min-width:520px; border-collapse:collapse; font-size:.96rem; background:var(--paper); }
+.art-tabela th, .art-tabela td{ text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); line-height:1.5; }
+.art-tabela thead th{ font-weight:600; color:var(--ink); border-bottom:2px solid var(--ink); }
+.art-tabela tbody th{ font-weight:600; color:var(--ink); }
+.art-tabela td{ color:var(--ink2); }
+.art-faq{ margin-top:2.4em !important; }
+.art-faq h2{ margin-bottom:.2em; }
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.06rem,1.9vw,1.24rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 22px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; }
+.art-autor{ display:flex; gap:18px; align-items:center; margin-top:2.6em !important; padding:22px;
+  background:var(--paper); border:1px solid var(--line-soft); }
+.art-autor img{ width:64px; height:64px; border-radius:50%; object-fit:cover; flex:none; }
+.art-autor p{ font-size:.96rem !important; line-height:1.55 !important; margin:0; }
+.art-autor .nm{ font-family:var(--serif); font-weight:600; color:var(--ink); font-size:1.06rem !important; }
+.art-aviso{ font-size:.86rem !important; color:var(--mut) !important; line-height:1.55 !important; }
+@media (max-width:560px){ .art-autor{ flex-direction:column; align-items:flex-start; } }
 </style>
 
 <style>
@@ -56,6 +101,8 @@ a{ color:inherit; }
 .eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
   letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx); }
 .eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
 .serif{ font-family:var(--serif); }
 .hl{ color:var(--accent-tx); }
 .lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
@@ -69,6 +116,8 @@ a{ color:inherit; }
 .btn-sm{ font-size:.92rem; padding:12px 20px; }
 .btn-solid{ background:var(--deep); color:var(--on-deep); }
 .btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
 .btn-arrow::after{ content:'\2192'; transition:transform .25s; }
 .btn-arrow:hover::after{ transform:translateX(4px); }
 .tlink{ display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none; color:var(--accent-tx);
@@ -76,7 +125,11 @@ a{ color:inherit; }
 .tlink::after{ content:'\2192'; transition:transform .2s; }
 .tlink:hover{ border-color:var(--accent); }
 .tlink:hover::after{ transform:translateX(3px); }
+.tlink.on-deep{ color:var(--accent-br); }
 .micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
+.micro.on-deep{ color:var(--on-deep-soft); }
+.micro.on-deep .tk{ color:var(--accent-br); }
 
 /* ============================================================
    3. HEADER · masthead editorial
@@ -91,6 +144,7 @@ a{ color:inherit; }
 .nav{ display:flex; align-items:center; gap:2px; }
 .nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
 .nav a.lk:hover{ color:var(--accent-tx); }
+.nav a.lk[aria-current="page"]{ color:var(--accent-tx); }
 .nav .btn{ margin-left:10px; }
 .burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
 .mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
@@ -106,41 +160,87 @@ a{ color:inherit; }
 .scrim.open{ opacity:1; visibility:visible; }
 
 /* ============================================================
-   4. HERO · masthead + título de leitura
+   4. HERO · masthead + headline em duas camadas + retrato
    ============================================================ */
-.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2rem,5vw,3.2rem); }
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
 .masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
   font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
 .masthead .idx{ color:var(--accent-tx); }
 .masthead .sep{ width:1px; height:12px; background:var(--line); }
-.legal-title{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.06;
-  font-size:clamp(2.1rem,5vw,3.4rem); margin-top:clamp(1.3rem,3vw,2.1rem); }
-.legal-updated{ margin-top:14px; font-size:.9rem; color:var(--mut); }
+.hero-grid{ display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(2rem,5vw,4.4rem); align-items:center;
+  margin-top:clamp(1.6rem,3.6vw,2.6rem); }
+.ghost{ font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.35rem,3vw,2.15rem); letter-spacing:-.01em; margin-bottom:.16em; max-width:24ch; }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.04;
+  font-size:clamp(2.4rem,5.4vw,4rem); max-width:15ch; }
+.hero-copy .lead{ margin-top:clamp(1.4rem,2.6vw,1.9rem); }
+.hero-copy .lead + .lead{ margin-top:16px; }
+
+/* retrato editorial · mesmo tratamento p&b da home v2 */
+.portrait-wrap{ display:flex; justify-content:center; }
+.portrait{ width:100%; max-width:360px; aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 22px 55px rgba(10,25,20,.22); border:1px solid var(--line); }
+.portrait-fallback{ width:100%; max-width:360px; aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid var(--line);
+  box-shadow:0 22px 55px rgba(10,25,20,.22); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.portrait-fallback svg{ width:70%; height:auto; opacity:.5; }
 
 /* ============================================================
-   5. CORPO DE LEITURA · coluna única, ~72ch
+   5. PROVA FRIA · réguas + index numbers (herdado do index)
    ============================================================ */
-.legal-wrap{ max-width:72ch; margin:0 auto; }
-.legal-body{ margin-top:0; }
-.legal-body section{ padding-block:clamp(1.8rem,4vw,2.5rem); border-top:1px solid var(--line); }
-.legal-body section:first-child{ border-top:none; padding-top:0; }
-.legal-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.22rem,2.2vw,1.5rem); color:var(--ink);
-  letter-spacing:-.01em; margin-bottom:14px; line-height:1.28; }
-.legal-body h3{ font-family:var(--sans); font-weight:700; font-size:.82rem; color:var(--ink2); margin:20px 0 10px;
-  text-transform:uppercase; letter-spacing:.08em; }
-.legal-body p{ color:var(--ink2); line-height:1.7; margin-bottom:14px; }
-.legal-body p:last-child{ margin-bottom:0; }
-.legal-body ul{ margin:0 0 14px 1.15em; color:var(--ink2); line-height:1.68; }
-.legal-body li{ margin-bottom:7px; }
-.legal-body li:last-child{ margin-bottom:0; }
-.legal-body strong{ color:var(--ink); font-weight:600; }
-.legal-body a{ color:var(--accent-tx); text-decoration:underline; text-underline-offset:2px; }
-.legal-contact p{ line-height:1.9; }
-.legal-back{ margin-top:clamp(2rem,4vw,2.8rem); padding-top:clamp(1.6rem,3vw,2.2rem); border-top:1px solid var(--line); }
+.proof{ background:var(--paper); }
+.proof-in{ padding-block:clamp(2.6rem,5vw,3.6rem); }
+.proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.pitem{ padding:clamp(1.6rem,3vw,2.2rem) clamp(1rem,2.4vw,2rem); position:relative; }
+.pitem + .pitem{ border-left:1px solid var(--line); }
+.pk{ font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx); }
+.pv{ font-family:var(--serif); font-size:clamp(2.1rem,4.4vw,3.1rem); font-weight:700; line-height:1; margin-top:12px; letter-spacing:-.02em; }
+.pv .u{ color:var(--accent-tx); }
+.pl{ font-size:.9rem; color:var(--ink2); margin-top:10px; line-height:1.45; max-width:26ch; }
 
 /* ============================================================
-   6. RODAPÉ (herdado do index)
+   6. CREDENCIAIS · fichas de revista
    ============================================================ */
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 18px; max-width:18ch; }
+.creds{ display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--line); margin-top:30px; }
+.ficha:nth-child(odd){ border-left:none; }
+.ficha{ border-bottom:1px solid var(--line); padding:clamp(1.8rem,3vw,2.4rem) clamp(1.2rem,2.4vw,2rem); position:relative; }
+.ficha + .ficha{ border-left:1px solid var(--line); }
+.ficha .fn{ font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx);
+  display:flex; align-items:center; gap:10px; }
+.ficha .fn .fno{ font-family:var(--serif); font-size:.9rem; color:var(--mut); }
+.ficha h3{ font-family:var(--serif); font-size:clamp(1.28rem,2.2vw,1.6rem); font-weight:700; color:var(--ink);
+  margin:16px 0 12px; line-height:1.1; letter-spacing:-.01em; }
+.ficha p{ font-size:.95rem; color:var(--ink2); line-height:1.56; }
+
+/* ============================================================
+   7. POR QUE INDEPENDENTE · ensaio em duas colunas
+   ============================================================ */
+.essay-lead{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.8vw,2rem); line-height:1.24;
+  letter-spacing:-.015em; color:var(--ink); max-width:24ch; margin:16px 0 6px; }
+.essay{ column-count:2; column-gap:clamp(2rem,4.5vw,3.6rem); margin-top:clamp(1.8rem,3.4vw,2.6rem); }
+.essay p{ color:var(--ink2); line-height:1.72; margin-bottom:18px; break-inside:avoid; }
+.essay p:first-child{ margin-top:0; }
+.essay .reframe{ font-family:var(--serif); font-weight:600; font-size:clamp(1.14rem,2vw,1.42rem);
+  line-height:1.36; color:var(--accent-tx); margin:6px 0 20px; break-inside:avoid; }
+.essay b{ color:var(--ink); font-weight:600; }
+
+/* ============================================================
+   8. CTA FINAL · a única banda escura + rodapé (herdado do index)
+   ============================================================ */
+.final{ background:radial-gradient(ellipse 55% 60% at 12% 18%, rgba(62,207,142,.10), transparent 60%), var(--deep); color:var(--on-deep); }
+.final-grid{ display:grid; grid-template-columns:1fr; justify-items:center; text-align:center; max-width:760px; margin:0 auto; }
+.pfinal{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 20px 50px rgba(0,0,0,.34); border:1px solid rgba(255,255,255,.12); }
+.pfinal-fallback{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.34); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.pfinal-fallback svg{ width:70%; height:auto; opacity:.5; }
+.final h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; color:var(--on-deep); max-width:20ch; }
+.final .lead{ color:var(--on-deep-soft); margin:18px 0 28px; }
+.final .hl{ color:var(--accent-br); }
+
 .footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
 .footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
 .fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
@@ -157,11 +257,19 @@ a{ color:inherit; }
 .copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
 
 /* ============================================================
-   7. REVEAL
+   9. NAV-DOTS · REVEAL
    ============================================================ */
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:0; }
+.nav-dots a{ width:24px; height:24px; padding:7px; box-sizing:border-box; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:29px; top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
+  padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
+.nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+.nav-dots a, .nav-dots a.on{ background-clip:content-box; }
 .rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
 .rev.in{ opacity:1; transform:none; }
-.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
 @media (prefers-reduced-motion: reduce){
   .rev{ opacity:1; transform:none; transition:none; }
   html{ scroll-behavior:auto; }
@@ -169,16 +277,26 @@ a{ color:inherit; }
 }
 
 /* ============================================================
-   8. RESPONSIVO
+   10. RESPONSIVO
    ============================================================ */
 @media (max-width:1040px){
   .nav .lk, .hdr .nav .btn{ display:none; }
   .burger{ display:block; }
+  .nav-dots{ display:none; }
 }
 @media (max-width:880px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .portrait-wrap{ order:-1; }
+  .essay{ column-count:1; }
+  .final-grid{ grid-template-columns:1fr; text-align:center; justify-items:center; }
   .footer-top{ grid-template-columns:1fr 1fr; }
 }
 @media (max-width:560px){
+  .proof-grid{ grid-template-columns:1fr; }
+  .pitem + .pitem{ border-left:none; border-top:1px solid var(--line); }
+  .creds{ grid-template-columns:1fr; }
+  .ficha + .ficha{ border-left:none; }
+  .btn-lg{ width:100%; }
   .footer-top{ grid-template-columns:1fr; }
 }
 
@@ -188,99 +306,40 @@ a{ color:inherit; }
 .social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
 .social a{ text-decoration:none; color:#b8c2bd; border-bottom:1px solid var(--line-deep); padding-bottom:2px; }
 .social a:hover{ color:var(--on-deep); border-bottom-color:var(--accent-br); }
+
+/* FAQ (Fase 3 AEO, igual ao da home) */
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 26px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
+.faq .fb a{ color:var(--accent-tx); }
+.faq-data{ margin-top:22px; }
 </style>
 
 <!-- SEO / social (portado do Replit) -->
-<meta name="robots" content="index,follow">
+<meta name="robots" content="noindex, nofollow">
 <meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
-<link rel="canonical" href="https://leonardodesousa.com.br/privacidade">
 <link rel="icon" type="image/png" href="/favicon.png">
-<meta property="og:title" content="Política de Privacidade · Leonardo Sousa · Consultor Patrimonial">
-<meta property="og:description" content="Política de Privacidade de Leonardo Sousa, Consultor Patrimonial. Como os dados de visitantes e clientes são coletados, usados e protegidos, em conformidade com a LGPD.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://leonardodesousa.com.br/privacidade">
-<meta property="og:image" content="https://leonardodesousa.com.br/opengraph.jpg">
-<meta property="og:locale" content="pt_BR">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Política de Privacidade · Leonardo Sousa · Consultor Patrimonial">
-<meta name="twitter:description" content="Política de Privacidade de Leonardo Sousa, Consultor Patrimonial. Como os dados de visitantes e clientes são coletados, usados e protegidos, em conformidade com a LGPD.">
-<meta name="twitter:image" content="https://leonardodesousa.com.br/opengraph.jpg">
 <link rel="dns-prefetch" href="https://www.googletagmanager.com">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "@id": "https://leonardodesousa.com.br/#organizacao",
-  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
-  "alternateName": "Leonardo Sousa",
-  "url": "https://leonardodesousa.com.br/",
-  "logo": "https://leonardodesousa.com.br/favicon.png",
-  "sameAs": [
-    "https://www.linkedin.com/in/leonardopsousa/",
-    "https://www.instagram.com/leonardodesousa/",
-    "https://leonardodesousa.substack.com/"
-  ],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "customer service",
-    "availableLanguage": "Portuguese",
-    "url": "https://wa.me/554488239993"
-  }
-}
-</script>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": [
-    "FinancialService",
-    "Organization"
-  ],
-  "@id": "https://leonardodesousa.com.br/#organizacao",
-  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
-  "alternateName": "Leonardo Sousa",
-  "description": "Leonardo Sousa é consultor patrimonial independente especializado em planejamento financeiro para empresários, profissionais liberais e investidores com patrimônio diversificado. Atua nas áreas de liquidez, proteção, investimentos, aposentadoria e sucessão.",
-  "url": "https://leonardodesousa.com.br/",
-  "logo": "https://leonardodesousa.com.br/favicon.png",
-  "sameAs": [
-    "https://www.linkedin.com/in/leonardopsousa/",
-    "https://www.instagram.com/leonardodesousa/",
-    "https://leonardodesousa.substack.com/"
-  ],
-  "founder": {
-    "@type": "Person",
-    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
-    "name": "Leonardo Sousa",
-    "jobTitle": "Consultor Patrimonial",
-    "url": "https://leonardodesousa.com.br/sobre"
-  },
-  "areaServed": {
-    "@type": "Country",
-    "name": "Brasil"
-  },
-  "serviceType": [
-    "Consultoria Patrimonial Independente",
-    "Planejamento Financeiro",
-    "Planejamento Sucessório",
-    "Planejamento de Aposentadoria",
-    "Proteção Patrimonial"
-  ],
-  "priceRange": "$$$$",
-  "telephone": "+55 44 98823-9993",
-  "image": "https://leonardodesousa.com.br/opengraph.jpg"
-}
-</script>
 </head>
 <body>
 
 <!-- ============================================================ HEADER ============================================================ -->
 <header class="hdr" id="hdr">
   <div class="wrap hdr-in">
-    <a href="index.html" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <a href="/" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
     <nav class="nav" aria-label="Navegação principal">
-      <a class="lk" href="metodo.html">Método</a>
-      <a class="lk" href="plano-exemplo.html">Plano de exemplo</a>
-      <a class="lk" href="cartas.html">Cartas</a>
-      <a class="lk" href="sobre.html">Sobre</a>
+      <a class="lk" href="/metodo">Método</a>
+      <a class="lk" href="/plano-exemplo">Plano de exemplo</a>
+      <a class="lk" href="/cartas">Cartas</a>
+      <a class="lk" href="/sobre">Sobre</a>
       <a class="btn btn-solid btn-sm btn-arrow" href="/agendar">Agendar conversa</a>
     </nav>
     <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
@@ -292,150 +351,39 @@ a{ color:inherit; }
 <div class="scrim" id="scrim"></div>
 <nav class="mm" id="mm" aria-label="Navegação mobile">
   <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
-  <a href="metodo.html">Método</a>
-  <a href="plano-exemplo.html">Plano de exemplo</a>
-  <a href="cartas.html">Cartas</a>
-  <a href="sobre.html">Sobre</a>
+  <a href="/metodo">Método</a>
+  <a href="/plano-exemplo">Plano de exemplo</a>
+  <a href="/cartas">Cartas</a>
+  <a href="/sobre">Sobre</a>
   <a class="btn btn-solid btn-arrow" href="/agendar">Agendar conversa</a>
 </nav>
 
+<!-- nav-dots -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
+  <a href="#topo" data-label="Quem é" aria-label="Quem é"></a>
+  <a href="#numeros" data-label="Números" aria-label="Números"></a>
+  <a href="#credenciais" data-label="Credenciais" aria-label="Credenciais"></a>
+  <a href="#independente" data-label="Por que independente" aria-label="Por que independente"></a>
+  <a href="#conversa" data-label="Conversar" aria-label="Conversar"></a>
+</nav>
+
 <main>
-
-<!-- ============================================================ HERO / TÍTULO ============================================================ -->
-<section class="hero" id="topo">
-  <div class="wrap">
-    <div class="masthead rev">
-      <span class="idx num">Legal</span>
+<article class="art" id="topo">
+<header class="art-hero">
+  <div class="wrap" style="max-width:880px">
+    <div class="masthead">
+      <span>Cartas de Vida e Patrimônio</span>
       <span class="sep"></span>
-      <span>Política de Privacidade</span>
-      <span class="sep"></span>
-      <span>LGPD · Lei nº 13.709/2018</span>
+      <span>Inscrição confirmada</span>
     </div>
-    <h1 class="legal-title">Política de <span class="hl">Privacidade</span>.</h1>
-    <p class="legal-updated rev d2">Última atualização: Setembro de 2026</p>
+    <h1 class="h1">Inscrição confirmada.</h1>
+    <p class="lead">A próxima carta chega ao seu e-mail. Para ela não cair no spam, vale adicionar leonardo@cartas.leonardodesousa.com.br aos seus contatos.</p>
   </div>
-</section>
-
-<!-- ============================================================ CORPO ============================================================ -->
-<section class="sec sec-paper">
-  <div class="wrap legal-wrap">
-    <div class="legal-body">
-
-      <section>
-        <h2>1. Introdução</h2>
-        <p>Leonardo Sousa ("nós", "nosso" ou "Consultor") está comprometido em proteger a privacidade dos visitantes do nosso site e clientes. Esta Política de Privacidade descreve como coletamos, usamos, armazenamos e protegemos suas informações pessoais em conformidade com a Lei Geral de Proteção de Dados (LGPD, Lei nº 13.709/2018).</p>
-      </section>
-
-      <section>
-        <h2>2. Dados que Coletamos</h2>
-        <p>Coletamos os seguintes tipos de informações:</p>
-        <h3>2.1. Dados fornecidos por você</h3>
-        <ul>
-          <li>Dados de contato: nome, e-mail, telefone/WhatsApp</li>
-          <li>Dados financeiros gerais: faixa de patrimônio estimado (quando informado voluntariamente)</li>
-          <li>Objetivos financeiros: informações sobre seus objetivos fornecidas nos formulários</li>
-        </ul>
-        <h3>2.2. Dados coletados automaticamente</h3>
-        <ul>
-          <li>Dados de navegação: páginas visitadas, tempo de permanência, cliques</li>
-          <li>Dados técnicos: endereço IP, tipo de navegador, dispositivo utilizado</li>
-          <li>Cookies: identificadores para análise de tráfego e personalização</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>3. Finalidade do Tratamento</h2>
-        <p>Utilizamos seus dados para:</p>
-        <ul>
-          <li>Responder às suas solicitações de agendamento e contato</li>
-          <li>Enviar materiais gratuitos solicitados</li>
-          <li>Enviar as Cartas de Vida e Patrimônio a quem se inscreveu no site e confirmou pelo e-mail, e a quem já assinava a newsletter no Substack antes da mudança</li>
-          <li>Melhorar nossos serviços e experiência do usuário</li>
-          <li>Analisar o desempenho do site através de ferramentas de analytics</li>
-          <li>Cumprir obrigações legais e regulatórias</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>4. Base Legal</h2>
-        <p>O tratamento de dados pessoais é realizado com base em:</p>
-        <ul>
-          <li><strong>Consentimento:</strong> para cookies analíticos e de marketing e para o envio das Cartas de Vida e Patrimônio (Art. 7º, I da LGPD)</li>
-          <li><strong>Execução de contrato:</strong> para prestação de serviços de consultoria (Art. 7º, V)</li>
-          <li><strong>Legítimo interesse:</strong> para melhorias no site e comunicação (Art. 7º, IX)</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>5. Compartilhamento de Dados</h2>
-        <p>Seus dados podem ser compartilhados com:</p>
-        <ul>
-          <li><strong>Google Analytics:</strong> para medir o uso do site, apenas com consentimento de cookies analíticos</li>
-          <li><strong>Meta (Facebook/Instagram):</strong> para mensuração de campanhas publicitárias</li>
-          <li><strong>Provedores de hospedagem:</strong> Railway (hospedagem da aplicação, servidores nos EUA)</li>
-          <li><strong>Banco de dados:</strong> Supabase (banco de dados gerenciado)</li>
-          <li><strong>Resend:</strong> envio dos e-mails de resposta, dos materiais solicitados e das Cartas de Vida e Patrimônio</li>
-        </ul>
-        <p>Não vendemos, alugamos ou comercializamos seus dados pessoais com terceiros para fins de marketing direto.</p>
-      </section>
-
-      <section>
-        <h2>6. Cookies</h2>
-        <p>Utilizamos os seguintes tipos de cookies:</p>
-        <ul>
-          <li><strong>Cookies necessários:</strong> essenciais para o funcionamento do site</li>
-          <li><strong>Cookies analíticos (Google Analytics):</strong> para entender como os visitantes usam o site</li>
-          <li><strong>Cookies de marketing (Meta Pixel):</strong> para mensurar eficácia de anúncios</li>
-        </ul>
-        <p>Você pode gerenciar suas preferências de cookies através do banner exibido ao acessar o site ou nas configurações do seu navegador.</p>
-      </section>
-
-      <section>
-        <h2>7. Seus Direitos (LGPD)</h2>
-        <p>Você tem direito a:</p>
-        <ul>
-          <li>Confirmar a existência de tratamento de dados</li>
-          <li>Acessar seus dados pessoais</li>
-          <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
-          <li>Solicitar anonimização, bloqueio ou eliminação de dados</li>
-          <li>Revogar o consentimento a qualquer momento</li>
-          <li>Solicitar portabilidade dos dados</li>
-        </ul>
-      </section>
-
-      <section>
-        <h2>8. Retenção de Dados</h2>
-        <p>Mantemos seus dados pessoais pelo tempo necessário para cumprir as finalidades descritas nesta política, ou conforme exigido por lei. Dados de leads são mantidos por até 5 anos após o último contato, salvo solicitação de exclusão. O e-mail de quem se inscreveu nas Cartas é mantido enquanto a inscrição estiver ativa. Quem cancela deixa de receber na hora; o endereço fica registrado como cancelado, só para garantir que nenhuma carta volte a ser enviada a ele.</p>
-      </section>
-
-      <section>
-        <h2>9. Segurança</h2>
-        <p>Implementamos medidas técnicas e organizacionais para proteger seus dados contra acesso não autorizado, perda ou destruição, incluindo criptografia SSL/TLS, controle de acesso e backups regulares.</p>
-      </section>
-
-      <section>
-        <h2>10. Contato</h2>
-        <p>Para exercer seus direitos ou esclarecer dúvidas sobre esta política, entre em contato:</p>
-        <div class="legal-contact">
-          <p><strong>Responsável:</strong> Leonardo Sousa<br>
-          <strong>E-mail:</strong> <a href="mailto:leonardo@leonardodesousa.com.br">leonardo@leonardodesousa.com.br</a><br>
-          <strong>WhatsApp:</strong> +55 11 98950-5174</p>
-        </div>
-      </section>
-
-      <section>
-        <h2>11. Alterações</h2>
-        <p>Esta política pode ser atualizada periodicamente. Recomendamos que você a revise regularmente. Alterações significativas serão comunicadas através do site.</p>
-      </section>
-
-    </div>
-
-    <div class="legal-back rev">
-      <a class="tlink" href="index.html">Voltar ao início</a>
-    </div>
-  </div>
-</section>
-
+</header>
+<div class="art-body">
+  <p>Enquanto isso, as cartas já publicadas estão aqui: <a href="/cartas">Cartas de Vida e Patrimônio</a></p>
+</div>
+</article>
 </main>
 
 <!-- ============================================================ RODAPÉ ============================================================ -->
@@ -455,25 +403,56 @@ a{ color:inherit; }
       </div>
       <div class="footer-col">
         <p class="fcol-t">Navegar</p>
-        <a href="metodo.html">Método</a>
-        <a href="plano-exemplo.html">Plano de exemplo</a>
-        <a href="cartas.html">Cartas de Vida e Patrimônio</a>
-        <a href="sobre.html">Sobre</a>
+        <a href="/metodo">Método</a>
+        <a href="/plano-exemplo">Plano de exemplo</a>
+        <a href="/cartas">Cartas de Vida e Patrimônio</a>
+        <a href="/sobre">Sobre</a>
       </div>
       <div class="footer-col">
         <p class="fcol-t">Conversar</p>
-        <a href="conversa.html">Conversa exploratória</a>
+        <a href="/conversa">Conversa exploratória</a>
         <a href="/agendar">Agendar conversa</a>
       </div>
     </div>
 
     <div class="footer-legal">
       <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
-      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="privacidade.html">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="termos.html">Termos de Uso</a></p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="/termos">Termos de Uso</a></p>
     </div>
   </div>
 </footer>
 
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  requestAnimationFrame(onScroll);
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  var dots=document.querySelectorAll('#navDots a'), pairs=[];
+  dots.forEach(function(d){ var s=document.getElementById(d.getAttribute('href').slice(1)); if(s){ pairs.push({dot:d, sec:s}); } });
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ pairs.forEach(function(p){ p.dot.classList.toggle('on', p.sec===e.target); }); } }); },{threshold:.5, rootMargin:'-30% 0px -30% 0px'});
+    pairs.forEach(function(p){ so.observe(p.sec); });
+  }
+})();
+</script>
 <!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
 <style>
 @media (max-width:560px){
@@ -484,33 +463,6 @@ a{ color:inherit; }
 }
 </style>
 
-<script>
-(function(){
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  /* header scroll state */
-  var hdr = document.getElementById('hdr');
-  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
-  requestAnimationFrame(onScroll);
-  window.addEventListener('scroll', onScroll, {passive:true});
-
-  /* mobile menu */
-  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
-      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
-  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
-  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
-  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
-  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
-
-  /* reveal on scroll */
-  var revs=document.querySelectorAll('.rev');
-  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
-  else{
-    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
-    revs.forEach(function(e){ io.observe(e); });
-  }
-})();
-</script>
 
 <style>
 /* Cookie banner (LGPD) */
