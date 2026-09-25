@@ -149,6 +149,8 @@ a{ color:inherit; }
   transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
   display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
 .mm.open{ transform:translateX(0); }
+.mm:not(.open){ box-shadow:none; visibility:hidden; transition:transform .35s cubic-bezier(.4,0,.2,1), visibility 0s linear .35s; }
+.mm a.btn-solid{ color:var(--on-deep); border-bottom:0; }
 .mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
 .mm .btn{ margin-top:20px; }
 .mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
