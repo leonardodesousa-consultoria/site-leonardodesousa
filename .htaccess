@@ -128,6 +128,9 @@ RewriteRule ^checkup-patrimonial/?$ /conversa [R=301,L]
 # 2) Redireciona /pagina.html -> /pagina (URL limpa, preserva SEO com 301)
 # Cartas: /cartas é a página índice (cartas.html) e /cartas/<slug> é a carta.
 # A regra explícita é necessária porque a pasta cartas/ existe e a regra genérica ignora pastas.
+# Confirmação da inscrição nas cartas: o link do e-mail sai no domínio próprio e cai no
+# backend (mesmo padrão do /descadastro). Precisa vir antes da regra /cartas/<slug>.
+RewriteRule ^cartas/confirmar/?$ https://luana-backend-production.up.railway.app/cartas/confirmar [R=302,QSA,L]
 RewriteRule ^cartas/?$ /cartas.html [L]
 RewriteRule ^cartas/([a-z0-9-]+)/?$ /cartas/$1.html [L]
 

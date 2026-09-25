@@ -21,6 +21,10 @@ import os
 import re
 import sys
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import carta_email  # noqa: E402  (versão e-mail da carta)
+import inscricao  # noqa: E402  (formulário de inscrição nas cartas)
+
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DOMINIO = "https://leonardodesousa.com.br"
 ORG_ID = DOMINIO + "/#organizacao"
@@ -301,7 +305,8 @@ def montar(meta, corpo, faq):
     minutos = max(1, round(palavras / 200))
     h = casca()
     h = trocar_meta(h, meta, url)
-    h = h.replace("</style>", CSS_CARTA + "</style>", 1)
+    h = h.replace("</style>", CSS_CARTA + inscricao.CSS + "</style>", 1)
+    h = h.replace("</body>", inscricao.js() + "\n</body>", 1)
     h = h.replace("</head>", schema(meta, url, faq) + "</head>", 1)
 
     faq_html = ""
@@ -309,9 +314,9 @@ def montar(meta, corpo, faq):
         itens = "".join(f"<details><summary>{inline(q)}</summary><div class=\"fb\">{md_para_html(r)}</div></details>"
                         for q, r in faq)
         faq_html = f'<section class="art-faq" aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2><div class="faq">{itens}</div></section>'
-    substack = ""
-    if meta.get("substack"):
-        substack = f'<p class="art-aviso">Esta carta também saiu na newsletter. <a href="{html.escape(meta["substack"])}" target="_blank" rel="noopener">Ler no Substack</a>.</p>'
+    receber = inscricao.bloco(origem=f'carta:{meta["slug"]}', kicker="Cartas de Vida e Patrimônio",
+                              titulo="Receba a próxima carta",
+                              apoio="Uma carta por semana, no seu e-mail.")
     atualizado = ""
     if meta["atualizado"] != meta["publicado"]:
         atualizado = f'<span>Atualizada em <time datetime="{meta["atualizado"]}">{data_extenso(meta["atualizado"])}</time></span>'
@@ -345,7 +350,9 @@ def montar(meta, corpo, faq):
     <p>Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
   </div>
 </aside>
-{substack}
+<div style="margin-top:2.4em">
+{receber}
+</div>
 <p class="art-aviso">{DISCLAIMER}</p>
 </div>
 </article>
@@ -425,6 +432,13 @@ def gerar(caminho):
     os.makedirs(os.path.join(RAIZ, "cartas"), exist_ok=True)
     destino = os.path.join(RAIZ, "cartas", meta["slug"] + ".html")
     open(destino, "w", encoding="utf-8").write(montar(meta, corpo, faq))
+    saida = os.path.join(RAIZ, "_molde", "saida")
+    os.makedirs(saida, exist_ok=True)
+    doc, texto = carta_email.montar_email(meta, corpo, faq, md_para_html, DOMINIO, DISCLAIMER)
+    if "\u2014" in texto:
+        raise ErroCarta("a versão e-mail tem travessão")
+    open(os.path.join(saida, meta["slug"] + ".email.html"), "w", encoding="utf-8").write(doc)
+    open(os.path.join(saida, meta["slug"] + ".email.txt"), "w", encoding="utf-8").write(texto)
     print(f"ok  /cartas/{meta['slug']}  ({len(faq)} perguntas no FAQ)")
 
 
