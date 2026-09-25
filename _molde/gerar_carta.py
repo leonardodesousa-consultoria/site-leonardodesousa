@@ -353,7 +353,7 @@ def montar(meta, corpo, faq):
     figura_capa = ""
     if capa and CAPA_NA_PAGINA:
         figura_capa = (f'<figure class="art-capa"><img src="{capa["webp"]}" width="1600" height="840" '
-                       f'alt="Capa da carta: {html.escape(meta["titulo"], quote=True)}" decoding="async"></figure>')
+                       f'alt="Capa da carta: {html.escape(meta["titulo"], quote=True)}" decoding="async" fetchpriority="high"></figure>')
     main = f"""<main>
 <article class="art" id="topo">
 <header class="art-hero">
