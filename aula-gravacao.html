@@ -19,36 +19,6 @@
 <meta name="twitter:description" content="A gravação da live de 17 de setembro de 2026: o que se paga para tirar dinheiro do Brasil, o que se paga todo ano, e o que a família paga depois.">
 <meta name="twitter:image" content="https://leonardodesousa.com.br/opengraph.jpg">
 
-<!-- ============================================================
-     GRAVACAO DA LIVE DE 17/09/2026 · campanha 2026-09-live-internacional
-
-     Servida em /aula/gravacao e em /aula/gravacao/<identificador> por reescrita
-     interna no .htaccess, bloco 1d. O arquivo mora na raiz de proposito: criar
-     um diretorio /aula de verdade mudaria o comportamento das regras 2 e 3.
-
-     Destino dos botoes de URL dos templates T4 e T5 do WhatsApp e do link dos
-     e-mails live-int-04 e live-int-05.
-
-     ANTES DE PUBLICAR, DOIS ITENS:
-     1. Trocar VIDEO_ID_AQUI pelo id do video da gravacao. Enquanto o valor for
-        o sentinela, a pagina mostra o estado "ainda nao publicada" em vez de um
-        player quebrado.
-     2. A pagina e peca publica: passa por vendas-compliance-cvm antes do deploy.
-
-     MEDICAO, E O LIMITE PRECISA SER LIDO ANTES DE QUALQUER VERBA ENTRAR:
-     - VOLUME, isso funciona hoje: o CTA aponta para /aula/ir, que passa pelo
-       dominio antes do WhatsApp. Cada clique vira linha no log do Apache, para
-       quem aceita e para quem recusa cookie. Depende de o log da KingHost estar
-       acessivel no painel, o que ainda nao foi conferido.
-     - PESSOA, isso NAO funciona hoje: ninguem emite o identificador por pessoa.
-       T4 e T5 foram submetidos com uma variavel so, o primeiro nome, e botao de
-       URL fixo. Ver o comentario do script, que detalha as duas saidas.
-     - O evento de pixel e camada extra e so cobre quem aceitou cookies.
-
-     Sistema de design herdado do index.html: Lora + Inter, editorial claro.
-     Cor de texto sempre solida, nunca rgba, conforme design.json.
-     ============================================================ -->
-
 <link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
@@ -66,10 +36,7 @@
   --bg:#f5f5f0; --paper:#ffffff;
   --ink:#0a1914; --ink2:#2d4a3e; --ink3:#2d3748;
   --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e;
-  /* Verde escurecido, usado SO em texto pequeno sobre fundo claro: rotulo de
-     secao e numeracao da lista. O #1fa86a do resto do site rende 2,8:1 sobre
-     #f5f5f0, abaixo do minimo de 4,5:1. Este rende 4,57:1. O verde da marca
-     continua onde o contraste nao e problema: botao, barra, fundo escuro. */
+  
   --accent-ink:#1a7f52;
   --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
   --deep:#0a1914; --deep-soft:#16302a; --on-deep:#ffffff; --on-deep-soft:#c9d6cf; --line-deep:rgba(255,255,255,.14);
@@ -81,17 +48,13 @@
 html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
 body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
   -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden;
-  /* O banner de cookie e fixo no rodape. Sem esta folga ele cobre o unico
-     destino da pagina no celular, que e o pior lugar possivel para cobrir. */
+  
   padding-bottom:190px; }
 img{ max-width:100%; display:block; }
 a{ color:inherit; }
 .num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
 .wrap{ max-width:var(--wrap); margin:0 auto; padding-left:var(--pad-x); padding-right:var(--pad-x); }
 
-/* HEADER enxuto. A pagina tem um destino de conversao so, entao o cabecalho nao
-   carrega botao de acao concorrente. A marca continua clicavel para a home,
-   que e navegacao e nao disputa com o CTA. */
 .hdr{ border-bottom:1px solid var(--line-soft); background:var(--bg); }
 .hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px 0; }
 .wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; letter-spacing:-.01em; }
@@ -101,13 +64,11 @@ a{ color:inherit; }
 .eyebrow{ display:inline-block; font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:16px; }
 .eyebrow.on-deep{ color:var(--accent-br); }
 
-/* HERO */
 .hero{ padding:clamp(2.6rem,6vw,4.2rem) 0 clamp(1.6rem,3vw,2.2rem); }
 .h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.08;
   font-size:clamp(2.05rem, 5.2vw, 3.35rem); max-width:20ch; }
 .hero-sub{ margin-top:20px; font-size:clamp(1.02rem,1.9vw,1.16rem); color:var(--ink2); max-width:60ch; }
 
-/* VIDEO */
 .video-sec{ padding-bottom:var(--sec-y); }
 .video-frame{ position:relative; width:100%; aspect-ratio:16/9; border-radius:10px; overflow:hidden;
   background:var(--deep); border:1px solid var(--line); }
@@ -118,7 +79,6 @@ a{ color:inherit; }
 .video-espera p{ font-size:.95rem; color:var(--on-deep-soft); max-width:44ch; }
 .video-nota{ margin-top:14px; font-size:.88rem; color:var(--ink3); }
 
-/* SECOES claras */
 .sec{ padding:var(--sec-y) 0; }
 .sec-paper{ background:var(--paper); border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft); }
 .h2{ font-family:var(--serif); font-weight:600; letter-spacing:-.015em; line-height:1.16;
@@ -134,11 +94,8 @@ a{ color:inherit; }
 .fora{ max-width:62ch; }
 .fora p{ margin-top:16px; color:var(--ink2); }
 
-/* BANDA ESCURA COM O UNICO DESTINO */
 .book{ background:var(--deep); color:var(--on-deep); }
-/* Assinatura com rosto. Fica ACIMA do rotulo, alinhada no mesmo trilho de
-   113px de todo o resto: o rosto trabalha a familiaridade no momento da
-   decisao sem quebrar o alinhamento nem abrir uma segunda saida. */
+
 .assina{ display:flex; align-items:center; gap:16px; margin-bottom:26px; }
 .assina img{ width:96px; height:112px; object-fit:cover; object-position:center top; border-radius:8px; }
 .assina b{ display:block; font-family:var(--serif); font-size:1.05rem; font-weight:600; }
@@ -154,13 +111,11 @@ a{ color:inherit; }
 .book-nota{ margin-top:18px; font-size:.92rem; color:var(--on-deep-soft); max-width:58ch; }
 .disc{ margin-top:30px; padding-top:18px; border-top:1px solid var(--line-deep); font-size:.84rem; color:var(--on-deep-soft); max-width:70ch; }
 
-/* RODAPE */
 .footer{ background:var(--bg); padding:52px 0 40px; border-top:1px solid var(--line-soft); }
 .footer-brand .fb-name{ font-family:var(--serif); font-size:1.1rem; font-weight:600; }
 .footer-brand .fb-role{ font-size:.82rem; color:var(--ink3); margin-top:2px; }
 .footer-brand p{ margin-top:12px; font-size:.9rem; color:var(--ink3); max-width:46ch; }
-/* Redes no RODAPE, e nao perto do botao, de proposito: aqui elas nao disputam
-   com o destino unico da pagina, que e o que a campanha esta pagando. */
+
 .social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
 .social a{ text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:2px; color:var(--ink3); }
 .social a:hover{ border-bottom-color:var(--accent-ink); color:var(--ink); }
@@ -174,7 +129,6 @@ a{ color:inherit; }
   .hdr-date{ display:none; }
 }
 
-/* Cookie banner (LGPD) */
 .ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
 .ck-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .ck-tx{flex:1;min-width:220px}
@@ -309,8 +263,7 @@ a{ color:inherit; }
 </div>
 
 <script>
-/* Player: so monta o iframe quando existe id de verdade. Enquanto o valor for o
-   sentinela, fica o estado de espera, que e honesto. Player quebrado nao. */
+
 (function(){
   var el=document.getElementById('videoFrame');
   if(!el) return;
@@ -327,27 +280,6 @@ a{ color:inherit; }
   el.appendChild(f);
 })();
 
-/* IDENTIFICADOR POR PESSOA, E O ESTADO REAL DELE HOJE
-   A URL pode chegar como /aula/gravacao/<identificador>. O .htaccess preserva
-   esse pedaco e a pagina o le aqui. Havendo identificador, o CTA passa a
-   apontar para /aula/ir/<identificador>, e o .htaccess injeta o ref no texto da
-   mensagem. E a unica forma de a Luana ligar a conversa a uma pessoa sem
-   cookie: o clique-para-conversar nao carrega nada alem do texto.
-
-   HOJE NINGUEM EMITE ESSE IDENTIFICADOR, e isso precisa ser dito sem rodeio:
-   - T4 e T5 foram submetidos a Meta com uma variavel so, o primeiro nome. O
-     botao de URL deles e fixo. Ter identificador por pessoa exige ressubmeter
-     os templates com botao de URL dinamico, e a URL congela na aprovacao.
-   - Os e-mails live-int-04 e live-int-05 podem carregar link por pessoa se
-     forem enviados montando o link no disparo. O que nao aceita variavel
-     customizada e o conector usado para criar os rascunhos, nao o Resend.
-   Enquanto um dos dois nao emitir, refDaUrl() devolve null para todo mundo, o
-   ref nao existe, e o que se mede e volume, nao pessoa.
-
-   O QUE MEDE HOJE, sem depender de nada disso: o CTA aponta para /aula/ir, que
-   passa pelo dominio antes do WhatsApp. Cada clique vira linha no log do
-   Apache, do lado do servidor, para quem aceita e para quem recusa cookie.
-   O evento de pixel abaixo e camada extra, e so cobre quem aceitou. */
 function refDaUrl(){
   var m = location.pathname.match(/\/aula\/gravacao\/([A-Za-z0-9_-]{6,64})\/?$/);
   return m ? m[1] : null;
@@ -366,7 +298,6 @@ function refDaUrl(){
   });
 })();
 
-/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
 var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
 function lerConsentimento(){
   try{ return localStorage.getItem('cookie_consent'); }catch(err){ return null; }
@@ -403,9 +334,7 @@ window.ckReabrir = ckReabrir;
 function gravarConsentimento(v){ try{ localStorage.setItem('cookie_consent',JSON.stringify(v)); }catch(err){} }
 function ckOk(){ gravarConsentimento({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()}); loadA(); document.getElementById('ck').style.display='none'; }
 function ckNo(){ gravarConsentimento({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()}); document.getElementById('ck').style.display='none'; }
-/* Navegador que bloqueia site data lanca na leitura. Sem o try/catch de
-   lerConsentimento, esta IIFE quebraria e o banner nunca apareceria, que e
-   exatamente o oposto do que a LGPD exige. */
+
 (function(){ var r=lerConsentimento(); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
 </script>
 </body>
