@@ -32,6 +32,8 @@ O gerador cria `cartas/<slug>.html`, a versão e-mail em `_molde/saida/` e atual
 
 **Assinantes:** tabela `cartas_assinantes` no Supabase (fora de `leads_funil`: quem assina as cartas não entra na Luana nem na nutrição). Descadastro pelo link do rodapé de cada carta, sincronizado pelo webhook do Resend. Pedido de remoção por resposta de e-mail: `POST /cartas/admin/remover` (token no Chaveiro, serviço `cartas-admin-token`).
 
+**Capa:** salvar a capa da semana (PNG 2400x1260 do `_capa_foto.py`) em `_molde/capas/<slug>.png` antes de rodar o gerador. Ele cria `cartas/img/<slug>.webp` (página) e `.jpg` (compartilhamento, schema e e-mail). Sem o arquivo, a carta sai sem capa e com a imagem genérica do site. Para tirar a capa só da página e manter no resto: `CAPA_NA_PAGINA = False` no `gerar_carta.py`.
+
 **Aviso de transição:** `aviso_transicao: sim` no cabeçalho da carta põe no topo do e-mail o aviso de que as cartas saíram do Substack. Usar só na primeira carta enviada pelo sistema novo.
 
 ## Campos do cabeçalho

@@ -72,7 +72,7 @@ def _texto(md: str, dominio: str) -> str:
 
 
 def montar_email(meta: dict, corpo: str, faq: list, md_para_html, dominio: str,
-                 disclaimer: str) -> tuple[str, str]:
+                 disclaimer: str, capa_url: str | None = None) -> tuple[str, str]:
     url = f'{dominio}/cartas/{meta["slug"]}'
     aviso = str(meta.get("aviso_transicao", "")).lower() in ("sim", "true", "1")
     titulo, resumo = meta["titulo"], meta["resumo"]
@@ -87,6 +87,11 @@ def montar_email(meta: dict, corpo: str, faq: list, md_para_html, dominio: str,
         caixa_aviso = (f'<p style="margin:0 0 24px 0;padding:14px 16px;background:{PAPEL};font-family:{SANS};'
                        f'font-size:15px;line-height:22px;color:{INK2};">{html.escape(AVISO_TRANSICAO)}</p>')
     e = html.escape
+    linha_capa = ""
+    if capa_url:
+        linha_capa = (f'<tr><td style="padding-top:14px;padding-left:32px;padding-right:32px;">'
+                      f'<a href="{url}"><img src="{capa_url}" width="536" height="281" alt="{e(titulo)}" '
+                      f'style="display:block;width:100%;max-width:536px;height:auto;border:0;border-radius:4px;"></a></td></tr>\n')
     pequeno = f"font-family:{SANS};font-size:13px;line-height:19px;color:{INK2};"
     doc = f"""<!DOCTYPE html>
 <html lang="pt-BR">
@@ -107,7 +112,7 @@ def montar_email(meta: dict, corpo: str, faq: list, md_para_html, dominio: str,
 <td align="right" style="font-family:{SANS};font-size:13px;line-height:16px;"><a href="{url}" style="color:{VERDE};text-decoration:underline;">Ler no site</a></td>
 </tr></table>
 </td></tr>
-<tr><td style="padding-top:18px;padding-bottom:8px;padding-left:32px;padding-right:32px;">
+{linha_capa}<tr><td style="padding-top:18px;padding-bottom:8px;padding-left:32px;padding-right:32px;">
 <h1 style="margin:0 0 12px 0;font-family:{SERIF};font-size:28px;line-height:34px;font-weight:bold;color:{INK};">{e(titulo)}</h1>
 <p style="margin:0 0 24px 0;font-family:{SERIF};font-size:18px;line-height:27px;color:{INK2};">{e(resumo)}</p>
 {caixa_aviso}
