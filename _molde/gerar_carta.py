@@ -459,6 +459,27 @@ def atualizar_indice(cartas):
     open(p, "w", encoding="utf-8").write(s)
 
 
+def atualizar_home(cartas):
+    """Seção #cartas da index.html: as três mais recentes, com link para a página no site."""
+    p = os.path.join(RAIZ, "index.html")
+    s = open(p, encoding="utf-8").read()
+    ini, fim = "<!-- CARTAS-HOME:INICIO -->", "<!-- CARTAS-HOME:FIM -->"
+    if ini not in s:
+        m = re.search(r'(<div class="letters">)(.*?)(\s*<article class="lcard sub)', s, flags=re.S)
+        if not m:
+            raise ErroCarta("index.html mudou: não achei a grade de cartas da home")
+        s = s[:m.start(2)] + f"\n      {ini}\n      {fim}" + s[m.end(2):]
+    itens = "".join(f"""
+      <article class="lcard rev d{i}">
+        <div class="lc-meta">Carta · {html.escape(c["tema"])}</div>
+        <h3>{html.escape(c["titulo"])}</h3>
+        <p>{html.escape(c["descricao"])}</p>
+        <a class="tlink" href="/cartas/{c["slug"]}" aria-label="Ler a carta: {html.escape(c["titulo"], quote=True)}">Ler a carta</a>
+      </article>""" for i, c in enumerate(cartas[:3], start=1))
+    s = re.sub(re.escape(ini) + r".*?" + re.escape(fim), lambda _m: ini + itens + "\n      " + fim, s, count=1, flags=re.S)
+    open(p, "w", encoding="utf-8").write(s)
+
+
 # ---------------------------------------------------------------- main
 
 def gerar(caminho):
@@ -494,7 +515,8 @@ def main():
         atualizar_sitemap(cartas)
         atualizar_llms(cartas)
         atualizar_indice(cartas)
-        print(f"sitemap, llms.txt e /cartas atualizados ({len(cartas)} cartas no site)")
+        atualizar_home(cartas)
+        print(f"sitemap, llms.txt, /cartas e home atualizados ({len(cartas)} cartas no site)")
     except ErroCarta as e:
         sys.exit(f"ERRO: {e}")
 
