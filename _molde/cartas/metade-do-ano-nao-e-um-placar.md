@@ -4,7 +4,7 @@ slug: metade-do-ano-nao-e-um-placar
 descricao: Por que o semestre castigou quem tentou adivinhar, e o que de fato vale revisar agora.
 tema: Plano
 publicado: 2026-07-02
-atualizado: 2026-07-02
+atualizado: 2026-09-26
 resumo: Por que o semestre castigou quem tentou adivinhar, e o que de fato vale revisar agora.
 ---
 
@@ -26,7 +26,7 @@ Eu vi esse primeiro semestre de perto, e ele é um bom professor sobre o tamanho
 
 Quem entrou em janeiro tentando acertar o ano teve poucos meses tão cruéis quanto esses.
 
-A bolsa subiu quase quinze por cento logo de cara. Quem comprou a euforia de janeiro se sentiu gênio por algumas semanas. Em abril, novo recorde, e a sensação de gênio virou certeza. Depois o chão se mexeu, e boa parte daquele ganho evaporou em poucas semanas. No começo de junho, quem tinha entrado tarde estava no vermelho e convencido de que tinha errado tudo. No fim do mês, o índice já tinha voltado a subir.
+A bolsa subiu mais de doze por cento logo de cara. Quem comprou a euforia de janeiro se sentiu gênio por algumas semanas. Em abril, novo recorde, e a sensação de gênio virou certeza. Depois o chão se mexeu, e boa parte daquele ganho evaporou em poucas semanas. No começo de junho, quem tinha entrado tarde estava no vermelho e convencido de que tinha errado tudo. No fim do mês, o índice já tinha voltado a subir.
 
 Quatro humores em seis meses. Quem tentou se posicionar para cada um deles fez quatro apostas, pagou quatro vezes o custo de errar o tempo, e provavelmente terminou o semestre pior do que quem não fez nada.
 
@@ -38,7 +38,7 @@ Existe uma revisão que vale a pena fazer agora. Ela só não tem nada a ver com
 
 A pergunta não é "para onde vai o mercado". É "a estrutura que eu montei aguentou esses seis meses sem me obrigar a mexer em tudo?".
 
-Se a sua carteira atravessou a montanha-russa e você dormiu tranquilo, a estrutura fez o trabalho. A reserva continuou sendo reserva enquanto a bolsa batia recorde e enquanto devolvia tudo. O longo prazo continuou de longo prazo, indiferente ao humor de abril e ao de junho. Você rebalanceou na margem, talvez, e voltou a viver. Esse é o sinal de que o alicerce está de pé.
+Se a sua carteira atravessou a montanha-russa e você dormiu tranquilo, a estrutura fez o trabalho. A reserva continuou sendo reserva enquanto a bolsa batia recorde e enquanto devolvia boa parte do ganho. O longo prazo continuou de longo prazo, indiferente ao humor de abril e ao de junho. Você rebalanceou na margem, talvez, e voltou a viver. Esse é o sinal de que o alicerce está de pé.
 
 Se, ao contrário, cada solavanco te puxou para o aplicativo, te fez remontar posições, te tirou o sono, o problema não foi o mercado. Foi uma estrutura que dependia de você acertar o curto prazo. E o curto prazo, esse semestre provou, é inacertável.
 

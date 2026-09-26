@@ -4,7 +4,7 @@ slug: o-que-voce-deixa-e-como
 descricao: Sucessão não é sobre imposto. É sobre o recado que fica.
 tema: Sucessão
 publicado: 2026-07-09
-atualizado: 2026-07-09
+atualizado: 2026-09-26
 resumo: Sucessão não é sobre imposto. É sobre o recado que fica.
 ---
 
@@ -20,13 +20,13 @@ Sucessão é, talvez, o único tema de patrimônio que junta duas coisas que a g
 
 Por isso ele é sempre adiado. Não por descuido. Ninguém acorda com vontade de imaginar a família dividindo o que levou uma vida para construir. É mais confortável cuidar da carteira, olhar o rendimento, discutir a Selic. São problemas que a gente resolve estando presente.
 
-Só que o adiamento tem um preço, e ele não é só o imposto que sobe a cada ano. O preço maior é outro. É deixar que uma das decisões mais importantes da sua vida seja tomada por outras pessoas, no pior momento delas, sem você na mesa para explicar o porquê.
+Só que o adiamento tem um preço, e ele não é só o imposto que pode subir. O preço maior é outro. É deixar que uma das decisões mais importantes da sua vida seja tomada por outras pessoas, no pior momento delas, sem você na mesa para explicar o porquê.
 
 O patrimônio que não tem destino escolhido não fica sem destino. Ele recebe um destino imposto. Pela lei, pelo inventário, pela pressa, pela mágoa que às vezes aparece quando o dinheiro fica na mesa e a pessoa que unia todo mundo não está mais lá.
 
 ## Não é sobre o dinheiro. É sobre o recado.
 
-Passei a entender, com o tempo, que planejar a sucessão tem pouco a ver com reduzir imposto, embora reduza. Tem a ver com deixar um recado claro.
+Passei a entender, com o tempo, que planejar a sucessão tem pouco a ver com reduzir imposto, embora muitas vezes reduza. Tem a ver com deixar um recado claro.
 
 Um patrimônio bem organizado, decidido em vida, diz uma coisa para quem fica: eu pensei em vocês. Eu não deixei isso virar um problema para vocês resolverem no meio da dor. Cada coisa tem um lugar, um porquê, e o porquê está escrito.
 
@@ -38,7 +38,7 @@ A parte técnica, a holding, o seguro, a doação com usufruto, a estrutura que 
 
 Tem uma diferença enorme entre a sucessão que acontece com você e a que acontece sem você.
 
-A que acontece sem você é o inventário. Meses, às vezes anos. Custos que se somam, o imposto no topo deles. Bens que não podem ser vendidos nem usados enquanto o processo corre. E, no meio disso, uma família enlutada tendo que tomar decisões financeiras que nunca conversou.
+A que acontece sem você é o inventário. Meses, às vezes anos. Custos que se somam, o imposto no topo deles. Bens que só podem ser vendidos com autorização do juiz enquanto o processo corre. E, no meio disso, uma família enlutada tendo que tomar decisões financeiras que nunca conversou.
 
 A que acontece com você é outra coisa. É você escolhendo, com tempo, o que fica com quem. É você explicando, enquanto pode, por que decidiu assim. É você organizando a estrutura de um jeito que a transição seja quase invisível, sem trava, sem susto, sem meio milhão evaporando no caminho só porque a conversa ficou para depois.
 
@@ -52,7 +52,7 @@ Eu não gosto de usar o calendário fiscal como gatilho de medo. Não é o meu e
 
 Mas há um fato simples. Em 2026, o custo de transmitir subiu, e as regras estão em transição. Isso não é motivo para pânico. É motivo para trazer a conversa que já devia ter acontecido para um pouco mais perto.
 
-Não pela economia de imposto, embora ela seja real. Pela chance de fazer essa decisão do jeito certo: com calma, em vida, com você explicando o porquê. Enquanto ela ainda pode ser sua, e não do inventário.
+Não pela economia de imposto, embora ela muitas vezes seja real. Pela chance de fazer essa decisão do jeito certo: com calma, em vida, com você explicando o porquê. Enquanto ela ainda pode ser sua, e não do inventário.
 
 A pergunta que fica não é quanto você vai deixar. Quase todo mundo que me procura já resolveu bem a parte de acumular.
 
