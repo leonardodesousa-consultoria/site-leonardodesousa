@@ -26,7 +26,7 @@ python3 _molde/enviar_carta.py <slug> --teste              # chega só na caixa 
 python3 _molde/enviar_carta.py <slug> --agendar 2026-10-01T09:00:00-03:00
 ```
 
-O gerador cria `cartas/<slug>.html`, a versão e-mail em `_molde/saida/` e atualiza `sitemap.xml`, `llms.txt` e a lista de `/cartas`. Para corrigir uma carta já publicada, edite o `.md`, troque o campo `atualizado` e rode de novo. `--todas` regenera tudo, por exemplo depois de uma mudança no menu do site.
+O gerador cria `cartas/<slug>.html`, a versão e-mail em `_molde/saida/` e atualiza `sitemap.xml`, `llms.txt`, a lista de `/cartas` e a seção de cartas da home, que mostra as três mais recentes. Não editar essa seção da `index.html` à mão: ela fica entre os marcadores `CARTAS-HOME` e o gerador reescreve. Para corrigir uma carta já publicada, edite o `.md`, troque o campo `atualizado` e rode de novo. `--todas` regenera tudo, por exemplo depois de uma mudança no menu do site.
 
 **O envio real recusa sozinho** se: o hash (assunto, HTML e texto) não estiver aprovado; não houver `--teste` enviado desta versão; não for quinta com 10 minutos de antecedência; faltar o link de descadastro; as listas do Supabase e do Resend divergirem; a carta já tiver envio agendado. Nunca rodar `--agendar` "para testar": para ver o resultado existem `--previa` e `--teste`.
 
