@@ -151,6 +151,9 @@ RewriteRule ^(.+?)/?$ $1.html [L]
 # Cache de assets estaticos
 <IfModule mod_expires.c>
   ExpiresActive On
+  # HTML revalida a cada visita (304 quando nada mudou): sem isto o navegador guardava a
+  # página velha por horas e a carta nova não aparecia (26/09/2026)
+  ExpiresByType text/html "access plus 0 seconds"
   ExpiresByType image/webp "access plus 30 days"
   ExpiresByType image/jpeg "access plus 30 days"
   ExpiresByType font/woff2 "access plus 1 year"
