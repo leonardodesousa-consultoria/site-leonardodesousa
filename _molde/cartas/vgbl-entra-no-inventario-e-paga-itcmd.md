@@ -1,7 +1,7 @@
 ---
 titulo: VGBL entra no inventário e paga ITCMD?
 slug: vgbl-entra-no-inventario-e-paga-itcmd
-descricao: Em regra, não paga ITCMD (Tema 1.214; LC 227/2026) nem entra no inventário. Exceções: planejamento abusivo e condição de investimento, ponto ainda aberto no STJ.
+descricao: Em regra, não paga ITCMD (Tema 1.214; LC 227/2026). O beneficiário recebe sem esperar o inventário; se o valor entra na partilha, o STJ ainda se divide.
 tema: Sucessão
 publicado: 2026-10-01
 atualizado: 2026-10-01
@@ -11,7 +11,7 @@ aviso_transicao: sim
 rascunho: não
 ---
 
-> Em regra, não paga ITCMD: o STF decidiu em dezembro de 2024, com repercussão geral, que o imposto não incide sobre o VGBL e o PGBL repassados aos beneficiários na morte do titular (Tema 1.214), e a Lei Complementar 227/2026 repetiu a regra no art. 150, III. O voto do relator, seguido por unanimidade, ressalvou que o fisco pode combater dissimulação criada por planejamento fiscal abusivo e que os planos não podem ser usados para burlar a legítima dos herdeiros. Em regra, também não entra no inventário: a 2ª Turma do STJ tratou o VGBL como seguro, fora da herança (REsp 1.961.488), e o beneficiário recebe sem esperar o inventário (Lei 11.196/2005, art. 79). A exceção é o plano com condição de investimento, que a 4ª Turma do STJ manteve no inventário (REsp 2.004.210/SP, 2023), num ponto que a Corte Especial do STJ ainda vai uniformizar.
+> Em regra, não paga ITCMD: o STF decidiu em dezembro de 2024, com repercussão geral, que o imposto não incide sobre o VGBL e o PGBL repassados aos beneficiários na morte do titular (Tema 1.214), e a Lei Complementar 227/2026 repetiu a regra no art. 150, III. O voto do relator, seguido por unanimidade, ressalvou que o fisco pode combater dissimulação criada por planejamento fiscal abusivo e que os planos não podem ser usados para burlar a legítima dos herdeiros. O inventário é a parte menos firme da resposta. O beneficiário recebe sem esperar o inventário (Lei 11.196/2005, art. 79), e a 2ª Turma do STJ tratou o VGBL como seguro, fora da herança (REsp 1.961.488). Mas a 3ª Turma tratou o plano, antes da conversão em renda, como investimento que entra na partilha (REsp 1.726.577/SP), a 4ª Turma manteve um VGBL no inventário (REsp 2.004.210/SP, 2023), e a Corte Especial do STJ ainda vai uniformizar a questão.
 
 ## Por que uma IA ainda cita o art. 794 do Código Civil?
 
