@@ -11,7 +11,9 @@
 <style>
 /* ============================================================
    FORMULÁRIO DE ATUALIZAÇÃO · versão web
-   Contrato do formulário: versão 2026-09 (SPEC §21.4).
+   Contrato do formulário: versão 2026-10 (SPEC §22.16); campos novos
+   levam a etiqueta discreta "novo · 2026-10". Payload antigo continua
+   valendo: o parser degrada o que faltar para "não sei" ou null.
    Deriva do formulário local (formulario-atualizacao-cliente.html).
    Diferença: liga em um link pessoal com token, envia direto para
    a função Supabase em vez de copiar texto para o WhatsApp.
@@ -206,6 +208,13 @@ textarea.control{min-height:76px; padding-right:14px; resize:vertical; line-heig
 .leaf.aberta .lv{color:var(--warn); font-size:14px}
 .leaf.divida{border-color:rgba(220,38,38,.4); background:rgba(220,38,38,.04)}
 .leaf.divida .lv{color:var(--bad)}
+.leaf.fora{border-style:dashed}
+.leaf.fora .ld{color:var(--muted)}
+
+/* etiqueta discreta de campo novo (versão 2026-10, SPEC §22.16) */
+.chip-novo{display:inline-block; font-size:10.5px; font-weight:600; letter-spacing:.3px; color:var(--muted);
+  border:1px solid var(--border); border-radius:99px; padding:1px 8px; margin-left:8px;
+  vertical-align:middle; white-space:nowrap; text-transform:none}
 .q-list{margin-top:16px; display:flex; flex-wrap:wrap; gap:8px}
 .q-chip{display:inline-flex; align-items:center; gap:6px; font-size:12.5px; font-weight:700; color:var(--warn);
   background:rgba(224,121,26,.09); border:1px solid rgba(224,121,26,.3); border-radius:99px; padding:6px 12px}
@@ -289,7 +298,7 @@ textarea.control{min-height:76px; padding-right:14px; resize:vertical; line-heig
     <div class="wrap">
       <div class="prog-row">
         <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
-        <div class="prog-lab" id="progLab">0 de 6</div>
+        <div class="prog-lab" id="progLab">0 de 7</div>
       </div>
     </div>
   </div>
@@ -299,7 +308,7 @@ textarea.control{min-height:76px; padding-right:14px; resize:vertical; line-heig
     <div class="wrap">
       <span class="pill"><span class="d"></span>Atualização do plano</span>
       <h1>Atualize o desenho do <span class="it">seu patrimônio</span></h1>
-      <p>Leva menos de 15 minutos. Preencha com calma: cada seção fica salva neste aparelho enquanto você avança. No final você confirma e envia por aqui mesmo, sem precisar copiar nada.</p>
+      <p>Leva cerca de 20 minutos. Preencha com calma: cada seção fica salva neste aparelho enquanto você avança. No final você confirma e envia por aqui mesmo, sem precisar copiar nada.</p>
       <div class="aviso-validacao" id="avisoValidacao" style="display:none">
         <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01"/><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
         <div>Não consegui validar o link agora. Você ainda pode preencher; se o envio falhar no final, baixe o arquivo e me mande pelo WhatsApp.</div>
@@ -317,7 +326,7 @@ textarea.control{min-height:76px; padding-right:14px; resize:vertical; line-heig
     <div class="foot">
       <div class="nome">Leonardo Sousa</div>
       <div class="cargo">Consultor Patrimonial</div>
-      <div class="nota">Documento de trabalho de uso interno. Conexão segura; seus dados são usados só para o seu planejamento. Valores a preço de hoje, aproximados.</div>
+      <div class="nota">Conexão segura; seus dados são usados só para o seu planejamento. Valores a preço de hoje, aproximados.</div>
     </div>
   </div>
 
@@ -339,7 +348,7 @@ const CONFIG = {
    pré-preenchido aqui. Cada resposta é do próprio cliente.
    ============================================================ */
 const DADOS_INICIAIS = {
-  versao: "2026-09",
+  versao: "2026-10",
   familia: {
     estadoCivil: "Solteiro(a)",
     regimeBens: "",
@@ -387,7 +396,9 @@ const DADOS_INICIAIS = {
   empresa: {
     tem: false, valor: 0, participacao: "",
     clausulaMorte: "nao_sei",          // 2026-09: sim | nao | nao_sei | nao_li
-    procuracaoSociedade: "nao_sei"     // 2026-09: sim | nao | nao_sei
+    procuracaoSociedade: "nao_sei",
+    valorMercado: null, distribuicaoMensal: null,       // 2026-10 (§22.11)
+    eventoLiquidez: "nao_sei", eventoLiquidezDetalhe: ""     // 2026-09: sim | nao | nao_sei
   },
   dividas: [],
   contingencias: { aval:"nao_sei", avalNota:"", processo:"nao_sei", processoNota:"" },
@@ -404,7 +415,25 @@ const DADOS_INICIAIS = {
     saude:         "nao_sei",
     internacional: "nao_sei",
     offshore:      "nao_sei"
-  }
+  },
+  // ============================================================
+  // Versão 2026-10 (SPEC §22.16): campos novos, todos opcionais.
+  // Número não informado fica null (nunca 0); pergunta sem resposta, "nao_sei".
+  // ============================================================
+  sucessaoExtra: {
+    ascendentesVivos: "nao_sei",        // pais vivos hoje (sem filhos, eles entram na partilha)
+    regimeFormalizadoPacto: "nao_sei",  // regime de bens registrado em pacto antenupcial
+    doacoesFeitas: [],                  // {paraQuem, quando, valor, adiantamentoLegitima} (colação, §22.9)
+    legadosEmEspecie: []                // {bem, paraQuem}
+  },
+  protecao: {
+    apolices: []   // {tipo, seguradora, capital, premioMes, vigencia, carencia, beneficioMensal,
+                   //  beneficiarioIndicado, beneficiarioNome, dataRevisaoBeneficiario} (§22.5)
+  },
+  cuidadosLongaDuracao: { tem: "nao_sei", quemCuidaria: "", custoMensal: null },
+  bensDeValor: [],   // {descricao, valorEstimado, destino}: fora da soma da prévia (§22.12)
+  filantropia: { recorrente: "nao_sei", valorAno: null, paraQuem: "" },
+  preferenciaSaque: ""   // "de onde tiraria primeiro": preferência do cliente; a política é do IPS
 };
 
 /* ============================================================
@@ -459,10 +488,29 @@ function montarApp(){
   const CHAVE = "form-atualizacao-patrimonio-v" + DADOS_INICIAIS.versao + "-" + TOKEN;
   let estado = structuredClone(DADOS_INICIAIS);
   (function carregarRascunho(){
-    try{
-      const raw = localStorage.getItem(CHAVE);
-      if(raw){ const d = JSON.parse(raw); estado = Object.assign(estado, d); }
-    }catch(e){}
+    // rascunho salvo na versao anterior (a chave leva a versao): carrega, e as migracoes abaixo completam
+    const CHAVE_ANTERIOR = "form-atualizacao-patrimonio-v2026-09-" + TOKEN;
+    let veioDaAnterior = false;
+    // cada chave é lida à parte: a atual corrompida não impede de carregar a anterior
+    const lerRascunho = k => {
+      try{ const raw = localStorage.getItem(k); if(!raw) return null;
+           const d = JSON.parse(raw); return (d && typeof d==='object' && !Array.isArray(d)) ? d : null; }
+      catch(e){ return null; }
+    };
+    let rasc = lerRascunho(CHAVE);
+    if(!rasc){ rasc = lerRascunho(CHAVE_ANTERIOR); veioDaAnterior = !!rasc; }
+    if(rasc) estado = Object.assign(estado, rasc);
+    // bloco com tipo errado no rascunho (nulo, texto onde era objeto) volta ao inicial: nunca trava a página
+    Object.keys(DADOS_INICIAIS).forEach(k=>{
+      const ini = DADOS_INICIAIS[k];
+      if(ini && typeof ini==='object'){
+        const v = estado[k];
+        if(!v || typeof v!=='object' || Array.isArray(v)!==Array.isArray(ini)) estado[k] = structuredClone(ini);
+        // bloco incompleto: o campo que falta no rascunho recebe o valor inicial
+        else if(!Array.isArray(ini)) estado[k] = Object.assign(structuredClone(ini), v);
+      }
+    });
+    estado.versao = DADOS_INICIAIS.versao;   // rascunho antigo nunca rebaixa a versao do envio
     if(estado.familia.regimeBens === undefined) estado.familia.regimeBens = DADOS_INICIAIS.familia.regimeBens;
     if(!estado.irpf) estado.irpf = structuredClone(DADOS_INICIAIS.irpf);
     if(!estado.sucessao) estado.sucessao = structuredClone(DADOS_INICIAIS.sucessao);
@@ -494,9 +542,34 @@ function montarApp(){
     ['seguroBeneficiarios','seguroBeneficiariosQuem'].forEach(k=>{
       if(estado.pilares[k] === undefined) estado.pilares[k] = DADOS_INICIAIS.pilares[k];
     });
+    // campos que nasceram na versao 2026-10: rascunho antigo nao os tem
+    if(!estado.sucessaoExtra) estado.sucessaoExtra = structuredClone(DADOS_INICIAIS.sucessaoExtra);
+    if(!Array.isArray(estado.sucessaoExtra.doacoesFeitas)) estado.sucessaoExtra.doacoesFeitas = [];
+    if(!Array.isArray(estado.sucessaoExtra.legadosEmEspecie)) estado.sucessaoExtra.legadosEmEspecie = [];
+    if(!estado.protecao) estado.protecao = structuredClone(DADOS_INICIAIS.protecao);
+    if(!Array.isArray(estado.protecao.apolices)) estado.protecao.apolices = [];
+    if(!estado.cuidadosLongaDuracao) estado.cuidadosLongaDuracao = structuredClone(DADOS_INICIAIS.cuidadosLongaDuracao);
+    if(!Array.isArray(estado.bensDeValor)) estado.bensDeValor = [];
+    if(!estado.filantropia) estado.filantropia = structuredClone(DADOS_INICIAIS.filantropia);
+    if(estado.preferenciaSaque === undefined) estado.preferenciaSaque = "";
+    (estado.imoveis||[]).forEach(im=>{
+      ['taxaContrato','prazoRestanteMeses','aluguelRecebidoMes'].forEach(k=>{ if(im[k] === undefined) im[k] = null; });
+      ['sistemaAmortizacao','alugado'].forEach(k=>{ if(im[k] === undefined) im[k] = 'nao_sei'; });
+    });
+    (estado.contas||[]).forEach(c=>{
+      if(c.tipo==='previdência' && c.dentroDeOutraConta === undefined){ c.dentroDeOutraConta = 'nao_sei'; c.dentroDe = ''; }
+    });
+    ['valorMercado','distribuicaoMensal','eventoLiquidez','eventoLiquidezDetalhe'].forEach(k=>{
+      if(estado.empresa[k] === undefined) estado.empresa[k] = DADOS_INICIAIS.empresa[k];
+    });
     // retrocompatibilidade: texto livre da versao antiga vira a observacao
     if(!estado.objetivo.observacao) estado.objetivo.observacao = estado.objetivo.planoNovo || "";
     estado.objetivo.planoNovo = estado.objetivo.observacao;
+    // o rascunho antigo passa para a chave atual e sai do aparelho (dado patrimonial nao fica orfao)
+    try{
+      if(veioDaAnterior) localStorage.setItem(CHAVE, JSON.stringify(estado));
+      if(CHAVE_ANTERIOR !== CHAVE) localStorage.removeItem(CHAVE_ANTERIOR);
+    }catch(e){}
   })();
   const secoesConfirmadas = new Set();
 
@@ -504,7 +577,8 @@ function montarApp(){
   const $ = (s,r=document)=>r.querySelector(s);
   const fmtGrupo = n => new Intl.NumberFormat('pt-BR',{maximumFractionDigits:0}).format(n||0);
   const fmtBRL   = n => "R$ " + fmtGrupo(n);
-  const parseNum = v => Number(String(v).replace(/[^\d]/g,'')) || 0;
+  // centavos colados ("1.500,50", "1500.50") saem antes: o campo guarda reais inteiros
+  const parseNum = v => Number(String(v).trim().replace(/[.,]\d{1,2}$/,'').replace(/[^\d]/g,'')) || 0;
   function fmtCompacto(n){
     n = n||0;
     if(Math.abs(n) >= 1e6) return "R$ " + (n/1e6).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2}) + " mi";
@@ -524,9 +598,26 @@ function montarApp(){
   }
 
   /* -------------- construtor de campo -------------- */
+  /* -------------- versão 2026-10: etiqueta de campo novo e listas fixas -------------- */
+  function chipNovo(){
+    // 01/10/2026: a etiqueta "novo · 2026-10" não aparece ao cliente (para ele tudo é novo, e o código é interno)
+    return document.createDocumentFragment();
+  }
+  function tituloNovo(texto, primeiro){
+    const t = document.createElement('label'); t.className='lab';
+    t.style.cssText = 'font-size:14px;color:var(--ink)' + (primeiro ? '' : ';margin-top:22px');
+    t.textContent = texto; t.appendChild(chipNovo());
+    return t;
+  }
+  // número com vírgula decimal (taxa do contrato); vazio ou inválido vira null
+  const parseDec = v => { const t = String(v ?? '').trim().replace(',', '.').replace(/[^\d.]/g,''); const n = parseFloat(t); return isFinite(n) ? n : null; };
+  const SIM_NAO_SEI = [{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}];
+  const TIPOS_APOLICE = [{v:'',txt:'Escolha o tipo'},'Seguro de vida','Invalidez','Doença grave','Diária por incapacidade',
+    'Cuidados de longa duração','Plano de saúde','Seguro residencial','Outro'];
+
   function campoTexto(o){
     const g = document.createElement('div'); g.className = 'grupo';
-    if(o.label){ const l = document.createElement('label'); l.className='lab'; l.textContent=o.label; g.appendChild(l); }
+    if(o.label){ const l = document.createElement('label'); l.className='lab'; l.textContent=o.label; if(o.novo) l.appendChild(chipNovo()); g.appendChild(l); }
     const f = document.createElement('div'); f.className='field' + (o.money?' ':'');
     const wrapMoney = document.createElement('div'); wrapMoney.className = o.money?'prefix-money':'';
     let el;
@@ -534,6 +625,7 @@ function montarApp(){
     else{ el = document.createElement('input'); el.type='text'; }
     el.className='control';
     if(o.money){ el.setAttribute('inputmode','numeric'); el.value = o.valor? fmtGrupo(o.valor):''; el.placeholder='0'; }
+    else if(o.decimal){ el.setAttribute('inputmode','decimal'); el.value = (o.valor==null ? '' : String(o.valor).replace('.',',')); }
     else if(o.num){ el.setAttribute('inputmode','numeric'); el.value = (o.valor??''); }
     else{ el.value = (o.valor??''); if(o.placeholder) el.placeholder = o.placeholder; }
 
@@ -543,7 +635,11 @@ function montarApp(){
     badge.addEventListener('click', confirmar);
     el.addEventListener('input', ()=>{
       confirmar();
-      let v = o.money ? parseNum(el.value) : (o.num ? parseNum(el.value) : el.value);
+      // 2026-10: campo de dinheiro vazio vira null ("não informado"), nunca 0
+      const vazio = String(el.value).trim()==='';
+      let v = o.money ? (vazio ? null : parseNum(el.value))
+            : o.decimal ? (vazio ? null : parseDec(el.value))
+            : o.num ? ((vazio && o.nulo) ? null : parseNum(el.value)) : el.value;
       o.onInput(v);
       mudou();
     });
@@ -559,10 +655,12 @@ function montarApp(){
 
   function campoSelect(o){
     const g = document.createElement('div'); g.className='grupo';
-    if(o.label){ const l=document.createElement('label'); l.className='lab'; l.textContent=o.label; g.appendChild(l); }
+    if(o.label){ const l=document.createElement('label'); l.className='lab'; l.textContent=o.label; if(o.novo) l.appendChild(chipNovo()); g.appendChild(l); }
     const f = document.createElement('div'); f.className='field';
     const sel = document.createElement('select'); sel.className='control';
-    o.opcoes.forEach(op=>{ const opt=document.createElement('option'); opt.value=op; opt.textContent=op; if(op===o.valor) opt.selected=true; sel.appendChild(opt); });
+    // opção pode ser texto ou {v, txt}: o valor técnico nunca aparece cru na tela
+    o.opcoes.forEach(op=>{ const v=(typeof op==='object')?op.v:op, t=(typeof op==='object')?op.txt:op;
+      const opt=document.createElement('option'); opt.value=v; opt.textContent=t; if(v===o.valor) opt.selected=true; sel.appendChild(opt); });
     sel.addEventListener('change', ()=>{ f.classList.add('ok'); o.onInput(sel.value); mudou(); });
     f.appendChild(sel); g.appendChild(f);
     if(o.hint){ const h=document.createElement('div'); h.className='hint'; h.textContent=o.hint; g.appendChild(h); }
@@ -571,7 +669,7 @@ function montarApp(){
 
   function segmentado(o){
     const g = document.createElement('div'); g.className='grupo';
-    if(o.label){ const l=document.createElement('label'); l.className='lab'; l.textContent=o.label; g.appendChild(l); }
+    if(o.label){ const l=document.createElement('label'); l.className='lab'; l.textContent=o.label; if(o.novo) l.appendChild(chipNovo()); g.appendChild(l); }
     const seg = document.createElement('div'); seg.className='seg';
     o.opcoes.forEach(op=>{
       const b=document.createElement('button'); b.type='button'; b.textContent=op.txt; if(op.cls) b.className=op.cls;
@@ -623,7 +721,7 @@ function montarApp(){
     return b;
   }
   function atualizarProgresso(){
-    const n = secoesConfirmadas.size, total = 6;
+    const n = secoesConfirmadas.size, total = 7; // 2026-10: + Proteção e liquidez
     $('#progFill').style.width = (n/total*100)+'%';
     $('#progLab').textContent = n + ' de ' + total;
   }
@@ -638,7 +736,7 @@ function montarApp(){
   bloco(1,'Sua família','O que mudou no último ano', body=>{
     body.appendChild(campoSelect({label:'Estado civil', valor:estado.familia.estadoCivil,
       opcoes:ESTADOS_CIVIS,
-      onInput:v=>{ estado.familia.estadoCivil=v; renderRegime(); renderUniaoEstavel(); renderIrpfConjuge(); }}));
+      onInput:v=>{ estado.familia.estadoCivil=v; renderRegime(); renderUniaoEstavel(); renderIrpfConjuge(); renderPacto(); }}));
     const contRegime = document.createElement('div'); contRegime.id='blocoRegime'; body.appendChild(contRegime);
     renderRegime();
     const contUniao = document.createElement('div'); contUniao.id='blocoUniaoEstavel'; body.appendChild(contUniao);
@@ -687,7 +785,7 @@ function montarApp(){
       c.appendChild(campoSelect({label:'Regime de bens', valor:estado.familia.regimeBens,
         opcoes:['Comunhão parcial','Comunhão universal','Separação total','Participação final nos aquestos','Não sei'],
         hint:'está na certidão de casamento ou no pacto; se não souber, seguimos sem ele por enquanto',
-        onInput:v=>estado.familia.regimeBens=v}));
+        onInput:v=>{ estado.familia.regimeBens=v; renderPacto(); }}));
     } else {
       estado.familia.regimeBens='';
     }
@@ -811,6 +909,48 @@ function montarApp(){
     };
   }
 
+  /* -------- payload dos campos novos da versão 2026-10 (SPEC §22.16) -------- */
+  // número não informado sai null, nunca 0
+  function numOuNulo(v){ return (typeof v==='number' && isFinite(v) && v>0) ? v : null; }
+  function txt(v){ return String(v ?? '').trim(); }
+  // tipos de apólice sem beneficiário: a pergunta não aparece e nada vai no envio
+  const semBeneficiario = t => t==='Plano de saúde' || t==='Seguro residencial';
+  function apolicesPayload(){
+    return (estado.protecao.apolices||[])
+      .filter(p => txt(p.tipo) || txt(p.seguradora) || numOuNulo(p.capital) || numOuNulo(p.premioMes))
+      .map(p => ({
+        tipo: txt(p.tipo),
+        seguradora: txt(p.seguradora),
+        capital: numOuNulo(p.capital),
+        premio_mensal: numOuNulo(p.premioMes),
+        vigencia: txt(p.vigencia),
+        carencia: txt(p.carencia),
+        beneficio_mensal: numOuNulo(p.beneficioMensal),
+        beneficiario_indicado: semBeneficiario(p.tipo) ? '' : (p.beneficiarioIndicado || 'nao_sei'),
+        beneficiario_nome: (!semBeneficiario(p.tipo) && p.beneficiarioIndicado==='sim') ? txt(p.beneficiarioNome) : '',
+        data_revisao_beneficiario: (!semBeneficiario(p.tipo) && p.beneficiarioIndicado==='sim') ? txt(p.dataRevisaoBeneficiario) : '',
+        status: txt(p.statusNota)
+      }));
+  }
+  function bensDeValorPayload(){
+    return (estado.bensDeValor||[])
+      .filter(b => txt(b.descricao) || numOuNulo(b.valorEstimado))
+      .map(b => ({ descricao: txt(b.descricao), valor_estimado: numOuNulo(b.valorEstimado),
+                   destino: txt(b.destino), fora_da_soma: true }));
+  }
+  function doacoesFeitasPayload(){
+    if(estado.sucessao.doacoes!=='sim') return [];
+    return (estado.sucessaoExtra.doacoesFeitas||[])
+      .filter(d => txt(d.paraQuem) || txt(d.quando) || numOuNulo(d.valor))
+      .map(d => ({ para_quem: txt(d.paraQuem), quando: txt(d.quando), valor: numOuNulo(d.valor),
+                   adiantamento_legitima: d.adiantamentoLegitima || 'nao_sei' }));
+  }
+  function legadosPayload(){
+    return (estado.sucessaoExtra.legadosEmEspecie||[])
+      .filter(l => txt(l.bem) || txt(l.paraQuem))
+      .map(l => ({ bem: txt(l.bem), para_quem: txt(l.paraQuem) }));
+  }
+
   /* -------- 3. Renda e custo de vida -------- */
   bloco(3,'Renda e custo de vida','O que entra e o que sai por mês', body=>{
     body.appendChild(campoTexto({label:'Renda mensal líquida, você', money:true, valor:estado.rendaCusto.rendaMembro1,
@@ -840,7 +980,25 @@ function montarApp(){
     const irpfNota = document.createElement('div'); irpfNota.className='instr';
     irpfNota.textContent = 'Essa resposta define se a previdência dedutível devolve imposto para o seu plano.';
     body.appendChild(irpfNota);
+
+    // 2026-10: doações recorrentes (filantropia)
+    body.appendChild(tituloNovo('Doações recorrentes'));
+    body.appendChild(segmentado({label:'Faz doações recorrentes hoje', valor:estado.filantropia.recorrente,
+      opcoes:SIM_NAO_SEI, hint:'igreja, instituição, causa que você apoia todo mês ou todo ano',
+      onInput:v=>{ estado.filantropia.recorrente=v; renderFilantropia(); mudou(); }}));
+    const contFil = document.createElement('div'); contFil.id='blocoFilantropia'; body.appendChild(contFil);
+    renderFilantropia();
   });
+  function renderFilantropia(){
+    const c = $('#blocoFilantropia'); if(!c) return; c.innerHTML='';
+    if(estado.filantropia.recorrente !== 'sim') return;
+    const r = document.createElement('div'); r.className='row2';
+    r.appendChild(campoTexto({label:'Quanto por ano', money:true, valor:estado.filantropia.valorAno,
+      hint:'aproximado', onInput:v=>estado.filantropia.valorAno=v}));
+    r.appendChild(campoTexto({label:'Para quem', valor:estado.filantropia.paraQuem, placeholder:'opcional',
+      onInput:v=>estado.filantropia.paraQuem=v}));
+    c.appendChild(r);
+  }
   function renderIrpfConjuge(){
     const c = $('#blocoIrpfConjuge'); if(!c) return; c.innerHTML='';
     const ec = estado.familia.estadoCivil;
@@ -877,13 +1035,24 @@ function montarApp(){
     body.appendChild(t2);
     const cont2 = document.createElement('div'); cont2.id='listaImoveis'; body.appendChild(cont2);
     const add2 = document.createElement('button'); add2.type='button'; add2.className='addbtn'; add2.textContent='+ Adicionar outro bem';
-    add2.addEventListener('click', ()=>{ estado.imoveis.push({descricao:'',titular:TITULARES[0],uf:'Não sei',valor:0,temFinanciamento:false,saldoDevedor:0,parcela:0}); renderImoveis(); mudou(); });
+    add2.addEventListener('click', ()=>{ estado.imoveis.push({descricao:'',titular:TITULARES[0],uf:'Não sei',valor:0,temFinanciamento:false,saldoDevedor:0,parcela:0,
+      taxaContrato:null,prazoRestanteMeses:null,sistemaAmortizacao:'nao_sei',alugado:'nao_sei',aluguelRecebidoMes:null}); renderImoveis(); mudou(); });
     body.appendChild(add2);
 
     const t3 = document.createElement('label'); t3.className='lab'; t3.style.cssText='font-size:14px;color:var(--ink);margin-top:22px'; t3.textContent='Empresa ou participação';
     body.appendChild(t3);
     const contEmp = document.createElement('div'); contEmp.id='blocoEmpresa'; body.appendChild(contEmp);
     renderEmpresa();
+
+    // 2026-10: bens de valor (fora da soma da prévia, SPEC §22.12)
+    body.appendChild(tituloNovo('Bens de valor'));
+    const hbv = document.createElement('div'); hbv.className='hint'; hbv.style.marginTop='2px'; hbv.style.marginBottom='4px';
+    hbv.textContent='veículo, obra de arte, joia, coleção, carta de crédito: o que não é conta nem imóvel, mas tem destino a combinar';
+    body.appendChild(hbv);
+    const contBv = document.createElement('div'); contBv.id='listaBensDeValor'; body.appendChild(contBv);
+    const addBv = document.createElement('button'); addBv.type='button'; addBv.className='addbtn'; addBv.textContent='+ Adicionar bem de valor';
+    addBv.addEventListener('click', ()=>{ estado.bensDeValor.push({descricao:'',valorEstimado:null,destino:''}); renderBensDeValor(); mudou(); });
+    body.appendChild(addBv);
 
     const t4 = document.createElement('label'); t4.className='lab'; t4.style.cssText='font-size:14px;color:var(--ink);margin-top:22px'; t4.textContent='Dívidas soltas';
     body.appendChild(t4);
@@ -901,7 +1070,7 @@ function montarApp(){
     const cont5 = document.createElement('div'); cont5.id='blocoContingencias'; body.appendChild(cont5);
     renderContingencias();
 
-    renderContas(); renderImoveis(); renderDividas();
+    renderContas(); renderImoveis(); renderDividas(); renderBensDeValor();
   });
 
   function renderContingencias(){
@@ -945,6 +1114,16 @@ function montarApp(){
         sub.appendChild(campoSelect({label:'Beneficiário indicado', valor:item.beneficiario||'não sei', opcoes:['sim','não','não sei'],
           hint:'quem recebe o saldo está escrito na apólice', onInput:v=>item.beneficiario=v}));
         sub.appendChild(campoTexto({label:'Aporte mensal', money:true, valor:item.aporteMensal, onInput:v=>item.aporteMensal=v}));
+        // 2026-10: previdência dentro de uma corretora não soma duas vezes na prévia
+        if(item.dentroDeOutraConta === undefined) item.dentroDeOutraConta = 'nao_sei';
+        sub.appendChild(segmentado({label:'Este saldo já está dentro do valor de outra conta acima', valor:item.dentroDeOutraConta, novo:true,
+          opcoes:SIM_NAO_SEI,
+          hint:'comum quando a previdência fica na mesma corretora: aí ela aparece aqui só para registrar tabela e beneficiário, sem somar duas vezes',
+          onInput:v=>{ item.dentroDeOutraConta=v; renderContas(); mudou(); }}));
+        if(item.dentroDeOutraConta==='sim'){
+          sub.appendChild(campoTexto({label:'Dentro de qual conta', valor:item.dentroDe||'', placeholder:'nome da corretora ou banco',
+            onInput:v=>item.dentroDe=v}));
+        }
         box.appendChild(sub);
       }
       c.appendChild(box);
@@ -970,7 +1149,29 @@ function montarApp(){
         const sub = document.createElement('div'); sub.className='sub-cond';
         sub.appendChild(campoTexto({label:'Saldo devedor', money:true, valor:item.saldoDevedor, onInput:v=>item.saldoDevedor=v}));
         sub.appendChild(campoTexto({label:'Parcela mensal', money:true, valor:item.parcela, onInput:v=>item.parcela=v}));
+        // 2026-10: taxa, prazo e sistema do contrato (SPEC §22.2: a dívida amortiza pelo contrato)
+        const rf = document.createElement('div'); rf.className='row2';
+        rf.appendChild(campoTexto({label:'Taxa do contrato (% ao ano)', decimal:true, valor:item.taxaContrato, novo:true,
+          hint:'como está no contrato, ex: 9,5', onInput:v=>item.taxaContrato=v}));
+        rf.appendChild(campoTexto({label:'Prazo restante (meses)', num:true, nulo:true, valor:item.prazoRestanteMeses, novo:true,
+          onInput:v=>item.prazoRestanteMeses=v}));
+        sub.appendChild(rf);
+        sub.appendChild(campoSelect({label:'Sistema de amortização', valor:item.sistemaAmortizacao||'nao_sei', novo:true,
+          opcoes:[{v:'SAC',txt:'SAC (parcela cai com o tempo)'},{v:'Price',txt:'Price (parcela fixa)'},{v:'nao_sei',txt:'Não sei'}],
+          onInput:v=>item.sistemaAmortizacao=v}));
+        const notaF = document.createElement('div'); notaF.className='hint';
+        notaF.textContent = 'Sem taxa e prazo, o plano estima a amortização pela parcela até o saldo zerar. Com eles, a conta segue o contrato.';
+        sub.appendChild(notaF);
         box.appendChild(sub);
+      }
+      // 2026-10: aluguel recebido
+      box.appendChild(segmentado({label:'Você recebe aluguel deste imóvel', valor:item.alugado||'nao_sei', novo:true,
+        opcoes:SIM_NAO_SEI, onInput:v=>{ item.alugado=v; renderImoveis(); mudou(); }}));
+      if(item.alugado==='sim'){
+        const subA = document.createElement('div'); subA.className='sub-cond';
+        subA.appendChild(campoTexto({label:'Aluguel recebido por mês', money:true, valor:item.aluguelRecebidoMes, novo:true,
+          hint:'o valor que chega para você, depois da taxa da imobiliária', onInput:v=>item.aluguelRecebidoMes=v}));
+        box.appendChild(subA);
       }
       c.appendChild(box);
     });
@@ -981,7 +1182,8 @@ function montarApp(){
       opcoes:[{v:true,txt:'Sim'},{v:false,txt:'Não', cls:'no'}], onInput:v=>{estado.empresa.tem=v; renderEmpresa(); mudou();}}));
     if(estado.empresa.tem){
       const sub = document.createElement('div'); sub.className='sub-cond';
-      sub.appendChild(campoTexto({label:'Valor estimado', money:true, valor:estado.empresa.valor, onInput:v=>estado.empresa.valor=v}));
+      sub.appendChild(campoTexto({label:'Valor declarado', money:true, valor:estado.empresa.valor,
+        hint:'o que consta no contrato social ou na declaração de imposto', onInput:v=>estado.empresa.valor=v}));
       sub.appendChild(campoTexto({label:'Sua participação (%)', num:true, valor:estado.empresa.participacao, onInput:v=>estado.empresa.participacao=v}));
       sub.appendChild(segmentado({label:'O contrato social tem cláusula para morte de sócio',
         valor:estado.empresa.clausulaMorte || 'nao_sei',
@@ -994,8 +1196,36 @@ function montarApp(){
         opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
         hint:'procuração assinada pela empresa, para alguém seguir assinando por ela',
         onInput:v=>estado.empresa.procuracaoSociedade=v}));
+      // 2026-10: empresa como nó com fluxo (SPEC §22.11)
+      const rE = document.createElement('div'); rE.className='row2';
+      rE.appendChild(campoTexto({label:'Valor de mercado da sua parte', money:true, valor:estado.empresa.valorMercado, novo:true,
+        hint:'quanto você receberia vendendo a sua participação hoje; se não souber, deixe em branco', onInput:v=>estado.empresa.valorMercado=v}));
+      rE.appendChild(campoTexto({label:'Distribuição mensal ao sócio', money:true, valor:estado.empresa.distribuicaoMensal, novo:true,
+        hint:'lucro distribuído a você por mês; pró-labore fica na renda', onInput:v=>estado.empresa.distribuicaoMensal=v}));
+      sub.appendChild(rE);
+      sub.appendChild(segmentado({label:'Existe venda da empresa ou da sua participação prevista',
+        valor:estado.empresa.eventoLiquidez || 'nao_sei', novo:true, opcoes:SIM_NAO_SEI,
+        onInput:v=>{ estado.empresa.eventoLiquidez=v; renderEmpresa(); mudou(); }}));
+      if(estado.empresa.eventoLiquidez==='sim'){
+        sub.appendChild(campoTexto({label:'Qual, quanto e quando', valor:estado.empresa.eventoLiquidezDetalhe,
+          placeholder:'ex: venda de 30% da participação, R$ 2 milhões, 2030', onInput:v=>estado.empresa.eventoLiquidezDetalhe=v}));
+      }
       c.appendChild(sub);
     }
+  }
+  function renderBensDeValor(){
+    const c = $('#listaBensDeValor'); if(!c) return; c.innerHTML='';
+    estado.bensDeValor.forEach((item,i)=>{
+      const box = document.createElement('div'); box.className='item';
+      box.appendChild(itemHead('Bem de valor '+(i+1), ()=>{ estado.bensDeValor.splice(i,1); renderBensDeValor(); mudou(); }));
+      box.appendChild(campoTexto({label:'Descrição', valor:item.descricao, placeholder:'veículo, obra, joia, coleção, carta de crédito',
+        onInput:v=>item.descricao=v}));
+      box.appendChild(campoTexto({label:'Valor estimado', money:true, valor:item.valorEstimado,
+        hint:'aparece no desenho, mas não entra no total', onInput:v=>item.valorEstimado=v}));
+      box.appendChild(campoTexto({label:'Destino pretendido', valor:item.destino, placeholder:'quem fica com ele, se já pensou nisso',
+        onInput:v=>item.destino=v}));
+      c.appendChild(box);
+    });
   }
   function renderDividas(){
     const c = $('#listaDividas'); c.innerHTML='';
@@ -1023,12 +1253,85 @@ function montarApp(){
     {k:'internacional', nome:'Investimento fora do Brasil'},
     {k:'offshore',      nome:'Estrutura offshore'}
   ];
-  bloco(5,'Os pilares','O que você já tem hoje', body=>{
+  /* -------- 5. Proteção e liquidez (versão 2026-10, SPEC §22.5 e §22.16) -------- */
+  bloco(5,'Proteção e liquidez','Apólices, cuidados de longa duração e de onde tirar dinheiro primeiro', body=>{
+    const introP = document.createElement('div'); introP.className='arvore-legenda';
+    introP.textContent = 'Uma apólice por cartão: seguro de vida, invalidez, saúde, residencial. Preencha o que souber; o que faltar a gente confirma junto depois.';
+    body.appendChild(introP);
+    body.appendChild(tituloNovo('Suas apólices', true));
+    const contP = document.createElement('div'); contP.id='listaProtecao'; body.appendChild(contP);
+    const addP = document.createElement('button'); addP.type='button'; addP.className='addbtn'; addP.textContent='+ Adicionar apólice';
+    addP.addEventListener('click', ()=>{
+      estado.protecao.apolices.push({tipo:'',seguradora:'',capital:null,premioMes:null,vigencia:'',carencia:'',
+        beneficioMensal:null,beneficiarioIndicado:'nao_sei',beneficiarioNome:'',dataRevisaoBeneficiario:''});
+      renderProtecao(); mudou();
+    });
+    body.appendChild(addP);
+    renderProtecao();
+
+    body.appendChild(tituloNovo('Cuidados de longa duração'));
+    body.appendChild(segmentado({label:'Tem cobertura ou reserva pensada para uma fase de cuidado contínuo',
+      valor:estado.cuidadosLongaDuracao.tem, opcoes:SIM_NAO_SEI,
+      hint:'cuidador, clínica, adaptação da casa; se você ainda não pensou nisso, não sei é uma resposta válida',
+      onInput:v=>{ estado.cuidadosLongaDuracao.tem=v; mudou(); }}));
+    const rc = document.createElement('div'); rc.className='row2';
+    rc.appendChild(campoTexto({label:'Quem cuidaria', valor:estado.cuidadosLongaDuracao.quemCuidaria,
+      placeholder:'família, cuidador contratado', onInput:v=>estado.cuidadosLongaDuracao.quemCuidaria=v}));
+    rc.appendChild(campoTexto({label:'Custo mensal estimado dessa fase', money:true, valor:estado.cuidadosLongaDuracao.custoMensal,
+      hint:'se souber, mesmo aproximado', onInput:v=>estado.cuidadosLongaDuracao.custoMensal=v}));
+    body.appendChild(rc);
+
+    body.appendChild(tituloNovo('De onde tirar primeiro'));
+    body.appendChild(campoTexto({label:'Se precisar de um valor grande amanhã, de onde você tiraria primeiro?', textarea:true,
+      valor:estado.preferenciaSaque, placeholder:'com suas palavras: a conta, o investimento ou o bem que você usaria antes',
+      hint:'é uma preferência sua, sem certo ou errado', onInput:v=>estado.preferenciaSaque=v}));
+  });
+  function renderProtecao(){
+    const c = $('#listaProtecao'); if(!c) return; c.innerHTML='';
+    estado.protecao.apolices.forEach((item,i)=>{
+      const box = document.createElement('div'); box.className='item';
+      box.appendChild(itemHead('Apólice '+(i+1) + (item.statusNota ? ' · '+item.statusNota : ''),
+        ()=>{ estado.protecao.apolices.splice(i,1); renderProtecao(); mudou(); }));
+      const tipos = TIPOS_APOLICE.slice();
+      if(item.tipo && !tipos.includes(item.tipo)) tipos.push(item.tipo);
+      box.appendChild(campoSelect({label:'Tipo', valor:item.tipo||'', opcoes:tipos, onInput:v=>{ item.tipo=v; renderProtecao(); }}));
+      const r1 = document.createElement('div'); r1.className='row2';
+      r1.appendChild(campoTexto({label:'Seguradora', valor:item.seguradora, placeholder:'nome da seguradora', onInput:v=>item.seguradora=v}));
+      r1.appendChild(campoTexto({label:'Capital segurado', money:true, valor:item.capital, onInput:v=>item.capital=v}));
+      box.appendChild(r1);
+      const r2 = document.createElement('div'); r2.className='row2';
+      r2.appendChild(campoTexto({label:'Prêmio mensal', money:true, valor:item.premioMes, hint:'o que você paga por mês', onInput:v=>item.premioMes=v}));
+      r2.appendChild(campoTexto({label:'Vigência', valor:item.vigencia, placeholder:'vitalícia ou até que data', onInput:v=>item.vigencia=v}));
+      box.appendChild(r2);
+      const r3 = document.createElement('div'); r3.className='row2';
+      r3.appendChild(campoTexto({label:'Carência', valor:item.carencia, placeholder:'ex: 24 meses, se houver', onInput:v=>item.carencia=v}));
+      r3.appendChild(campoTexto({label:'Benefício mensal', money:true, valor:item.beneficioMensal,
+        hint:'quando a apólice paga por mês (invalidez, diária)', onInput:v=>item.beneficioMensal=v}));
+      box.appendChild(r3);
+      const temBeneficiario = !semBeneficiario(item.tipo);
+      if(temBeneficiario) box.appendChild(segmentado({label:'Beneficiário indicado', valor:item.beneficiarioIndicado||'nao_sei', opcoes:SIM_NAO_SEI,
+        hint:'com beneficiário indicado, o capital chega direto a quem você escolheu',
+        onInput:v=>{ item.beneficiarioIndicado=v; renderProtecao(); mudou(); }}));
+      if(temBeneficiario && item.beneficiarioIndicado==='sim'){
+        const r4 = document.createElement('div'); r4.className='row2';
+        r4.appendChild(campoTexto({label:'Quem está indicado', valor:item.beneficiarioNome, placeholder:'opcional', onInput:v=>item.beneficiarioNome=v}));
+        r4.appendChild(campoTexto({label:'Última revisão do beneficiário', valor:item.dataRevisaoBeneficiario, placeholder:'mês e ano, ex: 03/2026',
+          onInput:v=>item.dataRevisaoBeneficiario=v}));
+        box.appendChild(r4);
+      }
+      c.appendChild(box);
+    });
+  }
+
+  bloco(6,'Os pilares','O que você já tem hoje', body=>{
     const hint = document.createElement('div'); hint.className='arvore-legenda';
     hint.innerHTML = 'Toque em uma opção por pilar. O que ficar em <b style="color:var(--warn)">não sei</b> vira uma interrogação âmbar no seu desenho, e a gente confirma junto depois.';
     body.appendChild(hint);
+    // apólice já listada na seção 5 responde por estes três pilares: basta marcar Tenho
+    const JA_NA_SECAO_5 = ['seguroVida','invalidez','saude'];
     PILARES.forEach(p=>{
       body.appendChild(segmentado({label:p.nome, valor:estado.pilares[p.k],
+        hint: JA_NA_SECAO_5.includes(p.k) ? 'se você já listou a apólice na seção 5, basta marcar Tenho aqui' : undefined,
         opcoes:[{v:'tenho',txt:'Tenho'},{v:'nao',txt:'Não tenho', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
         onInput:v=>{ estado.pilares[p.k]=v; renderPilarExtra(); mudou(); }}));
     });
@@ -1043,7 +1346,7 @@ function montarApp(){
     }
     if(estado.pilares.seguroVida==='tenho'){
       c.appendChild(campoTexto({label:'Seguro de vida: capital segurado', money:true, valor:estado.pilares.seguroCapital,
-        hint:'se souber', onInput:v=>estado.pilares.seguroCapital=v}));
+        hint:'se souber; se já informou na apólice da seção 5, pode deixar em branco', onInput:v=>estado.pilares.seguroCapital=v}));
       c.appendChild(segmentado({label:'Seguro de vida: beneficiários indicados na apólice',
         valor:estado.pilares.seguroBeneficiarios || 'nao_sei',
         opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
@@ -1067,19 +1370,99 @@ function montarApp(){
     {k:'herancaEsperada', q:'Espera receber herança relevante?',            chip:'Herança esperada',
      hint:'só o que muda o tamanho do seu plano'}
   ];
-  bloco(6,'Sucessão','O que já está encaminhado para quem fica', body=>{
+  bloco(7,'Sucessão','O que já está encaminhado para quem fica', body=>{
     SUCESSAO.forEach(s=>{
       body.appendChild(segmentado({label:s.q, hint:s.hint, valor:estado.sucessao[s.k],
         opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não', cls:'no'},{v:'nao_sei',txt:'Não sei', cls:'dunno'}],
-        onInput:v=>{ estado.sucessao[s.k]=v; renderSucessaoExtra(); mudou(); }}));
+        onInput:v=>{ estado.sucessao[s.k]=v; renderSucessaoExtra(); if(s.k==='doacoes') renderDoacoesFeitas(); mudou(); }}));
       const cont = document.createElement('div'); cont.id='sucNota-'+s.k; body.appendChild(cont);
+      if(s.k==='doacoes'){ const cd = document.createElement('div'); cd.id='listaDoacoesFeitas'; body.appendChild(cd); }
     });
     renderSucessaoExtra();
+    renderDoacoesFeitas();
+
+    // 2026-10: o que falta para a conta de sucessão por herdeiro (SPEC §22.9)
+    body.appendChild(tituloNovo('Mais alguns dados para a conta de sucessão'));
+    body.appendChild(segmentado({label:'Seus pais estão vivos hoje', valor:estado.sucessaoExtra.ascendentesVivos, opcoes:SIM_NAO_SEI,
+      hint:'quando não há filhos, os pais entram na partilha junto com o cônjuge',
+      onInput:v=>estado.sucessaoExtra.ascendentesVivos=v}));
+    const contPacto = document.createElement('div'); contPacto.id='blocoPacto'; body.appendChild(contPacto);
+    renderPacto();
+    const contBlocoLeg = document.createElement('div'); contBlocoLeg.id='blocoLegado'; body.appendChild(contBlocoLeg);
+    renderBlocoLegado();
+    const notaUf = document.createElement('div'); notaUf.className='instr';
+    notaUf.textContent = 'A UF de domicílio (seção 1) e a de cada imóvel definem a alíquota da conta de sucessão. Sem elas, o plano usa uma alíquota estimada e diz isso.';
+    body.appendChild(notaUf);
     const nota = document.createElement('div'); nota.className='instr';
     nota.textContent = 'Nada disso muda o plano sozinho; muda a conversa que temos primeiro.';
     body.appendChild(nota);
   });
+  // a pergunta do pacto só vale para casado ou separado de fato, fora da comunhão parcial (regime legal)
+  function pactoSeAplica(){
+    const ec = estado.familia.estadoCivil;
+    return (ec==='Casado(a)' || ec==='Separado(a) de fato, sem divórcio averbado') && estado.familia.regimeBens!=='Comunhão parcial';
+  }
+  function renderPacto(){
+    const c = $('#blocoPacto'); if(!c) return; c.innerHTML='';
+    if(!pactoSeAplica()) return;
+    c.appendChild(segmentado({label:'O regime de bens está registrado em pacto antenupcial',
+      valor:estado.sucessaoExtra.regimeFormalizadoPacto, opcoes:SIM_NAO_SEI,
+      hint:'comunhão parcial não precisa de pacto; os outros regimes, em regra, precisam da escritura',
+      onInput:v=>estado.sucessaoExtra.regimeFormalizadoPacto=v}));
+  }
+  function renderDoacoesFeitas(){
+    const c = $('#listaDoacoesFeitas'); if(!c) return; c.innerHTML='';
+    if(estado.sucessao.doacoes!=='sim') return;
+    const t = tituloNovo('Doações já feitas', true); t.style.fontSize='13px'; c.appendChild(t);
+    const h = document.createElement('div'); h.className='hint'; h.style.marginTop='2px'; h.style.marginBottom='4px';
+    h.textContent = 'uma linha por doação: para quem, quando, quanto e se foi como adiantamento de herança';
+    c.appendChild(h);
+    estado.sucessaoExtra.doacoesFeitas.forEach((item,i)=>{
+      const box = document.createElement('div'); box.className='item';
+      box.appendChild(itemHead('Doação '+(i+1), ()=>{ estado.sucessaoExtra.doacoesFeitas.splice(i,1); renderDoacoesFeitas(); mudou(); }));
+      const r = document.createElement('div'); r.className='row2';
+      r.appendChild(campoTexto({label:'Para quem', valor:item.paraQuem, onInput:v=>item.paraQuem=v}));
+      r.appendChild(campoTexto({label:'Quando', valor:item.quando, placeholder:'ano ou data', onInput:v=>item.quando=v}));
+      box.appendChild(r);
+      const r2 = document.createElement('div'); r2.className='row2';
+      r2.appendChild(campoTexto({label:'Valor', money:true, valor:item.valor, onInput:v=>item.valor=v}));
+      r2.appendChild(campoSelect({label:'Foi como adiantamento da herança?', valor:item.adiantamentoLegitima||'nao_sei',
+        opcoes:[{v:'sim',txt:'Sim'},{v:'nao',txt:'Não'},{v:'nao_sei',txt:'Não sei'}],
+        hint:'se a escritura diz que o valor sai da parte desse herdeiro', onInput:v=>item.adiantamentoLegitima=v}));
+      box.appendChild(r2);
+      c.appendChild(box);
+    });
+    const add = document.createElement('button'); add.type='button'; add.className='addbtn'; add.textContent='+ Adicionar doação já feita';
+    add.addEventListener('click', ()=>{ estado.sucessaoExtra.doacoesFeitas.push({paraQuem:'',quando:'',valor:null,adiantamentoLegitima:'nao_sei'}); renderDoacoesFeitas(); mudou(); });
+    c.appendChild(add);
+  }
+  // legado só existe em testamento: a pergunta aparece para quem respondeu que tem um
+  function renderBlocoLegado(){
+    const c = $('#blocoLegado'); if(!c) return; c.innerHTML='';
+    if(estado.sucessao.testamento!=='sim') return;
+    const hleg = document.createElement('label'); hleg.className='lab'; hleg.style.marginTop='14px';
+    hleg.textContent = 'O seu testamento deixa algum bem específico para uma pessoa específica?';
+    c.appendChild(hleg);
+    const contLeg = document.createElement('div'); contLeg.id='listaLegados'; c.appendChild(contLeg);
+    const addLeg = document.createElement('button'); addLeg.type='button'; addLeg.className='addbtn'; addLeg.textContent='+ Adicionar legado';
+    addLeg.addEventListener('click', ()=>{ estado.sucessaoExtra.legadosEmEspecie.push({bem:'',paraQuem:''}); renderLegados(); mudou(); });
+    c.appendChild(addLeg);
+    renderLegados();
+  }
+  function renderLegados(){
+    const c = $('#listaLegados'); if(!c) return; c.innerHTML='';
+    estado.sucessaoExtra.legadosEmEspecie.forEach((item,i)=>{
+      const box = document.createElement('div'); box.className='item';
+      box.appendChild(itemHead('Legado '+(i+1), ()=>{ estado.sucessaoExtra.legadosEmEspecie.splice(i,1); renderLegados(); mudou(); }));
+      const r = document.createElement('div'); r.className='row2';
+      r.appendChild(campoTexto({label:'O bem', valor:item.bem, placeholder:'ex: casa de praia', onInput:v=>item.bem=v}));
+      r.appendChild(campoTexto({label:'Para quem', valor:item.paraQuem, onInput:v=>item.paraQuem=v}));
+      box.appendChild(r);
+      c.appendChild(box);
+    });
+  }
   function renderSucessaoExtra(){
+    renderBlocoLegado();
     SUCESSAO.forEach(s=>{
       const c = $('#sucNota-'+s.k); if(!c) return; c.innerHTML='';
       if(estado.sucessao[s.k]==='sim'){
@@ -1099,7 +1482,7 @@ function montarApp(){
   }
 
   /* -------- 7. Prévia da árvore -------- */
-  bloco(7,'A prévia do seu patrimônio','O desenho que se redesenha ao vivo', body=>{
+  bloco(8,'A prévia do seu patrimônio','O desenho que se redesenha ao vivo', body=>{
     const leg = document.createElement('p'); leg.className='arvore-legenda';
     leg.innerHTML = 'É assim que o seu patrimônio está desenhado agora. Ele se atualiza a cada campo que você confirma acima.';
     body.appendChild(leg);
@@ -1109,20 +1492,26 @@ function montarApp(){
   }, false);
 
   function calcArvore(){
-    const br = {liquidez:0, previdencia:0, imob:0, financiamento:0, empresa:0, dividaSolta:0};
-    const ex = {liquidez:0, previdencia:0};
+    const br = {liquidez:0, previdencia:0, previdenciaDentro:0, imob:0, financiamento:0, empresa:0, dividaSolta:0};
+    const ex = {liquidez:0, previdencia:0, previdenciaDentro:0};
     estado.contas.forEach(c=>{
       const alvo = c.custodia==='Exterior'?ex:br;
-      if(c.tipo==='previdência') alvo.previdencia += c.valor||0; else alvo.liquidez += c.valor||0;
+      // 2026-10: previdência já contada dentro de outra conta aparece, mas não soma duas vezes
+      if(c.tipo==='previdência' && c.dentroDeOutraConta==='sim') alvo.previdenciaDentro += c.valor||0;
+      else if(c.tipo==='previdência') alvo.previdencia += c.valor||0; else alvo.liquidez += c.valor||0;
     });
     estado.imoveis.forEach(im=>{ br.imob += im.valor||0; if(im.temFinanciamento) br.financiamento += im.saldoDevedor||0; });
-    if(estado.empresa.tem) br.empresa += estado.empresa.valor||0;
+    // 2026-10: a folha Empresa usa o valor de mercado quando existe (SPEC §22.11)
+    if(estado.empresa.tem) br.empresa += (estado.empresa.valorMercado>0 ? estado.empresa.valorMercado : (estado.empresa.valor||0));
     estado.dividas.forEach(d=> br.dividaSolta += d.saldo||0);
     const imobLiq = br.imob - br.financiamento;
     const bruto = br.liquidez+br.previdencia+br.imob+br.empresa + ex.liquidez+ex.previdencia;
     const dividaTotal = br.financiamento + br.dividaSolta;
     const liquido = bruto - dividaTotal;
-    return {br, ex, imobLiq, bruto, dividaTotal, liquido};
+    // fora da soma: bens de valor e previdência já contada em outra conta
+    const bensForaDaSoma = (estado.bensDeValor||[]).reduce((t,b)=> t + (b.valorEstimado||0), 0);
+    const prevForaDaSoma = br.previdenciaDentro + ex.previdenciaDentro;
+    return {br, ex, imobLiq, bruto, dividaTotal, liquido, bensForaDaSoma, prevForaDaSoma};
   }
   function leaf(k,v,cls,detalhe){
     return '<div class="leaf '+(cls||'')+'"><div class="lk">'+k+'</div><div class="lv num">'+v+'</div>'+(detalhe?'<div class="ld num">'+detalhe+'</div>':'')+'</div>';
@@ -1135,14 +1524,18 @@ function montarApp(){
     let folhasBr = '';
     folhasBr += leaf('Imobilizado', fmtCompacto(a.imobLiq), '', a.br.financiamento? 'financiamento '+fmtCompacto(-a.br.financiamento):'');
     folhasBr += leaf('Liquidez', fmtCompacto(a.br.liquidez), '');
-    if(a.br.previdencia>0) folhasBr += leaf('Previdência', fmtCompacto(a.br.previdencia), '');
+    if(a.br.previdencia>0 && a.br.previdenciaDentro>0) folhasBr += leaf('Previdência', fmtCompacto(a.br.previdencia+a.br.previdenciaDentro), 'fora', fmtCompacto(a.br.previdenciaDentro)+' já dentro de outra conta');
+    else if(a.br.previdencia>0) folhasBr += leaf('Previdência', fmtCompacto(a.br.previdencia), '');
+    else if(a.br.previdenciaDentro>0) folhasBr += leaf('Previdência', fmtCompacto(a.br.previdenciaDentro), 'fora', 'já dentro de outra conta');
     else if(estado.pilares.previdencia!=='tenho') folhasBr += '<div class="leaf aberta"><div class="lk">Previdência</div><div class="lv">frente aberta</div></div>';
     if(a.br.empresa>0) folhasBr += leaf('Empresa', fmtCompacto(a.br.empresa), '');
+    if((estado.bensDeValor||[]).length) folhasBr += leaf('Bens de valor', a.bensForaDaSoma>0 ? fmtCompacto(a.bensForaDaSoma) : 'a confirmar', 'fora', 'fora da soma');
     if(a.br.dividaSolta>0) folhasBr += leaf('Dívida solta', fmtCompacto(-a.br.dividaSolta), 'divida', 'quitar primeiro');
 
     let folhasEx = '';
     if(a.ex.liquidez>0) folhasEx += leaf('Liquidez', fmtCompacto(a.ex.liquidez), '');
     if(a.ex.previdencia>0) folhasEx += leaf('Previdência', fmtCompacto(a.ex.previdencia), '');
+    if(a.ex.previdenciaDentro>0) folhasEx += leaf('Previdência', fmtCompacto(a.ex.previdenciaDentro), 'fora', 'já dentro de outra conta');
     if(a.ex.liquidez===0 && a.ex.previdencia===0) folhasEx += '<div class="leaf aberta"><div class="lk">Reserva cambial</div><div class="lv">decisão pendente</div></div>';
 
     org.innerHTML =
@@ -1165,7 +1558,7 @@ function montarApp(){
   }
 
   /* -------- 8. Envio -------- */
-  bloco(8,'Enviar a atualização','Um toque, direto por aqui', body=>{
+  bloco(9,'Enviar a atualização','Um toque, direto por aqui', body=>{
     const instr = document.createElement('div'); instr.className='instr';
     instr.innerHTML = 'Confirme abaixo e envie. Os dados vão direto e com segurança para o seu plano.';
     body.appendChild(instr);
@@ -1222,7 +1615,12 @@ function montarApp(){
           doacoes: estado.sucessao.doacoes,
           doacao_planejada: estado.sucessao.doacaoPlanejada,
           heranca_esperada: estado.sucessao.herancaEsperada,
-          notas: estado.sucessao.notas
+          notas: estado.sucessao.notas,
+          // 2026-10 (SPEC §22.9)
+          ascendentes_vivos: estado.sucessaoExtra.ascendentesVivos || 'nao_sei',
+          regime_formalizado_pacto: pactoSeAplica() ? (estado.sucessaoExtra.regimeFormalizadoPacto || 'nao_sei') : 'nao_sei',
+          doacoes_feitas: doacoesFeitasPayload(),
+          legados_em_especie: estado.sucessao.testamento==='sim' ? legadosPayload() : []
         },
         arvore: {
           contas: estado.contas,
@@ -1230,9 +1628,30 @@ function montarApp(){
           empresa: estado.empresa,
           dividas: estado.dividas,
           contingencias: estado.contingencias,
-          resumo: { bruto: a.bruto, dividas: a.dividaTotal, liquido: a.liquido }
+          bens_de_valor: bensDeValorPayload(),   // 2026-10: fora da soma
+          resumo: { bruto: a.bruto, dividas: a.dividaTotal, liquido: a.liquido,
+                    fora_da_soma: { bens_de_valor: numOuNulo(a.bensForaDaSoma),
+                                    previdencia_dentro_de_outra_conta: numOuNulo(a.prevForaDaSoma),
+                                    nota: 'aparece na prévia, não entra no total' } }
         },
-        pilares: estado.pilares
+        pilares: estado.pilares,
+        // 2026-10 (SPEC §22.5 e §22.16): proteção e preferências declaradas
+        protecao: {
+          apolices: apolicesPayload(),
+          cuidados_longa_duracao: {
+            tem: estado.cuidadosLongaDuracao.tem || 'nao_sei',
+            quem_cuidaria: txt(estado.cuidadosLongaDuracao.quemCuidaria),
+            custo_mensal: numOuNulo(estado.cuidadosLongaDuracao.custoMensal)
+          }
+        },
+        preferencias: {
+          filantropia: {
+            recorrente: estado.filantropia.recorrente || 'nao_sei',
+            valor_ano: estado.filantropia.recorrente==='sim' ? numOuNulo(estado.filantropia.valorAno) : null,
+            para_quem: estado.filantropia.recorrente==='sim' ? txt(estado.filantropia.paraQuem) : ''
+          },
+          de_onde_tiraria_primeiro: txt(estado.preferenciaSaque)
+        }
       };
     }
     function gerarJSON(){ return JSON.stringify(montarPayload(), null, 2); }
