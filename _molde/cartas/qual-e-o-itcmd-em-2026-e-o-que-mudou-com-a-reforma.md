@@ -15,7 +15,7 @@ rascunho: não
 
 ## O imposto sobre herança vai subir?
 
-A pergunta chegou numa reunião deste ano exatamente assim, emendada numa segunda: "vale antecipar a doação?". Quem perguntava tinha lido em algum lugar que o imposto ia dobrar.
+É uma pergunta que aparece muito em reunião, quase sempre emendada numa segunda: "vale antecipar a doação?". Costuma vir de quem leu em algum lugar que o imposto ia dobrar.
 
 A resposta curta é que o teto não mudou. O ITCMD é estadual, mas a Constituição dá ao Senado o poder de fixar a alíquota máxima (art. 155, § 1º, IV), e a Resolução 9, de 1992, fixou esse máximo em "oito por cento" (art. 1º). A Emenda Constitucional 132, de dezembro de 2023, a da reforma tributária, não tocou nesse inciso. E a lei complementar que regulou o imposto em janeiro de 2026 manda as alíquotas observarem "a alíquota máxima fixada pelo Senado Federal" (LC 227/2026, art. 156, II).
 
