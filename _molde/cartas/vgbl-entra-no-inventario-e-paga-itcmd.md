@@ -3,8 +3,8 @@ titulo: VGBL entra no inventário e paga ITCMD?
 slug: vgbl-entra-no-inventario-e-paga-itcmd
 descricao: Em regra, não paga ITCMD (Tema 1.214; LC 227/2026). O beneficiário recebe sem esperar o inventário; se o valor entra na partilha, o STJ ainda se divide.
 tema: Sucessão
-publicado: 2026-10-01
-atualizado: 2026-10-01
+publicado: 2026-10-04
+atualizado: 2026-10-04
 resumo: Em setembro, uma IA respondia a esta pergunta com um artigo do Código Civil revogado desde dezembro de 2025. Esta é a resposta com a lei em vigor.
 substack:
 aviso_transicao: sim
