@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<title>Sua escolha · Leonardo Sousa</title>
+<!-- ============================================================
+     Ponte de um clique · campanha do guia Dinheiro fora do Brasil (09/10/2026)
+     Pagina privada: noindex, sem tracking, sem link no menu.
+     O link do e-mail abre esta pagina e NAO grava nada. So o botao Confirmar grava
+     (filtro de e-mail corporativo abre todos os links na entrega).
+     Grava pela edge function guia-escolha (Supabase). Compliance 3b3a1ae9.
+     ============================================================ -->
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.64);
+  --accent:#1fa86a; --accent-tx:#15804f; --line:rgba(10,25,20,.14); --deep:#0a1914; --deep-2:#0d2419;
+  --serif:'Lora', Georgia, 'Times New Roman', serif; --sans:'Inter', system-ui, -apple-system, Arial, sans-serif;
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; min-height:100vh; display:flex; flex-direction:column; }
+main{ flex:1; width:100%; max-width:640px; margin:0 auto; padding:clamp(3rem,10vh,6rem) clamp(1.2rem,5vw,2rem) 3rem; }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-size:.72rem; font-weight:600; letter-spacing:.2em;
+  text-transform:uppercase; color:var(--accent-tx); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.rot{ margin-top:2rem; font-size:.95rem; color:var(--mut); }
+.frase{ margin-top:.6rem; font-family:var(--serif); font-weight:500; font-size:clamp(1.5rem,4.2vw,2.1rem); line-height:1.3;
+  color:var(--ink); background:var(--paper); border-left:3px solid var(--accent); padding:22px 24px; }
+p.txt{ margin-top:1.4rem; color:var(--ink2); font-size:1.08rem; line-height:1.68; }
+.btn{ margin-top:1.8rem; display:inline-flex; align-items:center; justify-content:center; gap:10px; font-family:var(--sans);
+  font-weight:600; font-size:1.02rem; padding:17px 34px; border-radius:2px; border:0; cursor:pointer; text-decoration:none;
+  background:var(--deep); color:#fff; transition:background .2s, transform .2s; }
+.btn:hover{ background:var(--deep-2); transform:translateY(-1px); }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn[disabled]{ opacity:.6; cursor:wait; transform:none; }
+a.tl{ color:var(--accent-tx); font-weight:600; text-underline-offset:3px; }
+.oculto{ display:none; }
+footer{ max-width:640px; width:100%; margin:0 auto; padding:2rem clamp(1.2rem,5vw,2rem) 2.4rem; border-top:1px solid var(--line);
+  font-size:.84rem; color:var(--mut); line-height:1.55; }
+footer .nm{ font-family:var(--serif); font-weight:600; color:var(--ink); font-size:1rem; }
+footer p + p{ margin-top:.6rem; }
+</style>
+</head>
+<body>
+<main>
+  <p class="eyebrow">Guia Dinheiro fora do Brasil</p>
+
+  <!-- 1 · antes de confirmar -->
+  <section id="passo-confirmar" class="oculto">
+    <p class="rot">Você escolheu:</p>
+    <p class="frase" id="frase"></p>
+    <button class="btn" id="btn-confirmar" type="button">Confirmar</button>
+  </section>
+
+  <!-- 2 · depois de confirmar -->
+  <section id="fim-conversa" class="oculto">
+    <p class="txt"><span class="recebido"></span> Escolha o horário que funciona para você:</p>
+    <a class="btn" href="/agendar?utm_source=guia-fora&amp;utm_medium=email&amp;utm_campaign=ponte-um-clique">Ver horários</a>
+    <p class="txt">Se nenhum horário servir, eu escrevo para você em até um dia útil para combinarmos.</p>
+  </section>
+  <section id="fim-conteudo" class="oculto">
+    <p class="txt"><span class="recebido"></span> Toda semana eu publico uma carta sobre patrimônio, e dinheiro fora do Brasil é um dos temas. Para receber por e-mail, faça a inscrição aqui: <a class="tl" href="/cartas#assinar">leonardodesousa.com.br/cartas</a></p>
+  </section>
+  <section id="fim-guia" class="oculto">
+    <p class="txt"><span class="recebido"></span> Esta série de e-mails para por aqui. O guia continua com você: vale reler antes da próxima remessa.</p>
+  </section>
+
+  <!-- falhas -->
+  <section id="invalido" class="oculto">
+    <p class="txt">Este link não está mais válido. Se quiser conversar, a agenda está aqui: <a class="tl" href="/agendar?utm_source=guia-fora&amp;utm_medium=email&amp;utm_campaign=ponte-um-clique">ver horários</a></p>
+  </section>
+  <section id="erro" class="oculto">
+    <p class="txt">Não consegui registrar agora. Tente de novo em alguns minutos.</p>
+  </section>
+</main>
+
+<footer>
+  <p class="nm">Leonardo Sousa</p>
+  <p>Consultor Patrimonial</p>
+  <p>As informações têm caráter educativo e não constituem recomendação de investimento nem parecer jurídico ou tributário.</p>
+</footer>
+
+<script>
+(function(){
+  var API = 'https://dhxhrcpxvwktqcquhkez.supabase.co/functions/v1/guia-escolha';
+  var FRASES = {
+    conversa: 'Quero 30 minutos para olhar o meu caso, sem custo e sem produto na mesa',
+    conteudo: 'Quero receber mais conteúdo sobre o tema',
+    guia: 'Por enquanto, o guia basta'
+  };
+  var q = new URLSearchParams(location.search);
+  var t = q.get('t') || '', o = q.get('o') || '';
+  function mostra(id){ document.getElementById(id).classList.remove('oculto'); }
+  function esconde(id){ document.getElementById(id).classList.add('oculto'); }
+  function recebido(nome){
+    var s = nome ? 'Recebido, ' + nome + '.' : 'Recebido.';
+    var els = document.querySelectorAll('.recebido');
+    for (var i = 0; i < els.length; i++) els[i].textContent = s;
+  }
+  if (!FRASES[o] || !/^[0-9a-f-]{36}$/i.test(t)) { mostra('invalido'); return; }
+  document.getElementById('frase').textContent = FRASES[o];
+  mostra('passo-confirmar');
+  var btn = document.getElementById('btn-confirmar');
+  btn.addEventListener('click', function(){
+    btn.disabled = true;
+    fetch(API, { method:'POST', headers:{ 'Content-Type':'application/json' }, body: JSON.stringify({ t:t, o:o }) })
+      .then(function(r){ return r.json().then(function(j){ return { st:r.status, j:j }; }); })
+      .then(function(res){
+        esconde('passo-confirmar');
+        if (res.st === 200 && res.j && res.j.ok) { recebido(res.j.nome); mostra('fim-' + o); }
+        else if (res.st === 401) { mostra('invalido'); }
+        else { mostra('erro'); btn.disabled = false; mostra('passo-confirmar'); }
+      })
+      .catch(function(){ mostra('erro'); btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
