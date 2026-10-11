@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Holding familiar ou inventário: o que faz sentido para a sua família? · Leonardo Sousa</title>
+<meta name="description" content="A holding não elimina o imposto sobre herança: muda a data e a forma de pagar. A conta de uma família em São Paulo mostra quando ela compensa e quando não.">
+
+<!-- ============================================================
+     SOBRE · Site institucional 2026 · v2 "Camadas Editoriais"
+     Herda o sistema de design canônico do index.html (Lora + Inter).
+     ============================================================ -->
+
+<link rel="preload" href="/fonts/lora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{ font-family:'Inter'; font-style:normal; font-weight:300 900; font-display:swap; src:url(/fonts/inter-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora'; font-style:normal; font-weight:400 700; font-display:swap; src:url(/fonts/lora-latin.woff2) format('woff2'); }
+@font-face{ font-family:'Lora FB Georgia'; src:local('Georgia'); size-adjust:105.15%; ascent-override:95.68%; descent-override:26.06%; line-gap-override:0.00%; }
+@font-face{ font-family:'Lora FB Times'; src:local('Times New Roman'), local('Liberation Serif'); size-adjust:116.04%; ascent-override:86.69%; descent-override:23.61%; line-gap-override:0.00%; }
+@font-face{ font-family:'Lora FB Noto'; src:local('Noto Serif'); size-adjust:97.13%; ascent-override:103.57%; descent-override:28.21%; line-gap-override:0.00%; }
+@font-face{ font-family:'Inter FB Arial'; src:local('Arial'), local('Liberation Sans'); size-adjust:106.36%; ascent-override:91.08%; descent-override:22.68%; line-gap-override:0.00%; }
+@font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
+
+.art-capa{ max-width:880px; margin:0 auto 2.2em; padding:0 var(--pad-x); }
+.art-capa img{ display:block; width:100%; height:auto; border-radius:6px; }
+/* ===== Carta do site (gerada por _molde/gerar_carta.py) ===== */
+.art-hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(1.6rem,3vw,2.4rem); }
+.art-hero .h1{ font-size:clamp(2rem,5vw,3.3rem); max-width:22ch; margin-top:clamp(1.4rem,3vw,2rem); }
+.art-hero .lead{ margin-top:18px; max-width:56ch; }
+.art-by{ margin-top:22px; font-size:.9rem; color:var(--mut); display:flex; flex-wrap:wrap; gap:6px 14px; }
+.art-by a{ color:var(--ink2); }
+.art-body{ max-width:720px; margin:0 auto; padding-inline:var(--pad-x); padding-bottom:var(--sec-y); }
+.art-body > *{ margin-top:1.1em; }
+.art-body p, .art-body li{ font-size:1.08rem; line-height:1.72; color:var(--ink2); }
+.art-body h2{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.6vw,1.8rem); line-height:1.2;
+  color:var(--ink); margin-top:2.1em; letter-spacing:-.01em; scroll-margin-top:90px; }
+.art-body h3{ font-family:var(--serif); font-weight:600; font-size:1.2rem; color:var(--ink); margin-top:1.6em; }
+.art-body ul, .art-body ol{ padding-left:1.3em; }
+.art-body li + li{ margin-top:.45em; }
+.art-body a{ color:var(--accent-tx); text-underline-offset:3px; }
+.art-body strong{ color:var(--ink); }
+.art-resposta{ background:var(--paper); border-left:3px solid var(--accent); padding:18px 22px;
+  font-family:var(--serif); font-size:1.14rem !important; line-height:1.6 !important; color:var(--ink) !important; }
+.art-tabela{ overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.art-tabela table{ width:100%; min-width:520px; border-collapse:collapse; font-size:.96rem; background:var(--paper); }
+.art-tabela th, .art-tabela td{ text-align:left; vertical-align:top; padding:12px 14px; border-bottom:1px solid var(--line); line-height:1.5; }
+.art-tabela thead th{ font-weight:600; color:var(--ink); border-bottom:2px solid var(--ink); }
+.art-tabela tbody th{ font-weight:600; color:var(--ink); }
+.art-tabela td{ color:var(--ink2); }
+.art-faq{ margin-top:2.4em !important; }
+.art-faq h2{ margin-bottom:.2em; }
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:20px 44px 20px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.06rem,1.9vw,1.24rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 22px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; }
+.art-autor{ display:flex; gap:18px; align-items:center; margin-top:2.6em !important; padding:22px;
+  background:var(--paper); border:1px solid var(--line-soft); }
+.art-autor img{ width:64px; height:64px; border-radius:50%; object-fit:cover; flex:none; }
+.art-autor p{ font-size:.96rem !important; line-height:1.55 !important; margin:0; }
+.art-autor .nm{ font-family:var(--serif); font-weight:600; color:var(--ink); font-size:1.06rem !important; }
+.art-aviso{ font-size:.86rem !important; color:var(--mut) !important; line-height:1.55 !important; }
+@media (max-width:560px){ .art-autor{ flex-direction:column; align-items:flex-start; } }
+
+.insc{ background:linear-gradient(150deg,#15402c,#0a1914); color:#fff; border-radius:6px;
+  padding:clamp(26px,4vw,40px); position:relative; }
+.insc .insc-k{ font-size:.72rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:#3ecf8e; margin:0 0 10px; }
+.insc h3{ font-family:var(--serif); font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:600; color:#fff; line-height:1.25; margin:0 0 10px; }
+.insc .insc-ap{ color:rgba(255,255,255,.78); margin:0 0 20px; }
+.insc form{ display:flex; flex-wrap:wrap; gap:10px; margin:0; }
+.insc input[type=email]{ flex:1 1 220px; min-width:0; font:inherit; font-size:1rem; color:#fff;
+  background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.28); border-radius:6px; padding:14px 16px; }
+.insc input[type=email]::placeholder{ color:rgba(255,255,255,.62); }
+.insc input[type=email]:focus{ outline:2px solid #3ecf8e; outline-offset:1px; }
+.insc button{ font-family:var(--sans); font-weight:600; font-size:1rem; color:#062015; background:#3ecf8e;
+  border:0; border-radius:6px; padding:14px 22px; cursor:pointer; }
+.insc button:hover{ background:#4ad998; }
+.insc button[disabled]{ opacity:.6; cursor:wait; }
+.insc .insc-hp{ position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
+.insc .insc-sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); border:0; }
+.insc .insc-micro{ margin:14px 0 0; font-size:.84rem; line-height:1.5; color:rgba(255,255,255,.78); }
+.insc .insc-micro a{ color:#3ecf8e; text-decoration:underline; text-underline-offset:2px; }
+.insc .insc-ret{ margin:14px 0 0; font-size:.98rem; line-height:1.5; color:#fff; }
+.insc .insc-ret:empty{ display:none; }
+.insc .insc-ret.err{ color:#ffc9bb; }
+</style>
+
+<style>
+/* ============================================================
+   1. TOKENS · sistema editorial (canônico, herdado do index)
+   ============================================================ */
+:root{
+  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --ink:#0a1914; --ink2:#2d4a3e; --mut:rgba(10,25,20,.64); --ghost:rgba(10,25,20,.60);
+  --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --amber:#c17a1e;
+  --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
+  --deep:#0a1914; --deep-2:#0d2419; --on-deep:#ffffff; --on-deep-soft:rgba(255,255,255,.68); --line-deep:rgba(255,255,255,.14);
+  --serif:'Lora','Lora FB Georgia','Lora FB Times','Lora FB Noto', Georgia, 'Times New Roman', serif;
+  --sans:'Inter','Inter FB Arial','Inter FB Roboto', system-ui, -apple-system, sans-serif;
+  --wrap:1240px; --pad-x:clamp(1.3rem, 4.5vw, 3.4rem); --sec-y:clamp(3.6rem, 8vw, 6.4rem);
+}
+*{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:17px; line-height:1.6;
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; overflow-x:hidden; }
+img{ max-width:100%; display:block; }
+a{ color:inherit; }
+.num{ font-variant-numeric:tabular-nums lining-nums; font-feature-settings:'tnum' 1,'lnum' 1; }
+
+/* ============================================================
+   2. PRIMITIVOS
+   ============================================================ */
+.wrap{ width:100%; max-width:var(--wrap); margin:0 auto; padding-inline:var(--pad-x); }
+.sec{ padding-block:var(--sec-y); position:relative; }
+.sec + .sec{ border-top:1px solid var(--line-soft); }
+.sec-paper{ background:var(--paper); }
+.eyebrow{ display:inline-flex; align-items:center; gap:12px; font-family:var(--sans); font-size:.72rem; font-weight:600;
+  letter-spacing:.2em; text-transform:uppercase; color:var(--accent-tx); }
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--accent); }
+.eyebrow.on-deep{ color:var(--accent-br); }
+.eyebrow.on-deep::before{ background:var(--accent-br); }
+.serif{ font-family:var(--serif); }
+.hl{ color:var(--accent-tx); }
+.lead{ font-size:clamp(1.02rem,1.5vw,1.22rem); color:var(--ink2); line-height:1.56; max-width:48ch; }
+
+/* botões */
+.btn{ display:inline-flex; align-items:center; justify-content:center; gap:11px; font-family:var(--sans); font-weight:600;
+  text-decoration:none; line-height:1; border-radius:2px; cursor:pointer; border:1px solid transparent;
+  transition:transform .25s cubic-bezier(.4,0,.2,1), box-shadow .25s, background .25s, color .25s, border-color .25s; }
+.btn:focus-visible{ outline:2px solid var(--accent); outline-offset:3px; }
+.btn-lg{ font-size:1.02rem; padding:17px 30px; }
+.btn-sm{ font-size:.92rem; padding:12px 20px; }
+.btn-solid{ background:var(--deep); color:var(--on-deep); }
+.btn-solid:hover{ transform:translateY(-2px); box-shadow:0 14px 30px rgba(10,25,20,.24); background:var(--deep-2); }
+.btn-solid.on-deep{ background:var(--accent-br); color:#062015; }
+.btn-solid.on-deep:hover{ background:#4ad998; box-shadow:0 14px 30px rgba(62,207,142,.34); }
+.btn-arrow::after{ content:'\2192'; transition:transform .25s; }
+.btn-arrow:hover::after{ transform:translateX(4px); }
+.tlink{ display:inline-flex; align-items:center; gap:8px; font-weight:600; text-decoration:none; color:var(--accent-tx);
+  border-bottom:1px solid transparent; padding-bottom:2px; transition:border-color .2s; }
+.tlink::after{ content:'\2192'; transition:transform .2s; }
+.tlink:hover{ border-color:var(--accent); }
+.tlink:hover::after{ transform:translateX(3px); }
+.tlink.on-deep{ color:var(--accent-br); }
+.micro{ font-size:.9rem; color:var(--mut); }
+.micro .tk{ color:var(--accent-tx); font-weight:700; }
+.micro.on-deep{ color:var(--on-deep-soft); }
+.micro.on-deep .tk{ color:var(--accent-br); }
+
+/* ============================================================
+   3. HEADER · masthead editorial
+   ============================================================ */
+.hdr{ position:fixed; top:0; left:0; right:0; z-index:100; background:rgba(245,245,240,.82);
+  backdrop-filter:saturate(150%) blur(12px); -webkit-backdrop-filter:saturate(150%) blur(12px);
+  border-bottom:1px solid transparent; transition:border-color .3s, padding .3s, background .3s; padding-block:15px; }
+.hdr.scrolled{ border-bottom-color:var(--line); padding-block:11px; }
+.hdr-in{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.wm{ font-family:var(--serif); font-weight:600; font-size:1.04rem; text-decoration:none; white-space:nowrap; letter-spacing:-.01em; }
+.wm span{ color:var(--mut); font-weight:500; }
+.nav{ display:flex; align-items:center; gap:2px; }
+.nav a.lk{ text-decoration:none; color:var(--ink2); font-size:.92rem; font-weight:500; padding:9px 15px; border-radius:2px; transition:color .2s, background .2s; }
+.nav a.lk:hover{ color:var(--accent-tx); }
+.nav a.lk[aria-current="page"]{ color:var(--accent-tx); }
+.nav .btn{ margin-left:10px; }
+.burger{ display:none; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.mm{ position:fixed; inset:0 0 0 auto; width:min(86vw,320px); z-index:200; background:var(--paper);
+  transform:translateX(100%); transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; padding:84px 26px 30px; gap:2px; box-shadow:-20px 0 50px rgba(10,25,20,.2); }
+.mm.open{ transform:translateX(0); }
+.mm:not(.open){ box-shadow:none; visibility:hidden; transition:transform .35s cubic-bezier(.4,0,.2,1), visibility 0s linear .35s; }
+.mm a.btn-solid{ color:var(--on-deep); border-bottom:0; }
+.mm a{ text-decoration:none; color:var(--ink); font-size:1.1rem; font-weight:500; padding:15px 4px; border-bottom:1px solid var(--line); }
+.mm .btn{ margin-top:20px; }
+.mm .x{ position:absolute; top:22px; right:22px; background:none; border:none; color:var(--ink); cursor:pointer; padding:6px; }
+.scrim{ position:fixed; inset:0; background:rgba(10,25,20,.4); z-index:150; opacity:0; visibility:hidden; transition:opacity .3s,visibility .3s; }
+.scrim.open{ opacity:1; visibility:visible; }
+
+/* ============================================================
+   4. HERO · masthead + headline em duas camadas + retrato
+   ============================================================ */
+.hero{ padding-top:clamp(6.6rem,13vh,8.6rem); padding-bottom:clamp(2.6rem,6vw,4.2rem); }
+.masthead{ display:flex; align-items:center; gap:14px; padding-bottom:18px; border-bottom:1px solid var(--line);
+  font-size:.72rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--mut); flex-wrap:wrap; }
+.masthead .idx{ color:var(--accent-tx); }
+.masthead .sep{ width:1px; height:12px; background:var(--line); }
+.hero-grid{ display:grid; grid-template-columns:1.08fr .92fr; gap:clamp(2rem,5vw,4.4rem); align-items:center;
+  margin-top:clamp(1.6rem,3.6vw,2.6rem); }
+.ghost{ font-family:var(--serif); font-weight:500; line-height:1.1; color:var(--ghost);
+  font-size:clamp(1.35rem,3vw,2.15rem); letter-spacing:-.01em; margin-bottom:.16em; max-width:24ch; }
+.h1{ font-family:var(--serif); font-weight:700; letter-spacing:-.024em; line-height:1.04;
+  font-size:clamp(2.4rem,5.4vw,4rem); max-width:15ch; }
+.hero-copy .lead{ margin-top:clamp(1.4rem,2.6vw,1.9rem); }
+.hero-copy .lead + .lead{ margin-top:16px; }
+
+/* retrato editorial · mesmo tratamento p&b da home v2 */
+.portrait-wrap{ display:flex; justify-content:center; }
+.portrait{ width:100%; max-width:360px; aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 22px 55px rgba(10,25,20,.22); border:1px solid var(--line); }
+.portrait-fallback{ width:100%; max-width:360px; aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid var(--line);
+  box-shadow:0 22px 55px rgba(10,25,20,.22); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.portrait-fallback svg{ width:70%; height:auto; opacity:.5; }
+
+/* ============================================================
+   5. PROVA FRIA · réguas + index numbers (herdado do index)
+   ============================================================ */
+.proof{ background:var(--paper); }
+.proof-in{ padding-block:clamp(2.6rem,5vw,3.6rem); }
+.proof-grid{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+.pitem{ padding:clamp(1.6rem,3vw,2.2rem) clamp(1rem,2.4vw,2rem); position:relative; }
+.pitem + .pitem{ border-left:1px solid var(--line); }
+.pk{ font-size:.68rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx); }
+.pv{ font-family:var(--serif); font-size:clamp(2.1rem,4.4vw,3.1rem); font-weight:700; line-height:1; margin-top:12px; letter-spacing:-.02em; }
+.pv .u{ color:var(--accent-tx); }
+.pl{ font-size:.9rem; color:var(--ink2); margin-top:10px; line-height:1.45; max-width:26ch; }
+
+/* ============================================================
+   6. CREDENCIAIS · fichas de revista
+   ============================================================ */
+.stmt{ font-family:var(--serif); font-weight:600; font-size:clamp(1.5rem,3.2vw,2.3rem); line-height:1.16;
+  letter-spacing:-.02em; margin:16px 0 18px; max-width:18ch; }
+.creds{ display:grid; grid-template-columns:repeat(2,1fr); border-top:1px solid var(--line); margin-top:30px; }
+.ficha:nth-child(odd){ border-left:none; }
+.ficha{ border-bottom:1px solid var(--line); padding:clamp(1.8rem,3vw,2.4rem) clamp(1.2rem,2.4vw,2rem); position:relative; }
+.ficha + .ficha{ border-left:1px solid var(--line); }
+.ficha .fn{ font-size:.7rem; font-weight:600; letter-spacing:.18em; text-transform:uppercase; color:var(--accent-tx);
+  display:flex; align-items:center; gap:10px; }
+.ficha .fn .fno{ font-family:var(--serif); font-size:.9rem; color:var(--mut); }
+.ficha h3{ font-family:var(--serif); font-size:clamp(1.28rem,2.2vw,1.6rem); font-weight:700; color:var(--ink);
+  margin:16px 0 12px; line-height:1.1; letter-spacing:-.01em; }
+.ficha p{ font-size:.95rem; color:var(--ink2); line-height:1.56; }
+
+/* ============================================================
+   7. POR QUE INDEPENDENTE · ensaio em duas colunas
+   ============================================================ */
+.essay-lead{ font-family:var(--serif); font-weight:600; font-size:clamp(1.4rem,2.8vw,2rem); line-height:1.24;
+  letter-spacing:-.015em; color:var(--ink); max-width:24ch; margin:16px 0 6px; }
+.essay{ column-count:2; column-gap:clamp(2rem,4.5vw,3.6rem); margin-top:clamp(1.8rem,3.4vw,2.6rem); }
+.essay p{ color:var(--ink2); line-height:1.72; margin-bottom:18px; break-inside:avoid; }
+.essay p:first-child{ margin-top:0; }
+.essay .reframe{ font-family:var(--serif); font-weight:600; font-size:clamp(1.14rem,2vw,1.42rem);
+  line-height:1.36; color:var(--accent-tx); margin:6px 0 20px; break-inside:avoid; }
+.essay b{ color:var(--ink); font-weight:600; }
+
+/* ============================================================
+   8. CTA FINAL · a única banda escura + rodapé (herdado do index)
+   ============================================================ */
+.final{ background:radial-gradient(ellipse 55% 60% at 12% 18%, rgba(62,207,142,.10), transparent 60%), var(--deep); color:var(--on-deep); }
+.final-grid{ display:grid; grid-template-columns:1fr; justify-items:center; text-align:center; max-width:760px; margin:0 auto; }
+.pfinal{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px; object-fit:cover;
+  box-shadow:0 20px 50px rgba(0,0,0,.34); border:1px solid rgba(255,255,255,.12); }
+.pfinal-fallback{ width:clamp(140px,20vw,196px); aspect-ratio:952/1120; border-radius:6px;
+  background:linear-gradient(160deg,#1b3a2d,#0a1914); border:1px solid rgba(255,255,255,.12);
+  box-shadow:0 20px 50px rgba(0,0,0,.34); display:flex; align-items:flex-end; justify-content:center; overflow:hidden; }
+.pfinal-fallback svg{ width:70%; height:auto; opacity:.5; }
+.final h2{ font-family:var(--serif); font-weight:700; font-size:clamp(1.9rem,4vw,2.9rem); line-height:1.08; letter-spacing:-.02em; color:var(--on-deep); max-width:20ch; }
+.final .lead{ color:var(--on-deep-soft); margin:18px 0 28px; }
+.final .hl{ color:var(--accent-br); }
+
+.footer{ background:var(--deep-2); color:var(--on-deep); padding-top:clamp(3rem,6vw,4.4rem); border-top:1px solid var(--line-deep); }
+.footer-top{ display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:clamp(1.6rem,4vw,3rem); padding-bottom:36px; border-bottom:1px solid var(--line-deep); }
+.fb-name{ font-family:var(--serif); font-size:1.16rem; font-weight:600; color:var(--on-deep); }
+.fb-role{ font-size:.9rem; color:var(--on-deep-soft); margin-top:4px; }
+.footer-brand p{ font-size:.88rem; color:var(--on-deep-soft); margin-top:14px; max-width:36ch; line-height:1.55; }
+.footer-col .fcol-t{ font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--accent-br); margin-bottom:16px; }
+.footer-col a{ display:block; color:rgba(255,255,255,.8); text-decoration:none; font-size:.94rem; padding:5px 0; transition:color .2s; }
+.footer-col a:hover{ color:var(--on-deep); }
+.footer-legal{ padding-block:26px 40px; }
+.disc{ font-size:.8rem; color:var(--on-deep-soft); line-height:1.6; max-width:82ch; }
+.disc + .disc{ margin-top:10px; }
+.copyr{ margin-top:20px; font-size:.8rem; color:rgba(255,255,255,.5); }
+.copyr a{ color:inherit; text-decoration:underline; text-decoration-color:rgba(255,255,255,.28); text-underline-offset:2px; transition:color .2s, text-decoration-color .2s; }
+.copyr a:hover{ color:var(--on-deep); text-decoration-color:rgba(255,255,255,.55); }
+
+/* ============================================================
+   9. NAV-DOTS · REVEAL
+   ============================================================ */
+.nav-dots{ position:fixed; right:20px; top:50%; transform:translateY(-50%); z-index:80; display:flex; flex-direction:column; gap:0; }
+.nav-dots a{ width:24px; height:24px; padding:7px; box-sizing:border-box; border-radius:50%; background:rgba(10,25,20,.22); display:block; position:relative; transition:background .25s, transform .25s; }
+.nav-dots a::after{ content:attr(data-label); position:absolute; right:29px; top:50%; transform:translateY(-50%) translateX(6px);
+  white-space:nowrap; font-size:.72rem; font-weight:600; color:var(--ink); background:var(--paper);
+  padding:4px 10px; border-radius:4px; box-shadow:0 2px 12px rgba(10,25,20,.12); opacity:0; pointer-events:none; transition:opacity .2s, transform .2s; }
+.nav-dots a:hover::after{ opacity:1; transform:translateY(-50%) translateX(0); }
+.nav-dots a.on{ background:var(--accent); transform:scale(1.3); }
+.nav-dots a, .nav-dots a.on{ background-clip:content-box; }
+.rev{ opacity:0; transform:translateY(22px); transition:opacity .7s cubic-bezier(.4,0,.2,1), transform .7s cubic-bezier(.4,0,.2,1); }
+.rev.in{ opacity:1; transform:none; }
+.d1{ transition-delay:.08s; } .d2{ transition-delay:.16s; } .d3{ transition-delay:.24s; } .d4{ transition-delay:.32s; }
+@media (prefers-reduced-motion: reduce){
+  .rev{ opacity:1; transform:none; transition:none; }
+  html{ scroll-behavior:auto; }
+  .btn-solid:hover{ transform:none; }
+}
+
+/* ============================================================
+   10. RESPONSIVO
+   ============================================================ */
+@media (max-width:1040px){
+  .nav .lk, .hdr .nav .btn{ display:none; }
+  .burger{ display:block; }
+  .nav-dots{ display:none; }
+}
+@media (max-width:880px){
+  .hero-grid{ grid-template-columns:1fr; }
+  .portrait-wrap{ order:-1; }
+  .essay{ column-count:1; }
+  .final-grid{ grid-template-columns:1fr; text-align:center; justify-items:center; }
+  .footer-top{ grid-template-columns:1fr 1fr; }
+}
+@media (max-width:560px){
+  .proof-grid{ grid-template-columns:1fr; }
+  .pitem + .pitem{ border-left:none; border-top:1px solid var(--line); }
+  .creds{ grid-template-columns:1fr; }
+  .ficha + .ficha{ border-left:none; }
+  .btn-lg{ width:100%; }
+  .footer-top{ grid-template-columns:1fr; }
+}
+
+/* Redes sociais no rodape. Decisao de 01/09/2026: sempre presentes, em todas
+   as paginas. Ficam no rodape e nao perto de botao de acao, para nao competir
+   com o destino da pagina. */
+.social{ display:flex; gap:20px; flex-wrap:wrap; margin-top:18px; font-size:.88rem; }
+.social a{ text-decoration:none; color:#b8c2bd; border-bottom:1px solid var(--line-deep); padding-bottom:2px; }
+.social a:hover{ color:var(--on-deep); border-bottom-color:var(--accent-br); }
+
+/* FAQ (Fase 3 AEO, igual ao da home) */
+.faq{ margin-top:14px; border-top:1px solid var(--line); }
+.faq details{ border-bottom:1px solid var(--line); }
+.faq summary{ list-style:none; cursor:pointer; padding:24px 44px 24px 4px; position:relative;
+  font-family:var(--serif); font-size:clamp(1.1rem,2vw,1.34rem); font-weight:500; color:var(--ink); transition:color .2s; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary:hover{ color:var(--accent-tx); }
+.faq summary::after{ content:'+'; position:absolute; right:6px; top:50%; transform:translateY(-50%);
+  font-family:var(--sans); font-size:1.5rem; font-weight:300; color:var(--accent-tx); transition:transform .25s; }
+.faq details[open] summary::after{ transform:translateY(-50%) rotate(45deg); }
+.faq .fb{ padding:0 44px 26px 4px; }
+.faq .fb p{ color:var(--ink2); line-height:1.62; max-width:64ch; }
+.faq .fb a{ color:var(--accent-tx); }
+.faq-data{ margin-top:22px; }
+</style>
+
+<!-- SEO / social (portado do Replit) -->
+<meta name="robots" content="index,follow">
+<meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
+<link rel="canonical" href="https://leonardodesousa.com.br/cartas/holding-familiar-ou-inventario">
+<link rel="icon" type="image/png" href="/favicon.png">
+<meta property="og:title" content="Holding familiar ou inventário: o que faz sentido para a sua família? · Leonardo Sousa">
+<meta property="og:description" content="A holding não elimina o imposto sobre herança: muda a data e a forma de pagar. A conta de uma família em São Paulo mostra quando ela compensa e quando não.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://leonardodesousa.com.br/cartas/holding-familiar-ou-inventario">
+<meta property="og:image" content="https://leonardodesousa.com.br/opengraph.jpg">
+<meta property="og:locale" content="pt_BR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Holding familiar ou inventário: o que faz sentido para a sua família? · Leonardo Sousa">
+<meta name="twitter:description" content="A holding não elimina o imposto sobre herança: muda a data e a forma de pagar. A conta de uma família em São Paulo mostra quando ela compensa e quando não.">
+<meta name="twitter:image" content="https://leonardodesousa.com.br/opengraph.jpg">
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://leonardodesousa.com.br/#organizacao",
+  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
+  "alternateName": "Leonardo Sousa",
+  "url": "https://leonardodesousa.com.br/",
+  "logo": "https://leonardodesousa.com.br/favicon.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/leonardopsousa/",
+    "https://www.instagram.com/leonardodesousa/",
+    "https://leonardodesousa.substack.com/"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer service",
+    "availableLanguage": "Portuguese",
+    "url": "https://wa.me/554488239993"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": [
+    "FinancialService",
+    "Organization"
+  ],
+  "@id": "https://leonardodesousa.com.br/#organizacao",
+  "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
+  "alternateName": "Leonardo Sousa",
+  "description": "Leonardo Sousa é consultor patrimonial independente especializado em planejamento financeiro para empresários, profissionais liberais e investidores com patrimônio diversificado. Atua nas áreas de liquidez, proteção, investimentos, aposentadoria e sucessão.",
+  "url": "https://leonardodesousa.com.br/",
+  "logo": "https://leonardodesousa.com.br/favicon.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/leonardopsousa/",
+    "https://www.instagram.com/leonardodesousa/",
+    "https://leonardodesousa.substack.com/"
+  ],
+  "founder": {
+    "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
+    "name": "Leonardo Sousa",
+    "jobTitle": "Consultor Patrimonial",
+    "url": "https://leonardodesousa.com.br/sobre"
+  },
+  "areaServed": {
+    "@type": "Country",
+    "name": "Brasil"
+  },
+  "serviceType": [
+    "Consultoria Patrimonial Independente",
+    "Planejamento Financeiro",
+    "Planejamento Sucessório",
+    "Planejamento de Aposentadoria",
+    "Proteção Patrimonial"
+  ],
+  "priceRange": "$$$$",
+  "telephone": "+55 44 98823-9993",
+  "image": "https://leonardodesousa.com.br/opengraph.jpg"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": "https://leonardodesousa.com.br/cartas/holding-familiar-ou-inventario#carta",
+  "mainEntityOfPage": "https://leonardodesousa.com.br/cartas/holding-familiar-ou-inventario",
+  "url": "https://leonardodesousa.com.br/cartas/holding-familiar-ou-inventario",
+  "headline": "Holding familiar ou inventário: o que faz sentido para a sua família?",
+  "description": "A holding não elimina o imposto sobre herança: muda a data e a forma de pagar. A conta de uma família em São Paulo mostra quando ela compensa e quando não.",
+  "inLanguage": "pt-BR",
+  "datePublished": "2026-10-15T09:00:00-03:00",
+  "dateModified": "2026-10-15T09:00:00-03:00",
+  "articleSection": "Sucessão",
+  "image": "https://leonardodesousa.com.br/opengraph.jpg",
+  "author": {
+    "@type": "Person",
+    "@id": "https://leonardodesousa.com.br/sobre#leonardo-sousa",
+    "name": "Leonardo Sousa",
+    "jobTitle": "Consultor Patrimonial",
+    "url": "https://leonardodesousa.com.br/sobre"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@id": "https://leonardodesousa.com.br/#organizacao",
+    "name": "Leonardo Sousa - Consultoria Patrimonial Independente",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://leonardodesousa.com.br/favicon.png"
+    }
+  },
+  "isPartOf": {
+    "@type": "Blog",
+    "name": "Cartas de Vida e Patrimônio",
+    "url": "https://leonardodesousa.com.br/cartas"
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Início",
+      "item": "https://leonardodesousa.com.br/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Cartas",
+      "item": "https://leonardodesousa.com.br/cartas"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Holding familiar ou inventário: o que faz sentido para a sua família?",
+      "item": "https://leonardodesousa.com.br/cartas/holding-familiar-ou-inventario"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Holding familiar evita o inventário?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Só das cotas que os pais doaram em vida. Se os pais morrem com as cotas no próprio nome, elas passam pelo inventário e pagam ITCMD como qualquer bem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Vale a pena fazer holding com um único imóvel?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Na conta do imposto, raramente: o ITCMD é o mesmo, o ITBI pode aparecer na entrada e a empresa custa todo ano. A doação direta do imóvel com usufruto chega ao mesmo resultado, com uma escritura e um registro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "A reforma tributária acabou com a vantagem da holding?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diminuiu. A Lei Complementar 227/2026 mandou avaliar as cotas e o ITBI a valor de mercado, e a Lei Complementar 214/2025 faz a holding de aluguel pagar CBS e IBS. A holding continua útil para organizar muitos imóveis entre muitos herdeiros. Como atalho de imposto, perdeu força."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-in">
+    <a href="/" class="wm">Leonardo Sousa <span>· Consultor Patrimonial</span></a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a class="lk" href="/metodo">Método</a>
+      <a class="lk" href="/plano-exemplo">Plano de exemplo</a>
+      <a class="lk" href="/cartas">Cartas</a>
+      <a class="lk" href="/sobre">Sobre</a>
+      <a class="btn btn-solid btn-sm btn-arrow" href="/agendar">Agendar conversa</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Abrir menu" aria-expanded="false">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="scrim" id="scrim"></div>
+<nav class="mm" id="mm" aria-label="Navegação mobile">
+  <button class="x" id="mmx" aria-label="Fechar menu"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg></button>
+  <a href="/metodo">Método</a>
+  <a href="/plano-exemplo">Plano de exemplo</a>
+  <a href="/cartas">Cartas</a>
+  <a href="/sobre">Sobre</a>
+  <a class="btn btn-solid btn-arrow" href="/agendar">Agendar conversa</a>
+</nav>
+
+<!-- nav-dots -->
+<nav class="nav-dots" id="navDots" aria-label="Navegação de seções">
+  <a href="#topo" data-label="Quem é" aria-label="Quem é"></a>
+  <a href="#numeros" data-label="Números" aria-label="Números"></a>
+  <a href="#credenciais" data-label="Credenciais" aria-label="Credenciais"></a>
+  <a href="#independente" data-label="Por que independente" aria-label="Por que independente"></a>
+  <a href="#conversa" data-label="Conversar" aria-label="Conversar"></a>
+</nav>
+
+<main>
+<article class="art" id="topo">
+<header class="art-hero">
+  <div class="wrap" style="max-width:880px">
+    <div class="masthead">
+      <span><a href="/cartas" style="color:inherit;text-decoration:none">Cartas de Vida e Patrimônio</a></span>
+      <span class="sep"></span>
+      <span>Sucessão</span>
+    </div>
+    <h1 class="h1">Holding familiar ou inventário: o que faz sentido para a sua família?</h1>
+    <p class="lead">A holding troca um custo no fim da vida por custos durante a vida. A conta de uma família de São Paulo mostra quando essa troca compensa.</p>
+    <p class="art-by">
+      <span>Por <a href="/sobre">Leonardo Sousa</a>, Consultor Patrimonial</span>
+      <span>Publicada em <time datetime="2026-10-15">15 de outubro de 2026</time></span>
+      
+      <span>13 min de leitura</span>
+    </p>
+  </div>
+</header>
+
+<div class="art-body">
+<p class="art-resposta">A holding familiar é uma empresa que passa a ser dona dos imóveis da família, e os pais doam a participação nessa empresa aos filhos ainda em vida. Ela não elimina o imposto sobre herança: a doação paga o mesmo ITCMD. O que muda é a data em que se paga, quem decide sobre os bens e o custo de manter uma empresa todos os anos. Com vários imóveis de aluguel e herdeiros que vão administrar juntos, a conta pode fechar. Com poucos bens e filhos que se entendem, o inventário ou a doação direta com usufruto costumam sair mais baratos.</p>
+<h2 id="como-funciona-uma-holding-familiar">Como funciona uma holding familiar?</h2>
+<p>Nas conversas com famílias, a pergunta costuma chegar pronta: "um amigo fez holding e disse que os filhos não vão pagar inventário, vale para mim?". Vem de quem tem dois ou três imóveis, alguma aplicação e filhos adultos. Holding não é isenção. É uma forma de passar o patrimônio em vida, com custos próprios.</p>
+<p>Funciona em dois passos. No primeiro, os pais abrem uma empresa, quase sempre uma sociedade limitada, e entregam a ela os imóveis. Em troca, recebem cotas, que são as partes da empresa. Os imóveis passam para o nome da empresa, e os pais viram sócios.</p>
+<p>O segundo passo é o que mexe com a herança. Os pais doam as cotas aos filhos e guardam o usufruto, que é o direito de usar os bens e receber a renda. Continuam recebendo os aluguéis e, se o contrato da empresa disser, continuam decidindo. Quando eles morrem, o usufruto acaba e os filhos ficam com as cotas inteiras, sem inventário delas.</p>
+<p>Daqui sai o ponto que mais surpreende: <strong>a empresa sozinha não evita inventário.</strong> Se os pais montam a holding e não doam as cotas, os filhos herdam cotas em vez de imóveis. As cotas entram no inventário e pagam o mesmo imposto.</p>
+<h2 id="quanto-custa-um-inventario">Quanto custa um inventário?</h2>
+<p>Uma família inventada, para pôr números na mesa. Não é o caso de ninguém. Uma mãe viúva de 72 anos, que mora em São Paulo, com dois filhos maiores e de acordo. Ela tem três imóveis alugados, que valem R$ 2,4 milhões a preço de mercado e aparecem por R$ 800 mil na declaração de imposto de renda, e R$ 600 mil em aplicações. Patrimônio de R$ 3 milhões. Os aluguéis somam R$ 12 mil por mês.</p>
+<p>Se ela morrer sem nada planejado, os filhos fazem o inventário. Em cartório, que é o caminho mais rápido quando todos concordam, a conta de hoje fica assim:</p>
+<div class="art-tabela"><table><thead><tr><th scope="col">Item</th><th scope="col">Valor</th><th scope="col">De onde vem</th></tr></thead><tbody><tr><th scope="row">ITCMD, o imposto sobre herança, 4% de R$ 3 milhões</th><td>R$ 120.000</td><td>Lei paulista 10.705/2000, art. 16</td></tr><tr><th scope="row">Advogado, 6% do valor dos bens</th><td>R$ 180.000</td><td>Tabela de honorários 2026 da OAB-SP, item 6.25: referência, não preço</td></tr><tr><th scope="row">Cartório, escritura</th><td>R$ 10.256</td><td>Tabela de emolumentos 2026 dos tabeliães de São Paulo, capital</td></tr><tr><th scope="row"><strong>Total</strong></th><td><strong>R$ 310.256, 10,3% do patrimônio</strong></td><td></td></tr></tbody></table></div>
+<p>Sem o advogado, que se negocia caso a caso, o custo é de R$ 130.256, 4,3%. Ficam de fora o registro dos imóveis no nome dos filhos e as certidões. A conta usa o valor de mercado, como manda a lei paulista (art. 9º, § 1º); na prática, muitos inventários ainda declaram um valor menor, e a lei nacional de 2026 empurra a base para o mercado.</p>
+<p>Há um detalhe que pesa mais que o número. O imposto e o advogado são pagos antes de os bens serem liberados, e o dinheiro disponível são as aplicações, que também estão no inventário. A regra dos cartórios permite autorizar a venda de um bem para pagar essas despesas (Resolução CNJ 35/2007, art. 11-A). Imóvel vendido com prazo curto costuma sair abaixo do valor.</p>
+<h2 id="quanto-custa-a-holding">Quanto custa a holding?</h2>
+<p>A mesma mãe monta a holding hoje com os três imóveis e doa as cotas aos filhos, guardando o usufruto. As aplicações ficam no nome dela.</p>
+<p><strong>Para abrir.</strong></p>
+<ul><li><strong>Imposto de renda na entrada:</strong> zero, se os imóveis entram pelo valor da declaração (Lei 9.249/1995, art. 23).</li><li><strong>ITBI, o imposto da prefeitura sobre transmissão de imóvel:</strong> a Constituição dispensa esse imposto quando o imóvel entra numa empresa como capital, com uma exceção: empresas cuja atividade principal é comprar, vender ou alugar imóveis (art. 156, § 2º, I). As prefeituras enquadram a holding de aluguel nessa exceção, e a de São Paulo cobra 3% (Lei municipal 11.154/1991, arts. 4º e 10). Sobre R$ 2,4 milhões, até R$ 72 mil.</li><li><strong>ITCMD da doação das cotas:</strong> em São Paulo, paga-se agora sobre dois terços do valor e, quando o usufruto acaba, sobre o terço restante (Lei 10.705/2000, art. 9º, § 2º, 4; Decreto 46.655/2002, art. 31, § 3º). Também é possível pagar tudo de uma vez, na doação. Com os valores de hoje, R$ 64 mil agora e R$ 32 mil depois, os mesmos 4% do inventário. A cobrança desse último terço é discutida em São Paulo.</li><li><strong>Advogado e contador:</strong> preço livre. A tabela da OAB também tem referência para contratos de empresa: peça os orçamentos por escrito. Junta Comercial e registro dos imóveis seguem tabela oficial.</li></ul>
+<p>Sobre o ITBI há uma discussão aberta no Supremo Tribunal Federal (Tema 1.348). O julgamento está em fase final, com votos a favor de dispensar o imposto também para a empresa de aluguel, até o valor que entra como capital, como o STF já decidiu em outro caso (Tema 796). Enquanto a decisão não termina, a Prefeitura de São Paulo segue cobrando. Se essa tese vencer e os imóveis entrarem pelo valor antigo da declaração, a prefeitura tende a cobrar sobre a diferença até o valor de mercado, 3% de R$ 1,6 milhão, R$ 48 mil. Esse ponto também é discutido na Justiça.</p>
+<p><strong>Para manter, todo ano.</strong> A empresa precisa de contador, banco e declarações. E o aluguel passa a ser tributado na empresa:</p>
+<div class="art-tabela"><table><thead><tr><th scope="col">R$ 144 mil de aluguel por ano</th><th scope="col">Na pessoa física</th><th scope="col">Na holding</th></tr></thead><tbody><tr><th scope="row">Imposto, se o aluguel é a única renda</th><td>R$ 23.844 (16,6%)</td><td>R$ 16.315 (11,3%)</td></tr><tr><th scope="row">Imposto, se ela já tem outra renda tributada a 27,5%</th><td>R$ 39.600 (27,5%)</td><td>R$ 16.315 (11,3%)</td></tr><tr><th scope="row">Contador</th><td>não precisa</td><td>precisa, todo mês</td></tr></tbody></table></div>
+<p>Na pessoa física, o aluguel entra na declaração anual de imposto de renda; a primeira linha usa o desconto simplificado de R$ 17.640 (Lei 9.250/1995, art. 10). Quem tem aposentadoria ou outra renda fica, na maior parte dos casos, entre as duas linhas. Na holding, a lei supõe que o lucro do aluguel é 32% da receita (Lei 9.249/1995, art. 15, § 1º, III, "c"), o regime chamado lucro presumido. Sobre esse lucro incidem 15% de imposto de renda e 9% de contribuição social, e sobre a receita, 3,65% de PIS e Cofins.</p>
+<p>A diferença fica entre R$ 7,5 mil e R$ 23,3 mil por ano, e é dela que sai o contador. Supondo uma contabilidade de R$ 1.000 por mês, a mãe que vive só do aluguel perde cerca de R$ 4,5 mil por ano com a holding. A que já tem outra renda alta ganha cerca de R$ 11 mil. A vantagem pode ser menor: a pessoa física desconta do aluguel o IPTU, o condomínio e a taxa da imobiliária quando é ela quem paga, e a holding não.</p>
+<p><strong>Se a família pensa em vender.</strong> Os imóveis que entram pelo valor antigo da declaração carregam um lucro escondido de R$ 1,6 milhão. Vendido pela pessoa física, esse lucro paga 15% no exemplo. Vendido pela holding, pode pagar até 34%, conforme a forma como a empresa registra o imóvel (Lei 9.430/1996, art. 25, II). Holding de imóveis combina mais com quem pretende guardar do que com quem pretende vender.</p>
+<h2 id="as-tres-rotas-lado-a-lado">As três rotas lado a lado</h2>
+<p>Com os números da mãe do exemplo e os valores de hoje:</p>
+<div class="art-tabela"><table><thead><tr><th scope="col"></th><th scope="col">Inventário em cartório</th><th scope="col">Holding com doação das cotas</th><th scope="col">Doação direta com usufruto</th></tr></thead><tbody><tr><th scope="row">Agora</th><td>nada</td><td>ITCMD de R$ 64 mil; ITBI de até R$ 72 mil; advogado, Junta e registro</td><td>ITCMD de R$ 64 mil; três escrituras, cerca de R$ 18 mil; registro</td></tr><tr><th scope="row">Todo ano</th><td>nada a mais</td><td>contador; imposto do aluguel menor em R$ 7,5 mil a R$ 23,3 mil</td><td>nada a mais</td></tr><tr><th scope="row">No fim</th><td>R$ 310.256 (ITCMD, advogado pela tabela e cartório)</td><td>R$ 97.427 (ITCMD de R$ 32 mil e inventário das aplicações)</td><td>R$ 97.427 (ITCMD de R$ 32 mil e inventário das aplicações)</td></tr></tbody></table></div>
+<p>O inventário das aplicações soma R$ 24 mil de imposto, R$ 36 mil de advogado pela mesma tabela e R$ 5.427 de cartório. O advogado que monta a holding ou a doação também cobra: ponha os orçamentos na mesma linha. E multiplique o contador pelos anos que a família espera manter a empresa.</p>
+<h2 id="existe-um-caminho-sem-empresa">Existe um caminho sem empresa?</h2>
+<p>Existe, e quase não aparece nas conversas sobre holding: doar os imóveis aos filhos com reserva de usufruto, sem holding no meio.</p>
+<p>O ITCMD é o mesmo, pago do mesmo jeito. Não há ITBI, porque doação não é venda. Não há empresa para manter. O custo é a escritura e o registro: na tabela da capital paulista, a escritura de um imóvel de R$ 800 mil fica em R$ 6.026. A mãe continua recebendo os aluguéis, tributados como hoje. Quando ela morre, o usufruto acaba e os imóveis já estão no nome dos filhos.</p>
+<p>O que esse caminho não dá são regras entre os irmãos. Eles viram donos em conjunto de cada imóvel, e qualquer um pode pedir na Justiça a divisão ou a venda do bem (Código Civil, arts. 1.320 e 1.322). A holding organiza isso no contrato e no acordo entre os sócios: quem administra, como se decide uma venda, o que acontece se um filho quiser sair. Para quem tem muitos imóveis e herdeiros que vão conviver por muitos anos, essa é a razão mais forte para a holding, mais que o imposto.</p>
+<h2 id="o-que-a-reforma-tributaria-mudou-para-a-holding">O que a reforma tributária mudou para a holding?</h2>
+<p>A reforma obrigou os estados a cobrar o ITCMD por faixas, mais alto para heranças e doações maiores (Constituição, art. 155, § 1º, VI). São Paulo ainda cobra 4% fixo, e o teto nacional segue em 8% (Resolução do Senado 9/1992). Quem doa em vida paga pela lei do dia da doação. Para a holding, três mudanças pesam.</p>
+<ol><li><strong>A cota não pode mais valer pouco.</strong> A Lei Complementar 227/2026 diz que a cota de uma empresa fora da bolsa vale, no mínimo, o patrimônio da empresa com os bens a preço de mercado (art. 154, II), na forma da lei de cada estado. A lei paulista ainda precisa se ajustar, e até lá há divergência. Planejar contando com a doação de cotas pelo valor antigo da declaração virou risco. A mesma lei também levou o ITBI para o valor de mercado (Código Tributário Nacional, art. 38, § 1º).</li><li><strong>O aluguel na empresa vai pagar os novos impostos sobre consumo.</strong> Em 2027, o PIS e a Cofins acabam e entra a CBS (Constituição, ADCT, art. 126); o IBS sobe aos poucos a partir de 2029. A holding de aluguel paga os dois, com desconto de 70% na alíquota (Lei Complementar 214/2025, art. 261, parágrafo único) e, no aluguel residencial, um abatimento de R$ 600 por mês por imóvel (art. 260). A pessoa física só paga se, no ano anterior, recebeu mais de R$ 240 mil de aluguel, valor corrigido pela inflação, <strong>e</strong> alugou mais de três imóveis (art. 251, § 1º, I). A mãe do exemplo fica de fora na pessoa física e paga na holding. As alíquotas ainda serão fixadas pelo Senado (art. 349). Em 2027 a troca pode sair parecida com o PIS e a Cofins de hoje; o peso vem com o IBS.</li><li><strong>Lucro alto distribuído tem imposto.</strong> Desde janeiro de 2026, quem recebe mais de R$ 50 mil por mês em lucros da mesma empresa tem 10% retidos (Lei 9.250/1995, art. 6º-A). No exemplo, a regra não alcança.</li></ol>
+<h2 id="quando-cada-ferramenta-costuma-servir">Quando cada ferramenta costuma servir?</h2>
+<div class="art-tabela"><table><thead><tr><th scope="col">Situação da família</th><th scope="col">O que costuma servir</th><th scope="col">O limite</th></tr></thead><tbody><tr><th scope="row">Vários imóveis de aluguel, renda alta e herdeiros que vão administrar juntos</th><td>Holding com doação das cotas e usufruto</td><td>Custo de abrir e de manter; ITBI na entrada, conforme a cidade; venda mais tributada</td></tr><tr><th scope="row">Um ou dois imóveis e filhos que se entendem</th><td>Doação direta com usufruto</td><td>Os filhos ficam donos em conjunto, sem regras de convivência</td></tr><tr><th scope="row">Patrimônio concentrado em aplicações</th><td>Previdência (VGBL ou PGBL, conforme o caso) com beneficiário indicado</td><td>Sem ITCMD, mas com custos e imposto de renda no resgate; pode voltar à herança se ferir a parte garantida aos herdeiros</td></tr><tr><th scope="row">Família que precisa de dinheiro no mês da morte</th><td>Seguro de vida com beneficiário</td><td>O valor não é herança e não paga ITCMD; custa o prêmio</td></tr><tr><th scope="row">Poucos bens, herdeiros maiores e de acordo</th><td>Inventário em cartório</td><td>Imposto, advogado e cartório no fim</td></tr><tr><th scope="row">Vontade sobre quem fica com o quê</th><td>Testamento</td><td>Não reduz imposto e não dispensa inventário</td></tr></tbody></table></div>
+<p>A previdência e o seguro ficam fora do ITCMD pela Lei Complementar 227/2026 (art. 150, III), e o seguro não é herança pela Lei 15.040/2024 (art. 116); o STF decidiu o mesmo sobre a previdência no Tema 1.214. As ferramentas não se excluem. Muitas famílias combinam duas ou três: previdência ou seguro para o dinheiro do primeiro mês, doação para os imóveis, inventário para o resto.</p>
+<h2 id="o-que-nenhuma-estrutura-resolve">O que nenhuma estrutura resolve</h2>
+<p>Doação em vida segue as regras da herança: o filho que recebe antes acerta o valor com os irmãos no inventário, salvo dispensa de quem doou, e ninguém pode doar tudo sem guardar o necessário para viver (Código Civil, arts. 548 e 2.002). A <a href="/cartas/qual-e-o-itcmd-em-2026-e-o-que-mudou-com-a-reforma">carta sobre o ITCMD em 2026</a> conta essas regras em detalhe.</p>
+<p>A holding também não é escudo contra dívidas. O juiz alcança os bens da empresa quando ela é usada para misturar o patrimônio do sócio com o dela (Código Civil, art. 50). E a doação feita por quem já está sem condições de pagar o que deve pode ser anulada a pedido dos credores (art. 158).</p>
+<p>E há a parte que contrato nenhum faz sozinho. Holding montada sem conversa com os filhos é papel. Eles precisam saber o que existe, quem decide enquanto os pais vivem e quais são as regras de depois. Quando essa conversa não acontece em vida, ela acaba acontecendo no inventário.</p>
+<h2 id="que-perguntas-levar-a-conversa-em-familia">Que perguntas levar à conversa em família?</h2>
+<ol><li>Quanto do nosso patrimônio está em imóveis, e quanto eles rendem de aluguel por ano?</li><li>Os filhos vão manter os imóveis juntos, ou cada um prefere a sua parte?</li><li>Se um de nós morrer no mês que vem, de onde sai o dinheiro do imposto e do advogado?</li><li>Quanto custa, em orçamento escrito, montar e manter a holding por dez anos? E a doação direta?</li><li>O que dizem hoje a lei de ITCMD do nosso estado e a lei de ITBI da nossa cidade?</li></ol>
+<p>Na conta da mãe, o imposto ficou do mesmo tamanho nas três rotas: 4% sobre os imóveis. O que mudou foi o resto. De um lado, R$ 310 mil pagos de uma vez no fim. Do outro, uma empresa e um contador por muitos anos, ou três escrituras e nenhuma regra entre os irmãos. Faça essa conta para a sua casa, com advogado e contador, antes de assinar qualquer contrato.</p>
+<section class="art-faq" aria-labelledby="faq"><h2 id="faq">Perguntas frequentes</h2><div class="faq"><details><summary>Holding familiar evita o inventário?</summary><div class="fb"><p>Só das cotas que os pais doaram em vida. Se os pais morrem com as cotas no próprio nome, elas passam pelo inventário e pagam ITCMD como qualquer bem.</p></div></details><details><summary>Vale a pena fazer holding com um único imóvel?</summary><div class="fb"><p>Na conta do imposto, raramente: o ITCMD é o mesmo, o ITBI pode aparecer na entrada e a empresa custa todo ano. A doação direta do imóvel com usufruto chega ao mesmo resultado, com uma escritura e um registro.</p></div></details><details><summary>A reforma tributária acabou com a vantagem da holding?</summary><div class="fb"><p>Diminuiu. A Lei Complementar 227/2026 mandou avaliar as cotas e o ITBI a valor de mercado, e a Lei Complementar 214/2025 faz a holding de aluguel pagar CBS e IBS. A holding continua útil para organizar muitos imóveis entre muitos herdeiros. Como atalho de imposto, perdeu força.</p></div></details></div></section>
+<aside class="art-autor" aria-label="Sobre o autor">
+  <img src="/foto-leo.webp" alt="Leonardo Sousa" width="64" height="64" loading="lazy">
+  <div>
+    <p class="nm">Leonardo Sousa</p>
+    <p>Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
+  </div>
+</aside>
+<div style="margin-top:2.4em">
+<div class="insc" id="receber">
+  <p class="insc-k">Cartas de Vida e Patrimônio</p>
+  <h3>Receba a próxima carta</h3>
+  <p class="insc-ap">Uma carta por semana, no seu e-mail.</p>
+  <form class="insc-f" data-origem="carta:holding-familiar-ou-inventario" novalidate>
+    <label class="insc-sr" for="insc-email-1">Seu e-mail</label>
+    <input id="insc-email-1" type="email" name="email" autocomplete="email" inputmode="email" placeholder="Seu e-mail" required>
+    <input class="insc-hp" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
+    <button type="submit">Quero receber</button>
+  </form>
+  <p class="insc-micro">Você recebe um e-mail para confirmar a inscrição. Uso seu endereço só para enviar as cartas. <a href="/privacidade">Política de Privacidade</a></p>
+  <p class="insc-ret" role="status" aria-live="polite"></p>
+</div>
+</div>
+<p class="art-aviso">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</p>
+</div>
+</article>
+<section class="sec final" id="conversa">
+  <div class="wrap">
+    <div class="final-grid">
+      <div>
+        <span class="eyebrow on-deep rev">O próximo passo</span>
+        <h2 class="rev d1" style="margin:16px 0 6px">Se há mais de R$500 mil em jogo, pode valer uma <span class="hl">conversa</span>.</h2>
+        <p class="lead rev d2">Uma conversa para eu entender o seu momento e onde você quer chegar. Sem apresentação de produto, sem pressão, e sem relógio na mesa. Só uma leitura honesta do ponto onde você está.</p>
+        <div class="rev d3">
+          <a class="btn btn-lg btn-solid on-deep btn-arrow" href="/agendar">Agendar conversa exploratória</a>
+        </div>
+        <p class="micro on-deep rev d3" style="margin-top:18px"><span class="tk">&#8226;</span> Primeira conversa. Sem compromisso, sem custo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ============================================================ RODAPÉ ============================================================ -->
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fb-name">Leonardo Sousa</div>
+        <div class="fb-role">Consultor Patrimonial</div>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+      <div class="social">
+        <a href="https://www.instagram.com/leonardodesousa/" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://www.linkedin.com/in/leonardopsousa/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://www.youtube.com/@leonardopdesousa" target="_blank" rel="noopener">YouTube</a>
+        <a href="https://leonardodesousa.substack.com/" target="_blank" rel="noopener">Substack</a>
+      </div>
+      </div>
+      <div class="footer-col">
+        <p class="fcol-t">Navegar</p>
+        <a href="/metodo">Método</a>
+        <a href="/plano-exemplo">Plano de exemplo</a>
+        <a href="/cartas">Cartas de Vida e Patrimônio</a>
+        <a href="/sobre">Sobre</a>
+      </div>
+      <div class="footer-col">
+        <p class="fcol-t">Conversar</p>
+        <a href="/conversa">Conversa exploratória</a>
+        <a href="/agendar">Agendar conversa</a>
+      </div>
+    </div>
+
+    <div class="footer-legal">
+      <p class="disc">Consultoria alinhada às diretrizes da CVM e da ANBIMA. Conteúdo de caráter educativo: não constitui recomendação de investimento.</p>
+      <p class="copyr">&copy; 2026 Leonardo Sousa · Consultor Patrimonial. Todos os direitos reservados. <a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a> · <a href="/termos">Termos de Uso</a></p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var hdr = document.getElementById('hdr');
+  var onScroll = function(){ if(window.scrollY > 30){ hdr.classList.add('scrolled'); } else { hdr.classList.remove('scrolled'); } };
+  requestAnimationFrame(onScroll);
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  var burger=document.getElementById('burger'), mm=document.getElementById('mm'),
+      scrim=document.getElementById('scrim'), mmx=document.getElementById('mmx');
+  function open(){ mm.classList.add('open'); scrim.classList.add('open'); burger.setAttribute('aria-expanded','true'); }
+  function close(){ mm.classList.remove('open'); scrim.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click',open); mmx.addEventListener('click',close); scrim.addEventListener('click',close);
+  mm.querySelectorAll('a').forEach(function(a){ a.addEventListener('click',close); });
+
+  var revs=document.querySelectorAll('.rev');
+  if(reduce || !('IntersectionObserver' in window)){ revs.forEach(function(e){ e.classList.add('in'); }); }
+  else{
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.14, rootMargin:'0px 0px -6% 0px'});
+    revs.forEach(function(e){ io.observe(e); });
+  }
+
+  var dots=document.querySelectorAll('#navDots a'), pairs=[];
+  dots.forEach(function(d){ var s=document.getElementById(d.getAttribute('href').slice(1)); if(s){ pairs.push({dot:d, sec:s}); } });
+  if('IntersectionObserver' in window){
+    var so=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ pairs.forEach(function(p){ p.dot.classList.toggle('on', p.sec===e.target); }); } }); },{threshold:.5, rootMargin:'-30% 0px -30% 0px'});
+    pairs.forEach(function(p){ so.observe(p.sec); });
+  }
+})();
+</script>
+<!-- ============================================================ BANNER DE COOKIES (snippet único · 8 páginas) ============================================================ -->
+<style>
+@media (max-width:560px){
+  
+  
+  
+  
+}
+</style>
+
+
+<style>
+/* Cookie banner (LGPD) */
+.ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);border-top:1px solid var(--line);padding:14px 24px;display:none;box-shadow:0 -8px 30px rgba(10,25,20,.08)}
+.ck-in{max-width:var(--wrap);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.ck-tx{flex:1;min-width:220px}
+.ck-tx .ck-t{font-family:var(--sans);font-size:14.7px;font-weight:600;color:var(--ink);margin-bottom:3px}
+.ck-tx p{font-family:var(--sans);font-size:13px;color:var(--mut);line-height:1.6}
+.ck-tx a{color:var(--accent-tx);text-decoration:underline}
+.ck-btns{display:flex;gap:9px;flex-shrink:0;flex-wrap:wrap}
+.ck-btns button{padding:10px 18px;border-radius:4px;font-family:var(--sans);font-size:13px;font-weight:600;cursor:pointer;transition:opacity .15s}
+.ck-no{background:transparent;border:1.5px solid var(--line);color:var(--mut)}
+.ck-ok{background:var(--deep);color:#fff;border:none}
+.ck-no:hover,.ck-ok:hover{opacity:.82}
+</style>
+<div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
+  <div class="ck-in">
+    <div class="ck-tx">
+      <p class="ck-t">Utilizamos cookies</p>
+      <p>Este site utiliza cookies para melhorar sua experiência, analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com o uso de cookies analíticos e de marketing. Consulte nossa <a href="/privacidade">Política de Privacidade</a> para mais informações.</p>
+    </div>
+    <div class="ck-btns">
+      <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
+      <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+    </div>
+  </div>
+</div>
+<script>
+/* Analytics + consentimento (LGPD): Pixel e GA so apos aceite */
+var GA='G-PKLSPLG01L', FB='1160128632546332', _al=false;
+function loadA(){
+  if(_al) return;
+  var r=localStorage.getItem('cookie_consent'); if(!r) return;
+  var c=JSON.parse(r); if(!c.analytics&&!c.marketing) return;
+  var run=function(){ if(c.analytics) loadGA(); if(c.marketing) loadFB(); _al=true; };
+  'requestIdleCallback' in window ? requestIdleCallback(run,{timeout:3000}) : setTimeout(run,300);
+}
+function loadGA(){
+  var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+GA;
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[]; window.gtag=function(){window.dataLayer.push(arguments)};
+  gtag('js',new Date()); gtag('config',GA);
+}
+function loadFB(){
+  !function(f,b,e,v,n,t,s){ if(f.fbq) return; n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq) f._fbq=n; n.push=n; n.loaded=true; n.version='2.0'; n.queue=[];
+    t=b.createElement(e); t.async=true; t.src=v; s=b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t,s);
+  }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init',FB); fbq('track','PageView');
+}
+
+/* revogacao: a Politica de Privacidade promete poder revogar a qualquer momento.
+   Reabre o banner e limpa a escolha anterior. Os trackers ja carregados so somem
+   no proximo carregamento, o que a mensagem avisa. */
+function ckReabrir(e){
+  if(e) e.preventDefault();
+  try{ localStorage.removeItem('cookie_consent'); }catch(err){}
+  var el=document.getElementById('ck');
+  if(el){ el.style.display='block'; el.scrollIntoView({behavior:'smooth',block:'end'}); }
+  return false;
+}
+window.ckReabrir = ckReabrir;
+
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
+(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+</script>
+<script>
+(function(){
+  var URL_='https://luana-backend-production.up.railway.app/cartas/inscrever', OK="Falta um passo. Mandei um e-mail para você confirmar a inscrição. Se não aparecer em alguns minutos, olhe a pasta de spam ou de promoções.", ERRO="Não consegui registrar agora. Tente de novo em alguns minutos.";
+  Array.prototype.forEach.call(document.querySelectorAll('form.insc-f'), function(f){
+    var ret=f.parentNode.querySelector('.insc-ret'), bt=f.querySelector('button'), em=f.querySelector('input[type=email]');
+    f.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      if(!f.reportValidity()) return;
+      bt.disabled=true; ret.className='insc-ret'; ret.textContent='';
+      fetch(URL_,{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
+        body:JSON.stringify({email:em.value.trim(), origem:f.getAttribute('data-origem')||'/cartas',
+                             site:(f.querySelector('.insc-hp')||{}).value||''})})
+      .then(function(r){ if(!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function(){
+        f.style.display='none'; ret.textContent=OK;
+        try{ if(window.gtag) gtag('event','inscricao_cartas',{origem:f.getAttribute('data-origem')}); }catch(e){}
+      })
+      .catch(function(){ bt.disabled=false; ret.className='insc-ret err'; ret.textContent=ERRO; });
+    });
+  });
+})();
+</script>
+</body>
+</html>
