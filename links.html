@@ -4,13 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Leonardo Sousa · Links · Consultor Patrimonial</title>
-<meta name="description" content="Consultoria patrimonial independente, newsletter e conteúdos de Leonardo Sousa. Clareza patrimonial para quem já acumulou.">
+<meta name="description" content="Leonardo Sousa, Consultor Patrimonial. Investimentos, imposto e sucessão, no conjunto. Comece por uma conversa online e sem compromisso.">
 <meta name="robots" content="noindex,follow">
 <meta name="facebook-domain-verification" content="8oe5dky5q8fsf4z4ojun1e0xb5isof">
 <link rel="canonical" href="https://leonardodesousa.com.br/links">
 <link rel="icon" type="image/png" href="/favicon.png">
 <meta property="og:title" content="Leonardo Sousa · Consultor Patrimonial">
-<meta property="og:description" content="Clareza patrimonial para quem já acumulou. Consultoria independente, fee fixo, sem comissão.">
+<meta property="og:description" content="Quem olha o seu patrimônio inteiro? Investimentos, imposto e sucessão, no conjunto. Comece por uma conversa.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://leonardodesousa.com.br/links">
 <meta property="og:image" content="https://leonardodesousa.com.br/opengraph.jpg">
@@ -30,19 +30,15 @@
 @font-face{ font-family:'Inter FB Roboto'; src:local('Roboto'); size-adjust:106.38%; ascent-override:91.06%; descent-override:22.67%; line-gap-override:0.00%; }
 </style>
 <style>
-/* Página de links no sistema editorial claro das demais páginas do site.
-   Até 13/09/2026 esta página era a única em verde escuro, herdada do Replit, e
-   destoava de tudo. Os tokens abaixo são os mesmos do index.html e das outras
-   páginas: papel #f5f5f0, tinta #0a1914, escuro reservado a um bloco só.
-
-   CONTRASTE: --accent (#1fa86a) rende 2,8:1 sobre o papel, abaixo do mínimo de
-   4,5:1. Texto pequeno em verde usa --accent-ink (#1a7f52), 4,57:1. O verde da
-   marca fica onde o contraste não é problema: ícone, régua, fundo escuro. */
+/* Página de links focada na primeira conversa (14/10/2026). Mesmo sistema claro das demais
+   páginas: papel #f5f5f0, tinta #0a1914, um único bloco escuro, que agora é o da conversa.
+   Ordem pelo StoryBrand: quem é o guia, o convite direto, o plano em três passos, para quem é,
+   como é o acompanhamento, o convite transitório (cartas e aula) e o convite repetido. */
 :root{
-  --bg:#f5f5f0; --paper:#ffffff; --paper-2:#fafaf7;
+  --bg:#f5f5f0; --paper:#ffffff;
   --ink:#0a1914; --ink2:#2d4a3e; --ink3:#2d3748;
   --mut:rgba(10,25,20,.64);
-  --accent:#1fa86a; --accent-tx:#15804f; --accent-br:#3ecf8e; --accent-ink:#1a7f52;
+  --accent:#1fa86a; --accent-br:#3ecf8e; --accent-ink:#1a7f52;
   --line:rgba(10,25,20,.14); --line-soft:rgba(10,25,20,.08);
   --deep:#0a1914; --on-deep:#ffffff; --on-deep-soft:#c9d6cf;
   --serif:'Lora','Lora FB Georgia','Lora FB Times','Lora FB Noto', Georgia, 'Times New Roman', serif;
@@ -50,72 +46,84 @@
 }
 *{ margin:0; padding:0; box-sizing:border-box; }
 html{ -webkit-text-size-adjust:100%; }
-/* O banner de cookie é fixo no rodapé. Sem esta folga ele cobre o fim da
-   página no celular, que é onde ficam os links de política e preferências. */
 body{ font-family:var(--sans); background:var(--bg); color:var(--ink); font-size:16px; line-height:1.6;
-  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
-  padding:40px 20px 200px; }
+  -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; padding:20px 20px 200px; }
 img{ max-width:100%; display:block; }
 a{ color:inherit; }
-
 .wrap{ max-width:520px; margin:0 auto; }
 
-/* IDENTIFICAÇÃO */
 .head{ text-align:center; }
-/* foto-leo.webp e o asset canonico da marca, o mesmo das outras paginas, e e
-   retrato de 800x934. No circulo o cover descarta 134px na vertical: com o
-   padrao centralizado o corte encosta no alto da cabeca, entao ancora no topo. */
-.avatar{ width:104px; height:104px; border-radius:50%; object-fit:cover; object-position:50% 0;
-  margin:0 auto 18px; border:1px solid var(--line); }
-.name{ font-family:var(--serif); font-weight:700; font-size:1.62rem; letter-spacing:-.022em; line-height:1.1; }
+.avatar{ width:64px; height:64px; border-radius:50%; object-fit:cover; object-position:50% 0; margin:0 auto 16px; border:1px solid var(--line); }
+.name{ font-family:var(--serif); font-weight:700; font-size:1.55rem; letter-spacing:-.022em; line-height:1.1; }
 .role{ margin-top:7px; font-size:.74rem; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-ink); }
-.tag{ margin-top:13px; font-size:.97rem; color:var(--ink2); }
-.rule{ width:42px; height:2px; background:var(--accent); margin:26px auto 0; }
+.tag{ margin-top:10px; font-size:.9rem; color:var(--ink2); line-height:1.5; }
+.tag b{ font-weight:600; color:var(--ink); }
 
-/* BLOCO DA LIVE. Único bloco escuro da página, como a banda de CTA das outras
-   páginas: é o destino da semana, não a decoração. */
-.live{ margin-top:34px; background:var(--deep); border-radius:12px; overflow:hidden; }
-.live-top{ padding:22px 22px 18px; }
-.eyebrow{ display:inline-block; font-size:.68rem; font-weight:600; letter-spacing:.2em;
-  text-transform:uppercase; color:var(--accent-br); }
-.live-h{ margin-top:11px; font-family:var(--serif); font-weight:600; font-size:1.18rem;
-  line-height:1.28; letter-spacing:-.014em; color:var(--on-deep); }
-.live-sub{ margin-top:9px; font-size:.88rem; line-height:1.5; color:var(--on-deep-soft); }
-.video-frame{ position:relative; width:100%; aspect-ratio:16/9; background:#000;
-  border-top:1px solid rgba(255,255,255,.1); border-bottom:1px solid rgba(255,255,255,.1); }
-.video-frame iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
-.live-cta{ display:block; text-align:center; padding:16px 22px; text-decoration:none;
-  background:var(--accent-br); color:#0a1914; font-size:.95rem; font-weight:600;
-  transition:opacity .16s; }
-.live-cta:hover{ opacity:.88; }
+/* O CONVITE: único bloco escuro da página */
+.hero{ margin-top:20px; background:var(--deep); color:var(--on-deep); border-radius:14px; padding:26px 22px 22px; }
+.eyebrow{ font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-br); }
+.hero h1{ margin-top:10px; font-family:var(--serif); font-weight:600; font-size:1.3rem; line-height:1.25; letter-spacing:-.016em; }
+.hero h1 em{ font-style:italic; color:var(--accent-br); }
+.hero p{ margin-top:10px; font-size:.95rem; line-height:1.55; color:var(--on-deep-soft); }
+.passos{ list-style:none; margin-top:20px; padding-top:18px; border-top:1px solid rgba(255,255,255,.12); display:flex; flex-direction:column; gap:12px; }
+.passos li{ display:flex; gap:13px; align-items:flex-start; font-size:.95rem; line-height:1.45; }
+.passos .n{ flex-shrink:0; width:28px; height:28px; border-radius:50%; border:1.5px solid var(--accent-br); color:var(--accent-br);
+  font-size:.82rem; font-weight:700; display:flex; align-items:center; justify-content:center; margin-top:-2px; }
+.passos b{ font-weight:600; }
+.cta{ display:block; margin-top:18px; text-align:center; text-decoration:none; background:var(--accent-br); color:#0a1914;
+  font-size:1.05rem; font-weight:700; padding:17px 20px; border-radius:10px; transition:opacity .16s, transform .16s; }
+.cta:hover{ opacity:.9; transform:translateY(-1px); }
+.hero p.formato{ margin-top:16px; font-size:.86rem; }
+.exemplo{ display:block; margin-top:16px; text-align:center; font-size:.85rem; font-weight:600; color:var(--accent-br); text-decoration:underline; text-underline-offset:3px; }
+.cta-nota{ margin-top:10px; text-align:center; font-size:.8rem; color:var(--on-deep-soft); }
 
-/* LINKS */
-.links{ display:flex; flex-direction:column; gap:11px; margin-top:26px; }
-.card{ display:flex; align-items:center; gap:15px; text-decoration:none; background:var(--paper);
-  border:1px solid var(--line-soft); border-radius:10px; padding:15px 17px;
-  transition:border-color .18s, box-shadow .18s, transform .18s; }
+/* SEÇÕES CLARAS */
+.sec{ margin-top:30px; }
+.sec-lb{ font-size:.68rem; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--accent-ink); }
+.sec h2{ margin-top:8px; font-family:var(--serif); font-weight:600; font-size:1.2rem; line-height:1.3; letter-spacing:-.012em; }
+.box{ margin-top:14px; background:var(--paper); border:1px solid var(--line-soft); border-radius:12px; padding:6px 18px; }
+.chk{ display:flex; gap:12px; align-items:flex-start; padding:12px 0; font-size:.95rem; line-height:1.45; border-bottom:1px solid var(--line-soft); }
+.chk:last-child{ border-bottom:none; }
+.chk svg{ flex-shrink:0; width:20px; height:20px; margin-top:2px; color:var(--accent-ink); }
+.lapis{ display:flex; gap:7px; margin-top:14px; }
+.lapis span{ flex:1; text-align:center; background:var(--paper); border:1px solid var(--line-soft); border-radius:10px; padding:10px 2px 9px; }
+.lapis b{ display:block; font-size:1.3rem; font-weight:800; color:var(--accent-ink); line-height:1.1; }
+.lapis i{ display:block; font-style:normal; font-size:.64rem; hyphens:manual; line-height:1.25; color:var(--ink3); margin-top:3px; letter-spacing:-.01em; }
+.cad{ margin-top:12px; font-size:.92rem; line-height:1.55; color:var(--ink3); }
+.mais{ display:inline-block; margin-top:10px; font-size:.9rem; font-weight:600; color:var(--accent-ink); text-decoration:underline; text-underline-offset:3px; }
+
+/* CONVITE TRANSITÓRIO */
+.links{ display:flex; flex-direction:column; gap:10px; margin-top:14px; }
+.card{ display:flex; align-items:center; gap:14px; text-decoration:none; background:var(--paper); border:1px solid var(--line-soft);
+  border-radius:10px; padding:14px 16px; transition:border-color .18s, box-shadow .18s, transform .18s; }
 .card:hover{ border-color:var(--accent); box-shadow:0 2px 14px rgba(10,25,20,.06); transform:translateY(-1px); }
-.ic{ flex-shrink:0; width:42px; height:42px; border-radius:9px; background:rgba(31,168,106,.1);
-  display:flex; align-items:center; justify-content:center; color:var(--accent-ink); }
-.ic svg{ width:21px; height:21px; }
+.ic{ flex-shrink:0; width:40px; height:40px; border-radius:9px; background:rgba(31,168,106,.1); display:flex; align-items:center; justify-content:center; color:var(--accent-ink); }
+.ic svg{ width:20px; height:20px; }
 .ct{ flex:1; min-width:0; }
-.ct b{ display:block; font-family:var(--serif); font-size:1rem; font-weight:600; letter-spacing:-.01em; color:var(--ink); }
-.ct span{ display:block; font-size:.83rem; color:var(--mut); margin-top:3px; line-height:1.45; }
+.ct b{ display:block; font-family:var(--serif); font-size:.98rem; font-weight:600; letter-spacing:-.01em; color:var(--ink); }
+.ct span{ display:block; font-size:.83rem; color:var(--mut); margin-top:2px; line-height:1.45; }
 .chev{ flex-shrink:0; color:var(--mut); font-size:1.15rem; }
 
-/* MÉTODO */
-.pillars-lb{ margin-top:36px; text-align:center; font-size:.68rem; letter-spacing:.24em;
-  text-transform:uppercase; color:var(--mut); }
-.chips{ display:flex; flex-wrap:wrap; gap:7px; justify-content:center; margin-top:13px; }
-.chip{ font-size:.78rem; color:var(--accent-ink); background:var(--paper);
-  border:1px solid var(--line-soft); border-radius:20px; padding:6px 13px; }
+/* CONVITE REPETIDO */
+.fim{ margin-top:30px; text-align:center; background:var(--paper); border:1px solid var(--line-soft); border-radius:14px; padding:24px 20px; }
+.fim h2{ font-family:var(--serif); font-weight:600; font-size:1.2rem; line-height:1.3; }
+.fim p{ margin-top:8px; font-size:.92rem; color:var(--ink3); }
+.fim .cta{ background:var(--deep); color:#fff; }
 
-/* RODAPÉ */
-.disc{ margin-top:34px; padding-top:20px; border-top:1px solid var(--line-soft);
-  text-align:center; font-size:.78rem; color:var(--mut); line-height:1.55; }
-.foot{ margin-top:11px; text-align:center; font-size:.78rem; color:var(--mut); }
+/* barra fixa no celular: aparece quando o convite do topo sai da tela */
+.fixa{ position:fixed; left:0; right:0; bottom:0; z-index:800; padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+  background:rgba(245,245,240,.96); border-top:1px solid var(--line); backdrop-filter:blur(8px);
+  transform:translateY(110%); visibility:hidden; transition:transform .25s, visibility .25s; }
+.fixa.on{ transform:none; visibility:visible; }
+@media (prefers-reduced-motion:reduce){ *{ transition:none !important; } }
+.fixa a{ display:block; max-width:520px; margin:0 auto; text-align:center; text-decoration:none; background:var(--deep); color:#fff;
+  font-weight:700; font-size:1rem; padding:14px; border-radius:10px; }
+
+.disc{ margin-top:30px; padding-top:18px; border-top:1px solid var(--line-soft); text-align:center; font-size:.78rem; color:var(--mut); line-height:1.55; }
+.foot{ margin-top:10px; text-align:center; font-size:.78rem; color:var(--mut); }
 .foot a{ color:var(--ink2); text-decoration:underline; text-underline-offset:2px; }
-
+.ck-curto{display:none}
+@media (max-width:600px){ .ck{padding:10px 14px} .ck-tx .ck-t,.ck-longo{display:none} .ck-curto{display:block;font-size:12px;line-height:1.35} .ck-in{gap:10px;flex-wrap:nowrap} .ck-tx{min-width:0} .ck-btns{flex-wrap:nowrap;gap:6px} .ck-btns button{padding:8px 10px;font-size:12px} }
 /* banner de cookie (LGPD) */
 .ck{position:fixed;bottom:0;left:0;right:0;z-index:900;background:var(--paper);color:var(--ink);border-top:1px solid var(--line);padding:14px 22px;display:none}
 .ck-in{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;text-align:left}
@@ -133,83 +141,91 @@ a{ color:inherit; }
 <body>
   <div class="wrap">
     <div class="head">
-      <img class="avatar" src="/foto-leo.webp" alt="Leonardo Sousa, Consultor Patrimonial" width="104" height="104">
+      <img class="avatar" src="/foto-leo.webp" alt="Leonardo Sousa, Consultor Patrimonial" width="64" height="64">
       <div class="name">Leonardo Sousa</div>
       <div class="role">Consultor Patrimonial</div>
-      <div class="tag">Clareza, não produtos. Processo, não promessas.</div>
-      <div class="rule"></div>
+      <div class="tag">Independente. Há mais de 5 anos acompanhando famílias em todo o Brasil.</div>
     </div>
 
-    <!-- Gravacao da aula de 17/09/2026 (trocado em 11/10/2026: a tarja "ao vivo"
-         tinha ficado velha). O Reel G4 de 12/10 manda para ca: "a aula sobre
-         dinheiro fora do Brasil esta no link da bio". -->
-    <section class="live" aria-label="Aula gravada: Dinheiro fora do Brasil">
-      <div class="live-top">
-        <span class="eyebrow">Aula gravada · 1h04</span>
-        <h1 class="live-h">Dinheiro fora do Brasil: as três contas que ninguém soma</h1>
-        <p class="live-sub">Câmbio, imposto e sucessão de quem tem dinheiro fora do Brasil. Aula aberta, completa.</p>
-      </div>
-      <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/1ZrQpatNjIE"
-                title="Aula gravada: Dinheiro fora do Brasil, as três contas que ninguém soma"
-                loading="lazy"
-                allow="accelerometer; clipboard-write; encrypted-media; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen></iframe>
-      </div>
-      <a class="live-cta" href="/aula/gravacao">Assistir à aula completa</a>
+    <section class="hero" id="convite" aria-label="Agendar a primeira conversa">
+      <div class="eyebrow">Comece aqui</div>
+      <h1>Uma conversa sobre <em>o seu patrimônio inteiro</em>: investimentos, imposto e sucessão.</h1>
+      <p>Online e sem compromisso. Você conta o momento da família; eu pergunto antes de opinar.</p>
+      <a class="cta" data-pos="topo" href="/agendar?utm_content=topo">Escolher um horário</a>
+      <div class="cta-nota">30 minutos · Google Meet · horário de Brasília</div>
+      <ol class="passos" aria-label="Como funciona">
+        <li><span class="n">1</span><span><b>Você escolhe o horário</b> na agenda, em poucos cliques.</span></li>
+        <li><span class="n">2</span><span><b>Conversamos pelo Google Meet</b>: família, renda, objetivos e o que já existe.</span></li>
+        <li><span class="n">3</span><span><b>Em até 48 horas</b>, com as informações da conversa, você recebe o Mapa Patrimonial: tudo num desenho só.</span></li>
+      </ol>
+      <p class="formato">O formato e o valor do acompanhamento você conhece na própria conversa.</p>
+      <a class="exemplo" href="/plano-exemplo">Ver um plano de exemplo, com valores hipotéticos</a>
+
     </section>
 
-    <div class="links">
-      <a class="card" href="/cartas/qual-e-o-itcmd-em-2026-e-o-que-mudou-com-a-reforma">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg></span>
-        <span class="ct"><b>Carta da semana</b><span>Qual é o ITCMD em 2026 e o que mudou com a reforma?</span></span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-      <a class="card" href="https://www.linkedin.com/feed/update/urn:li:ugcPost:7513591472026439681/" target="_blank" rel="noopener">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l3 3v15H6z"/><path d="M9 13h2v4H9zM13 10h2v7h-2z"/></svg></span>
-        <span class="ct"><b>Estudo: quando alguém da família morre</b><span>O que trava, quanto custa e o que chega antes, no LinkedIn</span></span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-      <a class="card" href="/">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18"/></svg></span>
-        <span class="ct"><b>Conheça a Consultoria</b><span>Metodologia V.I.D.A., como funciona, para quem é</span></span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-      <a class="card" href="/conversa">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M21 11.5a8.4 8.4 0 0 1-8.5 8.4 8.9 8.9 0 0 1-3.9-.9L3 20.5l1.5-5.1a8.4 8.4 0 0 1-.9-3.9A8.4 8.4 0 0 1 12 3.1h.5A8.4 8.4 0 0 1 21 11.5z"/></svg></span>
-        <span class="ct"><b>Agendar conversa exploratória</b><span>Primeira conversa, sem compromisso e sem custo</span></span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-      <a class="card" href="/cartas">
-        <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-        <span class="ct"><b>Newsletter Semanal</b><span>Cartas de Vida e Patrimônio, toda quinta-feira</span></span>
-        <span class="chev" aria-hidden="true">›</span>
-      </a>
-    </div>
+    <section class="sec">
+      <div class="sec-lb">Para quem é</div>
+      <h2>Para quem já acumulou e quer ver o todo.</h2>
+      <div class="box">
+        <div class="chk"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Tem patrimônio em mais de uma instituição.</span></div>
+        <div class="chk"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Quer saber se está no caminho.</span></div>
+        <div class="chk"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>Pensa em aposentadoria, imposto e sucessão ao mesmo tempo.</span></div>
+      </div>
+    </section>
 
-    <div class="pillars-lb">Os cinco pilares &nbsp;•&nbsp; LÁPIS</div>
-    <div class="chips">
-      <span class="chip">Liquidez</span>
-      <span class="chip">Aposentadoria</span>
-      <span class="chip">Proteção</span>
-      <span class="chip">Investimentos</span>
-      <span class="chip">Sucessão</span>
-    </div>
+    <section class="sec">
+      <div class="sec-lb">Depois da conversa</div>
+      <h2>Cinco frentes, revistas juntas.</h2>
+      <div class="lapis">
+        <span><b>L</b><i>Liquidez</i></span><span><b>A</b><i>Aposenta&shy;doria</i></span><span><b>P</b><i>Proteção</i></span><span><b>I</b><i>Investi&shy;mentos</i></span><span><b>S</b><i>Sucessão</i></span>
+      </div>
+      <p class="cad">Revisão todo mês, com fechamento trimestral e anual.</p>
+      <a class="mais" href="/metodo">Ver o método completo</a>
+    </section>
 
-    <div class="disc">Conteúdo de caráter educativo: não constitui recomendação de investimento.</div>
+    <section class="sec">
+      <div class="sec-lb">Ainda não é a hora?</div>
+      <h2>Acompanhe primeiro, decida depois.</h2>
+      <div class="links">
+        <a class="card" href="/cartas/qual-e-o-itcmd-em-2026-e-o-que-mudou-com-a-reforma">
+          <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h9l3 3v15H6z"/><path d="M9 10h6M9 14h6M9 18h4"/></svg></span>
+          <span class="ct"><b>Carta da semana</b><span>Qual é o ITCMD em 2026 e o que mudou com a reforma?</span></span>
+          <span class="chev" aria-hidden="true">›</span>
+        </a>
+        <a class="card" href="/cartas">
+          <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="ct"><b>Receber as cartas por e-mail</b><span>Uma por semana, toda quinta-feira</span></span>
+          <span class="chev" aria-hidden="true">›</span>
+        </a>
+        <a class="card" href="/aula/gravacao">
+          <span class="ic"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg></span>
+          <span class="ct"><b>Aula gravada · 1h04</b><span>Dinheiro fora do Brasil: as três contas que ninguém soma</span></span>
+          <span class="chev" aria-hidden="true">›</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="fim">
+      <h2>Comece por uma conversa.</h2>
+      <p>Você escolhe o dia; o resto eu conduzo.</p>
+      <a class="cta" data-pos="rodape" href="/agendar?utm_content=rodape">Escolher um horário</a>
+    </section>
+
+    <div class="disc">As informações compartilhadas têm caráter educativo e não constituem recomendação de investimento. Para orientação personalizada, contate um consultor de investimentos.</div>
     <div class="foot"><a href="/privacidade">Política de Privacidade</a> <span aria-hidden="true">·</span> <a href="#" onclick="return ckReabrir(event)" class="ck-pref">Preferências de cookies</a></div>
   </div>
+
+  <div class="fixa" id="fixa"><a data-pos="barra" href="/agendar?utm_content=barra">Escolher um horário</a></div>
 
   <div class="ck" id="ck" role="region" aria-label="Consentimento de cookies">
     <div class="ck-in">
       <div class="ck-tx">
         <p class="ck-t">Utilizamos cookies</p>
-        <p>Este site utiliza cookies para analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com cookies analíticos e de marketing. Consulte a <a href="/privacidade">Política de Privacidade</a>.</p>
+        <p class="ck-longo">Este site utiliza cookies para analisar o tráfego e personalizar conteúdo. Ao clicar em "Aceitar todos", você consente com cookies analíticos e de marketing. Consulte a <a href="/privacidade">Política de Privacidade</a>.</p><p class="ck-curto">Cookies de análise e marketing. <a href="/privacidade">Privacidade</a></p>
       </div>
       <div class="ck-btns">
-        <button class="ck-no" onclick="ckNo()">Apenas necessários</button>
-        <button class="ck-ok" onclick="ckOk()">Aceitar todos</button>
+        <button class="ck-no" onclick="ckNo()"><span class="ck-longo">Apenas necessários</span><span class="ck-curto">Recusar</span></button>
+        <button class="ck-ok" onclick="ckOk()"><span class="ck-longo">Aceitar todos</span><span class="ck-curto">Aceitar</span></button>
       </div>
     </div>
   </div>
@@ -238,9 +254,41 @@ function ckReabrir(e){
 }
 window.ckReabrir = ckReabrir;
 
-function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; }
-function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; }
-(function(){ var r=localStorage.getItem('cookie_consent'); if(!r){document.getElementById('ck').style.display='block';} else {loadA();} })();
+function ckOk(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:true,marketing:true,ts:new Date().toISOString()})); loadA(); document.getElementById('ck').style.display='none'; if(window._barra) _barra(); }
+function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary:true,analytics:false,marketing:false,ts:new Date().toISOString()})); document.getElementById('ck').style.display='none'; if(window._barra) _barra(); }
+(function(){ var r=localStorage.getItem('cookie_consent');
+  if(r){ loadA(); return; }
+  /* nada carrega antes do aceite; o aviso espera o primeiro scroll ou 4 s para não cobrir o convite na chegada */
+  var feito=false; function mostra(){ if(feito) return; feito=true; document.getElementById('ck').style.display='block'; if(window._barra) _barra(); }
+  window.addEventListener('scroll', mostra, {once:true, passive:true}); setTimeout(mostra, 4000); })();
+
+/* UTM: o link da bio traz os parâmetros; a página repassa para /agendar e só acrescenta utm_content (topo, barra, rodape).
+   Sem parâmetro na chegada, vale instagram/bio. */
+(function(){
+  var q=new URLSearchParams(location.search), base={utm_source:'instagram',utm_medium:'bio',utm_campaign:'links'};
+  ['utm_source','utm_medium','utm_campaign','utm_term'].forEach(function(k){ if(q.get(k)) base[k]=q.get(k); });
+  document.querySelectorAll('[data-pos]').forEach(function(a){
+    var u=new URLSearchParams(base); u.set('utm_content', a.getAttribute('data-pos')); a.href='/agendar?'+u.toString();
+  });
+})();
+/* clique no convite: evento no GA e no Pixel, só se o visitante aceitou cookies (as funções só existem depois do aceite) */
+document.querySelectorAll('[data-pos]').forEach(function(a){
+  a.addEventListener('click', function(){
+    var pos=a.getAttribute('data-pos');
+    try{ if(window.gtag) gtag('event','clique_agendar',{posicao:pos}); }catch(e){}
+    try{ if(window.fbq) fbq('trackCustom','CliqueAgendar',{posicao:pos}); }catch(e){}
+  });
+});
+/* barra fixa: aparece quando o convite do topo sai da tela e o banner de cookie não está aberto */
+(function(){
+  var barra=document.getElementById('fixa'), hero=document.getElementById('convite'), fim=document.querySelector('.fim'), ck=document.getElementById('ck');
+  if(!('IntersectionObserver' in window)) return;
+  var heroFora=false, fimVisivel=false;
+  function atualiza(){ var ckAberto = ck && ck.style.display==='block'; barra.classList.toggle('on', heroFora && !fimVisivel && !ckAberto); }
+  new IntersectionObserver(function(e){ heroFora=!e[0].isIntersecting; atualiza(); }).observe(hero);
+  new IntersectionObserver(function(e){ fimVisivel=e[0].isIntersecting; atualiza(); }).observe(fim);
+  window._barra = atualiza;
+})();
 </script>
 </body>
 </html>

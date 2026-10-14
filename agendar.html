@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agendar conversa · Leonardo Sousa · Consultor Patrimonial</title>
-<meta name="description" content="Escolha um horário para a conversa exploratória. 30 minutos, sem compromisso. Consultoria patrimonial independente, fee fixo, sem comissão.">
+<meta name="description" content="Escolha um horário para a primeira conversa. 30 minutos, online e sem compromisso. Consultoria patrimonial independente, remunerada pelo cliente.">
 <meta name="robots" content="noindex">
 
 <!-- ============================================================
@@ -439,7 +439,7 @@ a{ color:inherit; }
       <div class="footer-brand">
         <div class="fb-name">Leonardo Sousa</div>
         <div class="fb-role">Consultor Patrimonial</div>
-        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Fee fixo, sem comissão.</p>
+        <p>Consultoria patrimonial independente para investidores em todo o Brasil. Remunerada pelo cliente, com a taxa no contrato.</p>
       <div class="social">
         <a href="https://www.instagram.com/leonardodesousa/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://www.linkedin.com/in/leonardopsousa/" target="_blank" rel="noopener">LinkedIn</a>
@@ -648,6 +648,9 @@ function ckNo(){ localStorage.setItem('cookie_consent',JSON.stringify({necessary
             '<br>É a mesma sala em todas as conversas, pode salvar.';
         }
         document.getElementById('agBlocoOk').classList.remove('ag-esconde');
+        /* conversão: só existe gtag/fbq depois do aceite de cookies (14/10/2026) */
+        try{ if(window.gtag) gtag('event','generate_lead',{tipo:'exploratoria'}); }catch(e){}
+        try{ if(window.fbq) fbq('track','Schedule'); }catch(e){}
         window.scrollTo({top:0, behavior:'smooth'});
         return;
       }
