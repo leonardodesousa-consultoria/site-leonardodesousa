@@ -381,7 +381,7 @@ def montar(meta, corpo, faq):
   <img src="/foto-leo.webp" alt="Leonardo Sousa" width="64" height="64" loading="lazy">
   <div>
     <p class="nm">Leonardo Sousa</p>
-    <p>Consultor patrimonial independente, remunerado por fee fixo anual e sem comissão de produto. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
+    <p>Consultor patrimonial independente, remunerado por fee fixo anual pago pelo cliente. Certificação CEA ANBIMA. <a href="/sobre">Conheça a formação e o método</a>.</p>
   </div>
 </aside>
 <div style="margin-top:2.4em">
