@@ -350,6 +350,8 @@ const CONFIG = {
 const DADOS_INICIAIS = {
   versao: "2026-10",
   familia: {
+    dataNascimento: "",                  // 2026-10 (19/10): texto dd/mm/aaaa; o motor precisa da idade de hoje
+    dataNascimentoIso: "",               // 2026-10 (19/10): AAAA-MM-DD lido do texto acima; "" quando invalido
     estadoCivil: "Solteiro(a)",
     regimeBens: "",
     ufDomicilio: "Não sei",              // 2026-09: sem UF nao ha leitura de ITCMD possivel
@@ -529,7 +531,7 @@ function montarApp(){
     if(estado.pilares.invalidez === undefined) estado.pilares.invalidez = 'nao_sei';
     // campos que nasceram na versao 2026-09: rascunho antigo nao os tem
     if(!estado.empresa) estado.empresa = structuredClone(DADOS_INICIAIS.empresa);
-    ['ufDomicilio','uniaoEstavelFormalizada','filhosOutrosVinculos','filhosOutrosVinculosDetalhe'].forEach(k=>{
+    ['ufDomicilio','uniaoEstavelFormalizada','filhosOutrosVinculos','filhosOutrosVinculosDetalhe','dataNascimento','dataNascimentoIso'].forEach(k=>{
       if(estado.familia[k] === undefined) estado.familia[k] = DADOS_INICIAIS.familia[k];
     });
     if(!Array.isArray(estado.familia.dependentesIdades)) estado.familia.dependentesIdades = [];
@@ -633,6 +635,14 @@ function montarApp(){
     badge.innerHTML = '<svg class="bi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg><span class="lbl">confirmar</span>';
     const confirmar = ()=>{ f.classList.add('ok'); };
     badge.addEventListener('click', confirmar);
+    let hintEl = null;
+    // 2026-10 (19/10): campo com validar(texto) so fica confirmado quando o texto e valido
+    const conferir = ()=>{
+      if(!o.validar) return;
+      const msg = o.validar(el.value);
+      if(msg) f.classList.remove('ok');
+      if(hintEl){ hintEl.textContent = msg || o.hint || ''; hintEl.style.color = msg ? '#b42318' : ''; }
+    };
     el.addEventListener('input', ()=>{
       confirmar();
       // 2026-10: campo de dinheiro vazio vira null ("não informado"), nunca 0
@@ -641,6 +651,7 @@ function montarApp(){
             : o.decimal ? (vazio ? null : parseDec(el.value))
             : o.num ? ((vazio && o.nulo) ? null : parseNum(el.value)) : el.value;
       o.onInput(v);
+      conferir();
       mudou();
     });
     if(o.money){ el.addEventListener('blur', ()=>{ el.value = parseNum(el.value)? fmtGrupo(parseNum(el.value)) : ''; }); }
@@ -649,7 +660,8 @@ function montarApp(){
     else f.appendChild(el);
     f.appendChild(badge);
     g.appendChild(f);
-    if(o.hint){ const h = document.createElement('div'); h.className='hint'; h.textContent=o.hint; g.appendChild(h); }
+    if(o.hint || o.validar){ const h = document.createElement('div'); h.className='hint'; h.textContent=o.hint||''; g.appendChild(h); hintEl = h; }
+    conferir();
     return g;
   }
 
@@ -734,6 +746,11 @@ function montarApp(){
                          'Separado(a) de fato, sem divórcio averbado','Divorciado(a)','Viúvo(a)'];
   const COM_REGIME = ['Casado(a)','União estável','Separado(a) de fato, sem divórcio averbado'];
   bloco(1,'Sua família','O que mudou no último ano', body=>{
+    // 2026-10 (19/10): sem a idade de hoje o plano nao tem ponto de partida
+    body.appendChild(campoTexto({label:'Sua data de nascimento', valor:estado.familia.dataNascimento,
+      placeholder:'dd/mm/aaaa', hint:'a conta do plano parte da sua idade de hoje',
+      validar:v=> (String(v).trim() && !dataNascimentoIso(v)) ? 'não reconheci a data: use dia/mês/ano, com o ano em 4 dígitos' : '',
+      onInput:v=>{ estado.familia.dataNascimento=v; estado.familia.dataNascimentoIso=dataNascimentoIso(v); }}));
     body.appendChild(campoSelect({label:'Estado civil', valor:estado.familia.estadoCivil,
       opcoes:ESTADOS_CIVIS,
       onInput:v=>{ estado.familia.estadoCivil=v; renderRegime(); renderUniaoEstavel(); renderIrpfConjuge(); renderPacto(); }}));
@@ -804,6 +821,25 @@ function montarApp(){
     if(estado.familia.filhosOutrosVinculos !== 'sim') return;
     c.appendChild(campoTexto({label:'Quantos e que idades', valor:estado.familia.filhosOutrosVinculosDetalhe,
       placeholder:'ex: 1, com 22 anos', onInput:v=>estado.familia.filhosOutrosVinculosDetalhe=v}));
+  }
+  // 2026-10 (19/10): dd/mm/aaaa (com ou sem barras) vira AAAA-MM-DD; data impossivel ou futura vira ""
+  function dataNascimentoIso(texto){
+    // com separador: dia e mes com 1 ou 2 digitos, ano com 4 ("1/2/1970", "01.02.1970");
+    // sem separador: exatamente 8 digitos ("01021970"). Ano com 2 digitos e recusado.
+    const s = String(texto ?? '').trim();
+    let dia, mes, ano;
+    if(/\D/.test(s)){
+      const p = s.split(/\D+/).filter(Boolean);
+      if(p.length !== 3 || p[0].length > 2 || p[1].length > 2 || p[2].length !== 4) return '';
+      dia = +p[0]; mes = +p[1]; ano = +p[2];
+    } else {
+      if(s.length !== 8) return '';
+      dia = +s.slice(0,2); mes = +s.slice(2,4); ano = +s.slice(4);
+    }
+    const dt = new Date(ano, mes-1, dia);
+    if(dt.getFullYear()!==ano || dt.getMonth()!==mes-1 || dt.getDate()!==dia) return '';
+    if(ano < 1900 || dt > new Date()) return '';
+    return ano + '-' + String(mes).padStart(2,'0') + '-' + String(dia).padStart(2,'0');
   }
   function idadesDeclaradas(texto){
     // o texto livre continua sendo o campo; a lista de numeros e o que permite ver herdeiro menor
@@ -1585,9 +1621,13 @@ function montarApp(){
 
     function montarPayload(){
       const a = calcArvore();
-      const hoje = new Date().toISOString().slice(0,10);
+      // 2026-10 (19/10): data LOCAL; toISOString() da o dia em UTC e, depois das 21h em Brasilia,
+      // ja e o dia seguinte (somava um ano a idade de quem envia na vespera do aniversario)
+      const n_ = new Date();
+      const hoje = n_.getFullYear() + '-' + String(n_.getMonth()+1).padStart(2,'0') + '-' + String(n_.getDate()).padStart(2,'0');
       // 2026-09: a lista estruturada sai sempre do mesmo texto livre, para as duas nunca discordarem
       estado.familia.dependentesIdades = idadesDeclaradas(estado.familia.idadesDependentes);
+      estado.familia.dataNascimentoIso = dataNascimentoIso(estado.familia.dataNascimento);
       return {
         versao: estado.versao,
         gerado_em: hoje,
